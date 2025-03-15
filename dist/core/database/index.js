@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,32 +34,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var app_1 = require("./app");
-var config_1 = require("./core/config");
-var logger_1 = require("./core/logger");
-var connectDb = require("./core/database/index");
-var startServer = function () { return __awaiter(void 0, void 0, void 0, function () {
+var _this = this;
+var mongoose = require("mongoose");
+var connectDb = function () { return __awaiter(_this, void 0, void 0, function () {
+    var connect, err_1;
     return __generator(this, function (_a) {
-        try {
-            connectDb();
-            app_1.app.listen(config_1.config.PORT, function () {
-                console.log("Server running on port ".concat(config_1.config.PORT, "\""));
-            });
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                console.log(process.env.CONNECTION_STRING);
+                return [4 /*yield*/, mongoose.connect(process.env.CONNECTION_STRING)];
+            case 1:
+                connect = _a.sent();
+                console.log("Database connected: ", connect.connection.host, connect.connection.name);
+                return [3 /*break*/, 3];
+            case 2:
+                err_1 = _a.sent();
+                console.log(err_1);
+                process.exit(1);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
-        catch (error) {
-        }
-        return [2 /*return*/];
     });
 }); };
-startServer();
-//Manejo de errores no controlados
-process.on('uncaughtException', function (error) {
-    logger_1.logger.error('Uncaught Exception:', error);
-    process.exit(1);
-});
-process.on('unhandledRejection', function (reason) {
-    logger_1.logger.error('Unhandled Rejection:', reason);
-    process.exit(1);
-});
-//# sourceMappingURL=server.js.map
+module.exports = connectDb;
+//# sourceMappingURL=index.js.map

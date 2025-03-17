@@ -8,7 +8,9 @@
     "dev": "nodemon --watch src/**/* --ext ts,json --exec \"npm run build && npm run start\"",
     "build": "tsc",
     "start": "node dist/server.js",
-    "seed:permissions": "ts-node src/db/seeders/permissionsSeeders/permission.seed.ts"
+    "seed:permissions": "ts-node src/db/seeders/permissionsSeeders/permission.seed.ts",
+    "seed:subroutes": "ts-node src/db/seeders/menuSeeders/menu.seed.ts",
+    "seed:routes": "ts-node src/db/seeders/menuSeeders/route.seed.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

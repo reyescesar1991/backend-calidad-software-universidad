@@ -41,7 +41,6 @@ const seedPermissions = async () => {
             {label: 'Agregar inventario', permission: 'agregar_inventario', can: false},
             {label: 'Registrar venta', permission: 'registrar_venta', can: false},
             {label: 'Ajustar producto', permission: 'ajustar_producto', can: false},
-            // Elimino el duplicado de "Buscar producto"
             {label: 'Estado general', permission: 'reporte_estado_general', can: false},
             {label: 'Bajo stock', permission: 'reporte_bajo_stock', can: false},
             {label: 'Valor total inventario', permission: 'reporte_valor_total_inventario', can: false},

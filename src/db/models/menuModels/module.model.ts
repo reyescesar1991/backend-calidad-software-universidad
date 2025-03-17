@@ -1,6 +1,5 @@
 import { Schema, model } from "mongoose";
 import { IModuleType } from "../../../core/types";
-import { RouteSchema } from "./route.model";
 
 
 export interface ModuleDocument extends IModuleType, Document { };

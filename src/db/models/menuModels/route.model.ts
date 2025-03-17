@@ -1,6 +1,5 @@
 import { Schema, model } from "mongoose";
 import { IRouteType } from "../../../core/types";
-import { SubrouteSchema } from "./subroute.model";
 
 interface RouteDocument extends IRouteType, Document {}
 

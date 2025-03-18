@@ -2,6 +2,7 @@ import * as dovtenv from 'dotenv';
 import mongoose from 'mongoose';
 import {resolve} from 'path';
 import { IModuleType } from '../../../core/types';
+import { RouteModel } from '../../models';
 
 
 dovtenv.config({path: resolve(process.cwd(), '.env')});
@@ -28,11 +29,37 @@ const seedModules = async () => {
             console.log('Conexión a la base de datos establecida correctamente');
         }
 
+        const existingRoutes = await RouteModel.find({});
+        if(existingRoutes.length === 0){
+            throw new Error("❌ No hay rutas en la base de datos. Ejecuta primero el seed de routes.");
+        }
         
-        const modulesToSeed : Array<IModuleType> = [
+        const modulesToSeed  = [
 
-            {id: 'principal', title: 'Principal', routes: []}
+            {id: 'home', title: 'Principal', route: {}},
+            {id: 'products', title: 'Productos', route: {}},
+            {id: 'inventory-management', title: 'Inventario', route: {}},
+            {id: 'general-reports', title: 'Reportes', route: {}},
+            {id: 'users', title: 'Administración', route: {}},
         ]
+
+        const modulesWithRoutes = modulesToSeed.map((module) => {
+
+            const route = existingRoutes.find((route) => module.id === route.id);
+
+            if(!route){
+                throw new Error(`❌ Modulo "${module.id}" no encontrado para ruta "${route.id}"`);
+            }
+
+            return{
+
+                ...module,
+                route : route._id
+            }
+        })
+
+        console.log("Modulos con rutas asociadas: ", modulesWithRoutes);
+        
 
         
 

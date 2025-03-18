@@ -8,5 +8,5 @@ export interface ISubrouteType{
     active : boolean,
     permissionKey: string,
     mainRoute : string,
-    parentId: Schema.Types.ObjectId, 
+    // parentId: Schema.Types.ObjectId, 
 }

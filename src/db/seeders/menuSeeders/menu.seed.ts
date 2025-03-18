@@ -52,44 +52,44 @@ const seedSubroutes = async () => {
 
     const subroutesToSeed = [
 
-      { id: 'products-registry', name: 'Registrar producto', path: '/dashBoard/productos/registrar-producto', active: false, permissionKey: 'registrar_producto', mainRoute: 'products', parentId: {}},
-      { id: 'products-modify', name: 'Modificar producto', path: '/dashBoard/productos/modificar-producto', active: false, permissionKey: 'modificar_producto', mainRoute: 'products', parentId: {} },
-      { id: 'products-list', name: 'Listado de productos', path: '/dashBoard/productos/lista-productos', active: false, permissionKey: 'ver_listar_productos', mainRoute: 'products', parentId: {} },
-      { id: 'products-search', name: 'Buscar producto', path: '/dashBoard/productos/buscar-producto', active: false, permissionKey: 'buscar_producto', mainRoute: 'products', parentId: {} },
+      { id: 'products-registry', name: 'Registrar producto', path: '/dashBoard/productos/registrar-producto', active: false, permissionKey: 'registrar_producto', mainRoute: 'products'},
+      { id: 'products-modify', name: 'Modificar producto', path: '/dashBoard/productos/modificar-producto', active: false, permissionKey: 'modificar_producto', mainRoute: 'products' },
+      { id: 'products-list', name: 'Listado de productos', path: '/dashBoard/productos/lista-productos', active: false, permissionKey: 'ver_listar_productos', mainRoute: 'products' },
+      { id: 'products-search', name: 'Buscar producto', path: '/dashBoard/productos/buscar-producto', active: false, permissionKey: 'buscar_producto', mainRoute: 'products' },
 
-      { id: 'inventory-add', name: 'Agregar inventario', path: '/dashBoard/inventario/agregar-inventario', active: false, permissionKey: 'agregar_inventario', mainRoute: 'inventory-management', parentId: {}},
-      { id: 'inventory-sales', name: 'Registrar venta', path: '/dashBoard/inventario/registrar-venta', active: false, permissionKey: 'registrar_venta', mainRoute: 'inventory-management', parentId: {} },
-      { id: 'inventory-adjust', name: 'Ajustar producto', path: '/dashBoard/inventario/ajustar-producto', active: false, permissionKey: 'ajustar_producto', mainRoute: 'inventory-management', parentId: {} },
+      { id: 'inventory-add', name: 'Agregar inventario', path: '/dashBoard/inventario/agregar-inventario', active: false, permissionKey: 'agregar_inventario', mainRoute: 'inventory-management'},
+      { id: 'inventory-sales', name: 'Registrar venta', path: '/dashBoard/inventario/registrar-venta', active: false, permissionKey: 'registrar_venta', mainRoute: 'inventory-management' },
+      { id: 'inventory-adjust', name: 'Ajustar producto', path: '/dashBoard/inventario/ajustar-producto', active: false, permissionKey: 'ajustar_producto', mainRoute: 'inventory-management' },
 
-      { id: 'report-general', name: 'Estado general', path: '/dashBoard/reportes/reporte-general', active: false, permissionKey: 'reporte_estado_general', mainRoute: 'general-reports', parentId: {}},
-      { id: 'report-low-stock', name: 'Bajo stock', path: '/dashBoard/reportes/reporte-bajo-stock', active: false, permissionKey: 'reporte_bajo_stock', mainRoute: 'general-reports', parentId: {} },
-      { id: 'report-total-stock', name: 'Valor total inventario', path: '/dashBoard/reportes/reporte-total-stock', active: false, permissionKey: 'reporte_valor_total_inventario', mainRoute: 'general-reports', parentId: {} },
+      { id: 'report-general', name: 'Estado general', path: '/dashBoard/reportes/reporte-general', active: false, permissionKey: 'reporte_estado_general', mainRoute: 'general-reports'},
+      { id: 'report-low-stock', name: 'Bajo stock', path: '/dashBoard/reportes/reporte-bajo-stock', active: false, permissionKey: 'reporte_bajo_stock', mainRoute: 'general-reports' },
+      { id: 'report-total-stock', name: 'Valor total inventario', path: '/dashBoard/reportes/reporte-total-stock', active: false, permissionKey: 'reporte_valor_total_inventario', mainRoute: 'general-reports' },
 
-      { id: 'users-create', name: 'Crear usuario', path: '/dashBoard/usuarios/crear-usuario', active: false, permissionKey: 'crear_usuario', mainRoute: 'users', parentId: {} },
-      { id: 'users-update', name: 'Modificar usuario', path: '/dashBoard/usuarios/modificar-usuario', active: false, permissionKey: 'modificar_usuario', mainRoute: 'users', parentId: {} },
-      { id: 'users-list', name: 'Listar usuarios', path: '/dashBoard/usuarios/listar-usuarios', active: false, permissionKey: 'listar_usuarios', mainRoute: 'users', parentId: {} },
+      { id: 'users-create', name: 'Crear usuario', path: '/dashBoard/usuarios/crear-usuario', active: false, permissionKey: 'crear_usuario', mainRoute: 'users' },
+      { id: 'users-update', name: 'Modificar usuario', path: '/dashBoard/usuarios/modificar-usuario', active: false, permissionKey: 'modificar_usuario', mainRoute: 'users' },
+      { id: 'users-list', name: 'Listar usuarios', path: '/dashBoard/usuarios/listar-usuarios', active: false, permissionKey: 'listar_usuarios', mainRoute: 'users' },
     ];
 
-    const subroutesWithParent = subroutesToSeed.map((subroute) => {
+    // const subroutesWithParent = subroutesToSeed.map((subroute) => {
 
-      const parentRoute = existingRoutes.find((route) => route.id === subroute.mainRoute);
-      if(!parentRoute){
+    //   const parentRoute = existingRoutes.find((route) => route.id === subroute.mainRoute);
+    //   if(!parentRoute){
 
-        throw new Error(`❌ Ruta padre "${subroute.mainRoute}" no encontrada para subruta "${subroute.id}"`);
-      }
+    //     throw new Error(`❌ Ruta padre "${subroute.mainRoute}" no encontrada para subruta "${subroute.id}"`);
+    //   }
 
-      return {
+    //   return {
 
-        ...subroute,
-        parentId : parentRoute._id,
-      }
+    //     ...subroute,
+    //     parentId : parentRoute._id,
+    //   }
       
-    })
+    // })
 
     // console.log("Subrutas ya configuradas: ",subroutesWithParent);
     
 
-    const requiredPermissions = subroutesWithParent.map(s => s.permissionKey);
+    const requiredPermissions = subroutesToSeed.map(s => s.permissionKey);
     const missingPermissions = requiredPermissions.filter(
       p => !existingPermissions.some(ep => ep.permission === p)
     );
@@ -101,7 +101,7 @@ const seedSubroutes = async () => {
     const validSubroutes: SubrouteDto[] = [];
     const invalidSubroutes: any[] = [];
 
-    for (const subroute of subroutesWithParent) {
+    for (const subroute of subroutesToSeed) {
 
       try {
         const validateSubroute = subrouteSchemaZod.parse(subroute) as SubrouteDto;

@@ -12,7 +12,7 @@ export const RouteSchema = new Schema<RouteDocument>({
     active: {type: Boolean, required: true},
     subroutes: [{ 
         type: Schema.Types.ObjectId, 
-        ref: "Subroute" // Relación con Subroute
+        ref: "Subroute"
     }],
 
 } , { timestamps : true });

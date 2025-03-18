@@ -9,7 +9,7 @@ export const subrouteSchemaZod = z.object({
     active : z.boolean(),
     permissionKey : z.string().min(1, "Permiso asociado es requerido"),
     mainRoute: z.string().min(1, "Ruta padre es requerida"),
-    parentId: z.instanceof(mongoose.Types.ObjectId),
+    // parentId: z.instanceof(mongoose.Types.ObjectId),
 
 });
 
@@ -20,7 +20,11 @@ export const routeSchemaZod = z.object({
     path : z.string().min(1, "Path es requerido"),
     icon : z.string().min(1, "Ícono es requerido"),
     active : z.boolean(),
-    subroutes : z.array(subrouteSchemaZod)
+    subroutes : z.array(
+        z.string().refine((value) => mongoose.Types.ObjectId.isValid(value), {
+          message: "Debe ser un ObjectId válido",
+        })
+      )
 });
 
 
@@ -30,7 +34,7 @@ export const moduleSchemaZod = z.object({
 
     title : z.string().min(1, {message : 'Titulo es requerido'}),
 
-    routes : z.array(routeSchemaZod)
+    route: z.instanceof(mongoose.Types.ObjectId),
 })
 
 export type ModuleDto = z.infer<typeof moduleSchemaZod>;

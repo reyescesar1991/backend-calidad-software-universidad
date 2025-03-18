@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import {resolve} from 'path';
 import { IRouteType } from '../../../core/types';
 import { RouteDto, routeSchemaZod } from '../../../validations';
-import { RouteModel } from '../../models';
+import { RouteModel, SubrouteModel } from '../../models';
 
 
 dovtenv.config({path: resolve(process.cwd(), '.env')});
@@ -30,6 +30,12 @@ const seedRoutes = async () => {
             console.log('Conexión a la base de datos establecida correctamente');
         }
 
+
+        const existingSubRoutes = await SubrouteModel.find({});
+        if(existingSubRoutes.length === 0){
+            throw new Error("❌ No hay subrutas en la base de datos. Ejecuta primero el seed de subrutas.");
+        }
+
         
         const routesToSeed : Array<IRouteType> = [
 
@@ -41,48 +47,73 @@ const seedRoutes = async () => {
 
         ]
 
+
+        const routesWithSubroutes = routesToSeed.map((route) => {
+
+            const subroutes = existingSubRoutes.filter((subroute) => subroute.mainRoute === route.id);
+
+            if(!subroutes){
+                throw new Error(`❌ Subrutas no encontrada para ruta "${route.id}"`);
+            }
+
+            // console.log(`Subrutas de ${route.id}"`, subroutes);
+
+            const idSubRoutes = subroutes.map((subroute) => subroute._id);
+
+            // console.log(`Subrutas de ${route.id}"`, idSubRoutes);
+
+            return{
+
+                ...route,
+                subroutes : idSubRoutes,
+            }
+            
+        });
+
+        console.log(`Rutas con subrutas`, routesWithSubroutes);
+
         const validRoutes: RouteDto[] = [];
         const invalidRoutes: any[] = [];
 
-        for(const route of routesToSeed){
+        // for(const route of routesToSeed){
 
-           try {
+        //    try {
             
-            const validRoute = routeSchemaZod.parse(route) as RouteDto;
-            validRoutes.push(validRoute); 
+        //     const validRoute = routeSchemaZod.parse(route) as RouteDto;
+        //     validRoutes.push(validRoute); 
 
-           } catch (error) {
+        //    } catch (error) {
             
-            console.error('Error de validación en el seeder:', error.issues);
-            invalidRoutes.push(route);
+        //     console.error('Error de validación en el seeder:', error.issues);
+        //     invalidRoutes.push(route);
             
-           } 
-        }
+        //    } 
+        // }
 
-        if (invalidRoutes.length > 0) {
-            console.warn('Los siguientes rutas no pasaron la validación y no se insertarán:', invalidRoutes);
-        }
+        // if (invalidRoutes.length > 0) {
+        //     console.warn('Los siguientes rutas no pasaron la validación y no se insertarán:', invalidRoutes);
+        // }
 
-        if(validRoutes.length > 0){
+        // if(validRoutes.length > 0){
 
-            try {
+        //     try {
                 
-                const count = await RouteModel.countDocuments();
-                console.log(`Encontradas ${count} rutas existentes`);
+        //         const count = await RouteModel.countDocuments();
+        //         console.log(`Encontradas ${count} rutas existentes`);
 
-                const deleteResult = await RouteModel.deleteMany({});
-                console.log(`Eliminadas ${deleteResult.deletedCount} rutas existentes`);
+        //         const deleteResult = await RouteModel.deleteMany({});
+        //         console.log(`Eliminadas ${deleteResult.deletedCount} rutas existentes`);
 
-                const insertResult = await RouteModel.insertMany(validRoutes, {ordered:false});
-                console.log(`Insertadas ${insertResult.length} rutas correctamente`);
+        //         const insertResult = await RouteModel.insertMany(validRoutes, {ordered:false});
+        //         console.log(`Insertadas ${insertResult.length} rutas correctamente`);
 
-            } catch (error) {
-                console.error('Error al insertar rutas en la base de datos:', error);
-            }
-        }else{
+        //     } catch (error) {
+        //         console.error('Error al insertar rutas en la base de datos:', error);
+        //     }
+        // }else{
 
-            console.log("No hay rutas válidas para insertar");
-        }
+        //     console.log("No hay rutas válidas para insertar");
+        // }
         
 
     } catch (error) {

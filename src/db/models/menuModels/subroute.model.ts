@@ -11,11 +11,11 @@ export const SubrouteSchema = new Schema<SubrouteDocument>({
     active : {type: Boolean, required: true},
     permissionKey : {type: String, required: true},
     mainRoute: {type: String, required: true},
-    parentId : {
-        type: Schema.Types.ObjectId,
-        ref: "Route", 
-        required: true
-    }
+    // parentId : {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Route", 
+    //     required: true
+    // }
 } , { timestamps : true });
 
 

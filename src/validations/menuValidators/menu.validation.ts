@@ -20,11 +20,12 @@ export const routeSchemaZod = z.object({
     path : z.string().min(1, "Path es requerido"),
     icon : z.string().min(1, "Ícono es requerido"),
     active : z.boolean(),
-    subroutes : z.array(
-        z.string().refine((value) => mongoose.Types.ObjectId.isValid(value), {
-          message: "Debe ser un ObjectId válido",
-        })
-      )
+    subroutes: z.array(
+      // Validar que cada elemento sea una instancia de ObjectId
+      z.instanceof(mongoose.Types.ObjectId, {
+        message: "Debe ser un ObjectId válido",
+      })
+    )
 });
 
 
@@ -34,7 +35,12 @@ export const moduleSchemaZod = z.object({
 
     title : z.string().min(1, {message : 'Titulo es requerido'}),
 
-    route: z.instanceof(mongoose.Types.ObjectId),
+    routes: z.array(
+      // Validar que cada elemento sea una instancia de ObjectId
+      z.instanceof(mongoose.Types.ObjectId, {
+        message: "Debe ser un ObjectId válido",
+      })
+    )
 })
 
 export type ModuleDto = z.infer<typeof moduleSchemaZod>;

@@ -75,45 +75,48 @@ const seedRoutes = async () => {
         const validRoutes: RouteDto[] = [];
         const invalidRoutes: any[] = [];
 
-        // for(const route of routesToSeed){
+        for(const route of routesWithSubroutes){
 
-        //    try {
+           try {
             
-        //     const validRoute = routeSchemaZod.parse(route) as RouteDto;
-        //     validRoutes.push(validRoute); 
+            const validRoute = routeSchemaZod.parse(route) as RouteDto;
+            validRoutes.push(validRoute); 
 
-        //    } catch (error) {
+           } catch (error) {
             
-        //     console.error('Error de validación en el seeder:', error.issues);
-        //     invalidRoutes.push(route);
+            console.error('Error de validación en el seeder:', error.issues);
+            invalidRoutes.push(route);
             
-        //    } 
-        // }
+           } 
+        }
 
-        // if (invalidRoutes.length > 0) {
-        //     console.warn('Los siguientes rutas no pasaron la validación y no se insertarán:', invalidRoutes);
-        // }
+        console.log("Rutas con subrutas validas:",validRoutes);
+        
 
-        // if(validRoutes.length > 0){
+        if (invalidRoutes.length > 0) {
+            console.warn('Los siguientes rutas no pasaron la validación y no se insertarán:', invalidRoutes);
+        }
 
-        //     try {
+        if(validRoutes.length > 0){
+
+            try {
                 
-        //         const count = await RouteModel.countDocuments();
-        //         console.log(`Encontradas ${count} rutas existentes`);
+                const count = await RouteModel.countDocuments();
+                console.log(`Encontradas ${count} rutas existentes`);
 
-        //         const deleteResult = await RouteModel.deleteMany({});
-        //         console.log(`Eliminadas ${deleteResult.deletedCount} rutas existentes`);
+                const deleteResult = await RouteModel.deleteMany({});
+                console.log(`Eliminadas ${deleteResult.deletedCount} rutas existentes`);
 
-        //         const insertResult = await RouteModel.insertMany(validRoutes, {ordered:false});
-        //         console.log(`Insertadas ${insertResult.length} rutas correctamente`);
+                const insertResult = await RouteModel.insertMany(validRoutes, {ordered:false});
+                console.log(`Insertadas ${insertResult.length} rutas correctamente`);
 
-        //     } catch (error) {
-        //         console.error('Error al insertar rutas en la base de datos:', error);
-        //     }
-        // }else{
+            } catch (error) {
+                console.error('Error al insertar rutas en la base de datos:', error);
+            }
+        }else{
 
-        //     console.log("No hay rutas válidas para insertar");
-        // }
+            console.log("No hay rutas válidas para insertar");
+        }
         
 
     } catch (error) {

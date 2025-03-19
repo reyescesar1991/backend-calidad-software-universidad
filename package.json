@@ -10,7 +10,8 @@
     "start": "node dist/server.js",
     "seed:permissions": "ts-node src/db/seeders/permissionsSeeders/permission.seed.ts",
     "seed:subroutes": "ts-node src/db/seeders/menuSeeders/menu.seed.ts",
-    "seed:routes": "ts-node src/db/seeders/menuSeeders/route.seed.ts"
+    "seed:routes": "ts-node src/db/seeders/menuSeeders/route.seed.ts",
+    "seed:modules": "ts-node src/db/seeders/menuSeeders/module.seed.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

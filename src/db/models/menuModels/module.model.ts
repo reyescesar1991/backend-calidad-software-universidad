@@ -8,11 +8,10 @@ export const ModuleSchema = new Schema<ModuleDocument>({
 
     id: { type: String, required: true },
     title: { type: String, required: true },
-    route: {
-        type: Schema.Types.ObjectId,
-        ref: "Route", 
-        required: true
-    },
+    routes: [{ 
+        type: Schema.Types.ObjectId, 
+        ref: "Route"
+    }],
 }, { timestamps: true });
 
 export const ModuleModel = model<ModuleDocument>("Module", ModuleSchema);

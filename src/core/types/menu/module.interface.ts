@@ -4,5 +4,5 @@ export interface IModuleType{
 
     id: string;
     title: string;
-    route: Schema.Types.ObjectId;
+    routes : Schema.Types.ObjectId[],
 }

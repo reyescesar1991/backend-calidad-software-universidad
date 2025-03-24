@@ -4,3 +4,6 @@ export {IRouteType} from './menu/route.interface';
 export {IModuleType} from './menu/module.interface';
 export {IRoleType} from './role/role.interface';
 export {IHeadquarters} from './headquarters/headquarters.interface';
+export {IDepartmentType} from './department/department.interface';
+export {IPermissionSecurity} from './permissionsSecurity/permissionsSecurity.interface';
+export {ICategoryProduct} from './categoryProduct/categoryProduct.interface';

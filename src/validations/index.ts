@@ -2,8 +2,10 @@ export {CreatePermissionDto} from './permissionsValidators/permission.validation
 export {SubrouteDto} from './menuValidators/menu.validation';
 export {RouteDto} from './menuValidators/menu.validation';
 export {RoleDto} from './roleValidators/role.validation';
+export {HeadquarterDto} from './headquarterValidators/headquarter.validation';
 export {createPermissionSchemaZod} from './permissionsValidators/permission.validation';
 export {subrouteSchemaZod} from './menuValidators/menu.validation';
 export {routeSchemaZod} from './menuValidators/menu.validation';
 export {moduleSchemaZod} from './menuValidators/menu.validation';
 export {roleSchema} from './roleValidators/role.validation';
+export {headquarterSchemaZod} from './headquarterValidators/headquarter.validation';

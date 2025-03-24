@@ -1,8 +1,8 @@
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import {resolve} from 'path';
-import { IRoleType } from '../../../core/types';
 import { RoleDto, roleSchema } from '../../../validations';
+import { RoleModel } from '../../models';
 
 // Carga las variables de entorno explícitamente para el seeder
 // Process.cwd carga la ruta /backend-calidad y luego la une con .env para traer el URI
@@ -56,8 +56,33 @@ const seedRoles = async () => {
                 new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ea"),
                 new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ed"),
                 new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ef"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f2"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f3"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f1"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ec"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ee"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f0"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743eb"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ef"),
+
             ]},
-            {idRole: '04' , label : 'Administrador de Inventario', name : 'Administrador de Inventario', description : 'Administra el inventario', isActive : false, isDefault : false, permissions : []},
+            {idRole: '04' , label : 'Administrador', name : 'Administrador', description : 'Administrador general', isActive : false, isDefault : false, permissions : [
+
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ea"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ed"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ef"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f2"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f3"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f1"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ec"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ee"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f0"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743eb"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ef"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f4"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f5"),
+                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f6"),
+            ]},
         ]
 
 
@@ -84,9 +109,48 @@ const seedRoles = async () => {
             console.warn('Los siguientes roles no pasaron la validación y no se insertarán:', invalidRoles);
         }
 
+        if(validRoles.length > 0){
+
+            try {
+                const count = await RoleModel.countDocuments();
+                console.log(`Encontrados ${count} roles existentes`);
+
+                const deleteResult = await RoleModel.deleteMany({});
+                console.log(`Eliminados ${deleteResult.deletedCount} roles existentes`);
+
+                const insertResult = await RoleModel.insertMany(validRoles);
+                console.log(`Insertados ${insertResult.length} permisos correctamente`);
+            } catch (error) {
+                console.error('Error al insertar permisos en la base de datos:', error);
+            }
+        }
+        else{
+
+            console.log("No hay permisos válidos para insertar");
+        }
+
+
+        // Obtener los ObjectIds del rol
+// const rol = await RoleModel.findOne({ idRole: "02" });
+// const permisosIds = rol?.permissions || [];
+
+// // Consultar los permisos asociados
+// const permisos = await PermissionModel.find({
+//   _id: { $in: permisosIds },
+// });
+
+// // Extraer labels
+// const labels = permisos.map((p) => p.label);
+// console.log(labels);
+
 
     } catch (error) {
-        
+        console.error('Error durante el proceso de seed:', error);
+    }
+    finally{
+
+        await mongoose.connection.close();
+        console.log('Conexión a la base de datos cerrada');
     }
 
 }

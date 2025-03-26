@@ -3,7 +3,7 @@ import { IRoleType } from "../../../core/types";
 
 interface RoleDocument extends IRoleType, Document {};
 
-const RoleSchema = new Schema<RoleDocument>({
+export const RoleSchema = new Schema<RoleDocument>({
 
     idRole : {type: String, required: true},
     name : {type: String, required: true},

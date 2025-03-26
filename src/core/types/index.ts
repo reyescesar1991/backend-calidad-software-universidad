@@ -7,3 +7,4 @@ export {IHeadquarters} from './headquarters/headquarters.interface';
 export {IDepartmentType} from './department/department.interface';
 export {IPermissionSecurity} from './permissionsSecurity/permissionsSecurity.interface';
 export {ICategoryProduct} from './categoryProduct/categoryProduct.interface';
+export {ISupplierType} from './supplier/supplier.interface';

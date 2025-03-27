@@ -5,7 +5,7 @@ export const supplierSchemaZod = z.object({
     id : z.string().min(1, "ID de proveedor es requerido"),
     name : z.string().min(1, "Nombre de proveedor es requerido"),
     tradeName : z.string().min(1, "Nombre comercial del proveedor es requerido"),
-    contactPerson : z.string().regex(/^(0212)\d{7}$/, { message: 'Formato de telefono de proveedor erroneo' }),
+    contactPerson : z.string().min(1, "Teléfono del proveedor es requerido"),
     email : z.string().email("Formato de correo del proveedor no es valido"),
     address : z.string().min(1, "Dirección del proveedor es requerida"),
     city : z.string().min(1, "Ciudad del proveedor es requerido"),

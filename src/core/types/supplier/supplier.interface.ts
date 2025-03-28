@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 export interface ISupplierType {
 
     id: string;
@@ -13,7 +15,7 @@ export interface ISupplierType {
     country: string;
     taxId: string;
     businessRegistrationNumber: string;
-    paymentTerms: string;
+    paymentTerm: mongoose.Types.ObjectId;
     isActive?: boolean;
     notes?: string;
 }

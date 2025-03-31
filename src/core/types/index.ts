@@ -9,3 +9,6 @@ export {IPermissionSecurity} from './permissionsSecurity/permissionsSecurity.int
 export {ICategoryProduct} from './categoryProduct/categoryProduct.interface';
 export {ISupplierType} from './supplier/supplier.interface';
 export {IPaymentTermType} from './paymentTerm/paymentTerm.interface';
+export {IUsersType} from './users/users.interface';
+export {ITwoFactorAuthType} from './users/twoFactorAuth.interface';
+export {ISessionManagementType} from './users/sessionManagement.interface';

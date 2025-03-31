@@ -82,7 +82,15 @@ const seedRoles = async () => {
                 new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f4"),
                 new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f5"),
                 new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f6"),
-            ]},
+            ],
+
+            permissionsSecurity : [
+
+                new mongoose.Types.ObjectId("67e08b8313e40c388d2c1545"),
+                new mongoose.Types.ObjectId("67e08b8313e40c388d2c1546"),
+                new mongoose.Types.ObjectId("67e08b8313e40c388d2c1547"),
+            ]
+        },
         ]
 
 

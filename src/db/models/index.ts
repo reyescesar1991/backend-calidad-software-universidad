@@ -8,6 +8,7 @@ export {PermissionSecurityModel} from './permissionsSecurityModels/permissionSec
 export {CategoryProductModel} from './categoryProductModels/categoryProduct.model';
 export {SupplierModel} from './supplierModels/supplier.model';
 export {PaymentTermModel} from './paymentTermModels/paymentTerm.model';
+export {TwoFactorAuthModel} from './oauthModels/twoFactorAuth.model';
 export {RoleSchema} from './roleModels/role.model';
 export {RouteSchema} from './menuModels/route.model';
 export {SubrouteSchema} from './menuModels/subroute.model';
@@ -16,3 +17,4 @@ export {permissionSecuritySchema} from './permissionsSecurityModels/permissionSe
 export {categoryProductSchema} from './categoryProductModels/categoryProduct.model';
 export {supplierSchema} from './supplierModels/supplier.model';
 export {paymentTermSchema} from './paymentTermModels/paymentTerm.model';
+export {twoFactorAuthSchema} from './oauthModels/twoFactorAuth.model';

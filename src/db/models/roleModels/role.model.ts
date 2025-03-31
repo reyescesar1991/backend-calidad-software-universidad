@@ -12,6 +12,10 @@ export const RoleSchema = new Schema<RoleDocument>({
         type: Schema.Types.ObjectId, 
         ref: "Permission"
     }],
+    permissionsSecurity : [{ 
+        type: Schema.Types.ObjectId, 
+        ref: "PermissionSecurity"
+    }],
     description : {type: String, required: true},
     isActive : {type: Boolean, required: true},
     isDefault: {type: Boolean, required: true},

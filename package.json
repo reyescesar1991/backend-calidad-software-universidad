@@ -17,7 +17,8 @@
     "seed:permissions-security": "ts-node src/db/seeders/permissionsSecuritySeeders/permissionSecurity.seed.ts",
     "seed:categories-products" : "ts-node src/db/seeders/categoryProductSeeders/categoryProduct.seed.ts",
     "seed:payment-terms" : "ts-node src/db/seeders/paymentTermSeeders/paymentTerm.seed.ts",
-    "seed:suppliers" : "ts-node src/db/seeders/supplierSeeders/supplier.seed.ts"
+    "seed:suppliers" : "ts-node src/db/seeders/supplierSeeders/supplier.seed.ts",
+    "seed:two-factors" : "ts-node src/db/seeders/usersSeeders/twoFactorAuth.seed.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

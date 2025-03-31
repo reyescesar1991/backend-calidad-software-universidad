@@ -6,6 +6,7 @@ export interface IRoleType{
     name: string; 
     label: string;
     permissions: Schema.Types.ObjectId[];
+    permissionsSecurity?: Schema.Types.ObjectId[];
     description?: string;
     isActive?: boolean;
     isDefault?: boolean; 

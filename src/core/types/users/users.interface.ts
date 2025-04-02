@@ -12,8 +12,10 @@ export interface IUsersType {
     email : string;
     password : string;
     username : string;
-    status : string;
+    status : string; //USar un enum
     hasTwoFactor : mongoose.Types.ObjectId;
     lastLogin : string;
     department : mongoose.Types.ObjectId;
+    loginAttempts: number; // Para bloquear tras intentos fallidos
+    passwordHistory: string[]; // Últimas contraseñas (hasheadas)
 }

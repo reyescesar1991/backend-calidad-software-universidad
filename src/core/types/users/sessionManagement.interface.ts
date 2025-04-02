@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
+import { IJwtPayloadType } from "../token/jwtPayload.interface";
 
 export interface ISessionManagementType{
 
     userId : mongoose.Types.ObjectId;
-    token : string;
+    token : IJwtPayloadType;
     createdAt?: Date;
     expiresAt : Date;
     ipAddress : string;

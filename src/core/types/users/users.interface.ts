@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { StatusUserEnum } from "../../enums";
 
 export interface IUsersType {
 
@@ -12,9 +13,9 @@ export interface IUsersType {
     email : string;
     password : string;
     username : string;
-    status : string; //USar un enum
-    hasTwoFactor : mongoose.Types.ObjectId;
-    lastLogin : string;
+    status : StatusUserEnum; //USar un enum
+    hasTwoFactor : boolean;
+    lastLogin ?: string;
     department : mongoose.Types.ObjectId;
     loginAttempts: number; // Para bloquear tras intentos fallidos
     passwordHistory: string[]; // Últimas contraseñas (hasheadas)

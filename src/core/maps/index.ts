@@ -1,0 +1,1 @@
+export {departmentAbbreviationsMap} from './departmentMap/departmentAbbreviations.enum';

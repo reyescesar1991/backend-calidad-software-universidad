@@ -12,3 +12,4 @@ export {IPaymentTermType} from './paymentTerm/paymentTerm.interface';
 export {IUsersType} from './users/users.interface';
 export {ITwoFactorAuthType} from './users/twoFactorAuth.interface';
 export {ISessionManagementType} from './users/sessionManagement.interface';
+export {IJwtPayloadType} from './token/jwtPayload.interface';

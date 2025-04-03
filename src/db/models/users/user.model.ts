@@ -14,11 +14,6 @@ export const userSchema = new Schema<UserDocument>({
         ref: "Role",
         required: true
     },
-    headquarter: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Headquarter",
-        required: true
-    },
     name: { type: String, required: true },
     lastName: { type: String, required: true },
     codeCountry: { type: String, required: true, default: '58' },
@@ -31,9 +26,15 @@ export const userSchema = new Schema<UserDocument>({
     lastLogin : {type: String, required: false},
     department : { 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: "Role", 
+        ref: "Department", 
         required: true 
     },
+    roleConfig : { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "RoleConfig", 
+        required: true 
+    },
+    passwordHistory : {type: [String], required: false, default : []},
 });
 
 export const UserModel = model<UserDocument>("User", userSchema);

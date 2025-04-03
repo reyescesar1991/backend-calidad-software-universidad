@@ -5,7 +5,6 @@ export interface IUsersType {
 
     idUser : string;
     rol : mongoose.Types.ObjectId;
-    headquarter : mongoose.Types.ObjectId;
     name : string;
     lastName : string;
     codeCountry : string;
@@ -17,6 +16,6 @@ export interface IUsersType {
     hasTwoFactor : boolean;
     lastLogin ?: string;
     department : mongoose.Types.ObjectId;
-    loginAttempts: number; // Para bloquear tras intentos fallidos
-    passwordHistory: string[]; // Últimas contraseñas (hasheadas)
+    roleConfig: mongoose.Types.ObjectId; 
+    passwordHistory?: string[];
 }

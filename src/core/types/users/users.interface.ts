@@ -13,7 +13,7 @@ export interface IUsersType {
     email : string;
     password : string;
     username : string;
-    status : StatusUserEnum; //USar un enum
+    status : StatusUserEnum;
     hasTwoFactor : boolean;
     lastLogin ?: string;
     department : mongoose.Types.ObjectId;

@@ -226,7 +226,7 @@ const seedSuppliers = async () => {
         }
 
         //EJEMPLO DE CONSULTA
-        
+
         // const populatedPaymentTerms = await SupplierModel.find({})
         //     .populate("paymentTerm") // Pobla los detalles del término de pago
         //     .select("paymentTerm -_id") // Proyecta solo el campo poblado

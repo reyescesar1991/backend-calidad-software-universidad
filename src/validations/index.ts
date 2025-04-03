@@ -8,6 +8,7 @@ export {CategoryProductDto} from './categoryProductValidators/categoryProduct.va
 export {SupplierDto} from './supplierValidators/supplier.validator';
 export {PaymentTermDto} from './paymentTermValidators/paymentTerm.validation';
 export {TwoFactorAuthDto} from './usersValidators/twoFactorAuth.validation';
+export {DepartmentDto} from './departmentValidators/department.validation';
 export {createPermissionSchemaZod} from './permissionsValidators/permission.validation';
 export {subrouteSchemaZod} from './menuValidators/menu.validation';
 export {routeSchemaZod} from './menuValidators/menu.validation';
@@ -19,3 +20,4 @@ export {categoryProductZodSchema} from './categoryProductValidators/categoryProd
 export {supplierSchemaZod} from './supplierValidators/supplier.validator';
 export {paymentTermSchemaZod} from './paymentTermValidators/paymentTerm.validation';
 export {twoFactorAuthSchemaZod} from './usersValidators/twoFactorAuth.validation';
+export {departmentSchemaZod} from './departmentValidators/department.validation';

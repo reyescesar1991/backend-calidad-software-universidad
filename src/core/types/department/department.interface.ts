@@ -1,12 +1,14 @@
-import { Schema } from "mongoose";
+
+import mongoose from "mongoose";
 import { CompanyDepartmentEnum } from "../../enums";
 
 export interface IDepartmentType{
 
     idDepartment: string;
     label: CompanyDepartmentEnum;
-    name?: CompanyDepartmentEnum
+    name: CompanyDepartmentEnum
     description?: string; 
-    headquartersId?: Schema.Types.ObjectId; 
+    headquartersId: mongoose.Types.ObjectId; 
+    headquartersName: string;
     isActive?: boolean;
 }

@@ -36,19 +36,23 @@ const seedRoleConfig = async () => {
 
             {
                 rolID: new mongoose.Types.ObjectId("67e97e656da3a23c453b6b1d"),
-                maxLoginAttempts: 3
+                maxLoginAttempts: 3,
+                rolName : "Empleado de Almacen"
             },
             {
                 rolID: new mongoose.Types.ObjectId("67e97e656da3a23c453b6b1e"),
-                maxLoginAttempts: 3
+                maxLoginAttempts: 3,
+                rolName : "Supervisor de Inventario"
             },
             {
                 rolID: new mongoose.Types.ObjectId("67e97e656da3a23c453b6b1f"),
-                maxLoginAttempts: 3
+                maxLoginAttempts: 3,
+                rolName : "Gestor de Inventario"
             },
             {
                 rolID: new mongoose.Types.ObjectId("67e97e656da3a23c453b6b20"),
-                maxLoginAttempts: 5
+                maxLoginAttempts: 5,
+                rolName : "Administrador"
             },
         ];
 

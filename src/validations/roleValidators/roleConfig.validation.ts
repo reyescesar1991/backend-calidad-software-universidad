@@ -9,6 +9,7 @@ export const roleConfigSchemaZod = z.object({
       ),
     maxLoginAttempts : z.number().gte(0, "El mínimo de intentos es 1"),
     isActive : z.boolean().optional(),
+    rolName : z.string().min(1, "Nombre de rol es requerido"),
 
 });
 

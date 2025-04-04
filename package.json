@@ -20,7 +20,8 @@
     "seed:payment-terms" : "ts-node src/db/seeders/paymentTermSeeders/paymentTerm.seed.ts",
     "seed:suppliers" : "ts-node src/db/seeders/supplierSeeders/supplier.seed.ts",
     "seed:two-factors" : "ts-node src/db/seeders/usersSeeders/twoFactorAuth.seed.ts",
-    "seed:departments" : "ts-node src/db/seeders/departmentSeeders/department.seed.ts"
+    "seed:departments" : "ts-node src/db/seeders/departmentSeeders/department.seed.ts",
+    "seed:users" : "ts-node src/db/seeders/usersSeeders/users.seed.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

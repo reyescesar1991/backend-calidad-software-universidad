@@ -11,7 +11,8 @@ export const roleConfigSchema = new Schema<RoleConfigDocument>({
         required: true
     },
     maxLoginAttempts : {type: Number, required: true, default : 1},
-    isActive : {type: Boolean, required: false, default: true}
+    isActive : {type: Boolean, required: false, default: true},
+    rolName : {type: String, required: true, unique: true},
  
 });
 

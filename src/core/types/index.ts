@@ -15,3 +15,4 @@ export {ISessionManagementType} from './users/sessionManagement.interface';
 export {IJwtPayloadType} from './token/jwtPayload.interface';
 export {IRoleConfigType} from './role/roleConfig.interface';
 export {IWarehouseType} from './warehouse/warehouse.interface';
+export {IProductType} from './product/product.interface';

@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { ICategoryProduct } from '../../../core/types';
 import { CategoryProductDto, categoryProductZodSchema } from '../../../validations';
 import { CategoryProductModel } from '../../models';
+import { CategoryProductEnum } from '../../../core/enums';
 
 dotenv.config({ path: resolve(process.cwd(), ".env") });
 
@@ -33,16 +34,16 @@ const seedCategoryProducts = async () => {
 
         const categoriesProductsToSeed : Array<ICategoryProduct> = [
 
-            {idCategory: 'fru', label : 'Frutas', name: 'Frutas', slug : 'frutas'},
-            {idCategory: 'ver', label : 'Verduras', name: 'Verduras', slug : 'verduras'},
-            {idCategory: 'lac', label : 'Lacteos', name: 'Lacteos', slug: 'lacteos'},
-            {idCategory: 'car', label : 'Carnes', name: 'Carnes', slug: 'carnes'},
-            {idCategory: 'pan', label : 'Panaderia', name: 'Panaderia', slug: 'panaderia'},
-            {idCategory: 'beb', label : 'Bebidas', name: 'Bebidas', slug: 'bebidas'},
-            {idCategory: 'con', label : 'Congelados', name: 'Congelados', slug: 'congelados'},
-            {idCategory: 'enl', label : 'Enlatados', name: 'Enlatados', slug: 'enlatados'},
-            {idCategory: 'lim', label : 'Limpieza', name: 'Limpieza', slug: 'limpieza'},
-            {idCategory: 'otros', label: 'Otros', name: 'Otros', slug: 'otros'},
+            {idCategory: CategoryProductEnum.FRUTAS , label : 'Frutas', name: 'Frutas', slug : 'frutas'},
+            {idCategory: CategoryProductEnum.VERDURAS, label : 'Verduras', name: 'Verduras', slug : 'verduras'},
+            {idCategory: CategoryProductEnum.LACTEOS, label : 'Lacteos', name: 'Lacteos', slug: 'lacteos'},
+            {idCategory: CategoryProductEnum.CARNES, label : 'Carnes', name: 'Carnes', slug: 'carnes'},
+            {idCategory: CategoryProductEnum.PANADERIA, label : 'Panaderia', name: 'Panaderia', slug: 'panaderia'},
+            {idCategory: CategoryProductEnum.BEBIDAS, label : 'Bebidas', name: 'Bebidas', slug: 'bebidas'},
+            {idCategory: CategoryProductEnum.CONGELADOS, label : 'Congelados', name: 'Congelados', slug: 'congelados'},
+            {idCategory: CategoryProductEnum.ENLATADOS, label : 'Enlatados', name: 'Enlatados', slug: 'enlatados'},
+            {idCategory: CategoryProductEnum.LIMPIEZA, label : 'Limpieza', name: 'Limpieza', slug: 'limpieza'},
+            {idCategory: CategoryProductEnum.OTROS, label: 'Otros', name: 'Otros', slug: 'otros'},
         ]
 
         const validCategoriesProducts : CategoryProductDto[] = [];

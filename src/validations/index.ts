@@ -11,6 +11,7 @@ export {TwoFactorAuthDto} from './usersValidators/twoFactorAuth.validation';
 export {DepartmentDto} from './departmentValidators/department.validation';
 export {RoleConfigDto} from './roleValidators/roleConfig.validation';
 export {UserDto} from './usersValidators/user.validation';
+export {WarehouseDto} from './warehouseValidators/warehouse.validation';
 export {createPermissionSchemaZod} from './permissionsValidators/permission.validation';
 export {subrouteSchemaZod} from './menuValidators/menu.validation';
 export {routeSchemaZod} from './menuValidators/menu.validation';
@@ -25,3 +26,4 @@ export {twoFactorAuthSchemaZod} from './usersValidators/twoFactorAuth.validation
 export {departmentSchemaZod} from './departmentValidators/department.validation';
 export {roleConfigSchemaZod} from './roleValidators/roleConfig.validation';
 export {userSchemaZod} from './usersValidators/user.validation';
+export {warehouseSchemaZod} from './warehouseValidators/warehouse.validation';

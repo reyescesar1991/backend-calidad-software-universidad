@@ -10,6 +10,8 @@ export interface IWarehouseType{
     country: string; 
     capacity: number;
     currentCapacity: number; 
+    unitsPerBox?: number;
+    boxesPerPallet?: number;
     isActive?: boolean; 
     contactPerson: string; 
     phoneNumber: string; 

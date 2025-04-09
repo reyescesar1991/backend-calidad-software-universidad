@@ -60,7 +60,7 @@ const warehouseSeed = async () => {
         currentCapacity : 0,
         isActive: true,
         contactPerson: "María Rodríguez",
-        phoneNumber: "02125555678", // Aunque el código es 0212, para este ejemplo se mantiene
+        phoneNumber: "02125555678", 
         email: "almacen.barquisimeto@example.com",
         notes: "Almacén para la zona oeste de la ciudad.",
       },
@@ -76,7 +76,7 @@ const warehouseSeed = async () => {
         currentCapacity: 0,
         isActive: true,
         contactPerson: "Carlos López",
-        phoneNumber: "02125559012", // Aunque el código es 0212, para este ejemplo se mantiene
+        phoneNumber: "02125559012", 
         email: "almacen.valencia@example.com",
         notes: "Almacén para productos industriales.",
       },
@@ -92,7 +92,7 @@ const warehouseSeed = async () => {
         currentCapacity: 0,
         isActive: true,
         contactPerson: "Sofía Vargas",
-        phoneNumber: "02125553456", // Aunque el código es 0212, para este ejemplo se mantiene
+        phoneNumber: "02125553456",
         email: "almacen.maracaibo@example.com",
         notes: "Almacén ubicado en la zona sur.",
       },

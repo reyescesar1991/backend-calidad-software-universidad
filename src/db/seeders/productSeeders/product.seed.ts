@@ -44,7 +44,6 @@ const productSeed = async () => {
         purchasePrice: 0.50,
         sellingPrice: 1.00,
         currency: CurrencyEnum.DOLARES,
-        stockQuantity: 3,
         minimumStockLevel: 20,
         maximumStockLevel: 200,
         unitOfMeasure: UnitMeasureEnum.CAJA,
@@ -52,7 +51,16 @@ const productSeed = async () => {
         updatedAt: new Date(),
         isActive: true,
         notes: "Producto de temporada.",
-        warehouseId: [new mongoose.Types.ObjectId("67f5bf588d8d25e67a6c77d9")],
+        warehouseStock: [
+          {
+            warehouseId: new mongoose.Types.ObjectId("67f690a03ad8f43e09cec544"),
+            quantity: 2
+          },
+          {
+            warehouseId: new mongoose.Types.ObjectId("67f690a03ad8f43e09cec545"),
+            quantity: 1
+          }
+        ],
       },
       {
         idProduct: "PROD000002",
@@ -66,13 +74,16 @@ const productSeed = async () => {
         purchasePrice: 1.00,
         sellingPrice: 1.50,
         currency: CurrencyEnum.DOLARES,
-        stockQuantity: 2,
         minimumStockLevel: 10,
         maximumStockLevel: 100,
-        unitOfMeasure: UnitMeasureEnum.LITRO,
+        unitOfMeasure: UnitMeasureEnum.CAJA,
         updatedAt: new Date(),
         isActive: true,
-        warehouseId: [new mongoose.Types.ObjectId("67f5bf588d8d25e67a6c77d9")],
+        warehouseStock: [{
+
+          warehouseId: new mongoose.Types.ObjectId("67f690a03ad8f43e09cec546"),
+          quantity: 2
+        }],
       },
       {
         idProduct: "PROD000003",
@@ -86,13 +97,15 @@ const productSeed = async () => {
         purchasePrice: 0.75,
         sellingPrice: 1.25,
         currency: CurrencyEnum.DOLARES,
-        stockQuantity: 3,
         minimumStockLevel: 15,
         maximumStockLevel: 150,
         unitOfMeasure: UnitMeasureEnum.UNIDAD,
         updatedAt: new Date(),
         isActive: true,
-        warehouseId: [new mongoose.Types.ObjectId("67f5bf588d8d25e67a6c77da")],
+        warehouseStock: [{
+          warehouseId: new mongoose.Types.ObjectId("67f690a03ad8f43e09cec547"),
+          quantity: 3
+        }],
       },
       {
         idProduct: "PROD000004",
@@ -106,13 +119,17 @@ const productSeed = async () => {
         purchasePrice: 8.00,
         sellingPrice: 12.00,
         currency: CurrencyEnum.DOLARES,
-        stockQuantity: 2,
         minimumStockLevel: 5,
         maximumStockLevel: 60,
-        unitOfMeasure: UnitMeasureEnum.KILOGRAMO,
+        unitOfMeasure: UnitMeasureEnum.CAJA,
         updatedAt: new Date(),
         isActive: true,
-        warehouseId: [new mongoose.Types.ObjectId("67f5bf588d8d25e67a6c77da")],
+        warehouseStock: [
+          {
+            warehouseId: new mongoose.Types.ObjectId("67f690a03ad8f43e09cec544"),
+            quantity: 2
+          }
+        ],
       },
       {
         idProduct: "PROD000005",
@@ -126,13 +143,21 @@ const productSeed = async () => {
         purchasePrice: 0.30,
         sellingPrice: 0.75,
         currency: CurrencyEnum.DOLARES,
-        stockQuantity: 5,
         minimumStockLevel: 40,
         maximumStockLevel: 400,
-        unitOfMeasure: UnitMeasureEnum.LITRO,
+        unitOfMeasure: UnitMeasureEnum.UNIDAD,
         updatedAt: new Date(),
         isActive: true,
-        warehouseId: [new mongoose.Types.ObjectId("67f5bf588d8d25e67a6c77db")],
+        warehouseStock: [
+          {
+            warehouseId: new mongoose.Types.ObjectId("67f690a03ad8f43e09cec544"),
+            quantity: 2
+          },
+          {
+            warehouseId: new mongoose.Types.ObjectId("67f690a03ad8f43e09cec547"),
+            quantity: 3
+          }
+        ],
       },
       {
         idProduct: "PROD000006",
@@ -146,13 +171,21 @@ const productSeed = async () => {
         purchasePrice: 2.00,
         sellingPrice: 3.50,
         currency: CurrencyEnum.DOLARES,
-        stockQuantity: 4,
         minimumStockLevel: 12,
         maximumStockLevel: 120,
-        unitOfMeasure: UnitMeasureEnum.LITRO,
+        unitOfMeasure: UnitMeasureEnum.UNIDAD,
         updatedAt: new Date(),
         isActive: true,
-        warehouseId: [new mongoose.Types.ObjectId("67f5bf588d8d25e67a6c77dc")],
+        warehouseStock: [
+          {
+            warehouseId: new mongoose.Types.ObjectId("67f690a03ad8f43e09cec545"),
+            quantity: 2
+          },
+          {
+            warehouseId: new mongoose.Types.ObjectId("67f690a03ad8f43e09cec544"),
+            quantity: 2
+          }
+        ],
       },
     ]
 
@@ -203,7 +236,7 @@ const productSeed = async () => {
 
 
   } catch (error) {
-    
+
     console.error('Error durante el proceso de seed:', error);
 
   } finally {

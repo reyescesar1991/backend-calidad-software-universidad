@@ -26,19 +26,25 @@ export const productSchema = new Schema({
     purchasePrice : {type: Number, required: true},
     sellingPrice : {type: Number, required: true},
     currency : {type: String, required: true, default: CurrencyEnum.DOLARES},
-    stockQuantity : {type: Number, required: true},
     minimumStockLevel : {type: Number, required: true},
     maximumStockLevel : {type: Number, required: true},
-    unitOfMeasure : {type: String, required: true, default: UnitMeasureEnum.KILOGRAMO},
+    unitOfMeasure : {type: String, required: true, default: UnitMeasureEnum.UNIDAD},
     imageUrl : {type: String, required: false},
     updatedAt : {type: Date, required: false, default: Date.now()},
     isActive : {type: Boolean, required: false, default: true},
     notes : {type: String, required: false},
-    warehouseId : [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Warehouse",
-        required: true
-    }],
+    warehouseStock: [{
+        warehouseId: {
+          type: Schema.Types.ObjectId,
+          ref: "Warehouse",
+          required: true
+        },
+        quantity: {
+          type: Number,
+          min: 0,
+          required: true
+        }
+      }],
 
 }, {timestamps: true});
 

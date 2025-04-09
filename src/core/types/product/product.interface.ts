@@ -13,7 +13,6 @@ export interface IProductType{
     purchasePrice: number; 
     sellingPrice: number; 
     currency: CurrencyEnum; 
-    stockQuantity: number; 
     minimumStockLevel: number;
     maximumStockLevel: number; 
     unitOfMeasure: UnitMeasureEnum; 
@@ -21,5 +20,8 @@ export interface IProductType{
     updatedAt?: Date;
     isActive?: boolean; 
     notes?: string; 
-    warehouseId : mongoose.Types.ObjectId[];
+    warehouseStock : {
+      warehouseId : mongoose.Types.ObjectId;
+      quantity : number;
+    }[];
   }

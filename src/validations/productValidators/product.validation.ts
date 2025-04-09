@@ -42,7 +42,6 @@ export const productSchemaZod = z.object({
     purchasePrice: z.number().gte(0.01, "Precio mínimo de compra es 0.11$"),
     sellingPrice: z.number().gte(0.1, "Precio mínimo de venta es de 0.1$"),
     currency: z.string().min(1, "Tipo de moneda del producto es requerido"),
-    stockQuantity: z.number().gte(1, "El mínimo de cantidad de stock para un producto es 1"),
     minimumStockLevel: z.number().gte(1, "El mínimo de stock para alarma para un producto es 1"),
     maximumStockLevel: z.number(),
     unitOfMeasure: z.string().min(1, "Unidad de medida es requerida"),
@@ -58,12 +57,18 @@ export const productSchemaZod = z.object({
     ).optional(),
     isActive: z.boolean().optional(),
     notes: z.string().optional(),
-    warehouseId: z.array(
-        z.instanceof(mongoose.Types.ObjectId).refine(
-            (val) => val instanceof mongoose.Types.ObjectId,
-            { message: "Cada elemento debe ser un ObjectId válido" }
-        )
-    ),
+    warehouseStock: z.array(
+        z.object({
+            warehouseId: z.instanceof(mongoose.Types.ObjectId).refine(
+                (val) => val instanceof mongoose.Types.ObjectId,
+                { message: "ID de almacén inválido" }
+            ),
+            quantity: z.number().min(0, "La cantidad no puede ser negativa")
+        })
+    ).refine(
+        (arr) => new Set(arr.map((item) => item.warehouseId.toString())).size === arr.length,
+        { message: "No puede haber almacenes duplicados" }
+    )
 
 });
 

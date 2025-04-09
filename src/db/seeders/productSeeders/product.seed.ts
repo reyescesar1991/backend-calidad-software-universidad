@@ -203,7 +203,9 @@ const productSeed = async () => {
 
 
   } catch (error) {
+    
     console.error('Error durante el proceso de seed:', error);
+
   } finally {
 
     await mongoose.connection.close();

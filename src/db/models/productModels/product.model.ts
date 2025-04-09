@@ -34,11 +34,11 @@ export const productSchema = new Schema({
     updatedAt : {type: Date, required: false, default: Date.now()},
     isActive : {type: Boolean, required: false, default: true},
     notes : {type: String, required: false},
-    warehouseId : {
+    warehouseId : [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Warehouse",
         required: true
-    },
+    }],
 
 }, {timestamps: true});
 

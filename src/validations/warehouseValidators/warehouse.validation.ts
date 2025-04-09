@@ -10,14 +10,7 @@ export const warehouseSchemaZod = z.object({
         (value) => {
 
             const regex = /^ALM-[a-zA-Z]+-\d{3}$/;
-            const match = RegExp(regex).exec(value);
-
-            if(!match) return false;
-
-            const city = match[2];
-            console.log(match);
-            return validCities.includes(city);
-            
+            return regex.test(value);
         },
         (value) => ({
 
@@ -36,11 +29,18 @@ export const warehouseSchemaZod = z.object({
     state : z.string().min(1, "Estado del pais del almacen es requerido"),
     country : z.string().min(1, "País del almacen es requerido"),
     capacity : z.number().gte(10, "El mínimo de capacidad de un almacen son diez toneladas"),
+    currentCapacity : z.number().gte(0, "El mínimo de capacidad actual de un almacen es cero toneladas"),
     isActive : z.boolean().optional(),
     contactPerson : z.string().min(1, "Persona de contacto del almacen es requerida"),
     phoneNumber : z.string().regex(/^(0212)\d{7}$/, { message: 'Formato de telefono erroneo' }),
     email : z.string().email(),
     notes : z.string().optional(),
-});
+}).refine(
+    (data) => data.currentCapacity <= data.capacity,
+    {
+      message: "La capacidad actual no puede ser mayor que la capacidad total",
+      path: ["currentCapacity"] // 👈 Indica qué campo muestra el error
+    }
+);
 
 export type WarehouseDto = z.infer<typeof warehouseSchemaZod>

@@ -8,7 +8,8 @@ export interface IWarehouseType{
     city: string; 
     state: string; 
     country: string; 
-    capacity: number; 
+    capacity: number;
+    currentCapacity: number; 
     isActive?: boolean; 
     contactPerson: string; 
     phoneNumber: string; 

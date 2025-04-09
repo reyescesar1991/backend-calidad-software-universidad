@@ -41,6 +41,7 @@ const warehouseSeed = async () => {
         state: "Distrito Capital",
         country: "Venezuela",
         capacity: 150,
+        currentCapacity: 0,
         isActive: true,
         contactPerson: "Juan Pérez",
         phoneNumber: "02125551234",
@@ -49,13 +50,14 @@ const warehouseSeed = async () => {
       },
       {
         idWarehouse: `ALM-${cityMap.get("Barquisimeto")}-002`,
-        idHeadquarter: new mongoose.Types.ObjectId("67e3494794aef1393cd0256f"),
+        idHeadquarter: new mongoose.Types.ObjectId("67e3494794aef1393cd02572"),
         name: "Almacén Oeste Barquisimeto",
         address: "Calle 42 con Carrera 15, Barquisimeto",
         city: "Barquisimeto",
         state: "Lara",
         country: "Venezuela",
         capacity: 120,
+        currentCapacity : 0,
         isActive: true,
         contactPerson: "María Rodríguez",
         phoneNumber: "02125555678", // Aunque el código es 0212, para este ejemplo se mantiene
@@ -64,13 +66,14 @@ const warehouseSeed = async () => {
       },
       {
         idWarehouse: `ALM-${cityMap.get("Valencia")}-003`,
-        idHeadquarter: new mongoose.Types.ObjectId("67e3494794aef1393cd0256f"),
+        idHeadquarter: new mongoose.Types.ObjectId("67e3494794aef1393cd02570"),
         name: "Almacén Industrial Valencia",
         address: "Zona Industrial Norte, Valencia",
         city: "Valencia",
         state: "Carabobo",
         country: "Venezuela",
         capacity: 200,
+        currentCapacity: 0,
         isActive: true,
         contactPerson: "Carlos López",
         phoneNumber: "02125559012", // Aunque el código es 0212, para este ejemplo se mantiene
@@ -79,13 +82,14 @@ const warehouseSeed = async () => {
       },
       {
         idWarehouse: `ALM-${cityMap.get("Maracaibo")}-004`,
-        idHeadquarter: new mongoose.Types.ObjectId("67e3494794aef1393cd0256f"),
+        idHeadquarter: new mongoose.Types.ObjectId("67e3494794aef1393cd02571"),
         name: "Almacén Sur Maracaibo",
         address: "Avenida Don Manuel Belloso, Maracaibo",
         city: "Maracaibo",
         state: "Zulia",
         country: "Venezuela",
         capacity: 180,
+        currentCapacity: 0,
         isActive: true,
         contactPerson: "Sofía Vargas",
         phoneNumber: "02125553456", // Aunque el código es 0212, para este ejemplo se mantiene
@@ -96,6 +100,9 @@ const warehouseSeed = async () => {
 
     const validWarehouses: WarehouseDto[] = [];
     const invalidWarehouses: any[] = [];
+
+    console.log(warehouseToSeed);
+    
 
     for (const warehouse of warehouseToSeed) {
 

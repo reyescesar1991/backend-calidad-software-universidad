@@ -38,16 +38,16 @@ export const productSchemaZod = z.object({
         val => val instanceof mongoose.Types.ObjectId,
         { message: "Debe ser un ObjectId válido de Mongoose" }
     ),
-    brand : z.string().min(1, "Marca de producto es requerido"),
-    purchasePrice : z.number().gte(0.01, "Precio mínimo de compra es 0.11$"),
-    sellingPrice : z.number().gte(0.1, "Precio mínimo de venta es de 0.1$"),
-    currency : z.string().min(1, "Tipo de moneda del producto es requerido"),
-    stockQuantity : z.number().gte(1, "El mínimo de cantidad de stock para un producto es 1"),
-    minimumStockLevel : z.number().gte(1, "El mínimo de stock para alarma para un producto es 1"),
-    maximumStockLevel : z.number(),
-    unitOfMeasure : z.string().min(1, "Unidad de medida es requerida"),
-    imageUrl : z.string().optional(),
-    updatedAt : z.date().refine(
+    brand: z.string().min(1, "Marca de producto es requerido"),
+    purchasePrice: z.number().gte(0.01, "Precio mínimo de compra es 0.11$"),
+    sellingPrice: z.number().gte(0.1, "Precio mínimo de venta es de 0.1$"),
+    currency: z.string().min(1, "Tipo de moneda del producto es requerido"),
+    stockQuantity: z.number().gte(1, "El mínimo de cantidad de stock para un producto es 1"),
+    minimumStockLevel: z.number().gte(1, "El mínimo de stock para alarma para un producto es 1"),
+    maximumStockLevel: z.number(),
+    unitOfMeasure: z.string().min(1, "Unidad de medida es requerida"),
+    imageUrl: z.string().optional(),
+    updatedAt: z.date().refine(
         (date) => {
             const now = new Date();
             return date <= now;
@@ -56,11 +56,13 @@ export const productSchemaZod = z.object({
             message: "La fecha de actualización no puede ser posterior a la fecha actual.",
         }
     ).optional(),
-    isActive : z.boolean().optional(),
-    notes : z.string().optional(),
-    warehouseId : z.instanceof(mongoose.Types.ObjectId).refine(
-        val => val instanceof mongoose.Types.ObjectId,
-        { message: "Debe ser un ObjectId válido de Mongoose" }
+    isActive: z.boolean().optional(),
+    notes: z.string().optional(),
+    warehouseId: z.array(
+        z.instanceof(mongoose.Types.ObjectId).refine(
+            (val) => val instanceof mongoose.Types.ObjectId,
+            { message: "Cada elemento debe ser un ObjectId válido" }
+        )
     ),
 
 });

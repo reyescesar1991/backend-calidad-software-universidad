@@ -17,6 +17,7 @@ export const warehouseSchema = new Schema({
     city : {type: String, required: true},
     state : {type: String, required: true},
     country : {type: String, required: true, default: "Ven"},
+    currentCapacity : {type: Number, required: true},
     capacity : {type: Number, required: true},
     isActive : {type: Boolean, required: false, default: true},
     contactPerson : {type: String, required: true},

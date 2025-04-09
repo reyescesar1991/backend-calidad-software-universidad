@@ -21,5 +21,5 @@ export interface IProductType{
     updatedAt?: Date;
     isActive?: boolean; 
     notes?: string; 
-    warehouseId : mongoose.Types.ObjectId;
+    warehouseId : mongoose.Types.ObjectId[];
   }

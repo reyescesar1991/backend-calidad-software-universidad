@@ -9,6 +9,7 @@ export const permissionSecurityZodSchema = z.object({
     description : z.string().optional(),
     category : z.string().optional(),
     isSystemDefined : z.boolean().optional(),
+    isActive : z.boolean().optional(),
 });
 
 export type PermissionSecurityDto = z.infer<typeof permissionSecurityZodSchema>;

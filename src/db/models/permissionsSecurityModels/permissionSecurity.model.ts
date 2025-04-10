@@ -11,7 +11,8 @@ export const permissionSecuritySchema = new Schema<PermissionSecurityDocument>({
     id : {type : String, required : true},
     description : {type : String, required: false},
     category : {type: String, required: false},
-    isSystemDefined : {type: Boolean, required: false, default: false}
+    isSystemDefined : {type: Boolean, required: false, default: false},
+    isActive : {type: Boolean, required: false, default: true}
 }, {timestamps: true});
 
 

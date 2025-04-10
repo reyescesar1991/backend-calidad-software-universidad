@@ -1,0 +1,1 @@
+export {PermissionValidator} from './permissions/permission.validator';

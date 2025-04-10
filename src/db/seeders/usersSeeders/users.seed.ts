@@ -35,7 +35,7 @@ const seedUsers = async () => {
         const usersToSeed: Array<IUsersType> = [
             {
                 idUser: "USER0011",
-                rol: new mongoose.Types.ObjectId("67e97e656da3a23c453b6b1d"), // ID aleatorio para el rol
+                rol: new mongoose.Types.ObjectId("67f7f5ff4f0b312a2319fc56"), // ID aleatorio para el rol
                 name: "Ricardo",
                 lastName: "Pérez",
                 codeCountry: "58",
@@ -47,12 +47,12 @@ const seedUsers = async () => {
                 hasTwoFactor: true,
                 lastLogin: "2025-04-04T10:00:00Z",
                 department: new mongoose.Types.ObjectId("67eead413bf36442a108d304"), // ID aleatorio para el departamento
-                roleConfig: new mongoose.Types.ObjectId("67f035b43e3bb51804f182a1"), // ID aleatorio para la configuración del rol
+                roleConfig: new mongoose.Types.ObjectId("67f7f643b65f69c72667597e"), // ID aleatorio para la configuración del rol
                 passwordHistory: ["oldPasswordHash1", "previousPasswordHash"],
             },
             {
                 idUser: "USER0022",
-                rol: new mongoose.Types.ObjectId("67e97e656da3a23c453b6b1e"), // Otro ID aleatorio para el rol
+                rol: new mongoose.Types.ObjectId("67f7f5ff4f0b312a2319fc57"), // Otro ID aleatorio para el rol
                 name: "Mariana",
                 lastName: "Gómez",
                 codeCountry: "58",
@@ -63,11 +63,11 @@ const seedUsers = async () => {
                 status: StatusUserEnum.PENDING,
                 hasTwoFactor: false,
                 department: new mongoose.Types.ObjectId("67eead413bf36442a108d301"), // Otro ID aleatorio para el departamento
-                roleConfig: new mongoose.Types.ObjectId("67f035b43e3bb51804f182a2"), // Otro ID aleatorio para la configuración del rol
+                roleConfig: new mongoose.Types.ObjectId("67f7f643b65f69c72667597f"), // Otro ID aleatorio para la configuración del rol
             },
             {
                 idUser: "USER0033",
-                rol: new mongoose.Types.ObjectId("67e97e656da3a23c453b6b1f"),
+                rol: new mongoose.Types.ObjectId("67f7f5ff4f0b312a2319fc58"),
                 name: "José",
                 lastName: "Ramírez",
                 codeCountry: "58",
@@ -79,12 +79,12 @@ const seedUsers = async () => {
                 hasTwoFactor: false,
                 lastLogin: "2025-04-03T15:30:00Z",
                 department: new mongoose.Types.ObjectId("67eead413bf36442a108d301"),
-                roleConfig: new mongoose.Types.ObjectId("67f035b43e3bb51804f182a3"),
+                roleConfig: new mongoose.Types.ObjectId("67f7f643b65f69c726675980"),
                 passwordHistory: ["pass123", "securePass"],
             },
             {
                 idUser: "USER0044",
-                rol: new mongoose.Types.ObjectId("67e97e656da3a23c453b6b20"),
+                rol: new mongoose.Types.ObjectId("67f7f5ff4f0b312a2319fc59"),
                 name: "Isabella",
                 lastName: "Fernández",
                 codeCountry: "58",
@@ -96,7 +96,7 @@ const seedUsers = async () => {
                 hasTwoFactor: true,
                 lastLogin: "2025-03-28T09:45:00Z",
                 department: new mongoose.Types.ObjectId("67eead413bf36442a108d301"),
-                roleConfig: new mongoose.Types.ObjectId("67f035b43e3bb51804f182a4"),
+                roleConfig: new mongoose.Types.ObjectId("67f7f643b65f69c726675981"),
                 passwordHistory: ["password", "mypassword"],
             },
         ];

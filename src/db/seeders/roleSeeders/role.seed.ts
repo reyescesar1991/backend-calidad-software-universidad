@@ -39,56 +39,54 @@ const seedRoles = async () => {
         const rolesToSeed  = [
 
             {idRole: '01' , label : 'Empleado de Almacén', name : 'Empleado de Almacen', description : 'Trabaja en almacenes', isActive : false, isDefault : true, permissions : [
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ea"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ed"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ef"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba51"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba54"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba52"),
             ]},
             {idRole: '02' , label : 'Supervisor de Inventario', name : 'Supervisor de Inventario', description : 'Supervisa inventarios', isActive : false, isDefault : false, permissions : [
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ea"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ed"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ef"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f2"), //reportes
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f3"), //reportes
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f1"), //reportes
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba51"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba54"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba52"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba58"), //reportes
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba59"), //reportes
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba5a"), //reportes
 
             ]},
             {idRole: '03' , label : 'Gestor de Inventario', name : 'Gestor de Inventario', description : 'Gestiona el inventario', isActive : false, isDefault : false, permissions : [
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ea"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ed"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ef"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f2"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f3"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f1"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ec"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ee"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f0"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743eb"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ef"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba51"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba54"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba52"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba58"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba59"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba5a"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba53"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba55"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba56"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba57"),
 
             ]},
             {idRole: '04' , label : 'Administrador', name : 'Administrador', description : 'Administrador general', isActive : false, isDefault : false, permissions : [
 
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ea"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ed"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ef"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f2"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f3"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f1"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ec"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ee"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f0"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743eb"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743ef"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f4"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f5"),
-                new mongoose.Types.ObjectId("67d7372baa28bf0c74d743f6"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba51"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba54"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba52"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba58"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba59"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba5a"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba53"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba55"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba56"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba57"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba5b"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba5c"),
+                new mongoose.Types.ObjectId("67f7f3a2c8e38dcebedeba5d"),
             ],
 
             permissionsSecurity : [
 
-                new mongoose.Types.ObjectId("67e08b8313e40c388d2c1545"),
-                new mongoose.Types.ObjectId("67e08b8313e40c388d2c1546"),
-                new mongoose.Types.ObjectId("67e08b8313e40c388d2c1547"),
+                new mongoose.Types.ObjectId("67f7f5b8c9604dfe14db3d51"),
+                new mongoose.Types.ObjectId("67f7f5b8c9604dfe14db3d52"),
+                new mongoose.Types.ObjectId("67f7f5b8c9604dfe14db3d53"),
             ]
         },
         ]

@@ -7,4 +7,5 @@ export interface IPermissionSecurity{
     description?: string;
     category?: string;
     isSystemDefined?: boolean;
+    isActive ?: boolean;
 }

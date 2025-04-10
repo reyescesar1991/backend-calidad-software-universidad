@@ -1,26 +1,42 @@
-export class PermissionNotFoundError extends Error{
+import { z } from "zod";
 
-    constructor(){
+export class PermissionNotFoundError extends Error {
+
+    constructor() {
 
         super("Permiso no encontrado");
         this.name = "PermissionNotFoundError";
     }
 }
 
-export class PermissionAlreadyInactiveError extends Error{
+export class PermissionAlreadyInactiveError extends Error {
 
-    constructor(){
+    constructor() {
 
         super("El permiso ya está inactivo");
         this.name = "PermissionAlreadyInactiveError";
     }
 }
 
-export class PermissionUpdateError extends Error{
+export class PermissionUpdateError extends Error {
 
-    constructor(){
+    constructor() {
 
         super("Error al actualizar el permiso");
         this.name = "PermissionUpdateError";
+    }
+}
+
+export class LabelInvalidError extends Error {
+    constructor(message: string, public details?: z.ZodIssue[]) {
+        super(message);
+        this.name = "LabelInvalidError";
+    }
+}
+
+export class LabelDuplicateError extends Error {
+    constructor(message: string) {
+        super(message);
+        this.name = "LabelDuplicateError";
     }
 }

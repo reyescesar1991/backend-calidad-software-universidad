@@ -5,7 +5,7 @@ import { PermissionDocument } from "../../../db/models/permissionsModels/permiss
 import { inject, injectable } from "tsyringe";
 
 @injectable()
-export class PermissionRepository implements IPermissionRepository{
+export class PermissionRepository implements IPermissionRepository {
 
     constructor(@inject("PermissionModel") private readonly permissionModel: Model<PermissionDocument>) {}
 
@@ -16,15 +16,33 @@ export class PermissionRepository implements IPermissionRepository{
         return this.permissionModel.findById(id).exec();
     }
     async updatePermission(id: ObjectIdParam, data: UpdatePermissionDto): Promise<any> {
-        return this.permissionModel.findByIdAndUpdate(id, data, {new: true, runValidators: true})
-        .exec();
+        return this.permissionModel.findByIdAndUpdate(id, data, { new: true, runValidators: true })
+            .exec();
     }
 
     async deletePermission(id: ObjectIdParam): Promise<PermissionDocument | null> {
         return this.permissionModel.findByIdAndUpdate(
             id,
-            {$set : {isActive : false}},
+            { $set: { isActive: false } },
+            { new: true, runValidators: true }
+        ).exec();
+    }
+
+    // En PermissionRepository.ts
+    async togglePermissionCan(id: ObjectIdParam): Promise<PermissionDocument | null> {
+        return this.permissionModel.findByIdAndUpdate(
+            id,
+            [{ $set: { can: { $not: "$can" } } }],
+            { new: true }
+        ).exec();
+    }
+
+    async updateLabelPermission(id: ObjectIdParam, newLabel: string): Promise<PermissionDocument | null> {
+        return this.permissionModel.findByIdAndUpdate(
+            id,
+            {$set: {label : newLabel}},
             {new: true, runValidators: true}
         ).exec();
     }
+
 }

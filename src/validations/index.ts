@@ -16,6 +16,7 @@ export {WarehouseDto} from './warehouseValidators/warehouse.validation';
 export {ProductDto} from './productValidators/product.validation';
 export {ObjectIdParam} from './sharedValidators/sharedValidators';
 export {createPermissionSchemaZod} from './permissionsValidators/permission.validation';
+export {updatePermissionSchemaZod} from './permissionsValidators/permission.validation';
 export {subrouteSchemaZod} from './menuValidators/menu.validation';
 export {routeSchemaZod} from './menuValidators/menu.validation';
 export {moduleSchemaZod} from './menuValidators/menu.validation';

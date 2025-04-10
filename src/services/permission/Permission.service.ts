@@ -40,4 +40,17 @@ export class PermissionService{
         PermissionValidator.validateIsActive(permission);
         return this.repository.deletePermission(id);
     }
+
+    async togglePermissionCan(id: ObjectIdParam) : Promise<PermissionDocument | null>{
+
+        const permission = await this.repository.findPermissionById(id);
+        if(!permission) throw new PermissionNotFoundError();
+
+        return this.repository.togglePermissionCan(id);
+    }
+    
+    // async updateLabelPermission(id: ObjectIdParam, newLabel : string) : Promise<PermissionDocument | null>{
+
+    //     const 
+    // }
 }

@@ -1,1 +1,6 @@
-export {PermissionValidator} from './permissions/permission.validator';
+export {PermissionValidator} from './permissions/validators/permission.validator';
+
+
+//schemas
+
+export {labelSchema} from './permissions/schemas/labelSchema.zod';

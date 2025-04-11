@@ -2,6 +2,8 @@
 import {app} from './app';
 import { config } from './core/config';
 import { logger } from './core/logger';
+import "reflect-metadata"; // 👈 Primera línea
+import "./core/config/dependenciesPermissions/dependencies"; // Importa las dependencias
 const connectDb = require("./core/database/index");
 
 const startServer = async () => {

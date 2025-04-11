@@ -24,7 +24,8 @@
     "seed:users": "ts-node src/db/seeders/usersSeeders/users.seed.ts",
     "seed:warehouses": "ts-node src/db/seeders/warehouseSeeders/warehouse.seed.ts",
     "seed:products": "ts-node src/db/seeders/productSeeders/product.seed.ts",
-    "update:capacity-warehouse": "ts-node src/db/seeders/capacity-updaters/updateWarehouseCapacity.ts"
+    "update:capacity-warehouse": "ts-node src/db/seeders/capacity-updaters/updateWarehouseCapacity.ts",
+    "script:create-permission" : "ts-node src/scripts/permissions/testCreatePermission.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",
@@ -41,6 +42,7 @@
     "path": "^0.12.7",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.9.1",
+    "uuid": "^11.1.0",
     "winston": "^3.17.0",
     "zod": "^3.24.2"
   },

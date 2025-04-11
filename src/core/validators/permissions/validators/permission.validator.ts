@@ -1,5 +1,6 @@
+import { z } from "zod";
 import { PermissionDocument, PermissionModel } from "../../../../db/models/permissionsModels/permission.model";
-import { LabelDuplicateError, PermissionAlreadyInactiveError } from "../../../exceptions";
+import { LabelDuplicateError, LabelInvalidError, PermissionAlreadyInactiveError } from "../../../exceptions";
 import { labelSchema } from "../schemas/labelSchema.zod";
 
 export class PermissionValidator{
@@ -20,7 +21,11 @@ export class PermissionValidator{
 
         } catch (error) {
             
-            
+            if(error instanceof z.ZodError){
+
+                throw new LabelInvalidError("Formato de label inválido: ", error.errors)
+            }
+            throw error;
         }
     }
 

@@ -1,1 +1,1 @@
-export * from "./dependenciesPermissions/dependencies";
+import "./dependenciesPermissions/dependencies"; // 👈 Solo importa, no exporta

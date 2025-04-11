@@ -1,3 +1,5 @@
+
+import "reflect-metadata"; 
 import { inject, injectable } from "tsyringe";
 import { IPermissionRepository } from "./interfaces/IPermissionRepository";
 import { CreatePermissionDto, ObjectIdParam, UpdatePermissionDto } from "../../validations";
@@ -7,7 +9,6 @@ import { PermissionValidator } from "../../core/validators";
 
 @injectable()
 export class PermissionService{
-
 
     constructor(@inject("IPermissionRepository") private readonly repository: IPermissionRepository){}
 
@@ -49,8 +50,15 @@ export class PermissionService{
         return this.repository.togglePermissionCan(id);
     }
     
-    // async updateLabelPermission(id: ObjectIdParam, newLabel : string) : Promise<PermissionDocument | null>{
+    async updateLabelPermission(id: ObjectIdParam, newLabel : string) : Promise<PermissionDocument | null>{
 
-    //     const 
-    // }
+        PermissionValidator.validateLabelFormat(newLabel);
+
+        await PermissionValidator.validateLabelUniqueness(newLabel);
+
+        const permission = await this.repository.findPermissionById(id);
+        if(!permission) throw new PermissionNotFoundError();
+
+        return this.repository.updateLabelPermission(id, newLabel);
+    }
 }

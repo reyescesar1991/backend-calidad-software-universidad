@@ -3,3 +3,4 @@ export {PermissionAlreadyInactiveError} from './permissions/permission.exception
 export {PermissionUpdateError} from './permissions/permission.exceptions';
 export {LabelInvalidError} from './permissions/permission.exceptions';
 export {LabelDuplicateError} from './permissions/permission.exceptions';
+export {PermissionDuplicateError} from './permissions/permission.exceptions';

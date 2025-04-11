@@ -40,3 +40,11 @@ export class LabelDuplicateError extends Error {
         this.name = "LabelDuplicateError";
     }
 }
+
+export class PermissionDuplicateError extends Error{
+
+    constructor(message: string) {
+        super(message);
+        this.name = "PermissionDuplicateError";
+    }
+}

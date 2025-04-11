@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { PermissionDocument, PermissionModel } from "../../../../db/models/permissionsModels/permission.model";
-import { LabelDuplicateError, LabelInvalidError, PermissionAlreadyInactiveError } from "../../../exceptions";
+import { LabelDuplicateError, LabelInvalidError, PermissionAlreadyInactiveError, PermissionDuplicateError } from "../../../exceptions";
 import { labelSchema } from "../schemas/labelSchema.zod";
 
 export class PermissionValidator{
@@ -33,5 +33,11 @@ export class PermissionValidator{
 
         const exists = await PermissionModel.findOne({label});
         if(exists) throw new LabelDuplicateError("El label ya existe");
+    }
+
+    static readonly validatePermissionUniqueness = async (permission : string) => {
+
+        const exists = await PermissionModel.findOne({permission});
+        if(exists) throw new PermissionDuplicateError("El permiso ya existe");
     }
 }

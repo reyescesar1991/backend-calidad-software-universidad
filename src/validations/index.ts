@@ -15,6 +15,8 @@ export {UserDto} from './usersValidators/user.validation';
 export {WarehouseDto} from './warehouseValidators/warehouse.validation';
 export {ProductDto} from './productValidators/product.validation';
 export {ObjectIdParam} from './sharedValidators/sharedValidators';
+export {UserPermissionDto} from './userPermissionValidators/userPermission.validator';
+export {UserPermissionSecurityDto} from './userPermissionValidators/userPermissionSecurity.validator';
 export {createPermissionSchemaZod} from './permissionsValidators/permission.validation';
 export {updatePermissionSchemaZod} from './permissionsValidators/permission.validation';
 export {subrouteSchemaZod} from './menuValidators/menu.validation';
@@ -33,4 +35,6 @@ export {userSchemaZod} from './usersValidators/user.validation';
 export {warehouseSchemaZod} from './warehouseValidators/warehouse.validation';
 export {productSchemaZod} from './productValidators/product.validation';
 export {objectIdSchema} from './sharedValidators/sharedValidators';
+export {userPermissionSchemaZod} from './userPermissionValidators/userPermission.validator';
+export {userPermissionSecuritySchemaZod} from './userPermissionValidators/userPermissionSecurity.validator';
  

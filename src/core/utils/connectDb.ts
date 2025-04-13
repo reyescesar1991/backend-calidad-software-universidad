@@ -25,3 +25,9 @@ export const initializeTestEnvironment = async () => {
     process.exit(1);
   }
 };
+
+export const disconnectMongo = async () => {
+
+  await mongoose.connection.close();
+  console.log('🔗 Conexión a la base de datos cerrada');
+}

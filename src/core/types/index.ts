@@ -16,3 +16,5 @@ export {IJwtPayloadType} from './token/jwtPayload.interface';
 export {IRoleConfigType} from './role/roleConfig.interface';
 export {IWarehouseType} from './warehouse/warehouse.interface';
 export {IProductType} from './product/product.interface';
+export {IUserPermission} from './userPermission/userPermission.interface';
+export {IUserPermissionSecurity} from './userPermission/userPermissionSecurity.interface';

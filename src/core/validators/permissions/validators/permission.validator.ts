@@ -17,12 +17,19 @@ export class PermissionValidator{
 
         try {
             
-            labelSchema.parse(label);
+            console.log(label);
+            
+            labelSchema.parse({label : label});
+            
 
         } catch (error) {
+
+            console.log(error);
             
             if(error instanceof z.ZodError){
 
+                console.log(error);
+                
                 throw new LabelInvalidError("Formato de label inválido: ", error.errors)
             }
             throw error;

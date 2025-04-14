@@ -9,4 +9,5 @@ export interface IPermissionRepository{
     deletePermission(id: ObjectIdParam) : Promise<PermissionDocument | null>;
     togglePermissionCan(id: ObjectIdParam): Promise<PermissionDocument | null>;
     updateLabelPermission(id: ObjectIdParam, newLabel : string) : Promise<PermissionDocument | null>;
+    permanentlyDeletePermission(id: ObjectIdParam) : Promise<PermissionDocument | null>;
 }

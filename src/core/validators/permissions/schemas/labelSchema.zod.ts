@@ -1,3 +1,7 @@
-import { updatePermissionSchemaZod } from "../../../../validations";
+import {z} from 'zod';
 
-export const labelSchema = updatePermissionSchemaZod.pick({ label: true });
+export const labelSchema = z.object({
+
+
+    label :  z.string().min(1, {message : 'El label es requerido'})
+});

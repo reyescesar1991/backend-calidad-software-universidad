@@ -45,4 +45,9 @@ export class PermissionRepository implements IPermissionRepository {
         ).exec();
     }
 
+    async permanentlyDeletePermission(id: ObjectIdParam): Promise<PermissionDocument | null> {
+        
+        return this.permissionModel.findByIdAndDelete(id).exec();
+    }
+
 }

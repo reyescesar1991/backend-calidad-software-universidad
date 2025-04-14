@@ -27,7 +27,16 @@
     "seed:user-permission" : "ts-node src/db/seeders/userPermissionSeeders/userPermission.seed.ts",
     "seed:user-permission-security" : "ts-node src/db/seeders/userPermissionSeeders/userPermissionSecurity.seed.ts",
     "update:capacity-warehouse": "ts-node src/db/seeders/capacity-updaters/updateWarehouseCapacity.ts",
-    "script:create-permission" : "ts-node src/scripts/permissions/testCreatePermission.ts"
+    
+
+
+    "script:create-permission" : "ts-node src/scripts/permissions/testCreatePermission.ts",
+    "script:findbyid-permission" : "ts-node src/scripts/permissions/testFindPermissionById.ts",
+    "script:update-permission" : "ts-node src/scripts/permissions/testUpdatePermission.ts",
+    "script:toggle-can-permission" : "ts-node src/scripts/permissions/testTogglePermissionCan.ts",
+    "script:update-label-permission" : "ts-node src/scripts/permissions/testUpdateLabelPermission.ts",
+    "script:delete-permission" : "ts-node src/scripts/permissions/testDeletePermission.ts",
+    "script:delete-perma-permission" : "ts-node src/scripts/permissions/testPermanentlyDeletePermission.ts"
 
   },
   "author": "Google LLC",

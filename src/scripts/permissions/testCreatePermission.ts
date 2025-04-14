@@ -19,8 +19,8 @@ const runTestCreatePermission =  async () => {
         const uniqueId = uuidv4().substring(0,8);
         const testPermission : IPermissionType = {
 
-            label : `Test Label 2aa5be49`,
-            permission : `test_permission_2aa5be49`,
+            label : `Test Label ${uniqueId}`,
+            permission : `test_permission_${uniqueId}`,
             can: true,
         }
 

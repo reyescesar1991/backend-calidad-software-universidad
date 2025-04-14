@@ -45,4 +45,4 @@ export const userPermissionSecuritySchema = new Schema<UserPermissionSecurityDoc
 
 }, {timestamps: true, versionKey: false});
 
-export const userPermissionSecurityModel = model<UserPermissionSecurityDocument>("UserPermissionSecurity", userPermissionSecuritySchema);
+export const UserPermissionSecurityModel = model<UserPermissionSecurityDocument>("UserPermissionSecurity", userPermissionSecuritySchema);

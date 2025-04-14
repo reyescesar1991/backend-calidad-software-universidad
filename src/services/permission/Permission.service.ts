@@ -70,4 +70,11 @@ export class PermissionService {
 
         return this.repository.updateLabelPermission(id, newLabel);
     }
+
+    async permanentlyDeletePermission(id: ObjectIdParam) : Promise<PermissionDocument | null>{
+
+        await this.getPermissionById(id);
+
+        return this.repository.permanentlyDeletePermission(id);
+    }
 }

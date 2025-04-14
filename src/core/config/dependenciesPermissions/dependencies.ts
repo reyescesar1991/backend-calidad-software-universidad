@@ -10,7 +10,3 @@ container.register<IPermissionRepository>("IPermissionRepository", {
     useClass: PermissionRepository 
 });
 container.register("PermissionService", { useClass: PermissionService });
-
-
-// export const permissionRepositoryImpl : IPermissionRepository = new PermissionRepository(PermissionModel);
-// export const permissionService = new PermissionService(permissionRepositoryImpl);

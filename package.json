@@ -36,7 +36,9 @@
     "script:toggle-can-permission" : "ts-node src/scripts/permissions/testTogglePermissionCan.ts",
     "script:update-label-permission" : "ts-node src/scripts/permissions/testUpdateLabelPermission.ts",
     "script:delete-permission" : "ts-node src/scripts/permissions/testDeletePermission.ts",
-    "script:delete-perma-permission" : "ts-node src/scripts/permissions/testPermanentlyDeletePermission.ts"
+    "script:delete-perma-permission" : "ts-node src/scripts/permissions/testPermanentlyDeletePermission.ts",
+    "script:list-permissions" : "ts-node src/scripts/permissions/testListPermission.ts",
+    "script:get-permissions-status" : "ts-node src/scripts/permissions/testGetPermissionByStatus.ts"
 
   },
   "author": "Google LLC",

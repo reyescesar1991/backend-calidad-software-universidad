@@ -13,11 +13,11 @@ const runTestUpdatePermission = async () => {
 
     try {
 
-        const idPermission = objectIdSchema.parse("67f94b58ce9b9cd946bc47f4");
+        const idPermission = objectIdSchema.parse("67feaf2eddf80c5ae50f8f2a");
 
         const data : UpdatePermissionDto = {
 
-            isActive : true,
+            isActive : false,
             can: false,
         }
 

@@ -48,3 +48,11 @@ export class PermissionDuplicateError extends Error{
         this.name = "PermissionDuplicateError";
     }
 }
+
+export class PermissionInUseError extends Error{
+
+    constructor(message: string) {
+        super(message);
+        this.name = "PermissionInUseError";
+    }
+}

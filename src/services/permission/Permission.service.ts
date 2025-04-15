@@ -4,8 +4,9 @@ import { inject, injectable } from "tsyringe";
 import { IPermissionRepository } from "./interfaces/IPermissionRepository";
 import { CreatePermissionDto, ObjectIdParam, UpdatePermissionDto } from "../../validations";
 import { PermissionDocument } from "../../db/models/permissionsModels/permission.model";
-import { PermissionDuplicateError, PermissionNotFoundError, PermissionUpdateError } from "../../core/exceptions";
+import { PermissionDuplicateError, PermissionInUseError, PermissionNotFoundError, PermissionUpdateError } from "../../core/exceptions";
 import { PermissionValidator } from "../../core/validators";
+import { RoleModel } from "../../db/models";
 
 @injectable()
 export class PermissionService {
@@ -71,10 +72,32 @@ export class PermissionService {
         return this.repository.updateLabelPermission(id, newLabel);
     }
 
-    async permanentlyDeletePermission(id: ObjectIdParam) : Promise<PermissionDocument | null>{
+    async permanentlyDeletePermission(id: ObjectIdParam): Promise<PermissionDocument | null> {
+        // 1. Obtener el permiso (y validar que existe)
+        const permission = await this.getPermissionById(id);
 
-        await this.getPermissionById(id);
-
+        if(!permission) throw new PermissionNotFoundError();
+    
+        // 2. Verificar si el permiso está asignado a algún rol
+        const isUsed = await RoleModel.exists({ 
+            permissions: permission._id // Busca el ObjectId en el array "permissions"
+        });
+    
+        if (isUsed) {
+            throw new PermissionInUseError("El permiso está asignado a uno o más roles");
+        }
+    
+        // 3. Si no está en uso, eliminar permanentemente
         return this.repository.permanentlyDeletePermission(id);
+    }
+
+    async listPermissions() : Promise<PermissionDocument[] | null>{
+
+        return this.repository.listPermissions();
+    }
+
+    async getPermissionsByStatus(isActive : boolean) : Promise<PermissionDocument[] | null>{
+
+        return this.repository.getPermissionsByStatus(isActive);
     }
 }

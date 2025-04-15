@@ -2,24 +2,21 @@ import "reflect-metadata";
 import { container } from 'tsyringe';
 import "../../core/config/dependenciesPermissions/dependencies";
 import { disconnectMongo, initializeTestEnvironment } from "../../core/utils/connectDb";
-import { objectIdSchema } from "../../validations";
 import { PermissionService } from "../../services/permission";
+
 
 initializeTestEnvironment();
 
+const runTestListPermissions = async () => {
 
-const runTestDeletePermanentlyPermission = async () => {
 
     try {
 
-        const idPermission = objectIdSchema.parse("67f7f3a2c8e38dcebedeba51");
-
         const permissionService = container.resolve(PermissionService);
 
-        const result = await permissionService.permanentlyDeletePermission(idPermission);
+        const result = await permissionService.listPermissions();
 
-        console.log("📄 Permiso eliminado por id:", result);
-
+        console.log("📄 Permisos encontrados:", result);
         
     } catch (error) {
 
@@ -32,7 +29,7 @@ const runTestDeletePermanentlyPermission = async () => {
     }
 }
 
-runTestDeletePermanentlyPermission().then(() => {
+runTestListPermissions().then(() => {
 
     console.log('Proceso de seed completo');
 })

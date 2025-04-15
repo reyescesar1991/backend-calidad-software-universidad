@@ -50,4 +50,14 @@ export class PermissionRepository implements IPermissionRepository {
         return this.permissionModel.findByIdAndDelete(id).exec();
     }
 
+    async listPermissions(): Promise<PermissionDocument[] | null> {
+        
+        return this.permissionModel.find({}).exec();
+    }
+
+    async getPermissionsByStatus(isActive : boolean): Promise<PermissionDocument[] | null> {
+        
+        return this.permissionModel.find({isActive}).exec();
+    }
+
 }

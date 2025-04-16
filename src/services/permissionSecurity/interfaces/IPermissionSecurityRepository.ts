@@ -13,5 +13,5 @@ export interface IPermissionSecurityRepository{
     permanentlyDeletePermissionSecurity(idPermission: ObjectIdParam) : Promise<PermissionSecurityDocument | null>;
     listPermissionsSecurity() : Promise<PermissionSecurityDocument[] | null>;
     getPermissionsSecurityByStatus(isActive : boolean) : Promise<PermissionSecurityDocument[] | null>;
-    changeIsSystemDefinedPermissionSecurity(isSystemDefined : boolean) : Promise<PermissionSecurityDocument | null>;
+    changeIsSystemDefinedPermissionSecurity(idPermission : ObjectIdParam) : Promise<PermissionSecurityDocument | null>;
 }

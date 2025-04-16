@@ -5,39 +5,69 @@ import { IPermissionSecurityRepository } from "../interfaces/IPermissionSecurity
 import { Model } from "mongoose";
 
 @injectable()
-export class PermissionSecurityRepository implements IPermissionSecurityRepository{
+export class PermissionSecurityRepository implements IPermissionSecurityRepository {
 
-    constructor(@inject("PermissionSecurityModel") private readonly permissionSecurityModel : Model<PermissionSecurityDocument>){};
+    constructor(@inject("PermissionSecurityModel") private readonly permissionSecurityModel: Model<PermissionSecurityDocument>) { };
 
     createPermissionSecurity(data: PermissionSecurityDto): Promise<PermissionSecurityDocument> {
-        throw new Error("Method not implemented.");
+
+        return this.permissionSecurityModel.create(data);
     }
     findPermissionSecurityById(idPermission: ObjectIdParam): Promise<PermissionSecurityDocument | null> {
-        throw new Error("Method not implemented.");
+
+        return this.permissionSecurityModel.findById(idPermission).exec();
     }
     updatePermissionSecurity(idPermission: ObjectIdParam, data: UpdatePermissionSecurityDto): Promise<PermissionSecurityDocument | null> {
-        throw new Error("Method not implemented.");
+
+        return this.permissionSecurityModel.findByIdAndUpdate(idPermission, data, { new: true, runValidators: true }).exec();
     }
     deletePermissionSecurity(idPermission: ObjectIdParam): Promise<PermissionSecurityDocument | null> {
-        throw new Error("Method not implemented.");
+
+        return this.permissionSecurityModel.findByIdAndUpdate(
+
+            idPermission,
+            { $set: { isActive: false } },
+            { new: true, runValidators: true }
+        ).exec();
     }
     togglePermissionSecurityCan(idPermission: ObjectIdParam): Promise<PermissionSecurityDocument | null> {
-        throw new Error("Method not implemented.");
+        return this.permissionSecurityModel.findByIdAndUpdate(
+
+            idPermission,
+            [{ $set: { can: { $not: "$can" } } }],
+            { new: true },
+        ).exec();
     }
     updateLabelPermissionSecurity(idPermission: ObjectIdParam, newLabel: string): Promise<PermissionSecurityDocument | null> {
-        throw new Error("Method not implemented.");
+
+        return this.permissionSecurityModel.findByIdAndUpdate(
+
+            idPermission,
+            { $set: { label: newLabel } },
+            { new: true, runValidators: true },
+        ).exec();
     }
     permanentlyDeletePermissionSecurity(idPermission: ObjectIdParam): Promise<PermissionSecurityDocument | null> {
-        throw new Error("Method not implemented.");
+
+        return this.permissionSecurityModel.findByIdAndDelete(
+            idPermission
+        ).exec();
     }
     listPermissionsSecurity(): Promise<PermissionSecurityDocument[] | null> {
-        throw new Error("Method not implemented.");
+
+        return this.permissionSecurityModel.find({}).exec();
     }
     getPermissionsSecurityByStatus(isActive: boolean): Promise<PermissionSecurityDocument[] | null> {
-        throw new Error("Method not implemented.");
+
+        return this.permissionSecurityModel.find({ isActive }).exec();
     }
-    changeIsSystemDefinedPermissionSecurity(isSystemDefined: boolean): Promise<PermissionSecurityDocument | null> {
-        throw new Error("Method not implemented.");
+    changeIsSystemDefinedPermissionSecurity(idPermission: ObjectIdParam): Promise<PermissionSecurityDocument | null> {
+
+        return this.permissionSecurityModel.findByIdAndUpdate(
+            idPermission,
+            [{ $set: { isSystemDefined: { $not: "$isSystemDefined" } } }],
+            { new: true },
+        ).exec();
     }
-    
+
 }

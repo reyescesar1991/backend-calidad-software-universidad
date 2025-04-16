@@ -1,7 +1,18 @@
-import { model, Schema } from "mongoose";
+import mongoose, { model, Schema } from "mongoose";
 import { IPermissionSecurity } from "../../../core/types";
 
-export interface PermissionSecurityDocument extends Document, IPermissionSecurity{};
+export interface PermissionSecurityDocument extends Document, IPermissionSecurity{
+
+    _id: mongoose.Types.ObjectId;
+    label : string;
+    permission : string;
+    can : boolean;
+    id : string;
+    description : string;
+    category : string;
+    isSystemDefined : boolean;
+    isActive : boolean;
+};
 
 export const permissionSecuritySchema = new Schema<PermissionSecurityDocument>({
 

@@ -4,7 +4,7 @@ import { inject, injectable } from "tsyringe";
 import { IPermissionRepository } from "./interfaces/IPermissionRepository";
 import { CreatePermissionDto, ObjectIdParam, UpdatePermissionDto } from "../../validations";
 import { PermissionDocument } from "../../db/models/permissionsModels/permission.model";
-import { PermissionDuplicateError, PermissionInUseError, PermissionNotFoundError, PermissionUpdateError } from "../../core/exceptions";
+import { InvalidParamError, PermissionDuplicateError, PermissionInUseError, PermissionNotFoundError, PermissionUpdateError } from "../../core/exceptions";
 import { PermissionValidator } from "../../core/validators";
 import { RoleModel } from "../../db/models";
 
@@ -98,6 +98,17 @@ export class PermissionService {
 
     async getPermissionsByStatus(isActive : boolean) : Promise<PermissionDocument[] | null>{
 
-        return this.repository.getPermissionsByStatus(isActive);
+        if (typeof isActive !== "boolean") {
+            throw new InvalidParamError("Formato de parámetro invalido");
+        }
+
+        const permissions = await this.repository.getPermissionsByStatus(isActive);
+
+        if(permissions.length === 0){
+
+            throw new PermissionNotFoundError(`No hay permisos ${isActive ? "activos" : "inactivos"}`)
+        }
+
+        return permissions;
     }
 }

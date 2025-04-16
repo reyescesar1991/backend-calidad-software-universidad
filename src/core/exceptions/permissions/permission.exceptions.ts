@@ -2,9 +2,9 @@ import { z } from "zod";
 
 export class PermissionNotFoundError extends Error {
 
-    constructor() {
+    constructor(message: string = "Permiso no encontrado") {
 
-        super("Permiso no encontrado");
+        super(message);
         this.name = "PermissionNotFoundError";
     }
 }

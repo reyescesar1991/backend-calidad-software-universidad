@@ -2,23 +2,23 @@ import "reflect-metadata";
 import { container } from 'tsyringe';
 import "../../core/config/dependenciesPermissionsSecurity/dependencies";
 import { disconnectMongo, initializeTestEnvironment } from "../../core/utils/connectDb";
-import { objectIdSchema } from "../../validations";
 import { PermissionSecurityService } from "../../services/permissionSecurity";
 
 
 initializeTestEnvironment();
 
-const runTestTogglePermissionSecurity = async () => {
+
+const runTestGetPermissionsSecurityByStatus = async () => {
 
     try {
 
-        const idPermission = objectIdSchema.parse("68015e34a346525ca31786cd");
+        const isActive : boolean = true;
 
         const permissionSecurityService = container.resolve(PermissionSecurityService);
 
-        const result = await permissionSecurityService.togglePermissionSecurityActive(idPermission);
+        const result = await permissionSecurityService.getPermissionsSecurityByStatus(isActive);
 
-        console.log(`Permiso de seguridad ahora ${result.isActive === true ? "activado" : "desactivado"}`, result);
+        console.log(`📄 Permisos de seguridad con el estatus ${isActive ? "activo" : "desactivado"}`, result);
         
     } catch (error) {
 
@@ -32,7 +32,7 @@ const runTestTogglePermissionSecurity = async () => {
 
 }
 
-runTestTogglePermissionSecurity().then(() => {
+runTestGetPermissionsSecurityByStatus().then(() => {
 
     console.log('Proceso de seed completo');
 })

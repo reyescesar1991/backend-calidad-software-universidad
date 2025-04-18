@@ -8,7 +8,9 @@ import { PermissionSecurityService } from "../../services/permissionSecurity";
 
 initializeTestEnvironment();
 
-const runTestTogglePermissionSecurity = async () => {
+
+const runTestChangeIsSystemDefined = async () => {
+
 
     try {
 
@@ -16,9 +18,9 @@ const runTestTogglePermissionSecurity = async () => {
 
         const permissionSecurityService = container.resolve(PermissionSecurityService);
 
-        const result = await permissionSecurityService.togglePermissionSecurityActive(idPermission);
+        const result = await permissionSecurityService.changeIsSystemDefinedPermissionSecurity(idPermission);
 
-        console.log(`Permiso de seguridad ahora ${result.isActive === true ? "activado" : "desactivado"}`, result);
+        console.log(`Permiso de seguridad ahora ${result.isSystemDefined === true ? "definido por el sistema" : "no definido por el sistema"}`, result);
         
     } catch (error) {
 
@@ -30,9 +32,10 @@ const runTestTogglePermissionSecurity = async () => {
         disconnectMongo();
     }
 
+
 }
 
-runTestTogglePermissionSecurity().then(() => {
+runTestChangeIsSystemDefined().then(() => {
 
     console.log('Proceso de seed completo');
 })

@@ -46,7 +46,11 @@
     "script:update-permission-security" : "ts-node src/scripts/permissionsSecurity/testUpdatePermissionSecurity.ts",
     "script:delete-permission-security" : "ts-node src/scripts/permissionsSecurity/testDeletePermissionSecurity.ts",
     "script:toggle-permission-security" : "ts-node src/scripts/permissionsSecurity/testTogglePermissionSecurity.ts",
-    "script:update-label-permission-security" : "ts-node src/scripts/permissionsSecurity/testUpdateLabelPermissionSecurity.ts"
+    "script:update-label-permission-security" : "ts-node src/scripts/permissionsSecurity/testUpdateLabelPermissionSecurity.ts",
+    "script:list-permissions-security" : "ts-node src/scripts/permissionsSecurity/testListPermissionSecurity.ts",
+    "script:get-permissions-security-bystatus" : "ts-node src/scripts/permissionsSecurity/testGetPermissionSecurityByStatus.ts",
+    "script:toggle-systemdefined-permission-security" : "ts-node src/scripts/permissionsSecurity/testChangeIsSystemDefined.ts",
+    "script:delete-perma-permission-security" : "ts-node src/scripts/permissionsSecurity/testPermanentlyDeletePermissionSecurity.ts"
 
   },
   "author": "Google LLC",

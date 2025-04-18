@@ -15,6 +15,8 @@ export {PermissionSecurityUpdateError} from './permissions/permissionSecurity.ex
 export {PermissionSecurityAlreadyInactiveError} from './permissions/permissionSecurity.exception';
 export {LabelDuplicatePermissionSecurityError} from './permissions/permissionSecurity.exception';
 export {LabelSecurityPermissionInvalidError} from './permissions/permissionSecurity.exception';
+export {PermissionSecurityInUseError} from './permissions/permissionSecurity.exception';
+
 //generales
 
 export {InvalidParamError} from './generals/general.exceptions';

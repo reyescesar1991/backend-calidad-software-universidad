@@ -49,3 +49,11 @@ export class LabelSecurityPermissionInvalidError extends Error {
         this.name = "LabelInvalidError";
     }
 }
+
+export class PermissionSecurityInUseError extends Error{
+
+    constructor(message: string) {
+        super(message);
+        this.name = "PermissionInUseError";
+    }
+}

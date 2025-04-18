@@ -8,17 +8,18 @@ import { PermissionSecurityService } from "../../services/permissionSecurity";
 
 initializeTestEnvironment();
 
-const runTestTogglePermissionSecurity = async () => {
+
+const runTestPermanentlyDeletePermissionSecurity = async () => {
 
     try {
 
-        const idPermission = objectIdSchema.parse("68015e34a346525ca31786cd");
+        const idPermission = objectIdSchema.parse("67f7f5b8c9604dfe14db3d51");
 
         const permissionSecurityService = container.resolve(PermissionSecurityService);
 
-        const result = await permissionSecurityService.togglePermissionSecurityActive(idPermission);
+        const result = await permissionSecurityService.permanentlyDeletePermissionSecurity(idPermission);
 
-        console.log(`Permiso de seguridad ahora ${result.isActive === true ? "activado" : "desactivado"}`, result);
+        console.log("📄 Permiso de seguridad eliminado por id:", result);
         
     } catch (error) {
 
@@ -32,7 +33,7 @@ const runTestTogglePermissionSecurity = async () => {
 
 }
 
-runTestTogglePermissionSecurity().then(() => {
+runTestPermanentlyDeletePermissionSecurity().then(() => {
 
     console.log('Proceso de seed completo');
 })

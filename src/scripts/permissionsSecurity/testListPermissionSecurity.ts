@@ -2,23 +2,21 @@ import "reflect-metadata";
 import { container } from 'tsyringe';
 import "../../core/config/dependenciesPermissionsSecurity/dependencies";
 import { disconnectMongo, initializeTestEnvironment } from "../../core/utils/connectDb";
-import { objectIdSchema } from "../../validations";
 import { PermissionSecurityService } from "../../services/permissionSecurity";
 
 
 initializeTestEnvironment();
 
-const runTestTogglePermissionSecurity = async () => {
+
+const runTestListPermissionSecurity = async () => {
 
     try {
 
-        const idPermission = objectIdSchema.parse("68015e34a346525ca31786cd");
-
         const permissionSecurityService = container.resolve(PermissionSecurityService);
 
-        const result = await permissionSecurityService.togglePermissionSecurityActive(idPermission);
+        const result = await permissionSecurityService.listPermissionsSecurity();
 
-        console.log(`Permiso de seguridad ahora ${result.isActive === true ? "activado" : "desactivado"}`, result);
+        console.log("📄 Permisos de seguridad encontrados:", result);
         
     } catch (error) {
 
@@ -30,9 +28,10 @@ const runTestTogglePermissionSecurity = async () => {
         disconnectMongo();
     }
 
+
 }
 
-runTestTogglePermissionSecurity().then(() => {
+runTestListPermissionSecurity().then(() => {
 
     console.log('Proceso de seed completo');
 })

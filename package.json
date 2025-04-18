@@ -45,7 +45,8 @@
     "script:findbyid-permission-security" : "ts-node src/scripts/permissionsSecurity/testFindPermissionSecurityById.ts",
     "script:update-permission-security" : "ts-node src/scripts/permissionsSecurity/testUpdatePermissionSecurity.ts",
     "script:delete-permission-security" : "ts-node src/scripts/permissionsSecurity/testDeletePermissionSecurity.ts",
-    "script:toggle-permission-security" : "ts-node src/scripts/permissionsSecurity/testTogglePermissionSecurity.ts"
+    "script:toggle-permission-security" : "ts-node src/scripts/permissionsSecurity/testTogglePermissionSecurity.ts",
+    "script:update-label-permission-security" : "ts-node src/scripts/permissionsSecurity/testUpdateLabelPermissionSecurity.ts"
 
   },
   "author": "Google LLC",

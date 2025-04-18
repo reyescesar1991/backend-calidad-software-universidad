@@ -54,7 +54,7 @@ export class PermissionSecurityService {
         return this.repository.deletePermissionSecurity(idPermission);
     }
 
-    async togglePermissionSecurityCan(idPermission: ObjectIdParam) : Promise<PermissionSecurityDocument | null>{
+    async togglePermissionSecurityActive(idPermission: ObjectIdParam) : Promise<PermissionSecurityDocument | null>{
 
 
         const permission = await this.repository.findPermissionSecurityById(idPermission);
@@ -62,6 +62,20 @@ export class PermissionSecurityService {
         PermissionSecurityValidator.validateFoundPermissionSecurity(permission);
 
         return this.repository.togglePermissionSecurityActive(idPermission);
+    }
+
+    async updateLabelPermissionSecurity(idPermission: ObjectIdParam, newLabel : string) : Promise<PermissionSecurityDocument | null>{
+
+
+        const permission = await this.repository.findPermissionSecurityById(idPermission);
+
+        PermissionSecurityValidator.validateFoundPermissionSecurity(permission);
+
+        PermissionSecurityValidator.validateLabelFormat(newLabel);
+
+        await PermissionSecurityValidator.validateLabelUniqueness(newLabel);
+
+        return this.repository.updateLabelPermissionSecurity(idPermission, newLabel);
     }
 
 }

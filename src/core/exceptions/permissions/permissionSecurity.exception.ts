@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export class PermissionSecurityDuplicateError extends Error{
 
     constructor(){
@@ -31,5 +33,19 @@ export class PermissionSecurityAlreadyInactiveError extends Error {
 
         super("El permiso de seguridad ya está inactivo");
         this.name = "PermissionSecurityAlreadyInactiveError";
+    }
+}
+
+export class LabelDuplicatePermissionSecurityError extends Error {
+    constructor() {
+        super("Etiqueta duplicada, intenta nuevamente con una diferente");
+        this.name = "LabelDuplicatePermissionSecurityError";
+    }
+}
+
+export class LabelSecurityPermissionInvalidError extends Error {
+    constructor(message: string, public details?: z.ZodIssue[]) {
+        super(message);
+        this.name = "LabelInvalidError";
     }
 }

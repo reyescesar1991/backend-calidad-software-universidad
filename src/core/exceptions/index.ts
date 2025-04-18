@@ -13,7 +13,8 @@ export {PermissionSecurityDuplicateError} from './permissions/permissionSecurity
 export {PermissionSecurityNotFoundError} from './permissions/permissionSecurity.exception';
 export {PermissionSecurityUpdateError} from './permissions/permissionSecurity.exception';
 export {PermissionSecurityAlreadyInactiveError} from './permissions/permissionSecurity.exception';
-
+export {LabelDuplicatePermissionSecurityError} from './permissions/permissionSecurity.exception';
+export {LabelSecurityPermissionInvalidError} from './permissions/permissionSecurity.exception';
 //generales
 
 export {InvalidParamError} from './generals/general.exceptions';

@@ -1,27 +1,54 @@
+import { z } from "zod";
 import { PermissionSecurityDocument, PermissionSecurityModel } from "../../../../db/models"
-import { PermissionSecurityAlreadyInactiveError, PermissionSecurityDuplicateError, PermissionSecurityNotFoundError } from "../../../exceptions";
+import { LabelDuplicatePermissionSecurityError, LabelSecurityPermissionInvalidError, PermissionSecurityAlreadyInactiveError, PermissionSecurityDuplicateError, PermissionSecurityNotFoundError } from "../../../exceptions";
+import { labelSchema } from "../schemas/labelSchema.zod";
 
-export class PermissionSecurityValidator{
+export class PermissionSecurityValidator {
 
-    static validateIsActive(permission : PermissionSecurityDocument) : void {
+    static validateIsActive(permission: PermissionSecurityDocument): void {
 
-        if(!permission.isActive){
+        if (!permission.isActive) {
 
             throw new PermissionSecurityAlreadyInactiveError();
         }
     }
 
-    static validateFoundPermissionSecurity(permission : PermissionSecurityDocument) : void {
+    static validateFoundPermissionSecurity(permission: PermissionSecurityDocument): void {
 
-        if(!permission){
+        if (!permission) {
 
             throw new PermissionSecurityNotFoundError();
         }
     }
 
-    static readonly validatePermissionSecurityUniqueness = async (permission : string) => {
+    static validateLabelFormat(label: string): void {
 
-        const exists = await PermissionSecurityModel.findOne({permission});
-        if(exists) throw new PermissionSecurityDuplicateError();
+        try {
+
+            labelSchema.parse({ label: label });
+
+
+        } catch (error) {
+
+
+            if (error instanceof z.ZodError) {
+
+
+                throw new LabelSecurityPermissionInvalidError("Formato de label inválido: ", error.errors)
+            }
+            throw error;
+        }
+    }
+
+    static readonly validatePermissionSecurityUniqueness = async (permission: string) => {
+
+        const exists = await PermissionSecurityModel.findOne({ permission });
+        if (exists) throw new PermissionSecurityDuplicateError();
+    }
+
+    static readonly validateLabelUniqueness = async (label: string) => {
+
+        const exists = await PermissionSecurityModel.findOne({ label });
+        if (exists) throw new LabelDuplicatePermissionSecurityError();
     }
 }

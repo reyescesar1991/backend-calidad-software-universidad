@@ -17,6 +17,8 @@ export const initializeTestEnvironment = async () => {
     // Conexión a MongoDB
     if (mongoose.connection.readyState !== 1) {
       console.log("🔗 Conectando a MongoDB...");
+      console.log("Url de conexion: ",CONNECTION_STRING);
+      
       await mongoose.connect(CONNECTION_STRING);
       console.log('✅ Conexión exitosa');
     }

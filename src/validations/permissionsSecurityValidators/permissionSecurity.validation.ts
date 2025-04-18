@@ -16,7 +16,6 @@ export const updatePermissionSecurityZodSchema = z.object({
 
     can : z.boolean().optional(),
     label : z.string().min(1, "Etiqueta del permiso de seguridad es requerido").optional(),
-    permission : z.string().min(1, "Permiso es requerido").optional(),
     id : z.string().min(1, "ID de permiso de seguridad es requerido").optional(),
     description : z.string().optional(),
     category : z.string().optional(),

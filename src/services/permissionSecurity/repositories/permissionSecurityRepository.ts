@@ -30,11 +30,11 @@ export class PermissionSecurityRepository implements IPermissionSecurityReposito
             { new: true, runValidators: true }
         ).exec();
     }
-    togglePermissionSecurityCan(idPermission: ObjectIdParam): Promise<PermissionSecurityDocument | null> {
+    togglePermissionSecurityActive(idPermission: ObjectIdParam): Promise<PermissionSecurityDocument | null> {
         return this.permissionSecurityModel.findByIdAndUpdate(
 
             idPermission,
-            [{ $set: { can: { $not: "$can" } } }],
+            [{ $set: { isActive: { $not: "$isActive" } } }],
             { new: true },
         ).exec();
     }

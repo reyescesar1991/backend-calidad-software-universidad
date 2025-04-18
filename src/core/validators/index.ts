@@ -1,4 +1,5 @@
 export {PermissionValidator} from './permissions/validators/permission.validator';
+export {PermissionSecurityValidator} from './permissions/validators/permissionSecurity.validator';
 
 
 //schemas

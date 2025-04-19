@@ -1,6 +1,7 @@
 export {CreatePermissionDto} from './permissionsValidators/permission.validation';
 export {UpdatePermissionDto} from './permissionsValidators/permission.validation';
 export {SubrouteDto} from './menuValidators/menu.validation';
+export {SubrouteUpdateDto} from './menuValidators/menu.validation';
 export {RouteDto} from './menuValidators/menu.validation';
 export {RoleDto} from './roleValidators/role.validation';
 export {HeadquarterDto} from './headquarterValidators/headquarter.validation';

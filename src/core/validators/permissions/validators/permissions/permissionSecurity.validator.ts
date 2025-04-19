@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { PermissionSecurityDocument, PermissionSecurityModel } from "../../../../db/models"
-import { LabelDuplicatePermissionSecurityError, LabelSecurityPermissionInvalidError, PermissionSecurityAlreadyInactiveError, PermissionSecurityDuplicateError, PermissionSecurityNotFoundError } from "../../../exceptions";
-import { labelSchema } from "../schemas/labelSchema.zod";
+import { PermissionSecurityDocument, PermissionSecurityModel } from "../../../../../db/models"
+import { LabelDuplicatePermissionSecurityError, LabelSecurityPermissionInvalidError, PermissionSecurityAlreadyInactiveError, PermissionSecurityDuplicateError, PermissionSecurityNotFoundError } from "../../../../exceptions";
+import { labelSchema } from "../../schemas/labelSchema.zod";
 
 export class PermissionSecurityValidator {
 

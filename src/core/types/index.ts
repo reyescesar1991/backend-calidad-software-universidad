@@ -18,3 +18,9 @@ export {IWarehouseType} from './warehouse/warehouse.interface';
 export {IProductType} from './product/product.interface';
 export {IUserPermission} from './userPermission/userPermission.interface';
 export {IUserPermissionSecurity} from './userPermission/userPermissionSecurity.interface';
+
+
+//filters
+
+export {FilterOptions} from './filters/optionFilter.filter';
+export {SubrouteFilterKeys} from './filtersOptions/subrouteOptions.filter';

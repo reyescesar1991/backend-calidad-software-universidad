@@ -1,7 +1,15 @@
-import { Schema, model } from "mongoose";
-import { ISubrouteType } from "../../../core/types";
+import mongoose, { Schema, model } from "mongoose";
 
-interface SubrouteDocument extends ISubrouteType, Document {};
+export interface SubrouteDocument extends Document {
+
+    _id: mongoose.Types.ObjectId;
+    id : { type: String, required: true},
+    name : {type: String, required: true},
+    path : {type: String, required: true},
+    active : {type: Boolean, required: true},
+    permissionKey : {type: String, required: true},
+    mainRoute: {type: String, required: true},
+};
 
 export const SubrouteSchema = new Schema<SubrouteDocument>({
 
@@ -11,11 +19,7 @@ export const SubrouteSchema = new Schema<SubrouteDocument>({
     active : {type: Boolean, required: true},
     permissionKey : {type: String, required: true},
     mainRoute: {type: String, required: true},
-    // parentId : {
-    //     type: Schema.Types.ObjectId,
-    //     ref: "Route", 
-    //     required: true
-    // }
+    
 } , { timestamps : true });
 
 

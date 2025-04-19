@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { PermissionDocument, PermissionModel } from "../../../../db/models/permissionsModels/permission.model";
-import { LabelDuplicateError, LabelInvalidError, PermissionAlreadyInactiveError, PermissionDuplicateError } from "../../../exceptions";
-import { labelSchema } from "../schemas/labelSchema.zod";
+import { PermissionDocument, PermissionModel } from "../../../../../db/models/permissionsModels/permission.model";
+import { LabelDuplicateError, LabelInvalidError, PermissionAlreadyInactiveError, PermissionDuplicateError } from "../../../../exceptions";
+import { labelSchema } from "../../schemas/labelSchema.zod";
 
 export class PermissionValidator{
 

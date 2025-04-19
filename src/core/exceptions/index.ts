@@ -17,6 +17,11 @@ export {LabelDuplicatePermissionSecurityError} from './permissions/permissionSec
 export {LabelSecurityPermissionInvalidError} from './permissions/permissionSecurity.exception';
 export {PermissionSecurityInUseError} from './permissions/permissionSecurity.exception';
 
+//subroutes
+
+export {SubrouteDuplicateError} from './subroutes/subroute.exception';
+export {SubrouteRouteMatchError} from './subroutes/subroute.exception';
+
 //generales
 
 export {InvalidParamError} from './generals/general.exceptions';

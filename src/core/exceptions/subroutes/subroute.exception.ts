@@ -15,3 +15,12 @@ export class SubrouteRouteMatchError extends Error{
         this.name = "SubrouteRouteMatchError"
     }
 }
+
+export class SubrouteNotFoundError extends Error{
+
+    constructor(message: string = "La subruta no existe, intente con un ID valido"){
+
+        super(message);
+        this.name = "SubrouteNotFoundError";
+    }
+}

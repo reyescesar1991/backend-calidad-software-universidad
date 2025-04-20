@@ -53,7 +53,8 @@
     "script:delete-perma-permission-security" : "ts-node src/scripts/permissionsSecurity/testPermanentlyDeletePermissionSecurity.ts",
 
 
-    "script:create-subroute" : "ts-node src/scripts/menu/subroute/testCreateSubroute.ts"
+    "script:create-subroute" : "ts-node src/scripts/menu/subroute/testCreateSubroute.ts",
+    "script:update-subroute" : "ts-node src/scripts/menu/subroute/testUpdateSubroute.ts"
 
   },
   "author": "Google LLC",

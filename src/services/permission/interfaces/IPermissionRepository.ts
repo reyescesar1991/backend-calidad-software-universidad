@@ -12,4 +12,8 @@ export interface IPermissionRepository{
     permanentlyDeletePermission(id: ObjectIdParam) : Promise<PermissionDocument | null>;
     listPermissions() : Promise<PermissionDocument[] | null>;
     getPermissionsByStatus(isActive : boolean) : Promise<PermissionDocument[] | null>; 
+    findByField<T extends keyof PermissionDocument>(
+        field: T,
+        value: PermissionDocument[T]
+    ): Promise<PermissionDocument | null>;
 }

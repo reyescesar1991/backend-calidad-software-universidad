@@ -70,4 +70,11 @@ export class PermissionSecurityRepository implements IPermissionSecurityReposito
         ).exec();
     }
 
+    async findByField<T extends keyof PermissionSecurityDocument>(
+        field: T,
+        value: PermissionSecurityDocument[T]
+    ): Promise<PermissionSecurityDocument | null> {
+        return this.permissionSecurityModel.findOne({ [field]: value }).exec();
+    }
+
 }

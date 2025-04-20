@@ -2,8 +2,19 @@ import { z } from "zod";
 import { PermissionDocument, PermissionModel } from "../../../../../db/models/permissionsModels/permission.model";
 import { LabelDuplicateError, LabelInvalidError, PermissionAlreadyInactiveError, PermissionDuplicateError } from "../../../../exceptions";
 import { labelSchema } from "../../schemas/labelSchema.zod";
+import { inject, injectable } from "tsyringe";
+import { IPermissionRepository } from "../../../../../services/permission";
 
+@injectable()
 export class PermissionValidator{
+
+    constructor(@inject("IPermissionRepository") private readonly repository: IPermissionRepository,){}
+
+    private static UNIQUE_FIELDS = {
+
+        label: LabelDuplicateError,
+        permission: PermissionDuplicateError,
+    }
 
     static validateIsActive(permission: PermissionDocument) : void {
 
@@ -36,15 +47,18 @@ export class PermissionValidator{
         }
     }
 
-    static readonly validateLabelUniqueness = async (label : string) => {
+    async validateUniqueField<T extends keyof typeof PermissionValidator.UNIQUE_FIELDS>
+    (field: T, value: string)
+    : Promise<void>
+    {
 
-        const exists = await PermissionModel.findOne({label});
-        if(exists) throw new LabelDuplicateError("El label ya existe");
+        const exists = await this.repository.findByField(field, value);;
+
+        if(exists){
+
+            const ErrorClass = PermissionValidator.UNIQUE_FIELDS[field];
+            throw new ErrorClass(`El ${field} '${value}' ya existe, intente con otro valor`)
+        }
     }
 
-    static readonly validatePermissionUniqueness = async (permission : string) => {
-
-        const exists = await PermissionModel.findOne({permission});
-        if(exists) throw new PermissionDuplicateError("El permiso ya existe");
-    }
 }

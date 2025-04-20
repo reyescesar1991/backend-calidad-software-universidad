@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { inject, injectable } from "tsyringe";
 import { IPermissionSecurityRepository } from "./interfaces/IPermissionSecurityRepository";
 import { PermissionSecurityDocument, RoleModel } from "../../db/models";
@@ -8,12 +9,19 @@ import { InvalidParamError, PermissionNotFoundError, PermissionSecurityDuplicate
 @injectable()
 export class PermissionSecurityService {
 
-    constructor(@inject("IPermissionSecurityRepository") private readonly repository: IPermissionSecurityRepository) { };
+    constructor(@inject("IPermissionSecurityRepository") private readonly repository: IPermissionSecurityRepository,
+        @inject("PermissionSecurityValidator") private permissionValidator: PermissionSecurityValidator,
+
+    ) { };
 
     async createPermissionSecurity(data: PermissionSecurityDto): Promise<PermissionSecurityDocument> {
 
 
-        await PermissionSecurityValidator.validatePermissionSecurityUniqueness(data.permission);
+        await this.permissionValidator.validateUniqueField("permission", data.permission);
+
+        await this.permissionValidator.validateUniqueField("label", data.label);
+
+        await this.permissionValidator.validateUniqueField("id", data.id);
 
         try {
             return await this.repository.createPermissionSecurity(data);
@@ -25,25 +33,42 @@ export class PermissionSecurityService {
         }
     }
 
-    async findPermissionSecurityById(idPermission : ObjectIdParam) : Promise<PermissionSecurityDocument | null>{
+    async findPermissionSecurityById(idPermission: ObjectIdParam): Promise<PermissionSecurityDocument | null> {
 
         const permissionSecurity = await this.repository.findPermissionSecurityById(idPermission);
 
-        if(!permissionSecurity) throw new PermissionSecurityNotFoundError();
+        if (!permissionSecurity) throw new PermissionSecurityNotFoundError();
 
         return permissionSecurity;
     }
 
-    async updatePermissionSecurity(idPermission: ObjectIdParam, data: UpdatePermissionSecurityDto) : Promise<PermissionSecurityDocument | null>{
+    async updatePermissionSecurity(idPermission: ObjectIdParam, data: UpdatePermissionSecurityDto): Promise<PermissionSecurityDocument | null> {
+
+        const permission = await this.repository.findPermissionSecurityById(idPermission);
+
+        PermissionSecurityValidator.validateFoundPermissionSecurity(permission);
+
+        if (data.label !== undefined && data.label !== permission.label) {
+            await this.permissionValidator.validateUniqueField("label", data.label);
+        }
+
+        if (data.id !== undefined && data.id !== permission.id) {
+            await this.permissionValidator.validateUniqueField("id", data.id);
+        }
+
+        const hasChanges = Object.keys(data).some(key => data[key] !== permission[key]);
+        if (!hasChanges) {
+            return permission;
+        }
 
         const permissionSecurity = await this.repository.updatePermissionSecurity(idPermission, data);
 
-        if(!permissionSecurity) throw new PermissionSecurityUpdateError();
+        if (!permissionSecurity) throw new PermissionSecurityUpdateError();
 
         return permissionSecurity;
     }
 
-    async deletePermissionSecurity(idPermission: ObjectIdParam) : Promise<PermissionSecurityDocument | null>{
+    async deletePermissionSecurity(idPermission: ObjectIdParam): Promise<PermissionSecurityDocument | null> {
 
         const permission = await this.repository.findPermissionSecurityById(idPermission);
 
@@ -54,7 +79,7 @@ export class PermissionSecurityService {
         return this.repository.deletePermissionSecurity(idPermission);
     }
 
-    async togglePermissionSecurityActive(idPermission: ObjectIdParam) : Promise<PermissionSecurityDocument | null>{
+    async togglePermissionSecurityActive(idPermission: ObjectIdParam): Promise<PermissionSecurityDocument | null> {
 
 
         const permission = await this.repository.findPermissionSecurityById(idPermission);
@@ -64,7 +89,7 @@ export class PermissionSecurityService {
         return this.repository.togglePermissionSecurityActive(idPermission);
     }
 
-    async updateLabelPermissionSecurity(idPermission: ObjectIdParam, newLabel : string) : Promise<PermissionSecurityDocument | null>{
+    async updateLabelPermissionSecurity(idPermission: ObjectIdParam, newLabel: string): Promise<PermissionSecurityDocument | null> {
 
 
         const permission = await this.repository.findPermissionSecurityById(idPermission);
@@ -73,17 +98,17 @@ export class PermissionSecurityService {
 
         PermissionSecurityValidator.validateLabelFormat(newLabel);
 
-        await PermissionSecurityValidator.validateLabelUniqueness(newLabel);
+        await this.permissionValidator.validateUniqueField("label", newLabel);
 
         return this.repository.updateLabelPermissionSecurity(idPermission, newLabel);
     }
 
-    async listPermissionsSecurity() : Promise<PermissionSecurityDocument[] | null>{
+    async listPermissionsSecurity(): Promise<PermissionSecurityDocument[] | null> {
 
         return this.repository.listPermissionsSecurity();
     }
 
-    async getPermissionsSecurityByStatus(isActive : boolean) : Promise<PermissionSecurityDocument[] | null>{
+    async getPermissionsSecurityByStatus(isActive: boolean): Promise<PermissionSecurityDocument[] | null> {
 
         if (typeof isActive !== "boolean") {
             throw new InvalidParamError("Formato de parámetro invalido");
@@ -91,7 +116,7 @@ export class PermissionSecurityService {
 
         const permissionsSecurity = await this.repository.getPermissionsSecurityByStatus(isActive);
 
-        if(permissionsSecurity.length === 0){
+        if (permissionsSecurity.length === 0) {
 
             throw new PermissionNotFoundError(`No hay permisos ${isActive ? "activos" : "inactivos"}`);
 
@@ -99,9 +124,9 @@ export class PermissionSecurityService {
 
         return permissionsSecurity;
 
-    } 
+    }
 
-    async changeIsSystemDefinedPermissionSecurity(idPermission : ObjectIdParam) : Promise<PermissionSecurityDocument | null>{
+    async changeIsSystemDefinedPermissionSecurity(idPermission: ObjectIdParam): Promise<PermissionSecurityDocument | null> {
 
         const permissionSecurity = await this.repository.findPermissionSecurityById(idPermission);
 
@@ -110,14 +135,14 @@ export class PermissionSecurityService {
         return this.repository.changeIsSystemDefinedPermissionSecurity(idPermission);
     }
 
-    async permanentlyDeletePermissionSecurity(idPermission: ObjectIdParam) : Promise<PermissionSecurityDocument | null>{
+    async permanentlyDeletePermissionSecurity(idPermission: ObjectIdParam): Promise<PermissionSecurityDocument | null> {
 
 
         const permissionSecurity = await this.repository.findPermissionSecurityById(idPermission);
 
         PermissionSecurityValidator.validateFoundPermissionSecurity(permissionSecurity);
 
-        const isUsed = await RoleModel.exists({ 
+        const isUsed = await RoleModel.exists({
             permissionsSecurity: permissionSecurity._id // Busca el ObjectId en el array "permissions"
         });
 

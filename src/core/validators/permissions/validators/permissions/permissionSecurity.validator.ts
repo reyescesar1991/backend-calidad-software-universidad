@@ -1,9 +1,23 @@
 import { z } from "zod";
 import { PermissionSecurityDocument, PermissionSecurityModel } from "../../../../../db/models"
-import { LabelDuplicatePermissionSecurityError, LabelSecurityPermissionInvalidError, PermissionSecurityAlreadyInactiveError, PermissionSecurityDuplicateError, PermissionSecurityNotFoundError } from "../../../../exceptions";
+import { LabelDuplicatePermissionSecurityError, LabelSecurityPermissionInvalidError, PermissionSecurityAlreadyInactiveError, PermissionSecurityDuplicateError, PermissionSecurityIdDuplicateError, PermissionSecurityNotFoundError } from "../../../../exceptions";
 import { labelSchema } from "../../schemas/labelSchema.zod";
+import { inject, injectable } from "tsyringe";
+import { IPermissionSecurityRepository } from "../../../../../services/permissionSecurity";
 
+@injectable()
 export class PermissionSecurityValidator {
+
+    constructor(@inject("IPermissionSecurityRepository") private readonly repository: IPermissionSecurityRepository,){}
+
+
+        private static UNIQUE_FIELDS = {
+    
+            label: LabelDuplicatePermissionSecurityError,
+            permission: PermissionSecurityDuplicateError,
+            id : PermissionSecurityIdDuplicateError,
+        }
+
 
     static validateIsActive(permission: PermissionSecurityDocument): void {
 
@@ -40,15 +54,17 @@ export class PermissionSecurityValidator {
         }
     }
 
-    static readonly validatePermissionSecurityUniqueness = async (permission: string) => {
+    async validateUniqueField<T extends keyof typeof PermissionSecurityValidator.UNIQUE_FIELDS>
+    (field: T, value: string)
+    : Promise<void>
+    {
 
-        const exists = await PermissionSecurityModel.findOne({ permission });
-        if (exists) throw new PermissionSecurityDuplicateError();
-    }
+        const exists = await this.repository.findByField(field, value);;
 
-    static readonly validateLabelUniqueness = async (label: string) => {
+        if(exists){
 
-        const exists = await PermissionSecurityModel.findOne({ label });
-        if (exists) throw new LabelDuplicatePermissionSecurityError();
+            const ErrorClass = PermissionSecurityValidator.UNIQUE_FIELDS[field];
+            throw new ErrorClass(`El ${field} '${value}' ya existe, intente con otro valor`)
+        }
     }
 }

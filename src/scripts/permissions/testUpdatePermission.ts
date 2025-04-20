@@ -17,8 +17,10 @@ const runTestUpdatePermission = async () => {
 
         const data : UpdatePermissionDto = {
 
-            isActive : false,
-            can: false,
+            // isActive : false,
+            // can: false,
+            // label : "Test Label 2c90893b",
+            // permission : "crear_usuario"
         }
 
         const permissionService = container.resolve(PermissionService);

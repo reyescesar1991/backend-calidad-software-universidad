@@ -16,11 +16,13 @@ export {PermissionSecurityAlreadyInactiveError} from './permissions/permissionSe
 export {LabelDuplicatePermissionSecurityError} from './permissions/permissionSecurity.exception';
 export {LabelSecurityPermissionInvalidError} from './permissions/permissionSecurity.exception';
 export {PermissionSecurityInUseError} from './permissions/permissionSecurity.exception';
+export {PermissionSecurityIdDuplicateError} from './permissions/permissionSecurity.exception';
 
 //subroutes
 
 export {SubrouteDuplicateError} from './subroutes/subroute.exception';
 export {SubrouteRouteMatchError} from './subroutes/subroute.exception';
+export {SubrouteNotFoundError} from './subroutes/subroute.exception';
 
 //generales
 

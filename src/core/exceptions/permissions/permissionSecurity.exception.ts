@@ -2,9 +2,9 @@ import { z } from "zod";
 
 export class PermissionSecurityDuplicateError extends Error{
 
-    constructor(){
+    constructor(message : string = "El permiso de seguridad ya existe"){
 
-        super("El permiso de seguridad ya existe");
+        super(message);
         this.name = "PermissionSecurityDuplicateError";
     }
 }
@@ -37,8 +37,8 @@ export class PermissionSecurityAlreadyInactiveError extends Error {
 }
 
 export class LabelDuplicatePermissionSecurityError extends Error {
-    constructor() {
-        super("Etiqueta duplicada, intenta nuevamente con una diferente");
+    constructor(message : string = "Etiqueta duplicada, intenta nuevamente con una diferente") {
+        super(message);
         this.name = "LabelDuplicatePermissionSecurityError";
     }
 }
@@ -55,5 +55,14 @@ export class PermissionSecurityInUseError extends Error{
     constructor(message: string) {
         super(message);
         this.name = "PermissionInUseError";
+    }
+}
+
+export class PermissionSecurityIdDuplicateError extends Error{
+
+    constructor(message : string = "El ID ya esta registrado, intente con uno nuevo"){
+
+        super(message);
+        this.name = "PermissionSecurityIdDuplicateError";
     }
 }

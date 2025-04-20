@@ -11,11 +11,11 @@ const runTestUpdateLabelPermission = async () => {
 
     try {
         
-        const idPermission = objectIdSchema.parse("67f94b58ce9b9cd946bc47f4");
+        const idPermission = objectIdSchema.parse("67feaf2eddf80c5ae50f8f2a");
 
         const permissionService = container.resolve(PermissionService);
 
-        const result = await permissionService.updateLabelPermission(idPermission, "Listar usuario");
+        const result = await permissionService.updateLabelPermission(idPermission, "Test Label 2c90893b");
 
         console.log("📄 Permiso etiqueta actualizada:", result);
 

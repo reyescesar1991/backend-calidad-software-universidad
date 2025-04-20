@@ -3,6 +3,7 @@ import { CreatePermissionDto, ObjectIdParam, UpdatePermissionDto } from "../../.
 import { IPermissionRepository } from "../interfaces/IPermissionRepository";
 import { PermissionDocument } from "../../../db/models/permissionsModels/permission.model";
 import { inject, injectable } from "tsyringe";
+import { SubrouteDocument } from "../../../db/models";
 
 @injectable()
 export class PermissionRepository implements IPermissionRepository {
@@ -58,6 +59,13 @@ export class PermissionRepository implements IPermissionRepository {
     async getPermissionsByStatus(isActive : boolean): Promise<PermissionDocument[] | null> {
         
         return this.permissionModel.find({isActive}).exec();
+    }
+
+    async findByField<T extends keyof PermissionDocument>(
+        field: T,
+        value: PermissionDocument[T]
+    ): Promise<PermissionDocument | null> {
+        return this.permissionModel.findOne({ [field]: value }).exec();
     }
 
 }

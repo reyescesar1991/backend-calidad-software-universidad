@@ -12,14 +12,14 @@ const runTestUpdatePermissionSecurity = async () => {
 
     try {
 
-        const idPermission = objectIdSchema.parse("68015e34a346525ca31786cd");
+        const idPermission = objectIdSchema.parse("68043f17b518d224a70409ca");
 
         const updatePermissionSecurity : UpdatePermissionSecurityDto = {
 
             can: true,
             isActive : true,
-            label : "Test Permission Security Label 2",
-            
+            label : "test label",
+            id: "account_lock"
         }
 
         const permissionSecurityService = container.resolve(PermissionSecurityService);

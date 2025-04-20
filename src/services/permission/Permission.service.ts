@@ -11,11 +11,16 @@ import { RoleModel } from "../../db/models";
 @injectable()
 export class PermissionService {
 
-    constructor(@inject("IPermissionRepository") private readonly repository: IPermissionRepository) { }
+    constructor(@inject("IPermissionRepository") private readonly repository: IPermissionRepository,
+                
+    
+    @inject("PermissionValidator") private readonly permissionValidator: PermissionValidator,
+            
+    ) { }
 
     async createPermission(data: CreatePermissionDto): Promise<PermissionDocument> {
 
-        await PermissionValidator.validatePermissionUniqueness(data.permission);
+        await this.permissionValidator.validateUniqueField("permission" ,data.permission);
 
         try {
             return await this.repository.createPermission(data);
@@ -38,6 +43,21 @@ export class PermissionService {
         id: ObjectIdParam,
         data: UpdatePermissionDto
     ): Promise<PermissionDocument | null> {
+
+        const permissionSecurity = await this.repository.findPermissionById(id);
+
+        if (data.label !== undefined && data.label !== permissionSecurity.label) {
+            await this.permissionValidator.validateUniqueField("label", data.label);
+        }
+
+        if (data.permission !== undefined && data.permission !== permissionSecurity.permission) {
+            await this.permissionValidator.validateUniqueField("permission", data.permission);
+        }
+
+        const hasChanges = Object.keys(data).some(key => data[key] !== permissionSecurity[key]);
+        if (!hasChanges) {
+            return permissionSecurity;
+        }
 
         const updatedPermission = await this.repository.updatePermission(id, data);
         if (!updatedPermission) throw new PermissionUpdateError();
@@ -64,7 +84,7 @@ export class PermissionService {
 
         PermissionValidator.validateLabelFormat(newLabel);
 
-        await PermissionValidator.validateLabelUniqueness(newLabel);
+        await this.permissionValidator.validateUniqueField("label" , newLabel);
 
         const permission = await this.repository.findPermissionById(id);
         if (!permission) throw new PermissionNotFoundError();

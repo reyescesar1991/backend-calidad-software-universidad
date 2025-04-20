@@ -14,4 +14,8 @@ export interface IPermissionSecurityRepository{
     listPermissionsSecurity() : Promise<PermissionSecurityDocument[] | null>;
     getPermissionsSecurityByStatus(isActive : boolean) : Promise<PermissionSecurityDocument[] | null>;
     changeIsSystemDefinedPermissionSecurity(idPermission : ObjectIdParam) : Promise<PermissionSecurityDocument | null>;
+    findByField<T extends keyof PermissionSecurityDocument>(
+            field: T,
+            value: PermissionSecurityDocument[T]
+        ): Promise<PermissionSecurityDocument | null>;
 }

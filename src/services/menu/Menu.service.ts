@@ -1,9 +1,10 @@
 import { inject, injectable } from "tsyringe";
 import { ISubrouteRepository } from "./interfaces/ISubroutesRepository";
-import { ObjectIdParam, SubrouteDto, SubrouteUpdateDto } from "../../validations";
+import { ObjectIdParam, SubrouteDto, SubrouteFilterSchema, SubrouteUpdateDto } from "../../validations";
 import { RouteModel, SubrouteDocument, SubrouteModel } from "../../db/models";
 import { SubrouteValidator } from "../../core/validators";
-import { SubrouteDuplicateError, SubrouteNotFoundError, SubrouteRouteMatchError } from "../../core/exceptions";
+import { FilterSubrouteError, SubrouteDuplicateError, SubrouteNotFoundByPermissionError, SubrouteNotFoundError, SubrouteRouteMatchError } from "../../core/exceptions";
+import { FilterOptions, SubrouteFilterKeys } from "../../core/types";
 
 @injectable()
 export class MenuService {
@@ -107,5 +108,52 @@ export class MenuService {
         } catch (error) {
             
         }
+    }
+
+    async deleteSubroute(idSubroute : ObjectIdParam) : Promise<SubrouteDocument | null>{
+
+        const subroute = await this.subrouteValidator.validateSubroute(idSubroute);
+
+        SubrouteValidator.validateSubrouteInactiveStatus(subroute);
+        
+        return await this.subrouteRepository.deleteSubroute(idSubroute);
+
+    }
+
+    async activeSubroute(idSubroute : ObjectIdParam) : Promise<SubrouteDocument | null>{
+
+        const subroute = await this.subrouteValidator.validateSubroute(idSubroute);
+
+        SubrouteValidator.validateSubrouteActiveStatus(subroute);
+
+        return await this.subrouteRepository.activeSubroute(idSubroute);
+    }
+
+    async getSubroutesByPermission(permissionKey : string) : Promise<SubrouteDocument | null>{
+
+        const subroute = await this.subrouteRepository.getSubroutesByPermission(permissionKey);
+
+        if(!subroute) throw new SubrouteNotFoundByPermissionError();
+
+        return subroute;
+    }
+
+    async searchSubroutesByFilters(filter: FilterOptions<SubrouteFilterKeys>) : Promise<SubrouteDocument[] | null>{
+
+        const result = SubrouteFilterSchema.safeParse(filter);
+        
+        if(!result.success){
+
+            const errors = result.error.errors.map(e => `${e.path[0]}: ${e.message}`);
+            console.log(errors);
+            throw new FilterSubrouteError(`Filtro inválido:\n- ${errors.join('\n- ')}`);
+        }
+
+        return this.subrouteRepository.searchSubroutesByFilters(filter);
+    }
+
+    async listSubroutes() : Promise<SubrouteDocument[] | null>{
+
+       return await this.subrouteRepository.listSubroutes();
     }
 }

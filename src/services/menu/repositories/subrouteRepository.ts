@@ -4,6 +4,7 @@ import { FilterOptions, SubrouteFilterKeys } from "../../../core/types";
 import { SubrouteDocument } from "../../../db/models";
 import { SubrouteDto, ObjectIdParam, SubrouteUpdateDto } from "../../../validations";
 import { Model } from "mongoose";
+import { timeOutMongoError } from "../../../core/utils/timeOutError";
 
 @injectable()
 export class SubrouteRepository implements ISubrouteRepository{
@@ -35,7 +36,15 @@ export class SubrouteRepository implements ISubrouteRepository{
     }
     async findSubrouteById(idSubroute: ObjectIdParam): Promise<SubrouteDocument | null> {
         
-        return this.subrouteModel.findById(idSubroute).exec();
+        try {
+            
+            return this.subrouteModel.findById(idSubroute).exec();
+
+        } catch (error) {
+            
+            timeOutMongoError(error);
+            
+        }
     }
     async deletePermanentlySubroute(idSubroute: ObjectIdParam): Promise<SubrouteDocument | null> {
         
@@ -54,6 +63,7 @@ export class SubrouteRepository implements ISubrouteRepository{
         return this.subrouteModel.findOne({permissionKey : permissionKey}).exec();
     }
     async searchSubroutesByFilters(filter: FilterOptions<SubrouteFilterKeys>): Promise<SubrouteDocument[]> {
+        console.log(filter);
         
         return this.subrouteModel.find(filter).exec();
     }

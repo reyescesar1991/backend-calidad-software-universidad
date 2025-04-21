@@ -1,0 +1,1 @@
+export {pathRegex} from './route.regex';

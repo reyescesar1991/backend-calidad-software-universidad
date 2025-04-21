@@ -12,4 +12,10 @@ export class BadFormatMongoIDError extends Error {
     }
 }
 
+export class DatabaseConnectionError extends Error {
+    constructor() {
+        super("Error en consulta, intente nuevamente");
+        this.name = "DatabaseConnectionError";
+    }
+}
 

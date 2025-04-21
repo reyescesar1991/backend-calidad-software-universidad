@@ -4,16 +4,28 @@ import { IPermissionRepository } from "../interfaces/IPermissionRepository";
 import { PermissionDocument } from "../../../db/models/permissionsModels/permission.model";
 import { inject, injectable } from "tsyringe";
 import { SubrouteDocument } from "../../../db/models";
+import { timeOutMongoError } from "../../../core/utils/timeOutError";
 
 @injectable()
 export class PermissionRepository implements IPermissionRepository {
 
-    constructor(@inject("PermissionModel") private readonly permissionModel: Model<PermissionDocument>) {}
+    constructor(@inject("PermissionModel") private readonly permissionModel: Model<PermissionDocument>) { }
 
     async createPermission(data: CreatePermissionDto): Promise<any> {
         return this.permissionModel.create(data);
     }
     async findPermissionById(id: ObjectIdParam): Promise<any> {
+
+        try {
+
+            return this.permissionModel.findById(id).exec();
+
+        } catch (error) {
+
+            timeOutMongoError(error);
+
+        }
+
         return this.permissionModel.findById(id).exec();
     }
     async updatePermission(id: ObjectIdParam, data: UpdatePermissionDto): Promise<any> {
@@ -41,24 +53,24 @@ export class PermissionRepository implements IPermissionRepository {
     async updateLabelPermission(id: ObjectIdParam, newLabel: string): Promise<PermissionDocument | null> {
         return this.permissionModel.findByIdAndUpdate(
             id,
-            {$set: {label : newLabel}},
-            {new: true, runValidators: true}
+            { $set: { label: newLabel } },
+            { new: true, runValidators: true }
         ).exec();
     }
 
     async permanentlyDeletePermission(id: ObjectIdParam): Promise<PermissionDocument | null> {
-        
+
         return this.permissionModel.findByIdAndDelete(id).exec();
     }
 
     async listPermissions(): Promise<PermissionDocument[] | null> {
-        
+
         return this.permissionModel.find({}).exec();
     }
 
-    async getPermissionsByStatus(isActive : boolean): Promise<PermissionDocument[] | null> {
-        
-        return this.permissionModel.find({isActive}).exec();
+    async getPermissionsByStatus(isActive: boolean): Promise<PermissionDocument[] | null> {
+
+        return this.permissionModel.find({ isActive }).exec();
     }
 
     async findByField<T extends keyof PermissionDocument>(

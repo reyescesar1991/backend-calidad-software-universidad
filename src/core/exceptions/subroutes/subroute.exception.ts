@@ -24,3 +24,39 @@ export class SubrouteNotFoundError extends Error{
         this.name = "SubrouteNotFoundError";
     }
 }
+
+export class SubrouteAlreadyInactiveError extends Error{
+
+    constructor(message: string = "La subruta actualmente esta inactiva"){
+
+        super(message);
+        this.name = "SubrouteAlreadyInactiveError"
+    }
+}
+
+export class SubrouteAlreadyActiveError extends Error{
+
+    constructor(message: string = "La subruta actualmente esta activa"){
+
+        super(message);
+        this.name = "SubrouteAlreadyActiveError";
+    }
+}
+
+export class SubrouteNotFoundByPermissionError extends Error{
+
+    constructor(message: string = "Subruta no encontrada. ID de permiso incorrecto, verifiquelo nuevamente"){
+
+        super(message);
+        this.name = "SubrouteNotFoundByPermissionError"
+    }
+}
+
+export class FilterSubrouteError extends Error{
+
+    constructor(message: string = "Error en el filtro, verifique los datos"){
+
+        super(message);
+        this.name = "FilterSubrouteError";
+    }
+}

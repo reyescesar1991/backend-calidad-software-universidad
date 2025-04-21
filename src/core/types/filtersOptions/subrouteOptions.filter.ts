@@ -1,1 +1,1 @@
-export type SubrouteFilterKeys = "active" | "name" | "path";
+export type SubrouteFilterKeys = "active" | "name" | "path" | "mainRoute";

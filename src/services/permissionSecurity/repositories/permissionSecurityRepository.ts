@@ -3,6 +3,9 @@ import { PermissionSecurityDocument } from "../../../db/models";
 import { PermissionSecurityDto, ObjectIdParam, UpdatePermissionSecurityDto } from "../../../validations";
 import { IPermissionSecurityRepository } from "../interfaces/IPermissionSecurityRepository";
 import { Model } from "mongoose";
+import { MongoServerError } from "mongodb";
+import { DatabaseConnectionError } from "../../../core/exceptions";
+import { timeOutMongoError } from "../../../core/utils/timeOutError";
 
 @injectable()
 export class PermissionSecurityRepository implements IPermissionSecurityRepository {
@@ -15,7 +18,15 @@ export class PermissionSecurityRepository implements IPermissionSecurityReposito
     }
     findPermissionSecurityById(idPermission: ObjectIdParam): Promise<PermissionSecurityDocument | null> {
 
-        return this.permissionSecurityModel.findById(idPermission).exec();
+        try {
+
+            return this.permissionSecurityModel.findById(idPermission).exec();
+
+        } catch (error) {
+            
+            timeOutMongoError(error);
+            
+        }
     }
     updatePermissionSecurity(idPermission: ObjectIdParam, data: UpdatePermissionSecurityDto): Promise<PermissionSecurityDocument | null> {
 

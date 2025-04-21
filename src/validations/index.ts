@@ -41,3 +41,7 @@ export {userPermissionSchemaZod} from './userPermissionValidators/userPermission
 export {userPermissionSecuritySchemaZod} from './userPermissionValidators/userPermissionSecurity.validator';
 export {updatePermissionSecurityZodSchema} from './permissionsSecurityValidators/permissionSecurity.validation';
  
+
+//shared
+
+export {SubrouteFilterSchema} from './sharedValidators/routeFormatValidator';

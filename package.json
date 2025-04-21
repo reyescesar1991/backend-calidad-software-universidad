@@ -54,7 +54,13 @@
 
 
     "script:create-subroute" : "ts-node src/scripts/menu/subroute/testCreateSubroute.ts",
-    "script:update-subroute" : "ts-node src/scripts/menu/subroute/testUpdateSubroute.ts"
+    "script:update-subroute" : "ts-node src/scripts/menu/subroute/testUpdateSubroute.ts",
+    "script:findbyid-subroute" : "ts-node src/scripts/menu/subroute/testFindSubrouteById.ts",
+    "script:delete-subroute" : "ts-node src/scripts/menu/subroute/testDeleteSubroute.ts",
+    "script:active-subroute" : "ts-node src/scripts/menu/subroute/testActiveSubroute.ts",
+    "script:findbypermission-subroute" : "ts-node src/scripts/menu/subroute/testGetSubrouteByPermission.ts",
+    "script:findbyfilter-subroute" : "ts-node src/scripts/menu/subroute/testSearchSubroutesByFilters.ts",
+    "script:list-subroutes" : "ts-node src/scripts/menu/subroute/testListSubroute.ts"
 
   },
   "author": "Google LLC",

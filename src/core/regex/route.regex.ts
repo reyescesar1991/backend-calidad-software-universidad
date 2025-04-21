@@ -1,0 +1,1 @@
+export const pathRegex = /^\/[a-z0-9_-]+(\/[a-z0-9_-]+)*\/?$/i;

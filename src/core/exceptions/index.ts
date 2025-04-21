@@ -23,8 +23,13 @@ export {PermissionSecurityIdDuplicateError} from './permissions/permissionSecuri
 export {SubrouteDuplicateError} from './subroutes/subroute.exception';
 export {SubrouteRouteMatchError} from './subroutes/subroute.exception';
 export {SubrouteNotFoundError} from './subroutes/subroute.exception';
+export {SubrouteAlreadyInactiveError} from './subroutes/subroute.exception';
+export {SubrouteAlreadyActiveError} from './subroutes/subroute.exception';
+export {SubrouteNotFoundByPermissionError} from './subroutes/subroute.exception';
+export {FilterSubrouteError} from './subroutes/subroute.exception';
 
 //generales
 
 export {InvalidParamError} from './generals/general.exceptions';
 export {BadFormatMongoIDError} from './generals/general.exceptions';
+export {DatabaseConnectionError} from './generals/general.exceptions';

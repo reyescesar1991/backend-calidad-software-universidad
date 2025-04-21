@@ -60,3 +60,13 @@ export class FilterSubrouteError extends Error{
         this.name = "FilterSubrouteError";
     }
 }
+
+export class SubroutesNotFoundedByMainRouteError extends Error{
+
+
+    constructor(message: string = "La ruta principal solicitada no tiene subrutas asociadas"){
+
+        super(message);
+        this.name = "SubroutesNotFoundedByMainRouteError";
+    }
+}

@@ -27,6 +27,7 @@ export {SubrouteAlreadyInactiveError} from './subroutes/subroute.exception';
 export {SubrouteAlreadyActiveError} from './subroutes/subroute.exception';
 export {SubrouteNotFoundByPermissionError} from './subroutes/subroute.exception';
 export {FilterSubrouteError} from './subroutes/subroute.exception';
+export {SubroutesNotFoundedByMainRouteError} from './subroutes/subroute.exception';
 
 //generales
 

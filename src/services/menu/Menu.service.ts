@@ -3,7 +3,7 @@ import { ISubrouteRepository } from "./interfaces/ISubroutesRepository";
 import { ObjectIdParam, SubrouteDto, SubrouteFilterSchema, SubrouteUpdateDto } from "../../validations";
 import { RouteModel, SubrouteDocument, SubrouteModel } from "../../db/models";
 import { SubrouteValidator } from "../../core/validators";
-import { FilterSubrouteError, SubrouteDuplicateError, SubrouteNotFoundByPermissionError, SubrouteNotFoundError, SubrouteRouteMatchError } from "../../core/exceptions";
+import { FilterSubrouteError, SubrouteDuplicateError, SubrouteNotFoundByPermissionError, SubrouteNotFoundError, SubrouteRouteMatchError, SubroutesNotFoundedByMainRouteError } from "../../core/exceptions";
 import { FilterOptions, SubrouteFilterKeys } from "../../core/types";
 
 @injectable()
@@ -11,7 +11,7 @@ export class MenuService {
 
 
     constructor(@inject("ISubrouteRepository") private readonly subrouteRepository: ISubrouteRepository,
-    @inject("SubrouteValidator") private readonly subrouteValidator: SubrouteValidator) { }
+        @inject("SubrouteValidator") private readonly subrouteValidator: SubrouteValidator) { }
 
     async createSubroute(data: SubrouteDto): Promise<SubrouteDocument> {
 
@@ -49,14 +49,14 @@ export class MenuService {
         }
     }
 
-    async findSubrouteById(idSubroute : ObjectIdParam) : Promise<SubrouteDocument | null>{
+    async findSubrouteById(idSubroute: ObjectIdParam): Promise<SubrouteDocument | null> {
 
         const subroute = await this.subrouteRepository.findSubrouteById(idSubroute);
         if (!subroute) throw new SubrouteNotFoundError();
         return subroute;
     }
 
-    async updateSubroute(idSubroute : ObjectIdParam, data : SubrouteUpdateDto) : Promise<SubrouteDocument | null>{
+    async updateSubroute(idSubroute: ObjectIdParam, data: SubrouteUpdateDto): Promise<SubrouteDocument | null> {
 
         await this.subrouteValidator.validateSubroute(idSubroute);
 
@@ -64,7 +64,7 @@ export class MenuService {
 
             // return subrouteUpdated;
 
-            if(data.mainRoute){
+            if (data.mainRoute) {
 
                 console.log("Existe el campo main route para actualizar");
 
@@ -73,17 +73,17 @@ export class MenuService {
                     { id: data.mainRoute },
                 );
 
-                console.log("Ruta destino para actualizar",updateRoute);
+                console.log("Ruta destino para actualizar", updateRoute);
 
                 const actualSubroute = await this.subrouteRepository.findSubrouteById(idSubroute);
 
-                console.log("Subruta actual" , actualSubroute);
-                
+                console.log("Subruta actual", actualSubroute);
+
                 //TODO: usar el servicio de rutas para hacer estas operaciones
                 const actualRoute = await RouteModel.findOne({
-                    id : actualSubroute.mainRoute
+                    id: actualSubroute.mainRoute
                 })
-                
+
                 console.log("Ruta actual : ", actualRoute);
 
                 //TODO: usar el servicio de rutas para hacer estas operaciones
@@ -102,25 +102,25 @@ export class MenuService {
             }
 
             const subrouteUpdated = await this.subrouteRepository.updateSubroute(idSubroute, data);
-                
+
             return subrouteUpdated
-            
+
         } catch (error) {
-            
+
         }
     }
 
-    async deleteSubroute(idSubroute : ObjectIdParam) : Promise<SubrouteDocument | null>{
+    async deleteSubroute(idSubroute: ObjectIdParam): Promise<SubrouteDocument | null> {
 
         const subroute = await this.subrouteValidator.validateSubroute(idSubroute);
 
         SubrouteValidator.validateSubrouteInactiveStatus(subroute);
-        
+
         return await this.subrouteRepository.deleteSubroute(idSubroute);
 
     }
 
-    async activeSubroute(idSubroute : ObjectIdParam) : Promise<SubrouteDocument | null>{
+    async activeSubroute(idSubroute: ObjectIdParam): Promise<SubrouteDocument | null> {
 
         const subroute = await this.subrouteValidator.validateSubroute(idSubroute);
 
@@ -129,20 +129,20 @@ export class MenuService {
         return await this.subrouteRepository.activeSubroute(idSubroute);
     }
 
-    async getSubroutesByPermission(permissionKey : string) : Promise<SubrouteDocument | null>{
+    async getSubroutesByPermission(permissionKey: string): Promise<SubrouteDocument | null> {
 
         const subroute = await this.subrouteRepository.getSubroutesByPermission(permissionKey);
 
-        if(!subroute) throw new SubrouteNotFoundByPermissionError();
+        if (!subroute) throw new SubrouteNotFoundByPermissionError();
 
         return subroute;
     }
 
-    async searchSubroutesByFilters(filter: FilterOptions<SubrouteFilterKeys>) : Promise<SubrouteDocument[] | null>{
+    async searchSubroutesByFilters(filter: FilterOptions<SubrouteFilterKeys>): Promise<SubrouteDocument[] | null> {
 
         const result = SubrouteFilterSchema.safeParse(filter);
-        
-        if(!result.success){
+
+        if (!result.success) {
 
             const errors = result.error.errors.map(e => `${e.path[0]}: ${e.message}`);
             console.log(errors);
@@ -152,8 +152,32 @@ export class MenuService {
         return this.subrouteRepository.searchSubroutesByFilters(filter);
     }
 
-    async listSubroutes() : Promise<SubrouteDocument[] | null>{
+    async listSubroutes(): Promise<SubrouteDocument[] | null> {
 
-       return await this.subrouteRepository.listSubroutes();
+        return await this.subrouteRepository.listSubroutes();
+    }
+
+    async searchSubroutesByMainRoute(mainRoute: string): Promise<SubrouteDocument[] | null> {
+
+
+        const MainRouteSchema = SubrouteFilterSchema.pick({ mainRoute: true });
+
+        // Uso:
+        const result = MainRouteSchema.safeParse({ mainRoute: mainRoute });
+
+        if (!result.success) {
+            console.log("Error en mainRoute:", result.error);
+        } else {
+            console.log("MainRoute válido:", result.data.mainRoute);
+        }
+
+        const subroutes = await this.subrouteRepository.searchSubroutesByMainRoute(mainRoute);
+
+        if(subroutes.length === 0){
+
+            throw new SubroutesNotFoundedByMainRouteError();
+        }
+
+        return subroutes;
     }
 }

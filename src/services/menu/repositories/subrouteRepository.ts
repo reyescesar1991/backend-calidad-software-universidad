@@ -73,7 +73,7 @@ export class SubrouteRepository implements ISubrouteRepository{
     }
 
     async searchSubroutesByMainRoute(mainRoute: string): Promise<SubrouteDocument[] | null> {
-        return this.subrouteModel.findById({mainRoute: mainRoute})
+        return this.subrouteModel.find({mainRoute: mainRoute})
     }
 
     async findByCustomId(customId: string): Promise<SubrouteDocument | null> {

@@ -61,7 +61,8 @@
     "script:findbypermission-subroute" : "ts-node src/scripts/menu/subroute/testGetSubrouteByPermission.ts",
     "script:findbyfilter-subroute" : "ts-node src/scripts/menu/subroute/testSearchSubroutesByFilters.ts",
     "script:list-subroutes" : "ts-node src/scripts/menu/subroute/testListSubroute.ts",
-    "script:findbymainroute-subroute" : "ts-node src/scripts/menu/subroute/testFindSubrouteByMainRoute.ts"
+    "script:findbymainroute-subroute" : "ts-node src/scripts/menu/subroute/testFindSubrouteByMainRoute.ts",
+    "script:finbycustomid-subroute" : "ts-node src/scripts/menu/subroute/testFindCustomIdSubroute.ts"
 
   },
   "author": "Google LLC",

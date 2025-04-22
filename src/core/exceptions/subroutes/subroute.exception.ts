@@ -70,3 +70,12 @@ export class SubroutesNotFoundedByMainRouteError extends Error{
         this.name = "SubroutesNotFoundedByMainRouteError";
     }
 }
+
+export class SubrouteNotFoundByCustomIdError extends Error{
+
+    constructor(message : string = "Subruta no encontrada, intente de nuevo con un ID valido"){
+
+        super(message);
+        this.name = "SubrouteNotFoundByCustomIdError";
+    }
+}

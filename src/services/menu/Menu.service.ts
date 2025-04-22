@@ -3,7 +3,7 @@ import { ISubrouteRepository } from "./interfaces/ISubroutesRepository";
 import { ObjectIdParam, SubrouteDto, SubrouteFilterSchema, SubrouteUpdateDto } from "../../validations";
 import { RouteModel, SubrouteDocument, SubrouteModel } from "../../db/models";
 import { SubrouteValidator } from "../../core/validators";
-import { FilterSubrouteError, SubrouteDuplicateError, SubrouteNotFoundByPermissionError, SubrouteNotFoundError, SubrouteRouteMatchError, SubroutesNotFoundedByMainRouteError } from "../../core/exceptions";
+import { FilterSubrouteError, SubrouteDuplicateError, SubrouteNotFoundByCustomIdError, SubrouteNotFoundByPermissionError, SubrouteNotFoundError, SubrouteRouteMatchError, SubroutesNotFoundedByMainRouteError } from "../../core/exceptions";
 import { FilterOptions, SubrouteFilterKeys } from "../../core/types";
 
 @injectable()
@@ -179,5 +179,14 @@ export class MenuService {
         }
 
         return subroutes;
+    }
+
+    async findByCustomId(customId : string) : Promise<SubrouteDocument | null>{
+
+        const subroute = await this.subrouteRepository.findByCustomId(customId);
+
+        if(!subroute) throw new SubrouteNotFoundByCustomIdError();
+
+        return subroute;
     }
 }

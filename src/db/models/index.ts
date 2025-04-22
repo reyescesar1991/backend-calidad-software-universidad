@@ -3,6 +3,7 @@ export {SubrouteModel} from './menuModels/subroute.model';
 export {SubrouteDocument} from './menuModels/subroute.model';
 export {ModuleModel} from './menuModels/module.model';
 export {RouteModel} from './menuModels/route.model';
+export {RouteDocument} from './menuModels/route.model';
 export {RoleModel} from './roleModels/role.model';
 export {HeadquartersModel} from './headquartersModels/headquarter.model';
 export {PermissionSecurityModel} from './permissionsSecurityModels/permissionSecurity.model';

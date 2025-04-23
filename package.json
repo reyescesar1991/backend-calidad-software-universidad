@@ -62,7 +62,12 @@
     "script:findbyfilter-subroute" : "ts-node src/scripts/menu/subroute/testSearchSubroutesByFilters.ts",
     "script:list-subroutes" : "ts-node src/scripts/menu/subroute/testListSubroute.ts",
     "script:findbymainroute-subroute" : "ts-node src/scripts/menu/subroute/testFindSubrouteByMainRoute.ts",
-    "script:finbycustomid-subroute" : "ts-node src/scripts/menu/subroute/testFindCustomIdSubroute.ts"
+    "script:finbycustomid-subroute" : "ts-node src/scripts/menu/subroute/testFindCustomIdSubroute.ts",
+
+
+
+    "script:create-route" : "ts-node src/scripts/menu/route/testCreateRoute.ts",
+    "script:findbyid-route" : "ts-node src/scripts/menu/route/testFindRouteById.ts"
 
   },
   "author": "Google LLC",

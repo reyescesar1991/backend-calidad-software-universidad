@@ -6,6 +6,10 @@ export {PermissionSecurityValidator} from './permissions/validators/permissions/
 
 export {SubrouteValidator} from './permissions/validators/subroutes/subroute.validator';
 
+//routes
+
+export {RouteValidator} from './routes/validators/route.validator';
+
 //schemas
 
 export {labelSchema} from './permissions/schemas/labelSchema.zod';

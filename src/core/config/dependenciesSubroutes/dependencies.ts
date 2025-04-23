@@ -5,6 +5,9 @@ import { ISubrouteRepository } from "../../../services/menu";
 import { SubrouteRepository } from "../../../services/menu/repositories/subrouteRepository";
 import { MenuService } from "../../../services/menu/Menu.service";
 import { SubrouteValidator } from "../../validators";
+import { TransactionManager } from "../../database/transactionManager";
+
+container.register("TransactionManager" , TransactionManager);
 
 container.register("SubrouteModel" , {useValue : SubrouteModel});
 

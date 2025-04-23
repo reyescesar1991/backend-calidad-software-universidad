@@ -1,17 +1,22 @@
 import { inject, injectable } from "tsyringe";
 import { ISubrouteRepository } from "./interfaces/ISubroutesRepository";
-import { ObjectIdParam, SubrouteDto, SubrouteFilterSchema, SubrouteUpdateDto } from "../../validations";
-import { RouteModel, SubrouteDocument, SubrouteModel } from "../../db/models";
-import { SubrouteValidator } from "../../core/validators";
+import { ObjectIdParam, RouteDto, SubrouteDto, SubrouteFilterSchema, SubrouteUpdateDto } from "../../validations";
+import { RouteDocument, RouteModel, SubrouteDocument } from "../../db/models";
+import { RouteValidator, SubrouteValidator } from "../../core/validators";
 import { FilterSubrouteError, SubrouteDuplicateError, SubrouteNotFoundByCustomIdError, SubrouteNotFoundByPermissionError, SubrouteNotFoundError, SubrouteRouteMatchError, SubroutesNotFoundedByMainRouteError } from "../../core/exceptions";
 import { FilterOptions, SubrouteFilterKeys } from "../../core/types";
+import { IRouteRepository } from ".";
+import { TransactionManager } from "../../core/database/transactionManager";
 
 @injectable()
 export class MenuService {
 
 
     constructor(@inject("ISubrouteRepository") private readonly subrouteRepository: ISubrouteRepository,
-        @inject("SubrouteValidator") private readonly subrouteValidator: SubrouteValidator) { }
+        @inject("SubrouteValidator") private readonly subrouteValidator: SubrouteValidator,
+        @inject("RouteValidator") private readonly routeValidator: RouteValidator,
+        @inject("IRouteRepository") private readonly routeRepository: IRouteRepository,
+        @inject("TransactionManager") private readonly transactionManager: TransactionManager) { }
 
     async createSubroute(data: SubrouteDto): Promise<SubrouteDocument> {
 
@@ -173,7 +178,7 @@ export class MenuService {
 
         const subroutes = await this.subrouteRepository.searchSubroutesByMainRoute(mainRoute);
 
-        if(subroutes.length === 0){
+        if (subroutes.length === 0) {
 
             throw new SubroutesNotFoundedByMainRouteError();
         }
@@ -181,14 +186,63 @@ export class MenuService {
         return subroutes;
     }
 
-    async findByCustomId(customId : string) : Promise<SubrouteDocument | null>{
+    async findByCustomId(customId: string): Promise<SubrouteDocument | null> {
 
         const subroute = await this.subrouteRepository.findByCustomId(customId);
 
-        if(!subroute) throw new SubrouteNotFoundByCustomIdError();
+        if (!subroute) throw new SubrouteNotFoundByCustomIdError();
 
         return subroute;
     }
 
     //TODO: HACER EL DELETE PERMANENTLY UNA VEZ TERMINE RUTA SERVICE
+
+
+
+    //routes
+
+    async createRoute(data: RouteDto): Promise<RouteDocument> {
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                await this.routeValidator.validateUniquenessRoute(data.id);
+
+                let createdRoute: RouteDocument;
+
+                try {
+
+                    createdRoute = await this.routeRepository.createRoute(data, session);
+
+                    return createdRoute;
+
+                } catch (error) {
+
+                    if (error.code === 11000) {
+                        throw new SubrouteDuplicateError("El ID de subruta ya existe, intente nuevamente con otro ID");
+                    }
+
+                    //TODO: dESCOMENTAR CUANDO ESTE LISTO EL PERMANENTLY
+
+                    // if (createdRoute) {
+                    //     await this.subrouteRepository.deletePermanentlySubroute(createdRoute._id);
+                    // }
+                    throw error;
+                }
+
+
+            }
+        )
+    }
+
+    async findRouteById(idRoute: ObjectIdParam): Promise<RouteDocument | null> {
+
+        const route = await this.routeRepository.findRouteById(idRoute);
+
+        RouteValidator.validateFoundRoute(route);
+
+        return route;
+
+    }
 }

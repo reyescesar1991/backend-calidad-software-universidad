@@ -29,6 +29,12 @@ export {SubrouteNotFoundByPermissionError} from './subroutes/subroute.exception'
 export {FilterSubrouteError} from './subroutes/subroute.exception';
 export {SubroutesNotFoundedByMainRouteError} from './subroutes/subroute.exception';
 export {SubrouteNotFoundByCustomIdError} from './subroutes/subroute.exception';
+
+//routes
+
+export {RouteAlreadyExistsError} from './routes/route.exception';
+export {RouteNotExistsError} from './routes/route.exception';
+
 //generales
 
 export {InvalidParamError} from './generals/general.exceptions';

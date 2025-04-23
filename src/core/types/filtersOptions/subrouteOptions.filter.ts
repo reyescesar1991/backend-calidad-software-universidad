@@ -1,1 +1,0 @@
-export type SubrouteFilterKeys = "active" | "name" | "path" | "mainRoute";

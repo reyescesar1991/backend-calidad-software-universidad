@@ -23,4 +23,5 @@ export {IUserPermissionSecurity} from './userPermission/userPermissionSecurity.i
 //filters
 
 export {FilterOptions} from './filters/optionFilter.filter';
-export {SubrouteFilterKeys} from './filtersOptions/subrouteOptions.filter';
+export {SubrouteFilterKeys} from './filtersOptions/filterOptions.filter';
+export {RouteFilterKeys} from './filtersOptions/filterOptions.filter';

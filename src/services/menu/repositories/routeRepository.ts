@@ -16,36 +16,43 @@ export class RouteRepository implements IRouteRepository{
         const [newRoute] = await this.RouteModel.create([data], { session });
         return newRoute;
     }
-    findRouteById(idRoute: ObjectIdParam): Promise<RouteDocument | null> {
+    async findRouteById(idRoute: ObjectIdParam): Promise<RouteDocument | null> {
         
-        return this.RouteModel.findById(idRoute).exec();
+        return await this.RouteModel.findById(idRoute).exec();
     }
-    updateRouteById(idRoute: ObjectIdParam, data: RouteUpdateDto, session?: ClientSession): Promise<RouteDocument | null> {
+    async updateRouteById(idRoute: ObjectIdParam, data: RouteUpdateDto, session?: ClientSession): Promise<RouteDocument | null> {
+        
+        return await this.RouteModel.findByIdAndUpdate(
+
+            idRoute,
+            data,
+            {new: true, runValidators: true}
+        ).exec();
+    }
+    async deleteRoute(idRoute: ObjectIdParam, session?: ClientSession): Promise<RouteDocument | null> {
         throw new Error("Method not implemented.");
     }
-    deleteRoute(idRoute: ObjectIdParam, session?: ClientSession): Promise<RouteDocument | null> {
+    async activateRoutes(idRoutes: ObjectIdParam[], session?: ClientSession): Promise<RouteDocument | null> {
         throw new Error("Method not implemented.");
     }
-    activateRoutes(idRoutes: ObjectIdParam[], session?: ClientSession): Promise<RouteDocument | null> {
+    async getSubroutesWithIdRoute(idRoute: ObjectIdParam): Promise<SubrouteDocument[] | null> {
         throw new Error("Method not implemented.");
     }
-    getSubroutesWithIdRoute(idRoute: ObjectIdParam): Promise<SubrouteDocument[] | null> {
+    async updateSubrouteWithIdRoute(customId: string, subroute: SubrouteDocument, session?: ClientSession): Promise<RouteDocument | null> {
         throw new Error("Method not implemented.");
     }
-    updateSubrouteWithIdRoute(customId: string, subroute: SubrouteDocument, session?: ClientSession): Promise<RouteDocument | null> {
-        throw new Error("Method not implemented.");
-    }
-    deletePermanentlySubrouteWithIdRoute(customId: string, subroute: SubrouteDocument, session?: ClientSession): Promise<RouteDocument | null> {
+    async deletePermanentlySubrouteWithIdRoute(customId: string, subroute: SubrouteDocument, session?: ClientSession): Promise<RouteDocument | null> {
         throw new Error("Method not implemented.");
     }
     async findRouteByCustomId(idRoute: string): Promise<RouteDocument | null> {
         
         return await this.RouteModel.findOne({id : idRoute}).exec();
     }
-    searchSubroutesByFilters(filter: FilterOptions<RouteFilterKeys>, session?: ClientSession): Promise<RouteDocument[] | null> {
-        throw new Error("Method not implemented.");
+    async searchRoutesByFilters(filter: FilterOptions<RouteFilterKeys>): Promise<RouteDocument[] | null> {
+        
+        return await this.RouteModel.find(filter).exec();
     }
-    listRoutes(): Promise<RouteDocument[] | null> {
+    async listRoutes(): Promise<RouteDocument[] | null> {
         throw new Error("Method not implemented.");
     }
 

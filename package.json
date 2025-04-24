@@ -67,7 +67,8 @@
 
 
     "script:create-route" : "ts-node src/scripts/menu/route/testCreateRoute.ts",
-    "script:findbyid-route" : "ts-node src/scripts/menu/route/testFindRouteById.ts"
+    "script:findbyid-route" : "ts-node src/scripts/menu/route/testFindRouteById.ts",
+    "script:update-route" : "ts-node src/scripts/menu/route/testUpdateRoute.ts"
 
   },
   "author": "Google LLC",

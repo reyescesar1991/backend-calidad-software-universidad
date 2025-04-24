@@ -1,8 +1,9 @@
 import { inject, injectable } from "tsyringe";
 import { IRouteRepository } from "../../../../services/menu";
-import { RouteAlreadyExistsError, RouteNotExistsError } from "../../../exceptions";
+import { RouteAlreadyExistsError, RouteNameAlreadyExistsError, RouteNotExistsError } from "../../../exceptions";
 import { ObjectIdParam } from "../../../../validations";
 import { RouteDocument } from "../../../../db/models";
+import { FilterOptions, RouteFilterKeys } from "../../../types";
 
 @injectable()
 export class RouteValidator {
@@ -20,6 +21,17 @@ export class RouteValidator {
 
 
         if(!route) throw new RouteNotExistsError();
+    }
+
+    async validateUniquenessNameRoute(filter: FilterOptions<RouteFilterKeys>) : Promise<void>{
+
+
+        const existsName = await this.routeRepository.searchRoutesByFilters(filter);
+
+        console.log(existsName);
+        
+
+        if(existsName.length > 0) throw new RouteNameAlreadyExistsError();
     }
 
 }

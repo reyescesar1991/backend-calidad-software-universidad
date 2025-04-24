@@ -1,10 +1,10 @@
 import { inject, injectable } from "tsyringe";
 import { ISubrouteRepository } from "./interfaces/ISubroutesRepository";
-import { ObjectIdParam, RouteDto, SubrouteDto, SubrouteFilterSchema, SubrouteUpdateDto } from "../../validations";
+import { ObjectIdParam, RouteDto, RouteUpdateDto, SubrouteDto, SubrouteFilterSchema, SubrouteUpdateDto } from "../../validations";
 import { RouteDocument, RouteModel, SubrouteDocument } from "../../db/models";
 import { RouteValidator, SubrouteValidator } from "../../core/validators";
-import { FilterSubrouteError, SubrouteDuplicateError, SubrouteNotFoundByCustomIdError, SubrouteNotFoundByPermissionError, SubrouteNotFoundError, SubrouteRouteMatchError, SubroutesNotFoundedByMainRouteError } from "../../core/exceptions";
-import { FilterOptions, SubrouteFilterKeys } from "../../core/types";
+import { ActiveRouteInconsistencyError, FilterSubrouteError, SubrouteDuplicateError, SubrouteNotFoundByCustomIdError, SubrouteNotFoundByPermissionError, SubrouteNotFoundError, SubrouteRouteMatchError, SubroutesNotFoundedByMainRouteError } from "../../core/exceptions";
+import { FilterOptions, RouteFilterKeys, SubrouteFilterKeys } from "../../core/types";
 import { IRouteRepository } from ".";
 import { TransactionManager } from "../../core/database/transactionManager";
 
@@ -244,5 +244,34 @@ export class MenuService {
 
         return route;
 
+    }
+
+    async updateRouteById(idRoute: ObjectIdParam, data: RouteUpdateDto) : Promise<RouteDocument | null>{
+
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+
+                const route = await this.routeRepository.findRouteById(idRoute);
+
+                RouteValidator.validateFoundRoute(route);
+
+                if(data.active !== undefined && route.active === data.active) throw new ActiveRouteInconsistencyError();
+
+                const dataName : FilterOptions<RouteFilterKeys> = {
+
+                    name : data.name
+                }
+
+                await this.routeValidator.validateUniquenessNameRoute(dataName)
+
+                const updateRoute = await this.routeRepository.updateRouteById(idRoute, data, session);
+
+                return updateRoute;
+
+            }
+        )
     }
 }

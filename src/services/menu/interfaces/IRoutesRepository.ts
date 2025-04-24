@@ -15,7 +15,7 @@ export interface IRouteRepository{
     updateSubrouteWithIdRoute (customId: string, subroute: SubrouteDocument, session?: ClientSession) : Promise<RouteDocument | null>
     deletePermanentlySubrouteWithIdRoute (customId: string, subroute: SubrouteDocument, session?: ClientSession) : Promise<RouteDocument | null>
     findRouteByCustomId(idRoute : string) : Promise<RouteDocument | null>;
-    searchSubroutesByFilters(filter: FilterOptions<RouteFilterKeys>, session?: ClientSession) : Promise<RouteDocument[] | null>;
+    searchRoutesByFilters(filter: FilterOptions<RouteFilterKeys>, session?: ClientSession) : Promise<RouteDocument[] | null>;
     listRoutes() : Promise<RouteDocument[] | null>;
 
 }

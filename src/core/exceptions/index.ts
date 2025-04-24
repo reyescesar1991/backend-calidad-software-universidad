@@ -34,7 +34,8 @@ export {SubrouteNotFoundByCustomIdError} from './subroutes/subroute.exception';
 
 export {RouteAlreadyExistsError} from './routes/route.exception';
 export {RouteNotExistsError} from './routes/route.exception';
-
+export {ActiveRouteInconsistencyError} from './routes/route.exception';
+export {RouteNameAlreadyExistsError} from './routes/route.exception';
 //generales
 
 export {InvalidParamError} from './generals/general.exceptions';

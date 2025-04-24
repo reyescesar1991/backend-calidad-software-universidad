@@ -47,3 +47,4 @@ export {updatePermissionSecurityZodSchema} from './permissionsSecurityValidators
 //shared
 
 export {SubrouteFilterSchema} from './sharedValidators/routeFormatValidator';
+export {RouteFilterSchemaZod} from './sharedValidators/routeFormatValidator';

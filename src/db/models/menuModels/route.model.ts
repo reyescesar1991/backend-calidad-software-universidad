@@ -3,15 +3,12 @@ import mongoose, { Schema, model } from "mongoose";
 export interface RouteDocument extends Document {
 
     _id: mongoose.Types.ObjectId;
-    id : {type: String, required: true},
-    name : {type: String, required: true},
-    path : {type: String, required: true},
-    icon : {type: String, required: true},
-    active: {type: Boolean, required: true},
-    subroutes: [{ 
-        type: Schema.Types.ObjectId, 
-        ref: "Subroute"
-    }],
+    id : string,
+    name : string,
+    path : string,
+    icon : string,
+    active: boolean,
+    subroutes: Schema.Types.ObjectId[]
 }
 
 export const RouteSchema = new Schema<RouteDocument>({

@@ -17,3 +17,21 @@ export class RouteNotExistsError extends Error{
         this.name = "RouteNotExistsError"
     }
 }
+
+export class ActiveRouteInconsistencyError extends Error{
+
+    constructor(message : string = "La ruta ya posee un estatus de disponibilidad igual a la data enviada, compruebe la data o elimine esa propiedad"){
+
+        super(message);
+        this.name = "ActiveRouteInconsistencyError"
+    }
+}
+
+export class RouteNameAlreadyExistsError extends Error{
+
+    constructor(message : string = "El nombre de ruta ya esta registrado, ingrese otro nombre"){
+
+        super(message);
+        this.name = "RouteNameAlreadyExistsError"
+    }
+}

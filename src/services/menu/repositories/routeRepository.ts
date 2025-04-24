@@ -30,7 +30,13 @@ export class RouteRepository implements IRouteRepository{
         ).exec();
     }
     async deleteRoute(idRoute: ObjectIdParam, session?: ClientSession): Promise<RouteDocument | null> {
-        throw new Error("Method not implemented.");
+        
+        return await this.RouteModel.findByIdAndUpdate(
+
+            idRoute,
+            {$set : {active : false}},
+            {new: true, runValidators: true}
+        ).exec();
     }
     async activateRoutes(idRoutes: ObjectIdParam[], session?: ClientSession): Promise<RouteDocument | null> {
         throw new Error("Method not implemented.");

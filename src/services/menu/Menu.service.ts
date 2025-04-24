@@ -274,4 +274,23 @@ export class MenuService {
             }
         )
     }
+
+    async deleteRoute(idRoute : ObjectIdParam) : Promise<RouteDocument | null>{
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                const route = await this.routeRepository.findRouteById(idRoute);
+
+                RouteValidator.validateFoundRoute(route);
+
+                RouteValidator.validateStatusActiveRoute(route);
+
+                const deleteRoute = await this.routeRepository.deleteRoute(idRoute, session);
+
+                return deleteRoute;
+            }
+        )
+    }
 }

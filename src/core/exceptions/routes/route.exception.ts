@@ -35,3 +35,12 @@ export class RouteNameAlreadyExistsError extends Error{
         this.name = "RouteNameAlreadyExistsError"
     }
 }
+
+export class RouteAlreadyInactiveError extends Error{
+
+    constructor(message : string = "La ruta actualmente se encuentra inactiva"){
+
+        super(message);
+        this.name = "RouteAlreadyInactiveError"
+    }
+}

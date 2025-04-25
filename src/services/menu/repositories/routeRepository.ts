@@ -58,12 +58,6 @@ export class RouteRepository implements IRouteRepository{
         return routeWithSubroutes.subroutes;
 
     }
-    async updateSubrouteWithIdRoute(customId: string, subroute: SubrouteDocument, session?: ClientSession): Promise<RouteDocument | null> {
-        throw new Error("Method not implemented.");
-    }
-    async deletePermanentlySubrouteWithIdRoute(customId: string, subroute: SubrouteDocument, session?: ClientSession): Promise<RouteDocument | null> {
-        throw new Error("Method not implemented.");
-    }
     async findRouteByCustomId(idRoute: string): Promise<RouteDocument | null> {
         
         return await this.RouteModel.findOne({id : idRoute}).exec();

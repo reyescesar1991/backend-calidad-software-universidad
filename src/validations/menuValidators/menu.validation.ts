@@ -27,6 +27,7 @@ export const subrouteUpdateSchemaZod = z.object({
 export const routeSchemaZod = z.object({
 
   id: z.string().min(2, "ID de ruta inválido"),
+  idModule : z.string().min(1, "ID de módulo padre es requerido"),
   name: z.string().min(2, "Nombre de ruta debe tener al menos 2 caracteres"),
   path: z.string().min(1, "Path es requerido").regex(pathRegex, "Formato de ruta no valido. Ejemplo: /dashboard/productos"),
   icon: z.string().min(1, "Ícono es requerido"),
@@ -41,6 +42,7 @@ export const routeSchemaZod = z.object({
 
 export const routeUpdateSchemaZod = z.object({
 
+  idModule : z.string().min(1, "ID de módulo padre es requerido").optional(),
   name: z.string().min(2, "Nombre de ruta debe tener al menos 2 caracteres").optional(),
   path: z.string().min(1, "Path es requerido").regex(pathRegex, "Formato de ruta no valido. Ejemplo: /dashboard/productos").optional(),
   icon: z.string().min(1, "Ícono es requerido").optional(),

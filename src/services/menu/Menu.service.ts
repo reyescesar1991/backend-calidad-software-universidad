@@ -1,12 +1,13 @@
 import { inject, injectable } from "tsyringe";
 import { ISubrouteRepository } from "./interfaces/ISubroutesRepository";
 import { ObjectIdParam, RouteDto, RouteUpdateDto, SubrouteDto, SubrouteFilterSchema, SubrouteUpdateDto } from "../../validations";
-import { RouteDocument, RouteModel, SubrouteDocument } from "../../db/models";
+import { ModuleModel, RouteDocument, RouteModel, SubrouteDocument } from "../../db/models";
 import { RouteValidator, SubrouteValidator } from "../../core/validators";
 import { ActiveRouteInconsistencyError, FilterSubrouteError, SubrouteDuplicateError, SubrouteNotFoundByCustomIdError, SubrouteNotFoundByPermissionError, SubrouteNotFoundError, SubrouteRouteMatchError, SubroutesNotFoundedByMainRouteError } from "../../core/exceptions";
 import { FilterOptions, RouteFilterKeys, SubrouteFilterKeys } from "../../core/types";
 import { IRouteRepository } from ".";
 import { TransactionManager } from "../../core/database/transactionManager";
+import { Model } from "mongoose";
 
 @injectable()
 export class MenuService {
@@ -207,20 +208,37 @@ export class MenuService {
 
             async (session) => {
 
-                await this.routeValidator.validateUniquenessRoute(data.id);
+                const dataName: FilterOptions<RouteFilterKeys> = {
+
+                    name: data.name
+                }
 
                 let createdRoute: RouteDocument;
 
                 try {
 
+                    await this.routeValidator.validateUniquenessRoute(data.id);
+
+                    await this.routeValidator.validateUniquenessNameRoute(dataName);
+
                     createdRoute = await this.routeRepository.createRoute(data, session);
 
-                    return createdRoute;
+                    //TODO: Usar el service de modulo para hacer esto
+                    const module = await ModuleModel.findOneAndUpdate(
+
+                        { id: data.idModule, },
+                        { $push: { routes: createdRoute._id } },
+                        { new: true, useFindAndModify: true }
+                    )
+
+                    console.log(module);
+
+                    return createdRoute
 
                 } catch (error) {
 
                     if (error.code === 11000) {
-                        throw new SubrouteDuplicateError("El ID de subruta ya existe, intente nuevamente con otro ID");
+                        throw new SubrouteDuplicateError("El ID de ruta ya existe, intente nuevamente con otro ID");
                     }
 
                     //TODO: dESCOMENTAR CUANDO ESTE LISTO EL PERMANENTLY
@@ -246,7 +264,7 @@ export class MenuService {
 
     }
 
-    async updateRouteById(idRoute: ObjectIdParam, data: RouteUpdateDto) : Promise<RouteDocument | null>{
+    async updateRouteById(idRoute: ObjectIdParam, data: RouteUpdateDto): Promise<RouteDocument | null> {
 
 
         return await this.transactionManager.executeTransaction(
@@ -254,28 +272,62 @@ export class MenuService {
             async (session) => {
 
 
-                const route = await this.routeRepository.findRouteById(idRoute);
+                try {
 
-                RouteValidator.validateFoundRoute(route);
+                    const route = await this.routeRepository.findRouteById(idRoute);
 
-                if(data.active !== undefined && route.active === data.active) throw new ActiveRouteInconsistencyError();
+                    RouteValidator.validateFoundRoute(route);
 
-                const dataName : FilterOptions<RouteFilterKeys> = {
+                    if (data.active !== undefined && route.active === data.active) throw new ActiveRouteInconsistencyError();
 
-                    name : data.name
+                    const dataName: FilterOptions<RouteFilterKeys> = {
+
+                        name: data.name
+                    }
+
+                    await this.routeValidator.validateUniquenessNameRoute(dataName);
+
+                    if (data.idModule !== undefined) {
+
+                        const module = await ModuleModel.findOne(
+                            {id : data.idModule}
+                        )
+
+                        console.log("Modulo: ", module);
+                        
+
+                        //TODO: Colocar el module validator aca de error de que no existe
+                        if(module === null) throw new Error("No existe el modulo")
+
+                        const actualModule = await ModuleModel.findOneAndUpdate(
+
+                            {id : data.idModule},
+                            {$push : {routes : route._id}},
+                            {new: true, useFindAndModify : true}
+                        ).exec();
+
+                        const oldModule = await ModuleModel.findOneAndUpdate(
+                            {id : route.idModule},
+                            {$pull : {routes : route._id}},
+                            {new: true, useFindAndModify : true}
+                        ).exec();
+
+                    }
+
+                    const updateRoute = await this.routeRepository.updateRouteById(idRoute, data, session);
+
+                    return updateRoute;
+
+
+                } catch (error) {
+
                 }
-
-                await this.routeValidator.validateUniquenessNameRoute(dataName)
-
-                const updateRoute = await this.routeRepository.updateRouteById(idRoute, data, session);
-
-                return updateRoute;
 
             }
         )
     }
 
-    async deleteRoute(idRoute : ObjectIdParam) : Promise<RouteDocument | null>{
+    async deleteRoute(idRoute: ObjectIdParam): Promise<RouteDocument | null> {
 
         return await this.transactionManager.executeTransaction(
 

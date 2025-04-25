@@ -37,8 +37,15 @@ export {RouteNotExistsError} from './routes/route.exception';
 export {ActiveRouteInconsistencyError} from './routes/route.exception';
 export {RouteNameAlreadyExistsError} from './routes/route.exception';
 export {RouteAlreadyInactiveError} from './routes/route.exception';
+export {RouteAlreadyActiveError} from './routes/route.exception';
 //generales
 
+export {AppError} from './generals/general.exceptions';
 export {InvalidParamError} from './generals/general.exceptions';
 export {BadFormatMongoIDError} from './generals/general.exceptions';
 export {DatabaseConnectionError} from './generals/general.exceptions';
+export {UnexpectedError} from './generals/general.exceptions';
+
+//function handle error
+
+export {handleError} from './handleErrors/handleErrors';

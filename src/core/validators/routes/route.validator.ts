@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
-import { IRouteRepository } from "../../../../services/menu";
-import { RouteAlreadyExistsError, RouteAlreadyInactiveError, RouteNameAlreadyExistsError, RouteNotExistsError } from "../../../exceptions";
-import { RouteDocument } from "../../../../db/models";
-import { FilterOptions, RouteFilterKeys } from "../../../types";
+import { IRouteRepository } from "../../../services/menu";
+import { RouteAlreadyActiveError, RouteAlreadyExistsError, RouteAlreadyInactiveError, RouteNameAlreadyExistsError, RouteNotExistsError } from "../../exceptions";
+import { RouteDocument } from "../../../db/models";
+import { FilterOptions, RouteFilterKeys } from "../../types";
 
 @injectable()
 export class RouteValidator {
@@ -22,9 +22,14 @@ export class RouteValidator {
         if(!route) throw new RouteNotExistsError();
     }
 
-    static validateStatusActiveRoute(route : RouteDocument) : void{
+    static validateStatusInactiveRoute(route : RouteDocument) : void{
 
         if(!route.active) throw new RouteAlreadyInactiveError();
+    }
+
+    static validateActiveStatusRoute(route : RouteDocument) : void{
+
+        if(route.active) throw new RouteAlreadyActiveError();
     }
 
     async validateUniquenessNameRoute(filter: FilterOptions<RouteFilterKeys>) : Promise<void>{

@@ -38,11 +38,25 @@ export class RouteRepository implements IRouteRepository{
             {new: true, runValidators: true}
         ).exec();
     }
-    async activateRoutes(idRoutes: ObjectIdParam[], session?: ClientSession): Promise<RouteDocument | null> {
-        throw new Error("Method not implemented.");
+
+    async activateRoute(idRoute: ObjectIdParam, session?: ClientSession): Promise<RouteDocument | null> {
+        
+        return await this.RouteModel.findByIdAndUpdate(
+
+            idRoute,
+            {$set : {active : true}},
+            {new: true, runValidators: true}
+        )
     }
     async getSubroutesWithIdRoute(idRoute: ObjectIdParam): Promise<SubrouteDocument[] | null> {
-        throw new Error("Method not implemented.");
+        
+        const routeWithSubroutes = await this.RouteModel
+        .findById(idRoute)
+        .populate<{ subroutes: SubrouteDocument[] }>("subroutes") // Tipo explícito
+        .exec();
+
+        return routeWithSubroutes.subroutes;
+
     }
     async updateSubrouteWithIdRoute(customId: string, subroute: SubrouteDocument, session?: ClientSession): Promise<RouteDocument | null> {
         throw new Error("Method not implemented.");

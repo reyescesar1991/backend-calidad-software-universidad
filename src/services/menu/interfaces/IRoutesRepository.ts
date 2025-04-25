@@ -10,7 +10,7 @@ export interface IRouteRepository{
     findRouteById(idRoute : ObjectIdParam) : Promise<RouteDocument | null>;
     updateRouteById(idRoute : ObjectIdParam, data: RouteUpdateDto, session?: ClientSession) : Promise<RouteDocument | null>;
     deleteRoute(idRoute : ObjectIdParam, session?: ClientSession) : Promise<RouteDocument | null>;
-    activateRoutes(idRoutes : ObjectIdParam[], session?: ClientSession) : Promise<RouteDocument | null>;
+    activateRoute(idRoute : ObjectIdParam, session?: ClientSession) : Promise<RouteDocument | null>;
     getSubroutesWithIdRoute(idRoute : ObjectIdParam) : Promise<SubrouteDocument[] | null>;
     updateSubrouteWithIdRoute (customId: string, subroute: SubrouteDocument, session?: ClientSession) : Promise<RouteDocument | null>
     deletePermanentlySubrouteWithIdRoute (customId: string, subroute: SubrouteDocument, session?: ClientSession) : Promise<RouteDocument | null>

@@ -1,6 +1,6 @@
 
 import mongoose from "mongoose";
-import { BadFormatMongoIDError } from "../../../exceptions";
+import { BadFormatMongoIDError } from "../../exceptions";
 
 export class CommonValidator {
   static validateObjectId(id: string): void {

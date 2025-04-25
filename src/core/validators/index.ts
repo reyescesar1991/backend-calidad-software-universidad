@@ -8,7 +8,7 @@ export {SubrouteValidator} from './permissions/validators/subroutes/subroute.val
 
 //routes
 
-export {RouteValidator} from './routes/validators/route.validator';
+export {RouteValidator} from './routes/route.validator';
 
 //schemas
 

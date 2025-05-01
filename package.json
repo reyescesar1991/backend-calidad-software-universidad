@@ -71,7 +71,10 @@
     "script:update-route" : "ts-node src/scripts/menu/route/testUpdateRoute.ts",
     "script:delete-route" : "ts-node src/scripts/menu/route/testDeleteRoute.ts",
     "script:activate-route" : "ts-node src/scripts/menu/route/testActivateRoute.ts",
-    "script:getsubroutesbyroute" : "ts-node src/scripts/menu/route/testGetSubroutesWithRoute.ts"
+    "script:getsubroutesbyroute" : "ts-node src/scripts/menu/route/testGetSubroutesWithRoute.ts",
+    "script:getcustomid-route" : "ts-node src/scripts/menu/route/testFindRouteCustomId.ts",
+    "script:search-filter-route" : "ts-node src/scripts/menu/route/testSearchFilterRoute.ts",
+    "script:list-routes" : "ts-node src/scripts/menu/route/testListRoutes.ts"
 
   },
   "author": "Google LLC",

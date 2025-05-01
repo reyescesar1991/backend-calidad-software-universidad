@@ -38,6 +38,8 @@ export {ActiveRouteInconsistencyError} from './routes/route.exception';
 export {RouteNameAlreadyExistsError} from './routes/route.exception';
 export {RouteAlreadyInactiveError} from './routes/route.exception';
 export {RouteAlreadyActiveError} from './routes/route.exception';
+export {FilterOptionsRouteNotValid} from './routes/route.exception';
+export {NotExistsRoutesDatabaseError} from './routes/route.exception';
 //generales
 
 export {AppError} from './generals/general.exceptions';

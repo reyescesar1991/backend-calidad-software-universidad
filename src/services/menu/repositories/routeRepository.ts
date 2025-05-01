@@ -67,7 +67,8 @@ export class RouteRepository implements IRouteRepository{
         return await this.RouteModel.find(filter).exec();
     }
     async listRoutes(): Promise<RouteDocument[] | null> {
-        throw new Error("Method not implemented.");
+        
+        return await this.RouteModel.find({}).exec();
     }
 
     

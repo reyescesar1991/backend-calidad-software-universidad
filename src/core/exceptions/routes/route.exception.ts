@@ -55,3 +55,23 @@ export class RouteAlreadyActiveError extends AppError{
         this.name = "RouteAlreadyActiveError"
     }
 }
+
+export class FilterOptionsRouteNotValid extends AppError{
+
+    code = 1307;
+    constructor(message : string = "El filtro no cumple los parametros de busqueda, verifique el filtro"){
+
+        super(message);
+        this.name = "FilterOptionsRouteNotValid";
+    }
+}
+
+export class NotExistsRoutesDatabaseError extends AppError{
+
+    code = 1308;
+    constructor(message : string = "No existen rutas registradas en la base de datos"){
+
+        super(message);
+        this.name = "NotExistsRoutesDatabaseError";
+    }
+}

@@ -1,12 +1,13 @@
 import { inject, injectable } from "tsyringe";
 import { ISubrouteRepository } from "./interfaces/ISubroutesRepository";
-import { ObjectIdParam, RouteDto, RouteUpdateDto, SubrouteDto, SubrouteFilterSchema, SubrouteUpdateDto } from "../../validations";
+import { ObjectIdParam, RouteDto, RouteFilterSchemaZod, RouteUpdateDto, SubrouteDto, SubrouteFilterSchema, SubrouteUpdateDto } from "../../validations";
 import { ModuleModel, RouteDocument, RouteModel, SubrouteDocument } from "../../db/models";
 import { RouteValidator, SubrouteValidator } from "../../core/validators";
 import { ActiveRouteInconsistencyError, FilterSubrouteError, handleError, SubrouteDuplicateError, SubrouteNotFoundByCustomIdError, SubrouteNotFoundByPermissionError, SubrouteNotFoundError, SubrouteRouteMatchError, SubroutesNotFoundedByMainRouteError, UnexpectedError } from "../../core/exceptions";
 import { FilterOptions, RouteFilterKeys, SubrouteFilterKeys } from "../../core/types";
 import { IRouteRepository } from ".";
 import { TransactionManager } from "../../core/database/transactionManager";
+import { filter } from "rxjs";
 
 @injectable()
 export class MenuService {
@@ -186,9 +187,9 @@ export class MenuService {
         return subroutes;
     }
 
-    async findByCustomId(customId: string): Promise<SubrouteDocument | null> {
+    async findSubrouteByCustomId(customId: string): Promise<SubrouteDocument | null> {
 
-        const subroute = await this.subrouteRepository.findByCustomId(customId);
+        const subroute = await this.subrouteRepository.findSubrouteByCustomId(customId);
 
         if (!subroute) throw new SubrouteNotFoundByCustomIdError();
 
@@ -400,6 +401,54 @@ export class MenuService {
 
             return subroutes;
 
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    async findRouteByCustomId(customId : string) : Promise<RouteDocument | null>{
+
+
+        try {
+
+            const route = await this.routeRepository.findRouteByCustomId(customId);
+
+            RouteValidator.validateFoundRoute(route);
+
+            return route;
+            
+            
+        } catch (error) {
+            
+            handleError(error)
+        }
+    }
+
+    async searchRoutesByFilters(filter : FilterOptions<RouteFilterKeys>) : Promise<RouteDocument[] | null>{
+
+        try {
+
+            RouteValidator.validateFilterOptionsRoute(filter);
+
+            return this.routeRepository.searchRoutesByFilters(filter);
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    async listRoutes() : Promise<RouteDocument[] | null>{
+
+        try {
+
+            const routes = await this.routeRepository.listRoutes();
+
+            RouteValidator.validateExistingRoutes(routes);
+
+            return routes;
+            
         } catch (error) {
             
             handleError(error);

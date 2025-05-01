@@ -23,7 +23,7 @@ export class SubrouteValidator{
 
     async validateSubrouteUniqueness (idSubroute : string) : Promise<void> {
         
-        const exists = await this.repository.findByCustomId(idSubroute);
+        const exists = await this.repository.findSubrouteByCustomId(idSubroute);
         if(exists) throw new SubrouteDuplicateError("El ID de subruta ya existe, intente nuevamente con otro ID valido");
     }
 

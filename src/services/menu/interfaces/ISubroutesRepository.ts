@@ -15,5 +15,5 @@ export interface ISubrouteRepository{
     searchSubroutesByFilters(filter: FilterOptions<SubrouteFilterKeys>) : Promise<SubrouteDocument[] | null>;
     listSubroutes() : Promise<SubrouteDocument[] | null>;
     searchSubroutesByMainRoute(mainRoute: string) : Promise<SubrouteDocument[] | null>;
-    findByCustomId(customId: string): Promise<SubrouteDocument | null>;
+    findSubrouteByCustomId(customId: string): Promise<SubrouteDocument | null>;
 }

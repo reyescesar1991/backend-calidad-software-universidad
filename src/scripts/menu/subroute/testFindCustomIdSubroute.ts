@@ -14,7 +14,7 @@ const runTestFindCustomIdSubroute = async () => {
 
         const subrouteService = container.resolve(MenuService);
 
-        const result = await subrouteService.findByCustomId(customId);
+        const result = await subrouteService.findSubrouteByCustomId(customId);
 
         console.log(`📄 Subruta encontrada asociada al Id ${customId}: `, result);
         

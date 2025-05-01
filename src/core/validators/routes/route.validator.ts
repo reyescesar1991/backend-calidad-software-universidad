@@ -1,8 +1,9 @@
 import { inject, injectable } from "tsyringe";
 import { IRouteRepository } from "../../../services/menu";
-import { RouteAlreadyActiveError, RouteAlreadyExistsError, RouteAlreadyInactiveError, RouteNameAlreadyExistsError, RouteNotExistsError } from "../../exceptions";
+import { FilterOptionsRouteNotValid, NotExistsRoutesDatabaseError, RouteAlreadyActiveError, RouteAlreadyExistsError, RouteAlreadyInactiveError, RouteNameAlreadyExistsError, RouteNotExistsError } from "../../exceptions";
 import { RouteDocument } from "../../../db/models";
 import { FilterOptions, RouteFilterKeys } from "../../types";
+import { RouteFilterSchemaZod } from "../../../validations";
 
 @injectable()
 export class RouteValidator {
@@ -25,6 +26,23 @@ export class RouteValidator {
     static validateStatusInactiveRoute(route : RouteDocument) : void{
 
         if(!route.active) throw new RouteAlreadyInactiveError();
+    }
+
+    static validateFilterOptionsRoute(filter: FilterOptions<RouteFilterKeys>){
+
+        const result = RouteFilterSchemaZod.safeParse(filter);
+
+        if(!result.success){
+
+            const errors = result.error.errors.map(e => `${e.path[0]}: ${e.message}`);
+            console.log(errors);
+            throw new FilterOptionsRouteNotValid(`Filtro inválido:\n- ${errors.join('\n- ')}`);
+        }
+    }
+
+    static validateExistingRoutes(routes : RouteDocument[]){
+
+        if(routes.length === 0) throw new NotExistsRoutesDatabaseError();
     }
 
     static validateActiveStatusRoute(route : RouteDocument) : void{

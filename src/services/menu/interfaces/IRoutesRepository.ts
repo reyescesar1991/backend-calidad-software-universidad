@@ -13,7 +13,7 @@ export interface IRouteRepository{
     activateRoute(idRoute : ObjectIdParam, session?: ClientSession) : Promise<RouteDocument | null>;
     getSubroutesWithIdRoute(idRoute : ObjectIdParam) : Promise<SubrouteDocument[] | null>;
     findRouteByCustomId(idRoute : string) : Promise<RouteDocument | null>;
-    searchRoutesByFilters(filter: FilterOptions<RouteFilterKeys>, session?: ClientSession) : Promise<RouteDocument[] | null>;
+    searchRoutesByFilters(filter: FilterOptions<RouteFilterKeys>) : Promise<RouteDocument[] | null>;
     listRoutes() : Promise<RouteDocument[] | null>;
 
 }

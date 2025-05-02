@@ -63,8 +63,16 @@ export const moduleSchemaZod = z.object({
   )
 })
 
+export const moduleUpdateSchemaZod = z.object({
+
+  id: z.string().min(2, { message: 'El id debe ser un nombre valido' }).optional(),
+  title: z.string().min(1, { message: 'Titulo es requerido' }).optional(),
+
+})
+
 export type ModuleDto = z.infer<typeof moduleSchemaZod>;
+export type ModuleUpdateDto = z.infer<typeof moduleUpdateSchemaZod>;
 export type RouteDto = z.infer<typeof routeSchemaZod>;
 export type RouteUpdateDto = z.infer<typeof routeUpdateSchemaZod>;
 export type SubrouteDto = z.infer<typeof subrouteSchemaZod>;
-export type SubrouteUpdateDto = z.infer<typeof subrouteUpdateSchemaZod>
+export type SubrouteUpdateDto = z.infer<typeof subrouteUpdateSchemaZod>;

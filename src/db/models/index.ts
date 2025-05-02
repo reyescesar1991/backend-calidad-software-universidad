@@ -2,6 +2,7 @@ export {PermissionModel} from './permissionsModels/permission.model';
 export {SubrouteModel} from './menuModels/subroute.model';
 export {SubrouteDocument} from './menuModels/subroute.model';
 export {ModuleModel} from './menuModels/module.model';
+export {ModuleDocument} from './menuModels/module.model';
 export {RouteModel} from './menuModels/route.model';
 export {RouteDocument} from './menuModels/route.model';
 export {RoleModel} from './roleModels/role.model';

@@ -1,8 +1,14 @@
-import { Schema, model } from "mongoose";
-import { IModuleType } from "../../../core/types";
+import mongoose, { Schema, model } from "mongoose";
 
 
-export interface ModuleDocument extends IModuleType, Document { };
+export interface ModuleDocument extends Document { 
+
+    _id: mongoose.Types.ObjectId;
+    id: string,
+    title: string,
+    routes: Schema.Types.ObjectId[];
+    active : boolean,
+};
 
 export const ModuleSchema = new Schema<ModuleDocument>({
 
@@ -12,6 +18,7 @@ export const ModuleSchema = new Schema<ModuleDocument>({
         type: Schema.Types.ObjectId, 
         ref: "Route"
     }],
+    active: {type: Boolean, required: false, default: true}
 }, { timestamps: true });
 
 export const ModuleModel = model<ModuleDocument>("Module", ModuleSchema);

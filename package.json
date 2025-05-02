@@ -24,59 +24,63 @@
     "seed:users": "ts-node src/db/seeders/usersSeeders/users.seed.ts",
     "seed:warehouses": "ts-node src/db/seeders/warehouseSeeders/warehouse.seed.ts",
     "seed:products": "ts-node src/db/seeders/productSeeders/product.seed.ts",
-    "seed:user-permission" : "ts-node src/db/seeders/userPermissionSeeders/userPermission.seed.ts",
-    "seed:user-permission-security" : "ts-node src/db/seeders/userPermissionSeeders/userPermissionSecurity.seed.ts",
+    "seed:user-permission": "ts-node src/db/seeders/userPermissionSeeders/userPermission.seed.ts",
+    "seed:user-permission-security": "ts-node src/db/seeders/userPermissionSeeders/userPermissionSecurity.seed.ts",
     "update:capacity-warehouse": "ts-node src/db/seeders/capacity-updaters/updateWarehouseCapacity.ts",
+
+
+
     
-
-
-    "script:create-permission" : "ts-node src/scripts/permissions/testCreatePermission.ts",
-    "script:findbyid-permission" : "ts-node src/scripts/permissions/testFindPermissionById.ts",
-    "script:update-permission" : "ts-node src/scripts/permissions/testUpdatePermission.ts",
-    "script:toggle-can-permission" : "ts-node src/scripts/permissions/testTogglePermissionCan.ts",
-    "script:update-label-permission" : "ts-node src/scripts/permissions/testUpdateLabelPermission.ts",
-    "script:delete-permission" : "ts-node src/scripts/permissions/testDeletePermission.ts",
-    "script:delete-perma-permission" : "ts-node src/scripts/permissions/testPermanentlyDeletePermission.ts",
-    "script:list-permissions" : "ts-node src/scripts/permissions/testListPermission.ts",
-    "script:get-permissions-status" : "ts-node src/scripts/permissions/testGetPermissionByStatus.ts",
-
-
-    "script:create-security-permission" : "ts-node src/scripts/permissionsSecurity/testCreatePermissionSecurity.ts",
-    "script:findbyid-permission-security" : "ts-node src/scripts/permissionsSecurity/testFindPermissionSecurityById.ts",
-    "script:update-permission-security" : "ts-node src/scripts/permissionsSecurity/testUpdatePermissionSecurity.ts",
-    "script:delete-permission-security" : "ts-node src/scripts/permissionsSecurity/testDeletePermissionSecurity.ts",
-    "script:toggle-permission-security" : "ts-node src/scripts/permissionsSecurity/testTogglePermissionSecurity.ts",
-    "script:update-label-permission-security" : "ts-node src/scripts/permissionsSecurity/testUpdateLabelPermissionSecurity.ts",
-    "script:list-permissions-security" : "ts-node src/scripts/permissionsSecurity/testListPermissionSecurity.ts",
-    "script:get-permissions-security-bystatus" : "ts-node src/scripts/permissionsSecurity/testGetPermissionSecurityByStatus.ts",
-    "script:toggle-systemdefined-permission-security" : "ts-node src/scripts/permissionsSecurity/testChangeIsSystemDefined.ts",
-    "script:delete-perma-permission-security" : "ts-node src/scripts/permissionsSecurity/testPermanentlyDeletePermissionSecurity.ts",
-
-
-    "script:create-subroute" : "ts-node src/scripts/menu/subroute/testCreateSubroute.ts",
-    "script:update-subroute" : "ts-node src/scripts/menu/subroute/testUpdateSubroute.ts",
-    "script:findbyid-subroute" : "ts-node src/scripts/menu/subroute/testFindSubrouteById.ts",
-    "script:delete-subroute" : "ts-node src/scripts/menu/subroute/testDeleteSubroute.ts",
-    "script:active-subroute" : "ts-node src/scripts/menu/subroute/testActiveSubroute.ts",
-    "script:findbypermission-subroute" : "ts-node src/scripts/menu/subroute/testGetSubrouteByPermission.ts",
-    "script:findbyfilter-subroute" : "ts-node src/scripts/menu/subroute/testSearchSubroutesByFilters.ts",
-    "script:list-subroutes" : "ts-node src/scripts/menu/subroute/testListSubroute.ts",
-    "script:findbymainroute-subroute" : "ts-node src/scripts/menu/subroute/testFindSubrouteByMainRoute.ts",
-    "script:finbycustomid-subroute" : "ts-node src/scripts/menu/subroute/testFindCustomIdSubroute.ts",
-    "script:delete-permanently-subroute" : "ts-node src/scripts/menu/subroute/testDeletePermanentlySubroute.ts",
+    "script:create-permission": "ts-node src/scripts/permissions/testCreatePermission.ts",
+    "script:findbyid-permission": "ts-node src/scripts/permissions/testFindPermissionById.ts",
+    "script:update-permission": "ts-node src/scripts/permissions/testUpdatePermission.ts",
+    "script:toggle-can-permission": "ts-node src/scripts/permissions/testTogglePermissionCan.ts",
+    "script:update-label-permission": "ts-node src/scripts/permissions/testUpdateLabelPermission.ts",
+    "script:delete-permission": "ts-node src/scripts/permissions/testDeletePermission.ts",
+    "script:delete-perma-permission": "ts-node src/scripts/permissions/testPermanentlyDeletePermission.ts",
+    "script:list-permissions": "ts-node src/scripts/permissions/testListPermission.ts",
+    "script:get-permissions-status": "ts-node src/scripts/permissions/testGetPermissionByStatus.ts",
 
 
 
-    "script:create-route" : "ts-node src/scripts/menu/route/testCreateRoute.ts",
-    "script:findbyid-route" : "ts-node src/scripts/menu/route/testFindRouteById.ts",
-    "script:update-route" : "ts-node src/scripts/menu/route/testUpdateRoute.ts",
-    "script:delete-route" : "ts-node src/scripts/menu/route/testDeleteRoute.ts",
-    "script:activate-route" : "ts-node src/scripts/menu/route/testActivateRoute.ts",
-    "script:getsubroutesbyroute" : "ts-node src/scripts/menu/route/testGetSubroutesWithRoute.ts",
-    "script:getcustomid-route" : "ts-node src/scripts/menu/route/testFindRouteCustomId.ts",
-    "script:search-filter-route" : "ts-node src/scripts/menu/route/testSearchFilterRoute.ts",
-    "script:list-routes" : "ts-node src/scripts/menu/route/testListRoutes.ts"
 
+    "script:create-security-permission": "ts-node src/scripts/permissionsSecurity/testCreatePermissionSecurity.ts",
+    "script:findbyid-permission-security": "ts-node src/scripts/permissionsSecurity/testFindPermissionSecurityById.ts",
+    "script:update-permission-security": "ts-node src/scripts/permissionsSecurity/testUpdatePermissionSecurity.ts",
+    "script:delete-permission-security": "ts-node src/scripts/permissionsSecurity/testDeletePermissionSecurity.ts",
+    "script:toggle-permission-security": "ts-node src/scripts/permissionsSecurity/testTogglePermissionSecurity.ts",
+    "script:update-label-permission-security": "ts-node src/scripts/permissionsSecurity/testUpdateLabelPermissionSecurity.ts",
+    "script:list-permissions-security": "ts-node src/scripts/permissionsSecurity/testListPermissionSecurity.ts",
+    "script:get-permissions-security-bystatus": "ts-node src/scripts/permissionsSecurity/testGetPermissionSecurityByStatus.ts",
+    "script:toggle-systemdefined-permission-security": "ts-node src/scripts/permissionsSecurity/testChangeIsSystemDefined.ts",
+    "script:delete-perma-permission-security": "ts-node src/scripts/permissionsSecurity/testPermanentlyDeletePermissionSecurity.ts",
+
+
+
+
+    "script:create-subroute": "ts-node src/scripts/menu/subroute/testCreateSubroute.ts",
+    "script:update-subroute": "ts-node src/scripts/menu/subroute/testUpdateSubroute.ts",
+    "script:findbyid-subroute": "ts-node src/scripts/menu/subroute/testFindSubrouteById.ts",
+    "script:delete-subroute": "ts-node src/scripts/menu/subroute/testDeleteSubroute.ts",
+    "script:active-subroute": "ts-node src/scripts/menu/subroute/testActiveSubroute.ts",
+    "script:findbypermission-subroute": "ts-node src/scripts/menu/subroute/testGetSubrouteByPermission.ts",
+    "script:findbyfilter-subroute": "ts-node src/scripts/menu/subroute/testSearchSubroutesByFilters.ts",
+    "script:list-subroutes": "ts-node src/scripts/menu/subroute/testListSubroute.ts",
+    "script:findbymainroute-subroute": "ts-node src/scripts/menu/subroute/testFindSubrouteByMainRoute.ts",
+    "script:finbycustomid-subroute": "ts-node src/scripts/menu/subroute/testFindCustomIdSubroute.ts",
+    "script:delete-permanently-subroute": "ts-node src/scripts/menu/subroute/testDeletePermanentlySubroute.ts",
+
+
+
+    "script:create-route": "ts-node src/scripts/menu/route/testCreateRoute.ts",
+    "script:findbyid-route": "ts-node src/scripts/menu/route/testFindRouteById.ts",
+    "script:update-route": "ts-node src/scripts/menu/route/testUpdateRoute.ts",
+    "script:delete-route": "ts-node src/scripts/menu/route/testDeleteRoute.ts",
+    "script:activate-route": "ts-node src/scripts/menu/route/testActivateRoute.ts",
+    "script:getsubroutesbyroute": "ts-node src/scripts/menu/route/testGetSubroutesWithRoute.ts",
+    "script:getcustomid-route": "ts-node src/scripts/menu/route/testFindRouteCustomId.ts",
+    "script:search-filter-route": "ts-node src/scripts/menu/route/testSearchFilterRoute.ts",
+    "script:list-routes": "ts-node src/scripts/menu/route/testListRoutes.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",
@@ -95,6 +99,7 @@
     "tsyringe": "^4.9.1",
     "uuid": "^11.1.0",
     "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {

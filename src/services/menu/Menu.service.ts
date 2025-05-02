@@ -7,7 +7,6 @@ import { ActiveRouteInconsistencyError, FilterSubrouteError, handleError, Subrou
 import { FilterOptions, RouteFilterKeys, SubrouteFilterKeys } from "../../core/types";
 import { IRouteRepository } from ".";
 import { TransactionManager } from "../../core/database/transactionManager";
-import { filter } from "rxjs";
 
 @injectable()
 export class MenuService {
@@ -25,15 +24,23 @@ export class MenuService {
 
             async (session) => {
 
-                await this.subrouteValidator.validateSubrouteUniqueness(data.id);
-
                 let createdSubroute: SubrouteDocument;
+
                 try {
-                    createdSubroute = await this.subrouteRepository.createSubroute(data);
+
+                    await this.subrouteValidator.validateSubrouteUniqueness(data.id);
+
+                    // logger.info('Inicio creacion de subrouta', {
+
+                    //     mainRoute: data.mainRoute,
+                    //     subrouteId: data.id
+                    // });
 
                     const mainRoute = await this.routeRepository.findRouteByCustomId(data.mainRoute);
 
                     RouteValidator.validateFoundRoute(mainRoute);
+
+                    createdSubroute = await this.subrouteRepository.createSubroute(data);
 
                     const updateResult = await this.routeRepository.updateRouteAddSubroute(data, createdSubroute, session);
 
@@ -42,10 +49,32 @@ export class MenuService {
                         throw new SubrouteRouteMatchError("La ruta padre no existe");
                     }
 
-                    console.log("Ruta actualizada:", updateResult);
+                    // logger.info('Ruta actualizada con nueva subruta', {
+
+                    //     updateRoute: updateResult
+                    // });
+
+                    // logger.info("Subruta creada correctamente", {
+
+                    //     subroute: createdSubroute,
+                    // })
+
                     return createdSubroute;
 
                 } catch (error) {
+
+                    const errorDetails = {
+                        name: error.name || "UnknownError",
+                        message: error.message || "No message provided",
+                        code: error.code || "No code",
+                        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+                    };
+
+                    // logger.error('Error crítico en creación de la subruta', {
+                    //     subrouteId: data.id,
+                    //     error: errorDetails
+                    // });
+
                     if (error.code === 11000) {
                         throw new SubrouteDuplicateError("El ID de subruta ya existe, intente nuevamente con otro ID");
                     }
@@ -61,9 +90,15 @@ export class MenuService {
 
     async findSubrouteById(idSubroute: ObjectIdParam): Promise<SubrouteDocument | null> {
 
-        const subroute = await this.subrouteRepository.findSubrouteById(idSubroute);
-        if (!subroute) throw new SubrouteNotFoundError();
-        return subroute;
+        try {
+
+            const subroute = await this.subrouteValidator.validateSubroute(idSubroute);
+            return subroute;
+
+        } catch (error) {
+
+            handleError(error);
+        }
     }
 
     async updateSubroute(idSubroute: ObjectIdParam, data: SubrouteUpdateDto): Promise<SubrouteDocument | null> {
@@ -192,9 +227,9 @@ export class MenuService {
         return subroute;
     }
 
-    async deletePermanentlySubroute(idSubroute: ObjectIdParam) : Promise<SubrouteDocument | null>{
+    async deletePermanentlySubroute(idSubroute: ObjectIdParam): Promise<SubrouteDocument | null> {
 
-        
+
         return this.transactionManager.executeTransaction(
 
             async (session) => {
@@ -202,21 +237,21 @@ export class MenuService {
                 try {
 
                     const subroute = await this.subrouteRepository.findSubrouteById(idSubroute);
-        
-                    if(!subroute) throw new SubrouteNotFoundError();
-        
+
+                    if (!subroute) throw new SubrouteNotFoundError();
+
                     const route = await this.routeRepository.findRouteByCustomId(subroute.mainRoute);
-        
+
                     await this.routeRepository.updateRouteDeleteSubroute(route, subroute);
-        
+
                     const deleteSubroute = await this.subrouteRepository.deletePermanentlySubroute(idSubroute, session);
 
                     SubrouteValidator
-        
+
                     return deleteSubroute;
-                    
+
                 } catch (error) {
-                    
+
                     handleError(error);
                 }
             }

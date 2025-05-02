@@ -20,7 +20,7 @@ const runTestCreateSubroute = async () => {
         const uniqueId = uuidv4().substring(0,8);
         const data : SubrouteDto = {
 
-            id : `Subroute-Test-${uniqueId}`,
+            id : `Subroute-Test-bfe78107`,
             name : "Subroute Name",
             path : "/moduletest/routetest/subroutetest",
             active : true,

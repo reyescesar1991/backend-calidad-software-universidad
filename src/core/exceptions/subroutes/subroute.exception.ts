@@ -80,3 +80,13 @@ export class SubrouteNotFoundByCustomIdError extends AppError{
         this.name = "SubrouteNotFoundByCustomIdError";
     }
 }
+
+export class DeleteSubrouteError extends AppError{
+
+    code = 1210;
+    constructor(message : string = "Error al eliminar la subruta, intente nuevamente"){
+
+        super(message);
+        this.name = "DeleteSubrouteError";
+    }
+}

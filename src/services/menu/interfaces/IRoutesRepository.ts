@@ -1,7 +1,7 @@
 import { ClientSession } from "mongoose";
 import { FilterOptions, RouteFilterKeys } from "../../../core/types";
 import { RouteDocument, SubrouteDocument } from "../../../db/models";
-import { ObjectIdParam, RouteDto, RouteUpdateDto } from "../../../validations";
+import { ObjectIdParam, RouteDto, RouteUpdateDto, SubrouteDto } from "../../../validations";
 
 
 export interface IRouteRepository{
@@ -9,6 +9,8 @@ export interface IRouteRepository{
     createRoute(data : RouteDto, session?: ClientSession) : Promise<RouteDocument>;
     findRouteById(idRoute : ObjectIdParam) : Promise<RouteDocument | null>;
     updateRouteById(idRoute : ObjectIdParam, data: RouteUpdateDto, session?: ClientSession) : Promise<RouteDocument | null>;
+    updateRouteAddSubroute(data: SubrouteDto, subrouteCreated : SubrouteDocument, session?: ClientSession) : Promise<RouteDocument | null>;
+    updateRouteDeleteSubroute(actualRoute: RouteDocument, subroute: SubrouteDocument) : Promise<RouteDocument | null>;
     deleteRoute(idRoute : ObjectIdParam, session?: ClientSession) : Promise<RouteDocument | null>;
     activateRoute(idRoute : ObjectIdParam, session?: ClientSession) : Promise<RouteDocument | null>;
     getSubroutesWithIdRoute(idRoute : ObjectIdParam) : Promise<SubrouteDocument[] | null>;

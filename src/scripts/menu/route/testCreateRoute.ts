@@ -20,7 +20,7 @@ const runTestCreateRoute = async () => {
 
             id : `route_test_${uuid}`,
             idModule : 'home',
-            name : `route_test`,
+            name : `route_test_${uuid}`,
             path : "/test/route",
             icon : "icon-test",
             active : true,

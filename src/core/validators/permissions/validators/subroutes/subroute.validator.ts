@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { ObjectIdParam } from "../../../../../validations";
-import { SubrouteAlreadyActiveError, SubrouteAlreadyInactiveError, SubrouteDuplicateError, SubrouteNotFoundError} from "../../../../exceptions";
+import { DeleteSubrouteError, SubrouteAlreadyActiveError, SubrouteAlreadyInactiveError, SubrouteDuplicateError, SubrouteNotFoundError} from "../../../../exceptions";
 import { ISubrouteRepository } from "../../../../../services/menu";
 import { SubrouteDocument } from "../../../../../db/models";
 
@@ -19,6 +19,11 @@ export class SubrouteValidator{
 
         if(subroute.active) throw new SubrouteAlreadyActiveError();
 
+    }
+
+    static validateSubrouteDelete (subroute : SubrouteDocument) : void {
+
+        if(!subroute) throw new DeleteSubrouteError();
     }
 
     async validateSubrouteUniqueness (idSubroute : string) : Promise<void> {

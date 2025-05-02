@@ -63,6 +63,7 @@
     "script:list-subroutes" : "ts-node src/scripts/menu/subroute/testListSubroute.ts",
     "script:findbymainroute-subroute" : "ts-node src/scripts/menu/subroute/testFindSubrouteByMainRoute.ts",
     "script:finbycustomid-subroute" : "ts-node src/scripts/menu/subroute/testFindCustomIdSubroute.ts",
+    "script:delete-permanently-subroute" : "ts-node src/scripts/menu/subroute/testDeletePermanentlySubroute.ts",
 
 
 

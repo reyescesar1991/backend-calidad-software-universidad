@@ -3,7 +3,7 @@ import { ISubrouteRepository } from "../interfaces/ISubroutesRepository";
 import { FilterOptions, SubrouteFilterKeys } from "../../../core/types";
 import { SubrouteDocument } from "../../../db/models";
 import { SubrouteDto, ObjectIdParam, SubrouteUpdateDto } from "../../../validations";
-import { Model } from "mongoose";
+import { ClientSession, Model } from "mongoose";
 import { timeOutMongoError } from "../../../core/utils/timeOutError";
 
 @injectable()
@@ -46,7 +46,7 @@ export class SubrouteRepository implements ISubrouteRepository{
             
         }
     }
-    async deletePermanentlySubroute(idSubroute: ObjectIdParam): Promise<SubrouteDocument | null> {
+    async deletePermanentlySubroute(idSubroute: ObjectIdParam, session?: ClientSession): Promise<SubrouteDocument | null> {
         
         return this.subrouteModel.findByIdAndDelete(idSubroute).exec();
     }

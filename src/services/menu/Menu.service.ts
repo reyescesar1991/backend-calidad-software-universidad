@@ -21,38 +21,42 @@ export class MenuService {
 
     async createSubroute(data: SubrouteDto): Promise<SubrouteDocument> {
 
-        await this.subrouteValidator.validateSubrouteUniqueness(data.id);
+        return this.transactionManager.executeTransaction(
 
-        let createdSubroute: SubrouteDocument;
-        try {
-            createdSubroute = await this.subrouteRepository.createSubroute(data);
+            async (session) => {
 
-            //TODO: Actualizar con el servicio para actualizar rutas padres no hacerlo aca
-            //TODO: Validar que exista la ruta padre con el validator de routes
-            const updateResult = await RouteModel.findOneAndUpdate(
-                { id: data.mainRoute },
-                { $push: { subroutes: createdSubroute._id } },
-                { new: true, useFindAndModify: false }
-            );
+                await this.subrouteValidator.validateSubrouteUniqueness(data.id);
 
-            if (!updateResult) {
-                await this.subrouteRepository.deletePermanentlySubroute(createdSubroute._id);
-                throw new SubrouteRouteMatchError("La ruta padre no existe");
+                let createdSubroute: SubrouteDocument;
+                try {
+                    createdSubroute = await this.subrouteRepository.createSubroute(data);
+
+                    const mainRoute = await this.routeRepository.findRouteByCustomId(data.mainRoute);
+
+                    RouteValidator.validateFoundRoute(mainRoute);
+
+                    const updateResult = await this.routeRepository.updateRouteAddSubroute(data, createdSubroute, session);
+
+                    if (!updateResult) {
+                        await this.subrouteRepository.deletePermanentlySubroute(createdSubroute._id);
+                        throw new SubrouteRouteMatchError("La ruta padre no existe");
+                    }
+
+                    console.log("Ruta actualizada:", updateResult);
+                    return createdSubroute;
+
+                } catch (error) {
+                    if (error.code === 11000) {
+                        throw new SubrouteDuplicateError("El ID de subruta ya existe, intente nuevamente con otro ID");
+                    }
+
+                    if (createdSubroute) {
+                        await this.subrouteRepository.deletePermanentlySubroute(createdSubroute._id);
+                    }
+                    throw error;
+                }
             }
-
-            console.log("Ruta actualizada:", updateResult);
-            return createdSubroute;
-
-        } catch (error) {
-            if (error.code === 11000) {
-                throw new SubrouteDuplicateError("El ID de subruta ya existe, intente nuevamente con otro ID");
-            }
-
-            if (createdSubroute) {
-                await this.subrouteRepository.deletePermanentlySubroute(createdSubroute._id);
-            }
-            throw error;
-        }
+        )
     }
 
     async findSubrouteById(idSubroute: ObjectIdParam): Promise<SubrouteDocument | null> {
@@ -64,56 +68,48 @@ export class MenuService {
 
     async updateSubroute(idSubroute: ObjectIdParam, data: SubrouteUpdateDto): Promise<SubrouteDocument | null> {
 
-        await this.subrouteValidator.validateSubroute(idSubroute);
+        return this.transactionManager.executeTransaction(
 
-        try {
+            async (session) => {
 
-            // return subrouteUpdated;
+                await this.subrouteValidator.validateSubroute(idSubroute);
 
-            if (data.mainRoute) {
+                try {
 
-                console.log("Existe el campo main route para actualizar");
+                    // return subrouteUpdated;
 
-                //TODO: usar el servicio de rutas para hacer estas operaciones
-                const updateRoute = await RouteModel.findOne(
-                    { id: data.mainRoute },
-                );
+                    if (data.mainRoute) {
 
-                console.log("Ruta destino para actualizar", updateRoute);
+                        console.log("Existe el campo main route para actualizar");
 
-                const actualSubroute = await this.subrouteRepository.findSubrouteById(idSubroute);
+                        const updateRoute = await this.routeRepository.findRouteByCustomId(data.mainRoute);
 
-                console.log("Subruta actual", actualSubroute);
+                        console.log("Ruta destino para actualizar", updateRoute);
 
-                //TODO: usar el servicio de rutas para hacer estas operaciones
-                const actualRoute = await RouteModel.findOne({
-                    id: actualSubroute.mainRoute
-                })
+                        const actualSubroute = await this.subrouteRepository.findSubrouteById(idSubroute);
 
-                console.log("Ruta actual : ", actualRoute);
+                        console.log("Subruta actual", actualSubroute);
 
-                //TODO: usar el servicio de rutas para hacer estas operaciones
-                const updateResultRoute = await RouteModel.findOneAndUpdate(
-                    { id: updateRoute.id },
-                    { $push: { subroutes: actualSubroute._id } },
-                    { new: true, useFindAndModify: false }
-                );
+                        const actualRoute = await this.routeRepository.findRouteByCustomId(actualSubroute.mainRoute);
 
-                //TODO: usar el servicio de rutas para hacer estas operaciones
-                const updateResultRouteOld = await RouteModel.findOneAndUpdate(
-                    { id: actualRoute.id },
-                    { $pull: { subroutes: actualSubroute._id } },
-                );
+                        console.log("Ruta actual : ", actualRoute);
 
+                        await this.routeRepository.updateRouteAddSubroute(data, actualSubroute, session);
+
+                        await this.routeRepository.updateRouteDeleteSubroute(actualRoute, actualSubroute);
+
+                    }
+
+                    const subrouteUpdated = await this.subrouteRepository.updateSubroute(idSubroute, data);
+
+                    return subrouteUpdated
+
+                } catch (error) {
+
+                    handleError(error);
+                }
             }
-
-            const subrouteUpdated = await this.subrouteRepository.updateSubroute(idSubroute, data);
-
-            return subrouteUpdated
-
-        } catch (error) {
-
-        }
+        )
     }
 
     async deleteSubroute(idSubroute: ObjectIdParam): Promise<SubrouteDocument | null> {
@@ -196,7 +192,37 @@ export class MenuService {
         return subroute;
     }
 
-    //TODO: HACER EL DELETE PERMANENTLY UNA VEZ TERMINE RUTA SERVICE
+    async deletePermanentlySubroute(idSubroute: ObjectIdParam) : Promise<SubrouteDocument | null>{
+
+        
+        return this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    const subroute = await this.subrouteRepository.findSubrouteById(idSubroute);
+        
+                    if(!subroute) throw new SubrouteNotFoundError();
+        
+                    const route = await this.routeRepository.findRouteByCustomId(subroute.mainRoute);
+        
+                    await this.routeRepository.updateRouteDeleteSubroute(route, subroute);
+        
+                    const deleteSubroute = await this.subrouteRepository.deletePermanentlySubroute(idSubroute, session);
+
+                    SubrouteValidator
+        
+                    return deleteSubroute;
+                    
+                } catch (error) {
+                    
+                    handleError(error);
+                }
+            }
+        )
+
+    }
 
 
 
@@ -241,15 +267,8 @@ export class MenuService {
                         throw new SubrouteDuplicateError("El ID de ruta ya existe, intente nuevamente con otro ID");
                     }
 
-                    //TODO: dESCOMENTAR CUANDO ESTE LISTO EL PERMANENTLY
-
-                    // if (createdRoute) {
-                    //     await this.subrouteRepository.deletePermanentlySubroute(createdRoute._id);
-                    // }
-                    throw error;
+                    handleError(error);
                 }
-
-
             }
         )
     }
@@ -361,6 +380,7 @@ export class MenuService {
         )
     }
 
+
     async activateRoute(idRoutes: ObjectIdParam): Promise<RouteDocument | null> {
 
 
@@ -389,10 +409,10 @@ export class MenuService {
         )
     }
 
-    async getSubroutesWithIdRoute(idRoute : ObjectIdParam) : Promise<SubrouteDocument[] | null>{
+    async getSubroutesWithIdRoute(idRoute: ObjectIdParam): Promise<SubrouteDocument[] | null> {
 
         try {
-            
+
             const route = await this.routeRepository.findRouteById(idRoute);
 
             RouteValidator.validateFoundRoute(route);
@@ -402,12 +422,12 @@ export class MenuService {
             return subroutes;
 
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
-    async findRouteByCustomId(customId : string) : Promise<RouteDocument | null>{
+    async findRouteByCustomId(customId: string): Promise<RouteDocument | null> {
 
 
         try {
@@ -417,29 +437,29 @@ export class MenuService {
             RouteValidator.validateFoundRoute(route);
 
             return route;
-            
-            
+
+
         } catch (error) {
-            
+
             handleError(error)
         }
     }
 
-    async searchRoutesByFilters(filter : FilterOptions<RouteFilterKeys>) : Promise<RouteDocument[] | null>{
+    async searchRoutesByFilters(filter: FilterOptions<RouteFilterKeys>): Promise<RouteDocument[] | null> {
 
         try {
 
             RouteValidator.validateFilterOptionsRoute(filter);
 
             return this.routeRepository.searchRoutesByFilters(filter);
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
-    async listRoutes() : Promise<RouteDocument[] | null>{
+    async listRoutes(): Promise<RouteDocument[] | null> {
 
         try {
 
@@ -448,9 +468,9 @@ export class MenuService {
             RouteValidator.validateExistingRoutes(routes);
 
             return routes;
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }

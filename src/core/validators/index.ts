@@ -10,6 +10,10 @@ export {SubrouteValidator} from './permissions/validators/subroutes/subroute.val
 
 export {RouteValidator} from './routes/route.validator';
 
+//modules
+
+export {ModuleValidator} from './modules/module.validator';
+
 //schemas
 
 export {labelSchema} from './permissions/schemas/labelSchema.zod';

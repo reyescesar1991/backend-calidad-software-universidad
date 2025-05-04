@@ -41,6 +41,15 @@ export {RouteAlreadyInactiveError} from './routes/route.exception';
 export {RouteAlreadyActiveError} from './routes/route.exception';
 export {FilterOptionsRouteNotValid} from './routes/route.exception';
 export {NotExistsRoutesDatabaseError} from './routes/route.exception';
+
+
+//module
+
+export {ModuleNotFoundError} from './modules/module.exception';
+export {FilterModuleError} from './modules/module.exception';
+export {ModulesNotFoundByFilterError} from './modules/module.exception';
+
+
 //generales
 
 export {AppError} from './generals/general.exceptions';

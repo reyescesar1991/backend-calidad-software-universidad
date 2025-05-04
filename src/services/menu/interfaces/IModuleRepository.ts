@@ -3,7 +3,7 @@ import { ModuleDto, ModuleUpdateDto, ObjectIdParam } from "../../../validations"
 import { ModuleDocument, RouteDocument } from "../../../db/models";
 import { FilterOptions, ModuleFilterKeys } from "../../../core/types";
 
-export interface ModuleRepository {
+export interface IModuleRepository {
 
 
     findModuleById(idModule : ObjectIdParam) : Promise<ModuleDocument | null>;

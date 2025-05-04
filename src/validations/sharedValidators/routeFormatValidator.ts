@@ -19,3 +19,11 @@ export const RouteFilterSchemaZod = z.object({
     icon: z.string().min(1, "Ruta principal requerida").optional()
 
 }).strict()
+
+export const ModuleFilterSchemaZod = z.object({
+
+    id: z.string().min(1 , "El ID es muy corto").optional(),
+    active: z.boolean().optional(),
+    title: z.string().min(2, "Titulo de módulo muy corto").optional(),
+
+}).strict()

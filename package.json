@@ -80,7 +80,13 @@
     "script:getsubroutesbyroute": "ts-node src/scripts/menu/route/testGetSubroutesWithRoute.ts",
     "script:getcustomid-route": "ts-node src/scripts/menu/route/testFindRouteCustomId.ts",
     "script:search-filter-route": "ts-node src/scripts/menu/route/testSearchFilterRoute.ts",
-    "script:list-routes": "ts-node src/scripts/menu/route/testListRoutes.ts"
+    "script:list-routes": "ts-node src/scripts/menu/route/testListRoutes.ts",
+
+
+
+    "script:findbyid-module" : "ts-node src/scripts/menu/modules/testFindModuleById.ts",
+    "script:findbycustomid-module" : "ts-node src/scripts/menu/modules/testFindModuleByCustomId.ts",
+    "script:searchfilter-module" : "ts-node src/scripts/menu/modules/testSearchModulesByFilter.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

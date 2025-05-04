@@ -1,11 +1,11 @@
 import { inject, injectable } from "tsyringe";
 import { ISubrouteRepository } from "./interfaces/ISubroutesRepository";
-import { ObjectIdParam, RouteDto, RouteFilterSchemaZod, RouteUpdateDto, SubrouteDto, SubrouteFilterSchema, SubrouteUpdateDto } from "../../validations";
-import { ModuleModel, RouteDocument, RouteModel, SubrouteDocument } from "../../db/models";
-import { RouteValidator, SubrouteValidator } from "../../core/validators";
+import { ModuleFilterSchemaZod, ObjectIdParam, RouteDto, RouteUpdateDto, SubrouteDto, SubrouteFilterSchema, SubrouteUpdateDto } from "../../validations";
+import { ModuleDocument, ModuleModel, RouteDocument, SubrouteDocument } from "../../db/models";
+import { ModuleValidator, RouteValidator, SubrouteValidator } from "../../core/validators";
 import { ActiveRouteInconsistencyError, FilterSubrouteError, handleError, SubrouteDuplicateError, SubrouteNotFoundByCustomIdError, SubrouteNotFoundByPermissionError, SubrouteNotFoundError, SubrouteRouteMatchError, SubroutesNotFoundedByMainRouteError, UnexpectedError } from "../../core/exceptions";
-import { FilterOptions, RouteFilterKeys, SubrouteFilterKeys } from "../../core/types";
-import { IRouteRepository } from ".";
+import { FilterOptions, ModuleFilterKeys, RouteFilterKeys, SubrouteFilterKeys } from "../../core/types";
+import { IModuleRepository, IRouteRepository } from ".";
 import { TransactionManager } from "../../core/database/transactionManager";
 
 @injectable()
@@ -16,6 +16,8 @@ export class MenuService {
         @inject("SubrouteValidator") private readonly subrouteValidator: SubrouteValidator,
         @inject("RouteValidator") private readonly routeValidator: RouteValidator,
         @inject("IRouteRepository") private readonly routeRepository: IRouteRepository,
+        @inject("ModuleValidator") private readonly moduleValidator: ModuleValidator,
+        @inject("IModuleRepository") private readonly moduleRepository : IModuleRepository,
         @inject("TransactionManager") private readonly transactionManager: TransactionManager) { }
 
     async createSubroute(data: SubrouteDto): Promise<SubrouteDocument> {
@@ -506,6 +508,59 @@ export class MenuService {
 
         } catch (error) {
 
+            handleError(error);
+        }
+    }
+
+    //MODULESSSSSSSSSSSSSSSSS
+
+    async findModuleById(idModule : ObjectIdParam) : Promise<ModuleDocument | null> {
+
+        try {
+
+            const module = await this.moduleRepository.findModuleById(idModule);
+
+            ModuleValidator.validateFoundRoute(module);
+
+            return module;
+            
+        } catch (error) {
+
+            handleError(error);
+            
+        }
+    }
+
+    async findModuleByCustomId(customIdModule : string) : Promise<ModuleDocument | null>{
+
+        try {
+
+            const module = await this.moduleRepository.findModuleByCustomId(customIdModule);
+
+            ModuleValidator.validateFoundRoute(module);
+
+            return module;
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    async searchModuleByFilter(filter: FilterOptions<ModuleFilterKeys>): Promise<ModuleDocument[] | null>{
+
+        try {
+
+            ModuleValidator.validateModuleFilter(filter);
+
+            const modules = await this.moduleRepository.searchModuleByFilter(filter);
+
+            ModuleValidator.validateFoundModules(modules);
+
+            return modules;
+            
+        } catch (error) {
+            
             handleError(error);
         }
     }

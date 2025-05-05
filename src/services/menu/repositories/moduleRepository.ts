@@ -21,20 +21,42 @@ export class ModuleRepositoryImpl implements IModuleRepository{
     async searchModuleByFilter(filter: FilterOptions<ModuleFilterKeys>): Promise<ModuleDocument[] | null> {
         return await this.ModuleModel.find(filter).exec();
     }
-    createModule(data: ModuleDto, session?: ClientSession): Promise<ModuleDocument | null> {
-        throw new Error("Method not implemented.");
+    async createModule(data: ModuleDto, session?: ClientSession): Promise<ModuleDocument | null> {
+        
+        return await this.ModuleModel.create(data);
     }
-    updateModule(data: ModuleUpdateDto, session?: ClientSession): Promise<ModuleDocument | null> {
-        throw new Error("Method not implemented.");
+    async updateModule(idModule : ObjectIdParam, data: ModuleUpdateDto, session?: ClientSession): Promise<ModuleDocument | null> {
+
+        return await this.ModuleModel.findByIdAndUpdate(
+            idModule,
+            data,
+            {new: true, runValidators: true}
+        );
     }
-    activateModule(idModule: ObjectIdParam, session?: ClientSession): Promise<ModuleDocument | null> {
-        throw new Error("Method not implemented.");
+    async activateModule(idModule: ObjectIdParam, session?: ClientSession): Promise<ModuleDocument | null> {
+        
+        return await this.ModuleModel.findByIdAndUpdate(
+
+            idModule,
+            {$set : {active : true}},
+            {new: true, runValidators: true},
+        ).exec();
     }
-    deleteModule(idModule: ObjectIdParam, session?: ClientSession): Promise<ModuleDocument | null> {
-        throw new Error("Method not implemented.");
+    async deleteModule(idModule: ObjectIdParam, session?: ClientSession): Promise<ModuleDocument | null> {
+        return await this.ModuleModel.findByIdAndUpdate(
+
+            idModule,
+            {$set : {active : false}},
+            {new: true, runValidators: true}
+        ).exec();
     }
-    getRoutesByModule(idModule: ObjectIdParam): Promise<RouteDocument[] | null> {
-        throw new Error("Method not implemented.");
+    async getRoutesByModule(idModule: ObjectIdParam): Promise<RouteDocument[] | null> {
+        const routeWithSubroutes = await this.ModuleModel
+        .findById(idModule)
+        .populate<{ routes: RouteDocument[] }>("routes") // Tipo explícito
+        .exec();
+
+        return routeWithSubroutes.routes;
     }
 
     

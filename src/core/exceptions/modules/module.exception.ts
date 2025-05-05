@@ -25,7 +25,7 @@ export class FilterModuleError extends AppError{
 
 export class ModulesNotFoundByFilterError extends AppError{
 
-    code = 1402;
+    code = 1403;
 
     constructor(message : string = 'No existen módulos que cumplan las condiciones del filtro'){
 
@@ -33,3 +33,37 @@ export class ModulesNotFoundByFilterError extends AppError{
         this.name = "ModulesNotFoundByFilterError";
     }
 }
+
+export class ModuleAlreadyExistsError extends AppError{
+
+    code = 1404;
+
+    constructor(message : string = 'Módulo ya registrado, intente con un ID diferente'){
+
+        super(message);
+        this.name = "ModuleAlreadyExistsError";
+    }
+}
+
+export class ModuleAlreadyActiveError extends AppError{
+
+    code = 1405;
+
+    constructor(message : string = 'Módulo ya se encuentra activo, intente con un ID diferente de un módulo inactivo'){
+
+        super(message);
+        this.name = "ModuleAlreadyActiveError";
+    }
+}
+
+export class ModuleAlreadyInactiveError extends AppError{
+
+    code = 1406;
+
+    constructor(message : string = 'Módulo ya se encuentra inactivo, intente con un ID diferente de un módulo activo'){
+
+        super(message);
+        this.name = "ModuleAlreadyInactiveError";
+    }
+}
+

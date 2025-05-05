@@ -1,14 +1,17 @@
-import { injectable } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 import { ModuleDocument } from "../../../db/models";
-import { FilterModuleError, ModuleNotFoundError, ModulesNotFoundByFilterError } from "../../exceptions";
+import { FilterModuleError, ModuleAlreadyActiveError, ModuleAlreadyExistsError, ModuleAlreadyInactiveError, ModuleNotFoundError, ModulesNotFoundByFilterError } from "../../exceptions";
 import { FilterOptions, ModuleFilterKeys } from "../../types";
 import { ModuleFilterSchemaZod } from "../../../validations";
+import { IModuleRepository } from "../../../services/menu";
 
 @injectable()
 export class ModuleValidator {
 
+    constructor(@inject("IModuleRepository") private readonly moduleRepository : IModuleRepository){}
 
-    static validateFoundRoute(module: ModuleDocument): void {
+
+    static validateFoundModule(module: ModuleDocument): void {
 
         if (!module) throw new ModuleNotFoundError();
     }
@@ -28,5 +31,23 @@ export class ModuleValidator {
     static validateFoundModules(modules : ModuleDocument[]) : void {
 
         if(modules.length === 0) throw new ModulesNotFoundByFilterError();
+    }
+
+    static validateStatusModuleActive(module: ModuleDocument) : void {
+
+        if(module.active) throw new ModuleAlreadyActiveError();
+    }
+
+    static validateStatusModuleInactive(module : ModuleDocument) : void {
+
+        if(!module.active) throw new ModuleAlreadyInactiveError();
+    }
+
+    async validateUniquenessesModule(customId : string) : Promise<void>{
+
+
+        const exists = await this.moduleRepository.findModuleByCustomId(customId);
+
+        if(exists) throw new ModuleAlreadyExistsError();
     }
 }

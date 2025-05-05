@@ -48,7 +48,9 @@ export {NotExistsRoutesDatabaseError} from './routes/route.exception';
 export {ModuleNotFoundError} from './modules/module.exception';
 export {FilterModuleError} from './modules/module.exception';
 export {ModulesNotFoundByFilterError} from './modules/module.exception';
-
+export {ModuleAlreadyExistsError} from './modules/module.exception';
+export {ModuleAlreadyActiveError} from './modules/module.exception';
+export {ModuleAlreadyInactiveError} from './modules/module.exception';
 
 //generales
 

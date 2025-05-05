@@ -1,12 +1,13 @@
 import { inject, injectable } from "tsyringe";
 import { ISubrouteRepository } from "./interfaces/ISubroutesRepository";
-import { ModuleFilterSchemaZod, ObjectIdParam, RouteDto, RouteUpdateDto, SubrouteDto, SubrouteFilterSchema, SubrouteUpdateDto } from "../../validations";
+import { ModuleDto, ModuleFilterSchemaZod, ModuleUpdateDto, ObjectIdParam, RouteDto, RouteUpdateDto, SubrouteDto, SubrouteFilterSchema, SubrouteUpdateDto } from "../../validations";
 import { ModuleDocument, ModuleModel, RouteDocument, SubrouteDocument } from "../../db/models";
 import { ModuleValidator, RouteValidator, SubrouteValidator } from "../../core/validators";
 import { ActiveRouteInconsistencyError, FilterSubrouteError, handleError, SubrouteDuplicateError, SubrouteNotFoundByCustomIdError, SubrouteNotFoundByPermissionError, SubrouteNotFoundError, SubrouteRouteMatchError, SubroutesNotFoundedByMainRouteError, UnexpectedError } from "../../core/exceptions";
 import { FilterOptions, ModuleFilterKeys, RouteFilterKeys, SubrouteFilterKeys } from "../../core/types";
 import { IModuleRepository, IRouteRepository } from ".";
 import { TransactionManager } from "../../core/database/transactionManager";
+import { ClientSession } from "mongoose";
 
 @injectable()
 export class MenuService {
@@ -17,7 +18,7 @@ export class MenuService {
         @inject("RouteValidator") private readonly routeValidator: RouteValidator,
         @inject("IRouteRepository") private readonly routeRepository: IRouteRepository,
         @inject("ModuleValidator") private readonly moduleValidator: ModuleValidator,
-        @inject("IModuleRepository") private readonly moduleRepository : IModuleRepository,
+        @inject("IModuleRepository") private readonly moduleRepository: IModuleRepository,
         @inject("TransactionManager") private readonly transactionManager: TransactionManager) { }
 
     async createSubroute(data: SubrouteDto): Promise<SubrouteDocument> {
@@ -514,40 +515,40 @@ export class MenuService {
 
     //MODULESSSSSSSSSSSSSSSSS
 
-    async findModuleById(idModule : ObjectIdParam) : Promise<ModuleDocument | null> {
+    async findModuleById(idModule: ObjectIdParam): Promise<ModuleDocument | null> {
 
         try {
 
             const module = await this.moduleRepository.findModuleById(idModule);
 
-            ModuleValidator.validateFoundRoute(module);
+            ModuleValidator.validateFoundModule(module);
 
             return module;
-            
+
         } catch (error) {
 
             handleError(error);
-            
+
         }
     }
 
-    async findModuleByCustomId(customIdModule : string) : Promise<ModuleDocument | null>{
+    async findModuleByCustomId(customIdModule: string): Promise<ModuleDocument | null> {
 
         try {
 
             const module = await this.moduleRepository.findModuleByCustomId(customIdModule);
 
-            ModuleValidator.validateFoundRoute(module);
+            ModuleValidator.validateFoundModule(module);
 
             return module;
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
-    async searchModuleByFilter(filter: FilterOptions<ModuleFilterKeys>): Promise<ModuleDocument[] | null>{
+    async searchModuleByFilter(filter: FilterOptions<ModuleFilterKeys>): Promise<ModuleDocument[] | null> {
 
         try {
 
@@ -558,7 +559,127 @@ export class MenuService {
             ModuleValidator.validateFoundModules(modules);
 
             return modules;
-            
+
+        } catch (error) {
+
+            handleError(error);
+        }
+    }
+
+    async createModule(data: ModuleDto): Promise<ModuleDocument | null> {
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    await this.moduleValidator.validateUniquenessesModule(data.id);
+
+                    const module = await this.moduleRepository.createModule(data, session);
+
+                    return module;
+
+                } catch (error) {
+
+                    handleError(error);
+
+                }
+            }
+        )
+    }
+
+    async updateModule(idModule: ObjectIdParam, data: ModuleUpdateDto): Promise<ModuleDocument | null> {
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    const moduleFounded = await this.moduleRepository.findModuleById(idModule);
+
+                    ModuleValidator.validateFoundModule(moduleFounded);
+
+                    const moduleUpdated = await this.moduleRepository.updateModule(idModule, data, session);
+
+                    return moduleUpdated;
+
+                } catch (error) {
+
+                    if (error.code === 11000) {
+                        throw new SubrouteDuplicateError("El ID de subruta ya existe, intente nuevamente con otro ID");
+                    }
+
+                    handleError(error)
+                }
+            }
+        )
+    }
+
+    async activateModule(idModule: ObjectIdParam) : Promise<ModuleDocument | null>{
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+
+                try {
+
+                    const moduleFounded = await this.moduleRepository.findModuleById(idModule);
+
+                    ModuleValidator.validateFoundModule(moduleFounded);
+
+                    ModuleValidator.validateStatusModuleActive(moduleFounded);
+
+                    return await this.moduleRepository.activateModule(idModule, session);
+
+                    
+                } catch (error) {
+                    
+                    handleError(error);
+                }
+            }
+        )
+    }
+
+    async deleteModule(idModule : ObjectIdParam) : Promise<ModuleDocument | null>{
+
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    const moduleFounded = await this.moduleRepository.findModuleById(idModule);
+
+                    ModuleValidator.validateFoundModule(moduleFounded);
+
+                    ModuleValidator.validateStatusModuleInactive(moduleFounded);
+
+                    return await this.moduleRepository.deleteModule(idModule, session);
+
+                    
+                } catch (error) {
+                    
+                    handleError(error);
+                }
+            }
+        )
+    }
+
+
+    async getRoutesByModule(idModule: ObjectIdParam) : Promise<RouteDocument[] | null>{
+
+        try {
+
+            const moduleFounded = await this.moduleRepository.findModuleById(idModule);
+
+            ModuleValidator.validateFoundModule(moduleFounded);
+
+            return await this.moduleRepository.getRoutesByModule(idModule);
+
         } catch (error) {
             
             handleError(error);

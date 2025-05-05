@@ -55,6 +55,8 @@ export const moduleSchemaZod = z.object({
 
   title: z.string().min(1, { message: 'Titulo es requerido' }),
 
+  active : z.boolean(),
+
   routes: z.array(
     // Validar que cada elemento sea una instancia de ObjectId
     z.instanceof(mongoose.Types.ObjectId, {
@@ -65,7 +67,6 @@ export const moduleSchemaZod = z.object({
 
 export const moduleUpdateSchemaZod = z.object({
 
-  id: z.string().min(2, { message: 'El id debe ser un nombre valido' }).optional(),
   title: z.string().min(1, { message: 'Titulo es requerido' }).optional(),
 
 })

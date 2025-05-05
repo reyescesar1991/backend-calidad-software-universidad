@@ -86,7 +86,13 @@
 
     "script:findbyid-module" : "ts-node src/scripts/menu/modules/testFindModuleById.ts",
     "script:findbycustomid-module" : "ts-node src/scripts/menu/modules/testFindModuleByCustomId.ts",
-    "script:searchfilter-module" : "ts-node src/scripts/menu/modules/testSearchModulesByFilter.ts"
+    "script:searchfilter-module" : "ts-node src/scripts/menu/modules/testSearchModulesByFilter.ts",
+    "script:create-module" : "ts-node src/scripts/menu/modules/testCreateModule.ts",
+    "script:update-module" : "ts-node src/scripts/menu/modules/testUpdateModule.ts",
+    "script:activate-module" : "ts-node src/scripts/menu/modules/testActivateModule.ts",
+    "script:delete-module" : "ts-node src/scripts/menu/modules/testDeleteModule.ts",
+    "script:getroutes-module" : "ts-node src/scripts/menu/modules/testGetRoutesWithModule.ts"
+
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

@@ -19,7 +19,7 @@ const runTestCreateRoute = async () => {
         const route : RouteDto = {
 
             id : `route_test_${uuid}`,
-            idModule : 'home',
+            idModule : 'module_test_29303cc5',
             name : `route_test_${uuid}`,
             path : "/test/route",
             icon : "icon-test",

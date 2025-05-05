@@ -287,14 +287,8 @@ export class MenuService {
 
                     createdRoute = await this.routeRepository.createRoute(data, session);
 
-                    //TODO: Usar el service de modulo para hacer esto
-                    const module = await ModuleModel.findOneAndUpdate(
-
-                        { id: data.idModule, },
-                        { $push: { routes: createdRoute._id } },
-                        { new: true, useFindAndModify: true }
-                    )
-
+                    this.moduleRepository.updateModuleAddRoute(data, createdRoute, session);
+                    
                     console.log(module);
 
                     return createdRoute
@@ -351,30 +345,27 @@ export class MenuService {
 
                     await this.routeValidator.validateUniquenessNameRoute(dataName);
 
+                    const currentModule = await this.moduleRepository.findModuleByCustomId(route.idModule);
+
+                    console.log("Modulo actual : ", currentModule);
+                    
+
                     if (data.idModule !== undefined) {
 
                         const module = await ModuleModel.findOne(
                             { id: data.idModule }
                         )
 
-                        console.log("Modulo: ", module);
+                        console.log("Modulo futuro: ", module);
 
 
-                        //TODO: Colocar el module validator aca de error de que no existe
-                        if (module === null) throw new Error("No existe el modulo")
+                        ModuleValidator.validateFoundModule(module);
 
-                        const actualModule = await ModuleModel.findOneAndUpdate(
 
-                            { id: data.idModule },
-                            { $push: { routes: route._id } },
-                            { new: true, useFindAndModify: true }
-                        ).exec();
+                        this.moduleRepository.updateModuleAddRoute(data, route, session);
 
-                        const oldModule = await ModuleModel.findOneAndUpdate(
-                            { id: route.idModule },
-                            { $pull: { routes: route._id } },
-                            { new: true, useFindAndModify: true }
-                        ).exec();
+
+                        this.moduleRepository.updateModuleDeleteRoute(currentModule, route, session);
 
                     }
 

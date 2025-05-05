@@ -13,7 +13,7 @@ const runTestUpdateRoute = async () => {
 
         await configureDependencies();
 
-        const idRoute = objectIdSchema.parse("680af64a04ba7b16208126f8");
+        const idRoute = objectIdSchema.parse("681903c2d74e74d5d652f7af");
 
         const dataRoute : RouteUpdateDto = {
 
@@ -21,7 +21,7 @@ const runTestUpdateRoute = async () => {
             // path : "/path/test/test",
             // icon : "icon-test-test",
             // active : true,
-            idModule : "home",
+            idModule : "module_test_29303cc5",
         }
 
         const routeService = container.resolve(MenuService);

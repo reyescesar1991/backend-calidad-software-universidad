@@ -3,7 +3,7 @@ import { IModuleRepository } from "../interfaces/IModuleRepository";
 import { ClientSession, Model } from "mongoose";
 import { FilterOptions, ModuleFilterKeys } from "../../../core/types";
 import { ModuleDocument, RouteDocument } from "../../../db/models";
-import { ObjectIdParam, ModuleDto, ModuleUpdateDto } from "../../../validations";
+import { ObjectIdParam, ModuleDto, ModuleUpdateDto, RouteDto } from "../../../validations";
 
 
 @injectable()
@@ -57,6 +57,28 @@ export class ModuleRepositoryImpl implements IModuleRepository{
         .exec();
 
         return routeWithSubroutes.routes;
+    }
+
+    async updateModuleAddRoute(dataRoute: RouteDocument, routeCreated: RouteDocument, session?: ClientSession): Promise<ModuleDocument | null> {
+        
+        const module = await this.ModuleModel.findOneAndUpdate(
+
+            { id: dataRoute.idModule, },
+            { $push: { routes: routeCreated._id } },
+            { new: true, useFindAndModify: true }
+        ).exec();
+
+        return module;
+    }
+    async updateModuleDeleteRoute(actualModule: ModuleDocument, route: RouteDocument, session?: ClientSession): Promise<ModuleDocument | null> {
+        
+        const module = await this.ModuleModel.findOneAndUpdate(
+            { id: actualModule.id },
+            { $pull: { routes: route._id } },
+            { new: true, useFindAndModify: true }
+        ).exec();
+
+        return module;
     }
 
     

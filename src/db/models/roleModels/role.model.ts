@@ -1,7 +1,17 @@
-import { model, Schema } from "mongoose";
-import { IRoleType } from "../../../core/types";
+import mongoose, { model, Schema } from "mongoose";
 
-export interface RoleDocument extends IRoleType, Document {};
+export interface RoleDocument extends Document {
+
+    _id: mongoose.Types.ObjectId;
+    idRole : string,
+    name : string,
+    label : string,
+    permissions : Schema.Types.ObjectId[]
+    permissionsSecurity : Schema.Types.ObjectId[]
+    description : string,
+    isActive : boolean,
+    isDefault: boolean,
+};
 
 export const RoleSchema = new Schema<RoleDocument>({
 

@@ -1,0 +1,1 @@
+export {isPermissionAllowedForRole} from './roles/permissionRole.helper';

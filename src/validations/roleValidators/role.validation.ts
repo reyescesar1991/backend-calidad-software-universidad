@@ -11,7 +11,7 @@ export const roleSchema = z.object({
     z.instanceof(mongoose.Types.ObjectId).refine(val => val instanceof mongoose.Types.ObjectId, {
       message: "Debe ser un ObjectId de Mongoose",
     })
-  ),
+  ).optional(),
   permissionsSecurity: z.array(
     z.instanceof(mongoose.Types.ObjectId).refine(val => val instanceof mongoose.Types.ObjectId, {
       message: "Debe ser un ObjectId de Mongoose",
@@ -20,6 +20,7 @@ export const roleSchema = z.object({
   description: z.string().min(1, { message: 'La descripción es requerida' }),
   isActive: z.boolean(),
   isDefault: z.boolean(),
+  managePermissions: z.boolean(),
 });
 
 export const updateRoleSchema = z.object({

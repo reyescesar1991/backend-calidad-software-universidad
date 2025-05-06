@@ -11,6 +11,7 @@ export interface RoleDocument extends Document {
     description : string,
     isActive : boolean,
     isDefault: boolean,
+    managePermissions : boolean,
 };
 
 export const RoleSchema = new Schema<RoleDocument>({
@@ -29,6 +30,8 @@ export const RoleSchema = new Schema<RoleDocument>({
     description : {type: String, required: true},
     isActive : {type: Boolean, required: true},
     isDefault: {type: Boolean, required: true},
+    managePermissions : {type: Boolean, required: true, default: false}
+    
 } , {timestamps: true});
 
 export const RoleModel = model<RoleDocument>("Role", RoleSchema);

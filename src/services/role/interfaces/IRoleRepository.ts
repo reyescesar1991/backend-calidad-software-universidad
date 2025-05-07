@@ -1,3 +1,4 @@
+import { ClientSession } from "mongoose";
 import { FilterOptions, RoleFilterKeys } from "../../../core/types";
 import { RoleDocument } from "../../../db/models";
 import { ObjectIdParam, RoleDto, UpdateRoleDto } from "../../../validations";
@@ -9,11 +10,11 @@ export interface IRoleRepository{
     findRoleByCustomId(customIdRole : string) : Promise<RoleDocument | null>;
     searchRolesByFilters(filter : FilterOptions<RoleFilterKeys>) : Promise<RoleDocument[] | null>;
     listRoles() : Promise<RoleDocument[] | null>;
-    createRole(dataRole : RoleDto) : Promise<RoleDocument | null>;
-    updateRole(idRole: ObjectIdParam, dataRole : UpdateRoleDto) : Promise<RoleDocument | null>;
-    deleteRole(idRole: ObjectIdParam) : Promise<RoleDocument | null>;
-    activateRole(idRole : ObjectIdParam) : Promise<RoleDocument | null>;
-    setDefaultRoleSystem(idRole: ObjectIdParam) : Promise<RoleDocument | null>;
+    createRole(dataRole : RoleDto, session ?: ClientSession) : Promise<RoleDocument | null>;
+    updateRole(idRole: ObjectIdParam, dataRole : UpdateRoleDto, session ?: ClientSession) : Promise<RoleDocument | null>;
+    deleteRole(idRole: ObjectIdParam, session ?: ClientSession) : Promise<RoleDocument | null>;
+    activateRole(idRole : ObjectIdParam, session ?: ClientSession) : Promise<RoleDocument | null>;
+    setDefaultRoleSystem(idRole: ObjectIdParam, session ?: ClientSession) : Promise<RoleDocument | null>;
 }
 
 export interface IRolePermissionRepository{

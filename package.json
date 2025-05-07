@@ -91,7 +91,11 @@
     "script:update-module" : "ts-node src/scripts/menu/modules/testUpdateModule.ts",
     "script:activate-module" : "ts-node src/scripts/menu/modules/testActivateModule.ts",
     "script:delete-module" : "ts-node src/scripts/menu/modules/testDeleteModule.ts",
-    "script:getroutes-module" : "ts-node src/scripts/menu/modules/testGetRoutesWithModule.ts"
+    "script:getroutes-module" : "ts-node src/scripts/menu/modules/testGetRoutesWithModule.ts",
+
+
+
+    "script:findbyid-role" : "ts-node src/scripts/roles/testFindRoleById.ts"
 
   },
   "author": "Google LLC",

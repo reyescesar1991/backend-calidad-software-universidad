@@ -20,7 +20,7 @@ export const roleSchema = z.object({
   description: z.string().min(1, { message: 'La descripción es requerida' }),
   isActive: z.boolean(),
   isDefault: z.boolean(),
-  managePermissions: z.boolean(),
+  managePermissions: z.boolean().optional(),
 });
 
 export const updateRoleSchema = z.object({

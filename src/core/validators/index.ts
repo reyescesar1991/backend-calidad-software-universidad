@@ -17,3 +17,7 @@ export {ModuleValidator} from './modules/module.validator';
 //schemas
 
 export {labelSchema} from './permissions/schemas/labelSchema.zod';
+
+//roles
+
+export {RoleValidator} from './roles/role.validator';

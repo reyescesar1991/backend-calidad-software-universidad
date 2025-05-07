@@ -12,30 +12,48 @@ export class RoleRepositoryImpl implements IRoleRepository{
 
 
     async findRoleById(idRole: ObjectIdParam): Promise<RoleDocument | null> {
-        throw new Error("Method not implemented.");
+        
+        return await this.RoleModel.findById(idRole).exec();
     }
     async findRoleByCustomId(customIdRole: string): Promise<RoleDocument | null> {
-        throw new Error("Method not implemented.");
+        return await this.RoleModel.findOne({idRole : customIdRole}).exec();
     }
     async searchRolesByFilters(filter: FilterOptions<RoleFilterKeys>): Promise<RoleDocument[] | null> {
-        throw new Error("Method not implemented.");
+        return await this.RoleModel.find(filter).exec();
     }
     async listRoles(): Promise<RoleDocument[] | null> {
-        throw new Error("Method not implemented.");
+        return await this.RoleModel.find({});
     }
     async createRole(dataRole: RoleDto): Promise<RoleDocument | null> {
-        throw new Error("Method not implemented.");
+        return await this.RoleModel.create(dataRole);
     }
     async updateRole(idRole: ObjectIdParam, dataRole: UpdateRoleDto): Promise<RoleDocument | null> {
-        throw new Error("Method not implemented.");
+        return await this.RoleModel.findByIdAndUpdate(
+
+            idRole,
+            dataRole,
+            {new : true, runValidators : true}
+        ).exec();
     }
     async deleteRole(idRole: ObjectIdParam): Promise<RoleDocument | null> {
-        throw new Error("Method not implemented.");
+        return await this.RoleModel.findByIdAndUpdate(
+            idRole,
+            {$set : {isActive : false}},
+            {new: true, runValidators : true},
+        ).exec();
     }
     async activateRole(idRole: ObjectIdParam): Promise<RoleDocument | null> {
-        throw new Error("Method not implemented.");
+        return await this.RoleModel.findByIdAndUpdate(
+            idRole,
+            {$set : {isActive : true}},
+            {new : true, runValidators : true},
+        ).exec();
     }
     async setDefaultRoleSystem(idRole: ObjectIdParam): Promise<RoleDocument | null> {
-        throw new Error("Method not implemented.");
+        return await this.RoleModel.findByIdAndUpdate(
+            idRole,
+            [{$set : {isActive : { $not : '$isActive'}}}],
+            {new: true, runValidators : true}
+        ).exec();
     }
 }

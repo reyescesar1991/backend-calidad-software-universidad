@@ -52,6 +52,14 @@ export {ModuleAlreadyExistsError} from './modules/module.exception';
 export {ModuleAlreadyActiveError} from './modules/module.exception';
 export {ModuleAlreadyInactiveError} from './modules/module.exception';
 
+//roles
+
+export {RoleNotFoundError} from './roles/roles.exception';
+export {FilterRoleError} from './roles/roles.exception';
+export {RolesNotFoundByFilterError} from './roles/roles.exception';
+export {RolesNotFoundDatabaseError} from './roles/roles.exception';
+export {RoleAlreadyExistsError} from './roles/roles.exception';
+
 //generales
 
 export {AppError} from './generals/general.exceptions';

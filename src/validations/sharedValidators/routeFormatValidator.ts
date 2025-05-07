@@ -9,7 +9,7 @@ export const SubrouteFilterSchema = z.object({
     name: z.string().min(2, "Nombre muy corto").optional(),
     mainRoute: z.string().min(1, "Ruta principal requerida").optional()
 
-}).strict()
+}).strict();
 
 export const RouteFilterSchemaZod = z.object({
 
@@ -18,7 +18,7 @@ export const RouteFilterSchemaZod = z.object({
     name: z.string().min(2, "Nombre muy corto").optional(),
     icon: z.string().min(1, "Ruta principal requerida").optional()
 
-}).strict()
+}).strict();
 
 export const ModuleFilterSchemaZod = z.object({
 
@@ -26,4 +26,4 @@ export const ModuleFilterSchemaZod = z.object({
     active: z.boolean().optional(),
     title: z.string().min(2, "Titulo de módulo muy corto").optional(),
 
-}).strict()
+}).strict();

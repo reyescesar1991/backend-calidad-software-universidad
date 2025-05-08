@@ -95,7 +95,15 @@
 
 
 
-    "script:findbyid-role" : "ts-node src/scripts/roles/testFindRoleById.ts"
+    "script:findbyid-role" : "ts-node src/scripts/roles/testFindRoleById.ts",
+    "script:findbycustom-role" : "ts-node src/scripts/roles/testFindRoleByCustomId.ts",
+    "script:findbyfilter-role" : "ts-node src/scripts/roles/testSearchRolesByFilter.ts",
+    "script:list-roles" : "ts-node src/scripts/roles/testListRoles.ts",
+    "script:create-role" : "ts-node src/scripts/roles/testCreateRole.ts",
+    "script:update-role" : "ts-node src/scripts/roles/testUpdateRole.ts",
+    "script:defaultsystem-rol" : "ts-node src/scripts/roles/testSetDefaultRole.ts",
+    "script:activate-rol" : "ts-node src/scripts/roles/testActivateRole.ts",
+    "script:delete-rol" : "ts-node src/scripts/roles/testDeleteRole.ts"
 
   },
   "author": "Google LLC",

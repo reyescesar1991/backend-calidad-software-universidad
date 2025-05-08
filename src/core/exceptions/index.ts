@@ -59,6 +59,13 @@ export {FilterRoleError} from './roles/roles.exception';
 export {RolesNotFoundByFilterError} from './roles/roles.exception';
 export {RolesNotFoundDatabaseError} from './roles/roles.exception';
 export {RoleAlreadyExistsError} from './roles/roles.exception';
+export {RoleNotValidDefaultSystemError} from './roles/roles.exception';
+export {RoleNotAdminManagePermissionError} from './roles/roles.exception';
+export {IdRoleAlreadyExistsError} from './roles/roles.exception';
+export {RoleAlreadyInactiveError} from './roles/roles.exception';
+export {RoleAlreadyActiveError} from './roles/roles.exception';
+export {RoleIdLockError} from './roles/roles.exception';
+export {RolNotHavePermissionsError} from './roles/roles.exception';
 
 //generales
 

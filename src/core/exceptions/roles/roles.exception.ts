@@ -53,3 +53,80 @@ export class RoleAlreadyExistsError extends AppError{
         this.name = "RoleAlreadyExistsError";
     }
 }
+
+export class RoleNotValidDefaultSystemError extends AppError{
+
+    code = 1506;
+
+    constructor(message : string = 'El Role que intenta crear no puede ser el rol por defecto del sistema, el rol por defecto ya esta definido'){
+
+        super(message);
+        this.name = "RoleNotValidDefaultSystemError";
+    }
+}
+
+export class RoleNotAdminManagePermissionError extends AppError{
+
+    code = 1507;
+
+    constructor(message : string = 'El Role que intenta crear no puede manejar permisos para otros roles'){
+
+        super(message);
+        this.name = "RoleNotAdminManagePermissionError";
+    }
+}
+
+export class IdRoleAlreadyExistsError extends AppError{
+
+    code = 1508;
+
+    constructor(message : string = 'El id role que esta proporcionando ya esta registrado, intente con otro nuevamente'){
+
+        super(message);
+        this.name = "IdRoleAlreadyExistsError";
+    }
+}
+
+export class RoleAlreadyInactiveError extends AppError{
+
+    code = 1509;
+
+    constructor(message : string = 'El role ya se encuentra desactivado, intente con un rol activo'){
+
+        super(message);
+        this.name = "RoleAlreadyInactiveError";
+    }
+}
+
+export class RoleAlreadyActiveError extends AppError{
+
+    code = 1510;
+
+    constructor(message : string = 'El role ya se encuentra activo, intente con un rol inactivo'){
+
+        super(message);
+        this.name = "RoleAlreadyActiveError";
+    }
+}
+
+export class RoleIdLockError extends AppError{
+
+    code = 1511;
+
+    constructor(message : string = 'El ID de rol de los roles primarios del sistema no puede ser cambiado, intente con un rol no nativo'){
+
+        super(message);
+        this.name = "RoleIdLockError";
+    }
+}
+
+export class RolNotHavePermissionsError extends AppError{
+
+    code = 1512;
+
+    constructor(message : string = 'El rol no tiene permisos disponibles, configure previamente la data'){
+
+        super(message);
+        this.name = "RolNotHavePermissionsError";
+    }
+}

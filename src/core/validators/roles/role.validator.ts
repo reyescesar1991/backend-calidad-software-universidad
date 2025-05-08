@@ -1,9 +1,10 @@
 import { inject, injectable } from "tsyringe";
 import { IRoleRepository } from "../../../services/role/interfaces/IRoleRepository";
 import { RoleDocument } from "../../../db/models";
-import { FilterRoleError, RoleAlreadyExistsError, RoleNotFoundError, RolesNotFoundByFilterError, RolesNotFoundDatabaseError } from "../../exceptions";
+import { FilterRoleError, IdRoleAlreadyExistsError, RoleAlreadyActiveError, RoleAlreadyExistsError, RoleAlreadyInactiveError, RoleIdLockError, RoleNotFoundError, RoleNotValidDefaultSystemError, RolesNotFoundByFilterError, RolesNotFoundDatabaseError, RolNotHavePermissionsError } from "../../exceptions";
 import { FilterOptions, RoleFilterKeys } from "../../types";
 import { ObjectIdParam, RoleFilterSchema } from "../../../validations";
+import { ROLS_DEFAULT, ROLS_NOT_VALID_DEFAULT, VALID_PERMISSIONS } from "../../const";
 
 @injectable()
 export class RoleValidator{
@@ -38,6 +39,46 @@ export class RoleValidator{
         if(roles.length === 0) throw new RolesNotFoundDatabaseError();
     }
 
+    static validateRoleAlreadyInactive(active : boolean) : void {
+
+        if(!active) throw new RoleAlreadyInactiveError();
+    }
+
+    static validateRoleAlreadyActive(active : boolean) : void {
+
+        if(active) throw new RoleAlreadyActiveError();
+    }
+
+    static validateIdRoleNotChange(idRol : string) : void {
+
+        if(ROLS_DEFAULT.includes(idRol)) throw new RoleIdLockError();
+    }
+
+    static validateRoleCanBeDefault(roleId: string): void {
+        if (ROLS_NOT_VALID_DEFAULT.includes(roleId)) {
+            throw new RoleNotValidDefaultSystemError();
+        }
+    }
+
+    static validateRolValidsPermission(idRole : string, permissionKey : string){
+
+        // 1. Acceder al array de permisos para el idRole dado.
+        // Si el idRole no existe como clave en VALID_PERMISSIONS, esto devolverá 'undefined'.
+        const permissionsForRole = VALID_PERMISSIONS[idRole];
+
+        // 2. Verificar si el array de permisos existe (es decir, si el idRole es válido).
+        // Si no existe (es undefined) o no es un array (aunque por la definición Record<string, string[]> siempre debería serlo si existe),
+        // significa que el permiso no es válido para ese rol (porque el rol no existe o no tiene permisos definidos así).
+        if (!permissionsForRole || !Array.isArray(permissionsForRole)) {
+
+            throw new RolNotHavePermissionsError();
+        }
+
+        // 3. Verificar si el permissionKey está incluido en el array de permisos para ese rol.
+        return permissionsForRole.includes(permissionKey);
+    }
+    
+
     async validateUniquenessRole(idRole : string) : Promise<void>{
 
 
@@ -46,5 +87,15 @@ export class RoleValidator{
         if(exists) throw new RoleAlreadyExistsError();
 
     }
+
+    async validateUniquenessIdRole(idRole : string) : Promise<void>{
+
+
+        const exists = await this.roleRepository.findRoleByCustomId(idRole);
+
+        if(exists) throw new IdRoleAlreadyExistsError();
+
+    }
+
 
 }

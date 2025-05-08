@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IRoleRepository } from "../interfaces/IRoleRepository";
-import { Model } from "mongoose";
+import { ClientSession, Model } from "mongoose";
 import { RoleDocument } from "../../../db/models";
 import { FilterOptions, RoleFilterKeys } from "../../../core/types";
 import { ObjectIdParam, RoleDto, UpdateRoleDto } from "../../../validations";
@@ -24,36 +24,44 @@ export class RoleRepositoryImpl implements IRoleRepository{
     async listRoles(): Promise<RoleDocument[] | null> {
         return await this.RoleModel.find({});
     }
-    async createRole(dataRole: RoleDto): Promise<RoleDocument | null> {
-        return await this.RoleModel.create(dataRole);
+    async createRole(dataRole: RoleDto, session?: ClientSession): Promise<RoleDocument | null> {
+        const [newRole] = await this.RoleModel.create([dataRole], { session });
+        return newRole;
     }
-    async updateRole(idRole: ObjectIdParam, dataRole: UpdateRoleDto): Promise<RoleDocument | null> {
+    async updateRole(idRole: ObjectIdParam, dataRole: UpdateRoleDto, session?: ClientSession): Promise<RoleDocument | null> {
         return await this.RoleModel.findByIdAndUpdate(
 
             idRole,
             dataRole,
-            {new : true, runValidators : true}
+            {new : true, runValidators : true, session},
         ).exec();
     }
-    async deleteRole(idRole: ObjectIdParam): Promise<RoleDocument | null> {
+    async deleteRole(idRole: ObjectIdParam, session?: ClientSession): Promise<RoleDocument | null> {
         return await this.RoleModel.findByIdAndUpdate(
             idRole,
             {$set : {isActive : false}},
-            {new: true, runValidators : true},
+            {new: true, runValidators : true, session},
         ).exec();
     }
-    async activateRole(idRole: ObjectIdParam): Promise<RoleDocument | null> {
+    async activateRole(idRole: ObjectIdParam, session?: ClientSession): Promise<RoleDocument | null> {
         return await this.RoleModel.findByIdAndUpdate(
             idRole,
             {$set : {isActive : true}},
-            {new : true, runValidators : true},
+            {new : true, runValidators : true, session},
         ).exec();
     }
-    async setDefaultRoleSystem(idRole: ObjectIdParam): Promise<RoleDocument | null> {
+    async setDefaultRoleSystem(idRole: ObjectIdParam, session?: ClientSession): Promise<RoleDocument | null> {
         return await this.RoleModel.findByIdAndUpdate(
             idRole,
-            [{$set : {isActive : { $not : '$isActive'}}}],
-            {new: true, runValidators : true}
+            [{$set : {isDefault : { $not : '$isDefault'}}}],
+            {new: true, runValidators : true, session}
         ).exec();
+    }
+    async unsetAllDefaultRoles(session?: ClientSession): Promise<void> {
+        await this.RoleModel.updateMany(
+            { isDefault: true },
+            { $set: { isDefault: false } },
+            { session }
+        );
     }
 }

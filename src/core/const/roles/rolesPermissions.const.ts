@@ -1,10 +1,10 @@
 export const VALID_PERMISSIONS: Record<string, string[]> = {
-    'Empleado de Almacen': [
+    '01': [
         'ver_listar_productos',
         'buscar_producto',
         'registrar_producto'
     ],
-    'Gestor de Inventario': [
+    '03': [
         'ver_listar_productos',
         'buscar_producto',
         'registrar_producto',
@@ -16,7 +16,7 @@ export const VALID_PERMISSIONS: Record<string, string[]> = {
         'registrar_venta',
         'ajustar_producto',
     ],
-    'Supervisor de Inventario' : [
+    '02' : [
         'ver_listar_productos',
         'buscar_producto',
         'registrar_producto',
@@ -24,7 +24,7 @@ export const VALID_PERMISSIONS: Record<string, string[]> = {
         'reporte_bajo_stock',
         'reporte_valor_total_inventario',
     ],
-    'Administrador' : [
+    '04' : [
         'ver_listar_productos',
         'buscar_producto',
         'registrar_producto',
@@ -48,3 +48,18 @@ export const VALID_PERMISSIONS_SECURITY: Record<string, string[]> = {
         'autenticacion_factor',
     ]
 };
+
+export const ROLS_DEFAULT : Array<string> = [
+
+    "01",
+    "02",
+    "03",
+    "04"
+]
+
+export const ROLS_NOT_VALID_DEFAULT : Array<string> = [
+
+    "02",
+    "03",
+    "04",
+]

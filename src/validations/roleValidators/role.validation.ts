@@ -40,9 +40,7 @@ export const updateRoleSchema = z.object({
     .string()
     .min(1, { message: "La descripción es requerida si se envía" })
     .optional(),
-  isActive: z.boolean().optional(),
-  isDefault: z.boolean().optional(),
-}).partial(); // ¡Cláusula clave para hacer todo opcional!
+}).partial(); 
 
 export type UpdateRoleDto = z.infer<typeof updateRoleSchema>;
 export type RoleDto = z.infer<typeof roleSchema>;

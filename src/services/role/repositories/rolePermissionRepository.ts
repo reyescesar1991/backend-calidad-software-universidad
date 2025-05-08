@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IRolePermissionRepository } from "../interfaces/IRoleRepository";
-import { Model } from "mongoose";
+import { ClientSession, Model } from "mongoose";
 import { RoleDocument } from "../../../db/models";
 import { ObjectIdParam } from "../../../validations";
 
@@ -10,10 +10,22 @@ export class RolePermissionRepositoryImpl implements IRolePermissionRepository{
 
     constructor(@inject("RoleModel") private readonly RoleModel : Model<RoleDocument> ) {}
 
-    async addPermissionRole(idRole: ObjectIdParam, idPermission: string): Promise<RoleDocument | null> {
-        throw new Error("Method not implemented.");
+    async addPermissionRole(idRoleParam: string, idPermission: string, session?: ClientSession): Promise<RoleDocument | null> {
+        
+        return await this.RoleModel.findOneAndUpdate(
+
+            {idRole : idRoleParam},
+            {$push : {permissions : idPermission}},
+            {new: true, useFindAndModify: true, session}
+        ).exec();
     }
-    async deletePermissionRole(idRole: ObjectIdParam, idPermission: string): Promise<RoleDocument | null> {
-        throw new Error("Method not implemented.");
+
+    async deletePermissionRole(idRoleParam: string, idPermission: string, session?: ClientSession): Promise<RoleDocument | null> {
+        return await this.RoleModel.findOneAndUpdate(
+
+            {idRole : idRoleParam},
+            {$pull : {permissions : idPermission}},
+            {new: true, useFindAndModify: true, session},
+        ).exec();
     }
 }

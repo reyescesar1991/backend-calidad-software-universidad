@@ -15,12 +15,13 @@ export interface IRoleRepository{
     deleteRole(idRole: ObjectIdParam, session ?: ClientSession) : Promise<RoleDocument | null>;
     activateRole(idRole : ObjectIdParam, session ?: ClientSession) : Promise<RoleDocument | null>;
     setDefaultRoleSystem(idRole: ObjectIdParam, session ?: ClientSession) : Promise<RoleDocument | null>;
+    unsetAllDefaultRoles(session?: ClientSession): Promise<void>;
 }
 
 export interface IRolePermissionRepository{
 
-    addPermissionRole(idRole : ObjectIdParam, idPermission : string) : Promise<RoleDocument | null>;
-    deletePermissionRole(idRole : ObjectIdParam, idPermission : string) : Promise<RoleDocument | null>;
+    addPermissionRole(idRoleParam : string, idPermission : string) : Promise<RoleDocument | null>;
+    deletePermissionRole(idRoleParam : string, idPermission : string) : Promise<RoleDocument | null>;
 }
 
 export interface IRolePermissionSecurityRepository{

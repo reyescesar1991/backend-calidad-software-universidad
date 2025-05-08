@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { PermissionDocument, PermissionModel } from "../../../../../db/models/permissionsModels/permission.model";
-import { LabelDuplicateError, LabelInvalidError, PermissionAlreadyInactiveError, PermissionDuplicateError } from "../../../../exceptions";
+import { LabelDuplicateError, LabelInvalidError, PermissionAlreadyInactiveError, PermissionDuplicateError, PermissionNotFoundError } from "../../../../exceptions";
 import { labelSchema } from "../../schemas/labelSchema.zod";
 import { inject, injectable } from "tsyringe";
 import { IPermissionRepository } from "../../../../../services/permission";
@@ -22,6 +22,11 @@ export class PermissionValidator{
 
             throw new PermissionAlreadyInactiveError();
         }
+    }
+
+    static validateExistsPermission(permission : PermissionDocument){
+
+        if(!permission) throw new PermissionNotFoundError();
     }
 
     static validateLabelFormat(label: string) : void{

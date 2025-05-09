@@ -130,3 +130,37 @@ export class RolNotHavePermissionsError extends AppError{
         this.name = "RolNotHavePermissionsError";
     }
 }
+
+export class RolPermissionNotAvailableError extends AppError{
+
+    code = 1513;
+
+    constructor(message : string = 'El rol no tiene permisos suficientes para habilitar esa funcionalidad'){
+
+        super(message);
+        this.name = "RolPermissionNotAvailable";
+    }
+}
+
+export class RolPermissionAlreadyAvailableError extends AppError{
+
+    code = 1514;
+
+    constructor(message : string = 'El rol ya tiene este permiso habilitado'){
+
+        super(message);
+        this.name = "RolPermissionAlreadyAvailable";
+    }
+}
+
+export class RoleIsNotActiveError extends AppError{
+
+    code = 1515;
+
+    constructor(message : string = 'El rol esta inactivo'){
+
+        super(message);
+        this.name = "RoleIsNotActiveError";
+    }
+}
+

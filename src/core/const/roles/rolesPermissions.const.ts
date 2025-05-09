@@ -38,6 +38,9 @@ export const VALID_PERMISSIONS: Record<string, string[]> = {
         'modificar_usuario',
         'listar_usuarios',
         'crear_usuario'
+    ],
+    "06" : [
+        'modificar_producto',
     ]
 };
 

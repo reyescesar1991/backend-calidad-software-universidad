@@ -2,6 +2,7 @@ import { ClientSession } from "mongoose";
 import { FilterOptions, RoleFilterKeys } from "../../../core/types";
 import { RoleDocument } from "../../../db/models";
 import { ObjectIdParam, RoleDto, UpdateRoleDto } from "../../../validations";
+import { PermissionDocument } from "../../../db/models/permissionsModels/permission.model";
 
 
 export interface IRoleRepository{
@@ -16,12 +17,13 @@ export interface IRoleRepository{
     activateRole(idRole : ObjectIdParam, session ?: ClientSession) : Promise<RoleDocument | null>;
     setDefaultRoleSystem(idRole: ObjectIdParam, session ?: ClientSession) : Promise<RoleDocument | null>;
     unsetAllDefaultRoles(session?: ClientSession): Promise<void>;
+    getPermissionsRole(customIdRole : string) : Promise<PermissionDocument[] | null>;
 }
 
 export interface IRolePermissionRepository{
 
-    addPermissionRole(idRoleParam : string, idPermission : string) : Promise<RoleDocument | null>;
-    deletePermissionRole(idRoleParam : string, idPermission : string) : Promise<RoleDocument | null>;
+    addPermissionRole(idRoleParam : string, permission : PermissionDocument, session ?: ClientSession) : Promise<RoleDocument | null>;
+    deletePermissionRole(idRoleParam : string, permission : PermissionDocument, session ?: ClientSession) : Promise<RoleDocument | null>;
 }
 
 export interface IRolePermissionSecurityRepository{

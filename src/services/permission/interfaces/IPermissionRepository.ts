@@ -5,6 +5,7 @@ export interface IPermissionRepository{
 
     createPermission(data : CreatePermissionDto) : Promise<PermissionDocument>;
     findPermissionById(id: ObjectIdParam) : Promise<PermissionDocument | null>;
+    findPermissionByKey(permissionKey : string) : Promise<PermissionDocument | null>;
     updatePermission(id: ObjectIdParam, data: UpdatePermissionDto) : Promise<PermissionDocument | null>;
     deletePermission(id: ObjectIdParam) : Promise<PermissionDocument | null>;
     togglePermissionCan(id: ObjectIdParam): Promise<PermissionDocument | null>;

@@ -66,6 +66,9 @@ export {RoleAlreadyInactiveError} from './roles/roles.exception';
 export {RoleAlreadyActiveError} from './roles/roles.exception';
 export {RoleIdLockError} from './roles/roles.exception';
 export {RolNotHavePermissionsError} from './roles/roles.exception';
+export {RolPermissionNotAvailableError} from './roles/roles.exception';
+export {RolPermissionAlreadyAvailableError} from './roles/roles.exception';
+export {RoleIsNotActiveError} from './roles/roles.exception';
 
 //generales
 

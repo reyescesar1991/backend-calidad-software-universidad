@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IRoleRepository } from "./interfaces/IRoleRepository";
+import { IRolePermissionRepository, IRoleRepository } from "./interfaces/IRoleRepository";
 import { PermissionValidator, RoleValidator } from "../../core/validators";
 import { ObjectIdParam, RoleDto, UpdateRoleDto } from "../../validations";
 import { RoleDocument } from "../../db/models";
@@ -18,6 +18,7 @@ export class RoleService {
         @inject("RoleValidator") private readonly roleValidator : RoleValidator,
         @inject("TransactionManager") private readonly transactionManager : TransactionManager,
         @inject("IPermissionRepository") private readonly permissionRepository: IPermissionRepository,
+        @inject("IRolePermissionRepository") private readonly rolePermissionRepository : IRolePermissionRepository,
         @inject("PermissionValidator") private readonly permissionValidator: PermissionValidator,
     ){}
 
@@ -227,15 +228,25 @@ export class RoleService {
 
                 try {
 
+                    //TODO: verificar si el rol esta active 
+
                     const role = await this.roleRepository.findRoleByCustomId(idRoleParam);
+
+                    RoleValidator.validateStatusRol(role.isActive);
 
                     RoleValidator.validateRoleExists(role);
 
-                    const permission = await this.permissionRepository.findByField("permission");
+                    const permission = await this.permissionRepository.findPermissionByKey(idPermission);
 
                     PermissionValidator.validateExistsPermission(permission);
 
-                    RoleValidator.validateRolValidsPermission(idRoleParam, idPermission);
+                    RoleValidator.validateRolValidsPermission(idRoleParam, permission.permission);
+
+                    const permissionsUser = await this.roleRepository.getPermissionsRole(role.idRole);
+                    
+                    RoleValidator.validateRolAlreadyPermissionActive(permissionsUser, permission);
+
+                    return await this.rolePermissionRepository.addPermissionRole(idRoleParam, permission, session);
                     
                 } catch (error) {
                     

@@ -4,16 +4,22 @@ import { ClientSession, Model } from "mongoose";
 import { RoleDocument } from "../../../db/models";
 import { FilterOptions, RoleFilterKeys } from "../../../core/types";
 import { ObjectIdParam, RoleDto, UpdateRoleDto } from "../../../validations";
+import { PermissionDocument } from "../../../db/models/permissionsModels/permission.model";
 
 @injectable()
 export class RoleRepositoryImpl implements IRoleRepository{
 
     constructor(@inject("RoleModel") private readonly RoleModel : Model<RoleDocument>){}
 
-
     async findRoleById(idRole: ObjectIdParam): Promise<RoleDocument | null> {
         
         return await this.RoleModel.findById(idRole).exec();
+    }
+    async getPermissionsRole(customIdRole: string): Promise<PermissionDocument[] | null> {
+        const permissions =  await this.RoleModel.findOne({idRole : customIdRole})
+        .populate<{ permissions: PermissionDocument[] }>("permissions");
+
+        return permissions.permissions;
     }
     async findRoleByCustomId(customIdRole: string): Promise<RoleDocument | null> {
         return await this.RoleModel.findOne({idRole : customIdRole}).exec();

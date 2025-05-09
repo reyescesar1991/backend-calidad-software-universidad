@@ -28,6 +28,12 @@ export class PermissionRepository implements IPermissionRepository {
 
         return this.permissionModel.findById(id).exec();
     }
+
+    async findPermissionByKey(permissionKey: string): Promise<PermissionDocument | null> {
+        
+        return await this.permissionModel.findOne({permission : permissionKey}).exec();
+    }
+
     async updatePermission(id: ObjectIdParam, data: UpdatePermissionDto): Promise<any> {
         return this.permissionModel.findByIdAndUpdate(id, data, { new: true, runValidators: true })
             .exec();

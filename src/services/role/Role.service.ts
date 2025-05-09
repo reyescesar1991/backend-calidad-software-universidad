@@ -228,8 +228,6 @@ export class RoleService {
 
                 try {
 
-                    //TODO: verificar si el rol esta active 
-
                     const role = await this.roleRepository.findRoleByCustomId(idRoleParam);
 
                     RoleValidator.validateStatusRol(role.isActive);

@@ -72,6 +72,7 @@ export {RoleIsNotActiveError} from './roles/roles.exception';
 export {RolPermissionSecurityAlreadyAvailableError} from './roles/roles.exception';
 export {RolNotHavePermissionsSecurityError} from './roles/roles.exception';
 export {RolPermissionSecurityNotAvailableError} from './roles/roles.exception';
+export {RolNotHavePermissionSecurityError} from './roles/roles.exception';
 
 //generales
 

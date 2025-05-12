@@ -197,3 +197,13 @@ export class RolPermissionSecurityNotAvailableError extends AppError{
     }
 }
 
+export class RolNotHavePermissionSecurityError extends AppError{
+
+    code = 1519;
+
+    constructor(message : string = 'Este rol no tiene ningun permiso de seguridad, verifica el ID'){
+
+        super(message);
+        this.name = "RolNotHavePermissionSecurityError";
+    }
+}

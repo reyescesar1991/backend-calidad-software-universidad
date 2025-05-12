@@ -327,8 +327,6 @@ export class RoleService {
 
                     return this.rolePermissionSecurityRepository.addPermissionSecurityRole(idRoleParam, permissionSecurity, session);
 
-                    // return null
-
                     
                 } catch (error) {
                     
@@ -339,5 +337,40 @@ export class RoleService {
     }
 
 
+    async deletePermissionSecurityRole(idRoleParam: string, idPermissionSecurity: string): Promise<RoleDocument | null> {
+        
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    const role = await this.roleRepository.findRoleByCustomId(idRoleParam);
+
+                    //Validamos que el rol exista
+                    RoleValidator.validateRoleExists(role);
+
+                    //Validamos que el rol este activo
+                    RoleValidator.validateStatusRol(role.isActive);
+
+                    //Obtenemos el permiso de seguridad
+                    const permissionSecurity = await this.permissionSecurityRepository.findPermissionSecurityByCustomId(idPermissionSecurity);
+
+                    //Verificamos que exista el permiso
+                    PermissionSecurityValidator.validateFoundPermissionSecurity(permissionSecurity);
+
+                    //Validamos que el permiso este presente en el rol para no replicar
+                    await this.roleValidator.validatePermissionSecurityBeforeDelete(idRoleParam, idPermissionSecurity);
+
+                    return await this.rolePermissionSecurityRepository.deletePermissionSecurityRole(idRoleParam, permissionSecurity, session);
+                    
+                } catch (error) {
+                    
+                    handleError(error);
+                }
+            }
+        )
+        
+    }
 
 }

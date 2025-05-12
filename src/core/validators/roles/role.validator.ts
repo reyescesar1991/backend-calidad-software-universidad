@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IRoleRepository } from "../../../services/role/interfaces/IRoleRepository";
 import { PermissionSecurityDocument, RoleDocument } from "../../../db/models";
-import { FilterRoleError, IdRoleAlreadyExistsError, PermissionNotFoundError, RoleAlreadyActiveError, RoleAlreadyExistsError, RoleAlreadyInactiveError, RoleIdLockError, RoleIsNotActiveError, RoleNotFoundError, RoleNotValidDefaultSystemError, RolesNotFoundByFilterError, RolesNotFoundDatabaseError, RolNotHavePermissionsError, RolNotHavePermissionsSecurityError, RolPermissionAlreadyAvailableError, RolPermissionNotAvailableError, RolPermissionSecurityAlreadyAvailableError, RolPermissionSecurityNotAvailableError } from "../../exceptions";
+import { FilterRoleError, IdRoleAlreadyExistsError, PermissionNotFoundError, PermissionSecurityNotFoundError, RoleAlreadyActiveError, RoleAlreadyExistsError, RoleAlreadyInactiveError, RoleIdLockError, RoleIsNotActiveError, RoleNotFoundError, RoleNotValidDefaultSystemError, RolesNotFoundByFilterError, RolesNotFoundDatabaseError, RolNotHavePermissionSecurityError, RolNotHavePermissionsError, RolNotHavePermissionsSecurityError, RolPermissionAlreadyAvailableError, RolPermissionNotAvailableError, RolPermissionSecurityAlreadyAvailableError, RolPermissionSecurityNotAvailableError } from "../../exceptions";
 import { FilterOptions, RoleFilterKeys } from "../../types";
 import { ObjectIdParam, RoleFilterSchema } from "../../../validations";
 import { ROLS_DEFAULT, ROLS_NOT_VALID_DEFAULT, VALID_PERMISSIONS, VALID_PERMISSIONS_SECURITY } from "../../const";
@@ -159,6 +159,21 @@ export class RoleValidator {
         })
 
         if(existsPermission) throw new RolPermissionSecurityAlreadyAvailableError();
+    }
+
+    async validatePermissionSecurityBeforeDelete(idRole: string, idPermissionSecurity: string): Promise<void> {
+
+        const permissionsRole = await this.roleRepository.getPermissionsSecurityRole(idRole);
+
+        if(permissionsRole.length === 0) throw new RolNotHavePermissionSecurityError();
+
+        const exists = permissionsRole.some((permission) => {
+
+            return permission.id === idPermissionSecurity;
+        });
+        
+        if (!exists) throw new PermissionSecurityNotFoundError("Permiso no encontrado en el usuario");
+
     }
 
 

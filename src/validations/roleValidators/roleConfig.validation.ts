@@ -13,4 +13,13 @@ export const roleConfigSchemaZod = z.object({
 
 });
 
+export const updateRoleConfigSchemaZod = z.object({
+
+  maxLoginAttempts : z.number().gte(0, "El mínimo de intentos es 1").optional(),
+  isActive : z.boolean().optional(),
+  rolName : z.string().min(1, "Nombre de rol es requerido").optional(),
+
+});
+
 export type RoleConfigDto = z.infer<typeof roleConfigSchemaZod>;
+export type UpdateRoleConfigDto = z.infer<typeof updateRoleConfigSchemaZod>;

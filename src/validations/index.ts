@@ -14,6 +14,7 @@ export {PaymentTermDto} from './paymentTermValidators/paymentTerm.validation';
 export {TwoFactorAuthDto} from './usersValidators/twoFactorAuth.validation';
 export {DepartmentDto} from './departmentValidators/department.validation';
 export {RoleConfigDto} from './roleValidators/roleConfig.validation';
+export {UpdateRoleConfigDto} from './roleValidators/roleConfig.validation';
 export {UserDto} from './usersValidators/user.validation';
 export {WarehouseDto} from './warehouseValidators/warehouse.validation';
 export {ProductDto} from './productValidators/product.validation';
@@ -40,6 +41,7 @@ export {paymentTermSchemaZod} from './paymentTermValidators/paymentTerm.validati
 export {twoFactorAuthSchemaZod} from './usersValidators/twoFactorAuth.validation';
 export {departmentSchemaZod} from './departmentValidators/department.validation';
 export {roleConfigSchemaZod} from './roleValidators/roleConfig.validation';
+export {updateRoleConfigSchemaZod} from './roleValidators/roleConfig.validation';
 export {userSchemaZod} from './usersValidators/user.validation';
 export {warehouseSchemaZod} from './warehouseValidators/warehouse.validation';
 export {productSchemaZod} from './productValidators/product.validation';

@@ -1,29 +1,26 @@
 import 'reflect-metadata';
-import { disconnectMongo, initializeTestEnvironment } from '../../core/utils/connectDb';
 import "../../core/config/dependenciesPermissions/dependencies";
-import { configureDependenciesRoles } from '../../core/config/dependenciesRoles/dependencies';
-import { objectIdSchema } from '../../validations';
+import { configureDependenciesRoles } from "../../core/config/dependenciesRoles/dependencies";
+import { disconnectMongo, initializeTestEnvironment } from "../../core/utils/connectDb";
 import { container } from 'tsyringe';
 import { RoleService } from '../../services/role/Role.service';
 
-
 initializeTestEnvironment();
 
-
-const runTestActivateRole = async () => {
-
+const runTestDeletePermissionRole = async () => {
 
     try {
 
         await configureDependenciesRoles();
 
-        const idRole = objectIdSchema.parse("681cbf83983a4218cb3de111");
+        const roleId : string = "06";
+        const permissionId : string = 'ver_listar_productos';
 
         const roleService = container.resolve(RoleService);
 
-        const result = await roleService.activateRole(idRole);
+        const result = await roleService.deletePermissionRole(roleId, permissionId);
 
-        console.log("📄 Role activado:", result);
+        console.log("📄 Permisos del rol actualizados:", result);
         
     } catch (error) {
 
@@ -34,9 +31,10 @@ const runTestActivateRole = async () => {
 
         disconnectMongo();
     }
+
 }
 
-runTestActivateRole().then(() => {
+runTestDeletePermissionRole().then(() => {
 
     console.log('Proceso de seed completo');
 })

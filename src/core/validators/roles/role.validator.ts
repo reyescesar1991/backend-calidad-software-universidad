@@ -1,10 +1,10 @@
 import { inject, injectable } from "tsyringe";
 import { IRoleRepository } from "../../../services/role/interfaces/IRoleRepository";
-import { RoleDocument } from "../../../db/models";
-import { FilterRoleError, IdRoleAlreadyExistsError, RoleAlreadyActiveError, RoleAlreadyExistsError, RoleAlreadyInactiveError, RoleIdLockError, RoleIsNotActiveError, RoleNotFoundError, RoleNotValidDefaultSystemError, RolesNotFoundByFilterError, RolesNotFoundDatabaseError, RolNotHavePermissionsError, RolPermissionAlreadyAvailableError, RolPermissionNotAvailableError } from "../../exceptions";
+import { PermissionSecurityDocument, RoleDocument } from "../../../db/models";
+import { FilterRoleError, IdRoleAlreadyExistsError, PermissionNotFoundError, RoleAlreadyActiveError, RoleAlreadyExistsError, RoleAlreadyInactiveError, RoleIdLockError, RoleIsNotActiveError, RoleNotFoundError, RoleNotValidDefaultSystemError, RolesNotFoundByFilterError, RolesNotFoundDatabaseError, RolNotHavePermissionsError, RolNotHavePermissionsSecurityError, RolPermissionAlreadyAvailableError, RolPermissionNotAvailableError, RolPermissionSecurityAlreadyAvailableError, RolPermissionSecurityNotAvailableError } from "../../exceptions";
 import { FilterOptions, RoleFilterKeys } from "../../types";
 import { ObjectIdParam, RoleFilterSchema } from "../../../validations";
-import { ROLS_DEFAULT, ROLS_NOT_VALID_DEFAULT, VALID_PERMISSIONS } from "../../const";
+import { ROLS_DEFAULT, ROLS_NOT_VALID_DEFAULT, VALID_PERMISSIONS, VALID_PERMISSIONS_SECURITY } from "../../const";
 import { ObjectId, Types } from "mongoose";
 import { PermissionDocument } from "../../../db/models/permissionsModels/permission.model";
 
@@ -90,6 +90,23 @@ export class RoleValidator {
         return permissionsForRole.includes(permissionKey);
     }
 
+    static validateRolValidsPermissionSecurity(idRole: string, permissionSecurityKey: string) {
+
+        const permissionsSecurityForRole = VALID_PERMISSIONS_SECURITY[idRole] || [];
+
+        if (!permissionsSecurityForRole || !Array.isArray(permissionsSecurityForRole)) {
+
+            throw new RolNotHavePermissionsSecurityError();
+        }
+
+        if (!permissionsSecurityForRole.includes(permissionSecurityKey)) {
+
+            throw new RolPermissionSecurityNotAvailableError();
+        }
+
+        return permissionsSecurityForRole.includes(permissionSecurityKey);
+    }
+
     static validateRolAlreadyPermissionActive(permissions : PermissionDocument[], permissionAdd : PermissionDocument) : void {
 
         const existsPermission = permissions.some((permission) => {
@@ -117,6 +134,31 @@ export class RoleValidator {
 
         if (exists) throw new IdRoleAlreadyExistsError();
 
+    }
+
+    async validatePermissionBeforeDelete(idRole: string, idPermission: string): Promise<void> {
+
+        const permissionsRole = await this.roleRepository.getPermissionsRole(idRole);
+
+        if(permissionsRole.length === 0) throw new RolesNotFoundDatabaseError("El usuario no tiene permisos disponibles");
+
+        const exists = permissionsRole.some((permission) => {
+
+            return permission.permission === idPermission;
+        });
+        
+        if (!exists) throw new PermissionNotFoundError("Permiso no encontrado en el usuario");
+
+    }
+
+    async validateRolAlreadyPermissionSecurityActive(permissionsSecurity : PermissionSecurityDocument[], permissionSecurityAdd : PermissionSecurityDocument){
+
+        const existsPermission = permissionsSecurity.some((permission) => {
+            
+            return permission.permission === permissionSecurityAdd.permission;
+        })
+
+        if(existsPermission) throw new RolPermissionSecurityAlreadyAvailableError();
     }
 
 

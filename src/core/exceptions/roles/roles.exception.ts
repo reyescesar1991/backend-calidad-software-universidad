@@ -164,3 +164,36 @@ export class RoleIsNotActiveError extends AppError{
     }
 }
 
+export class RolPermissionSecurityAlreadyAvailableError extends AppError{
+
+    code = 1516;
+
+    constructor(message : string = 'El rol ya tiene este permiso de seguridad habilitado'){
+
+        super(message);
+        this.name = "RolPermissionSecurityAlreadyAvailableError";
+    }
+}
+
+export class RolNotHavePermissionsSecurityError extends AppError{
+
+    code = 1517;
+
+    constructor(message : string = 'El rol no tiene permisos de seguridad disponibles, configure previamente la data'){
+
+        super(message);
+        this.name = "RolNotHavePermissionsSecurityError";
+    }
+}
+
+export class RolPermissionSecurityNotAvailableError extends AppError{
+
+    code = 1518;
+
+    constructor(message : string = 'El permiso de seguridad no puede ser agregado a este rol, intente con un rol administrador'){
+
+        super(message);
+        this.name = "RolPermissionSecurityNotAvailableError";
+    }
+}
+

@@ -10,7 +10,7 @@ import { timeOutMongoError } from "../../../core/utils/timeOutError";
 @injectable()
 export class PermissionSecurityRepository implements IPermissionSecurityRepository {
 
-    constructor(@inject("PermissionSecurityModel") private readonly permissionSecurityModel: Model<PermissionSecurityDocument>) { };
+    constructor(@inject("PermissionSecurityModel") private readonly permissionSecurityModel: Model<PermissionSecurityDocument>) { }
 
     createPermissionSecurity(data: PermissionSecurityDto): Promise<PermissionSecurityDocument> {
 
@@ -80,6 +80,11 @@ export class PermissionSecurityRepository implements IPermissionSecurityReposito
             { new: true },
         ).exec();
     }
+
+    async findPermissionSecurityByCustomId(permissionKey: string): Promise<PermissionSecurityDocument | null> {
+        
+        return await this.permissionSecurityModel.findOne({id : permissionKey}).exec();
+    };
 
     async findByField<T extends keyof PermissionSecurityDocument>(
         field: T,

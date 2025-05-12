@@ -1,29 +1,31 @@
 import { inject, injectable } from "tsyringe";
-import { IRolePermissionRepository, IRoleRepository } from "./interfaces/IRoleRepository";
-import { PermissionValidator, RoleValidator } from "../../core/validators";
+import { IRolePermissionRepository, IRolePermissionSecurityRepository, IRoleRepository } from "./interfaces/IRoleRepository";
+import { PermissionSecurityValidator, PermissionValidator, RoleValidator } from "../../core/validators";
 import { ObjectIdParam, RoleDto, UpdateRoleDto } from "../../validations";
 import { RoleDocument } from "../../db/models";
 import { handleError, RoleNotAdminManagePermissionError, RoleNotValidDefaultSystemError } from "../../core/exceptions";
 import { FilterOptions, RoleFilterKeys } from "../../core/types";
 import { TransactionManager } from "../../core/database/transactionManager";
-import { ROLS_DEFAULT, ROLS_NOT_VALID_DEFAULT } from "../../core/const";
 import { IPermissionRepository } from "../permission";
+import { IPermissionSecurityRepository } from "../permissionSecurity";
 
 @injectable()
 export class RoleService {
 
 
     constructor(
-        @inject("IRoleRepository") private readonly roleRepository : IRoleRepository,
-        @inject("RoleValidator") private readonly roleValidator : RoleValidator,
-        @inject("TransactionManager") private readonly transactionManager : TransactionManager,
+        @inject("IRoleRepository") private readonly roleRepository: IRoleRepository,
+        @inject("RoleValidator") private readonly roleValidator: RoleValidator,
+        @inject("TransactionManager") private readonly transactionManager: TransactionManager,
         @inject("IPermissionRepository") private readonly permissionRepository: IPermissionRepository,
-        @inject("IRolePermissionRepository") private readonly rolePermissionRepository : IRolePermissionRepository,
+        @inject("IPermissionSecurityRepository") private readonly permissionSecurityRepository: IPermissionSecurityRepository,
+        @inject("IRolePermissionRepository") private readonly rolePermissionRepository: IRolePermissionRepository,
         @inject("PermissionValidator") private readonly permissionValidator: PermissionValidator,
-    ){}
+        @inject("IRolePermissionSecurityRepository") private readonly rolePermissionSecurityRepository : IRolePermissionSecurityRepository,
+    ) { }
 
     async findRoleById(idRole: ObjectIdParam): Promise<RoleDocument | null> {
-        
+
         try {
 
             const role = await this.roleRepository.findRoleById(idRole);
@@ -31,16 +33,16 @@ export class RoleService {
             RoleValidator.validateRoleExists(role);
 
             return role;
-            
+
         } catch (error) {
             handleError(error);
         }
     }
 
-    async findRoleByCustomId(customIdRole : string) : Promise<RoleDocument | null>{
+    async findRoleByCustomId(customIdRole: string): Promise<RoleDocument | null> {
 
         try {
-            
+
             const role = await this.roleRepository.findRoleByCustomId(customIdRole);
 
             RoleValidator.validateRoleExists(role);
@@ -49,12 +51,12 @@ export class RoleService {
 
 
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
-    async searchRolesByFilters(filter : FilterOptions<RoleFilterKeys>) : Promise<RoleDocument[] | null>{
+    async searchRolesByFilters(filter: FilterOptions<RoleFilterKeys>): Promise<RoleDocument[] | null> {
 
 
         try {
@@ -66,7 +68,7 @@ export class RoleService {
             RoleValidator.validateFoundRoles(roles);
 
             return roles;
-            
+
         } catch (error) {
 
             handleError(error);
@@ -74,7 +76,7 @@ export class RoleService {
         }
     }
 
-    async listRoles() : Promise<RoleDocument[] | null>{
+    async listRoles(): Promise<RoleDocument[] | null> {
 
         try {
 
@@ -83,7 +85,7 @@ export class RoleService {
             RoleValidator.validateListRoles(roles);
 
             return roles;
-            
+
         } catch (error) {
 
             handleError(error);
@@ -91,7 +93,7 @@ export class RoleService {
         }
     }
 
-    async createRole(dataRole : RoleDto) : Promise<RoleDocument | null>{
+    async createRole(dataRole: RoleDto): Promise<RoleDocument | null> {
 
         return this.transactionManager.executeTransaction(
 
@@ -101,25 +103,25 @@ export class RoleService {
 
                     await this.roleValidator.validateUniquenessRole(dataRole.idRole);
 
-                    if(dataRole.isDefault && dataRole.idRole != '01') throw new RoleNotValidDefaultSystemError();
+                    if (dataRole.isDefault && dataRole.idRole != '01') throw new RoleNotValidDefaultSystemError();
 
-                    if(dataRole.managePermissions && dataRole.idRole != '04') throw new RoleNotAdminManagePermissionError();
+                    if (dataRole.managePermissions && dataRole.idRole != '04') throw new RoleNotAdminManagePermissionError();
 
                     const role = await this.roleRepository.createRole(dataRole, session);
 
                     return role;
-                    
-                    
+
+
                 } catch (error) {
 
-                    handleError(error);   
+                    handleError(error);
 
                 }
             }
         )
     }
 
-    async updateRole(idRole: ObjectIdParam, dataRole: UpdateRoleDto): Promise<RoleDocument | null>{
+    async updateRole(idRole: ObjectIdParam, dataRole: UpdateRoleDto): Promise<RoleDocument | null> {
 
         return await this.transactionManager.executeTransaction(
 
@@ -133,20 +135,20 @@ export class RoleService {
 
                     RoleValidator.validateIdRoleNotChange(role.idRole);
 
-                    if(dataRole.idRole) await this.roleValidator.validateUniquenessIdRole(dataRole.idRole);
+                    if (dataRole.idRole) await this.roleValidator.validateUniquenessIdRole(dataRole.idRole);
 
                     return await this.roleRepository.updateRole(idRole, dataRole, session);
 
-                    
+
                 } catch (error) {
-                    
+
                     handleError(error);
                 }
             }
         )
     }
 
-    async deleteRole(idRole: ObjectIdParam) : Promise<RoleDocument | null>{
+    async deleteRole(idRole: ObjectIdParam): Promise<RoleDocument | null> {
 
         return await this.transactionManager.executeTransaction(
 
@@ -161,7 +163,7 @@ export class RoleService {
                     RoleValidator.validateRoleAlreadyInactive(role.isActive);
 
                     return await this.roleRepository.deleteRole(idRole, session);
-                    
+
                 } catch (error) {
 
                     handleError(error);
@@ -170,7 +172,7 @@ export class RoleService {
         )
     }
 
-    async activateRole(idRole : ObjectIdParam) : Promise<RoleDocument | null>{
+    async activateRole(idRole: ObjectIdParam): Promise<RoleDocument | null> {
 
         return await this.transactionManager.executeTransaction(
 
@@ -185,16 +187,16 @@ export class RoleService {
                     RoleValidator.validateRoleAlreadyActive(role.isActive);
 
                     return await this.roleRepository.activateRole(idRole, session);
-                    
+
                 } catch (error) {
-                    
+
                     handleError(error);
                 }
             }
         )
     }
 
-    async setDefaultRoleSystem(idRole: ObjectIdParam) : Promise<RoleDocument | null>{
+    async setDefaultRoleSystem(idRole: ObjectIdParam): Promise<RoleDocument | null> {
 
         return await this.transactionManager.executeTransaction(
 
@@ -213,7 +215,7 @@ export class RoleService {
                     return await this.roleRepository.setDefaultRoleSystem(idRole, session);
 
                 } catch (error) {
-                    
+
                     handleError(error);
                 }
             }
@@ -221,7 +223,7 @@ export class RoleService {
     }
 
     async addPermissionRole(idRoleParam: string, idPermission: string): Promise<RoleDocument | null> {
-        
+
         return await this.transactionManager.executeTransaction(
 
             async (session) => {
@@ -241,10 +243,92 @@ export class RoleService {
                     RoleValidator.validateRolValidsPermission(idRoleParam, permission.permission);
 
                     const permissionsUser = await this.roleRepository.getPermissionsRole(role.idRole);
-                    
+
                     RoleValidator.validateRolAlreadyPermissionActive(permissionsUser, permission);
 
                     return await this.rolePermissionRepository.addPermissionRole(idRoleParam, permission, session);
+
+                } catch (error) {
+
+                    handleError(error);
+                }
+            }
+        )
+    }
+
+    async deletePermissionRole(idRoleParam: string, idPermission: string): Promise<RoleDocument | null> {
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    const role = await this.roleRepository.findRoleByCustomId(idRoleParam);
+
+                    //Validamos que el rol exista
+                    RoleValidator.validateRoleExists(role);
+
+                    //Validamos que el rol este activo
+                    RoleValidator.validateStatusRol(role.isActive);
+
+                    const permission = await this.permissionRepository.findPermissionByKey(idPermission);
+
+                    //Validamos que exista el permiso
+                    PermissionValidator.validateExistsPermission(permission);
+
+                    //Validamos que el permiso este presente en el rol
+                    await this.roleValidator.validatePermissionBeforeDelete(idRoleParam, idPermission);
+
+                    //Eliminamos el permiso del rol
+                    return await this.rolePermissionRepository.deletePermissionRole(idRoleParam, permission, session);
+
+
+                } catch (error) {
+
+                    handleError(error);
+                }
+            }
+        )
+    }
+
+
+    async addPermissionSecurityRole(idRoleParam: string, idPermissionSecurity: string): Promise<RoleDocument | null>{
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+
+                try {
+
+                    const role = await this.roleRepository.findRoleByCustomId(idRoleParam);
+
+                    //Validamos que el rol exista
+                    RoleValidator.validateRoleExists(role);
+
+                    //Validamos que el rol este activo
+                    RoleValidator.validateStatusRol(role.isActive);
+
+                    //Obtenemos el permiso de seguridad
+                    const permissionSecurity = await this.permissionSecurityRepository.findPermissionSecurityByCustomId(idPermissionSecurity);
+
+                    //Verificamos que exista el permiso
+                    PermissionSecurityValidator.validateFoundPermissionSecurity(permissionSecurity);
+
+                    //Verificamos que el usuario pueda adquirir ese permiso de seguridad
+                    RoleValidator.validateRolValidsPermissionSecurity(idRoleParam, permissionSecurity.id);
+
+                    //obtenemos todos los permisos del usuario actual
+                    const permissionsSecurityUser = await this.roleRepository.getPermissionsSecurityRole(role.idRole);
+
+                    //Validamos que el permiso este presente en el rol para no replicar
+                    await this.roleValidator.validateRolAlreadyPermissionSecurityActive(permissionsSecurityUser, permissionSecurity);
+
+                    return this.rolePermissionSecurityRepository.addPermissionSecurityRole(idRoleParam, permissionSecurity, session);
+
+                    // return null
+
                     
                 } catch (error) {
                     
@@ -255,5 +339,5 @@ export class RoleService {
     }
 
 
-    
+
 }

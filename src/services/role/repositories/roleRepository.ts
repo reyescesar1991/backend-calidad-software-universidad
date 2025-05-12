@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IRoleRepository } from "../interfaces/IRoleRepository";
 import { ClientSession, Model } from "mongoose";
-import { RoleDocument } from "../../../db/models";
+import { PermissionSecurityDocument, RoleDocument } from "../../../db/models";
 import { FilterOptions, RoleFilterKeys } from "../../../core/types";
 import { ObjectIdParam, RoleDto, UpdateRoleDto } from "../../../validations";
 import { PermissionDocument } from "../../../db/models/permissionsModels/permission.model";
@@ -17,9 +17,15 @@ export class RoleRepositoryImpl implements IRoleRepository{
     }
     async getPermissionsRole(customIdRole: string): Promise<PermissionDocument[] | null> {
         const permissions =  await this.RoleModel.findOne({idRole : customIdRole})
-        .populate<{ permissions: PermissionDocument[] }>("permissions");
+        .populate<{ permissions: PermissionDocument[] }>("permissions").exec();
 
         return permissions.permissions;
+    }
+    async getPermissionsSecurityRole(customIdRole: string): Promise<PermissionSecurityDocument[] | null> {
+        const permissionsSecurity = await this.RoleModel.findOne({idRole : customIdRole})
+        .populate<{permissionsSecurity : PermissionSecurityDocument[]}>("permissionsSecurity").exec();
+
+        return permissionsSecurity.permissionsSecurity;
     }
     async findRoleByCustomId(customIdRole: string): Promise<RoleDocument | null> {
         return await this.RoleModel.findOne({idRole : customIdRole}).exec();

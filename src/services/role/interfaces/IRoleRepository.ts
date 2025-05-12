@@ -1,6 +1,6 @@
 import { ClientSession } from "mongoose";
 import { FilterOptions, RoleFilterKeys } from "../../../core/types";
-import { RoleDocument } from "../../../db/models";
+import { PermissionSecurityDocument, RoleDocument } from "../../../db/models";
 import { ObjectIdParam, RoleDto, UpdateRoleDto } from "../../../validations";
 import { PermissionDocument } from "../../../db/models/permissionsModels/permission.model";
 
@@ -18,6 +18,7 @@ export interface IRoleRepository{
     setDefaultRoleSystem(idRole: ObjectIdParam, session ?: ClientSession) : Promise<RoleDocument | null>;
     unsetAllDefaultRoles(session?: ClientSession): Promise<void>;
     getPermissionsRole(customIdRole : string) : Promise<PermissionDocument[] | null>;
+    getPermissionsSecurityRole(customIdRole : string) : Promise<PermissionSecurityDocument[] | null>;
 }
 
 export interface IRolePermissionRepository{
@@ -28,6 +29,6 @@ export interface IRolePermissionRepository{
 
 export interface IRolePermissionSecurityRepository{
 
-    addPermissionSecurityRole(idRole : ObjectIdParam, idPermissionSecurity : string) : Promise<RoleDocument | null>;
-    deletePermissionSecurityRole(idRole : ObjectIdParam, idPermissionSecurity : string) : Promise<RoleDocument | null>;
+    addPermissionSecurityRole(idRole: string, permissionSecurity: PermissionSecurityDocument, session?: ClientSession) : Promise<RoleDocument | null>;
+    deletePermissionSecurityRole(idRole: string, permissionSecurity: PermissionSecurityDocument, session?: ClientSession) : Promise<RoleDocument | null>;
 }

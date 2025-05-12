@@ -6,6 +6,7 @@ export interface IPermissionSecurityRepository{
 
     createPermissionSecurity(data: PermissionSecurityDto) : Promise<PermissionSecurityDocument>;
     findPermissionSecurityById(idPermission : ObjectIdParam) : Promise<PermissionSecurityDocument | null>;
+    findPermissionSecurityByCustomId(permissionKey : string) : Promise<PermissionSecurityDocument | null>;
     updatePermissionSecurity(idPermission: ObjectIdParam, data : UpdatePermissionSecurityDto) : Promise<PermissionSecurityDocument | null>;
     deletePermissionSecurity(idPermission: ObjectIdParam) : Promise<PermissionSecurityDocument | null>;
     togglePermissionSecurityActive(idPermission: ObjectIdParam) : Promise<PermissionSecurityDocument | null>;

@@ -1,34 +1,33 @@
 import 'reflect-metadata';
-import { disconnectMongo, initializeTestEnvironment } from '../../core/utils/connectDb';
 import "../../core/config/dependenciesPermissions/dependencies";
+import "../../core/config/dependenciesPermissionsSecurity/dependencies";
+import { disconnectMongo, initializeTestEnvironment } from "../../core/utils/connectDb";
 import { configureDependenciesRoles } from '../../core/config/dependenciesRoles/dependencies';
-import { objectIdSchema } from '../../validations';
 import { container } from 'tsyringe';
 import { RoleService } from '../../services/role/Role.service';
 
-
 initializeTestEnvironment();
 
-
-const runTestActivateRole = async () => {
-
+const runTestAddPermissionSecurityRole = async () => {
 
     try {
 
         await configureDependenciesRoles();
 
-        const idRole = objectIdSchema.parse("681cbf83983a4218cb3de111");
+        const idRole : string = '06';
+        const idPermissionSecurity : string = 'force_password_reset';
 
         const roleService = container.resolve(RoleService);
 
-        const result = await roleService.activateRole(idRole);
+        const result = await roleService.addPermissionSecurityRole(idRole, idPermissionSecurity);
 
-        console.log("📄 Role activado:", result);
+        console.log("📄 Permiso de seguridad actualizados:", result);
         
     } catch (error) {
 
         console.error("❌ Error:", error.message);
         process.exit(1);  
+
         
     } finally {
 
@@ -36,7 +35,7 @@ const runTestActivateRole = async () => {
     }
 }
 
-runTestActivateRole().then(() => {
+runTestAddPermissionSecurityRole().then(() => {
 
     console.log('Proceso de seed completo');
 })

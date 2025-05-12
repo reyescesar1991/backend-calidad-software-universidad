@@ -104,7 +104,9 @@
     "script:defaultsystem-rol" : "ts-node src/scripts/roles/testSetDefaultRole.ts",
     "script:activate-rol" : "ts-node src/scripts/roles/testActivateRole.ts",
     "script:delete-rol" : "ts-node src/scripts/roles/testDeleteRole.ts",
-    "script:addpermission-rol" : "ts-node src/scripts/roles/testAddPermissionRole.ts"
+    "script:addpermission-rol" : "ts-node src/scripts/roles/testAddPermissionRole.ts",
+    "script:deletepermission-rol" : "ts-node src/scripts/roles/testDeletePermissionRole.ts",
+    "script:addpermissionsecurity-rol" : "ts-node src/scripts/roles/testAddPermissionSecurity.ts"
 
   },
   "author": "Google LLC",

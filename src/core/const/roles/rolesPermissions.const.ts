@@ -45,10 +45,16 @@ export const VALID_PERMISSIONS: Record<string, string[]> = {
 };
 
 export const VALID_PERMISSIONS_SECURITY: Record<string, string[]> = {
-    'Administrador' : [
+    '04' : [
         'forzar_cambio_contraseña',
         'bloquear_cuenta_temporalmente',
         'autenticacion_factor',
+    ],
+    '06' : [
+
+        'force_password_reset',
+        'account_lock',
+        'two_factor_auth'
     ]
 };
 

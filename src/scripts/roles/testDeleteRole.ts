@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import "../../core/config/dependenciesPermissions/dependencies";
+import "../../core/config/dependenciesPermissionsSecurity/dependencies";
 import { disconnectMongo, initializeTestEnvironment } from '../../core/utils/connectDb';
 import { configureDependenciesRoles } from '../../core/config/dependenciesRoles/dependencies';
 import { objectIdSchema } from '../../validations';

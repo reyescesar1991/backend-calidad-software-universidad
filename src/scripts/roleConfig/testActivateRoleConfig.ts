@@ -9,7 +9,7 @@ import { RoleConfigService } from '../../services/roleConfig/roleConfig.service'
 initializeTestEnvironment();
 
 
-const runTestFindRoleConfigById = async () => {
+const runTestActivateRoleConfig = async () => {
 
     try {
 
@@ -19,9 +19,9 @@ const runTestFindRoleConfigById = async () => {
 
         const roleConfigService = container.resolve(RoleConfigService);
 
-        const result = await roleConfigService.findConfigRoleById(rolConfigId);
+        const result = await roleConfigService.activateConfigRole(rolConfigId);
 
-        console.log("📄 Configuración de Role encontrada por ID:", result);
+        console.log("📄 Configuración de Role encontrada y activada:", result);
         
 
     } catch (error) {
@@ -35,7 +35,7 @@ const runTestFindRoleConfigById = async () => {
     }
 }
 
-runTestFindRoleConfigById().then(() => {
+runTestActivateRoleConfig().then(() => {
 
     console.log('Proceso de seed completo');
 })

@@ -4,24 +4,28 @@ import { configureDependenciesRoleConfig } from '../../core/config/dependenciesR
 import { objectIdSchema } from '../../validations';
 import { container } from 'tsyringe';
 import { RoleConfigService } from '../../services/roleConfig/roleConfig.service';
+import { FilterOptions, RoleConfigFilterKeys } from '../../core/types';
 
 
 initializeTestEnvironment();
 
 
-const runTestFindRoleConfigById = async () => {
+const runTestFindRoleConfigByFilter = async () => {
 
     try {
 
         await configureDependenciesRoleConfig();
 
-        const rolConfigId = objectIdSchema.parse("67f7f643b65f69c726675981");
+        const rolConfigFilter : FilterOptions<RoleConfigFilterKeys> = {
+
+            maxLoginAttempts : 5
+        };
 
         const roleConfigService = container.resolve(RoleConfigService);
 
-        const result = await roleConfigService.findConfigRoleById(rolConfigId);
+        const result = await roleConfigService.searchConfigRoleByFilter(rolConfigFilter);
 
-        console.log("📄 Configuración de Role encontrada por ID:", result);
+        console.log("📄 Configuración de Role encontrada por filtro:", result);
         
 
     } catch (error) {
@@ -35,7 +39,7 @@ const runTestFindRoleConfigById = async () => {
     }
 }
 
-runTestFindRoleConfigById().then(() => {
+runTestFindRoleConfigByFilter().then(() => {
 
     console.log('Proceso de seed completo');
 })

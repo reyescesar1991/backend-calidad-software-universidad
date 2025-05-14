@@ -27,3 +27,4 @@ export {SubrouteFilterKeys} from './filtersOptions/filterOptions.filter';
 export {RouteFilterKeys} from './filtersOptions/filterOptions.filter';
 export {ModuleFilterKeys} from './filtersOptions/filterOptions.filter';
 export {RoleFilterKeys} from './filtersOptions/filterOptions.filter';
+export {RoleConfigFilterKeys} from './filtersOptions/filterOptions.filter';

@@ -21,3 +21,4 @@ export {labelSchema} from './permissions/schemas/labelSchema.zod';
 //roles
 
 export {RoleValidator} from './roles/role.validator';
+export {RoleConfigValidator} from './roles/roleConfig.validator';

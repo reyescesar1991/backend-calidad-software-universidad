@@ -5,3 +5,5 @@ export type RouteFilterKeys = "active" | "path" | "name" | "id";
 export type ModuleFilterKeys = "id" | "title"| "active";
 
 export type RoleFilterKeys = "idRole" | "name"| "label" | "description"| "isActive"| "isDefault"
+
+export type RoleConfigFilterKeys = "maxLoginAttempts" | "rolName"| "isActive"

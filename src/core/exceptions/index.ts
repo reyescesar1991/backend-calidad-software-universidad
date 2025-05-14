@@ -74,6 +74,18 @@ export {RolNotHavePermissionsSecurityError} from './roles/roles.exception';
 export {RolPermissionSecurityNotAvailableError} from './roles/roles.exception';
 export {RolNotHavePermissionSecurityError} from './roles/roles.exception';
 
+//RoleConfig
+
+export {RoleConfigNotFoundError} from './roles/roleConfig.exception';
+export {RoleConfigNotFoundByNameError} from './roles/roleConfig.exception';
+export {FilterRoleConfigError} from './roles/roleConfig.exception';
+export {RoleConfigsNotFoundByFilterError} from './roles/roleConfig.exception';
+export {RoleConfigAlreadyActiveError} from './roles/roleConfig.exception';
+export {RoleConfigAlreadyInactiveError} from './roles/roleConfig.exception';
+export {RoleConfigAlreadyExistsError} from './roles/roleConfig.exception';
+export {RoleConfigRoleNotExistsError} from './roles/roleConfig.exception';
+export {RolConfigMaxLoginAttemptsNotValidError} from './roles/roleConfig.exception';
+
 //generales
 
 export {AppError} from './generals/general.exceptions';

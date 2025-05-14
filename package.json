@@ -107,7 +107,11 @@
     "script:addpermission-rol" : "ts-node src/scripts/roles/testAddPermissionRole.ts",
     "script:deletepermission-rol" : "ts-node src/scripts/roles/testDeletePermissionRole.ts",
     "script:addpermissionsecurity-rol" : "ts-node src/scripts/roles/testAddPermissionSecurity.ts",
-    "script:deletepermissionsecurity-rol" : "ts-node src/scripts/roles/testDeletePermissionSecurity.ts"
+    "script:deletepermissionsecurity-rol" : "ts-node src/scripts/roles/testDeletePermissionSecurity.ts",
+
+
+
+    "script:findbyid-roleconfig" : "ts-node src/scripts/roleConfig/testFinRoleConfigById.ts"
 
   },
   "author": "Google LLC",

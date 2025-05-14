@@ -2,7 +2,6 @@ import { inject, injectable } from "tsyringe";
 import { IRolePermissionRepository } from "../interfaces/IRoleRepository";
 import { ClientSession, Model } from "mongoose";
 import { RoleDocument } from "../../../db/models";
-import { ObjectIdParam } from "../../../validations";
 import { PermissionDocument } from "../../../db/models/permissionsModels/permission.model";
 
 

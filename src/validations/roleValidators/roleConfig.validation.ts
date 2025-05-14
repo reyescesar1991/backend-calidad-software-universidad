@@ -7,7 +7,7 @@ export const roleConfigSchemaZod = z.object({
         val => val instanceof mongoose.Types.ObjectId, 
         { message: "Debe ser un ObjectId válido de Mongoose" }
       ),
-    maxLoginAttempts : z.number().gte(0, "El mínimo de intentos es 1"),
+    maxLoginAttempts : z.number().gte(2, "El mínimo de intentos es 2"),
     isActive : z.boolean().optional(),
     rolName : z.string().min(1, "Nombre de rol es requerido"),
 
@@ -15,7 +15,7 @@ export const roleConfigSchemaZod = z.object({
 
 export const updateRoleConfigSchemaZod = z.object({
 
-  maxLoginAttempts : z.number().gte(0, "El mínimo de intentos es 1").optional(),
+  maxLoginAttempts : z.number().gte(2, "El mínimo de intentos es 2").optional(),
   rolName : z.string().min(1, "Nombre de rol es requerido").optional(),
 
 });

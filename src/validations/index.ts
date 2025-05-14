@@ -57,3 +57,4 @@ export {SubrouteFilterSchema} from './sharedValidators/routeFormatValidator';
 export {RouteFilterSchemaZod} from './sharedValidators/routeFormatValidator';
 export {ModuleFilterSchemaZod} from './sharedValidators/routeFormatValidator';
 export {RoleFilterSchema} from './sharedValidators/roleFormatValidator';
+export {RoleConfigFilterSchema} from './sharedValidators/roleConfigFilterValidator';

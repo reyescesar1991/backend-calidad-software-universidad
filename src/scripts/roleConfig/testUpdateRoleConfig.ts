@@ -1,27 +1,36 @@
 import 'reflect-metadata';
 import { disconnectMongo, initializeTestEnvironment } from "../../core/utils/connectDb";
 import { configureDependenciesRoleConfig } from '../../core/config/dependenciesRoleConfig/dependencies';
-import { objectIdSchema } from '../../validations';
+import { objectIdSchema, RoleConfigDto, UpdateRoleConfigDto } from '../../validations';
 import { container } from 'tsyringe';
 import { RoleConfigService } from '../../services/roleConfig/roleConfig.service';
+import { configureDependenciesRoles } from '../../core/config/dependenciesRoles/dependencies';
 
 
 initializeTestEnvironment();
 
 
-const runTestFindRoleConfigByName = async () => {
+const runTestUpdateRoleConfig = async () => {
 
     try {
 
         await configureDependenciesRoleConfig();
 
-        const rolConfigName : string = "Administradorrrrr";
+        await configureDependenciesRoles();
+
+        const idConfigRole = objectIdSchema.parse("68263fc7f016933bfed2ec24");
+
+        const rolConfig : UpdateRoleConfigDto = {
+
+            maxLoginAttempts : 2,
+            rolName : "Test rol name config"
+        }
 
         const roleConfigService = container.resolve(RoleConfigService);
 
-        const result = await roleConfigService.findConfigRoleByNameRole(rolConfigName);
+        const result = await roleConfigService.updateConfigRole(idConfigRole, rolConfig);
 
-        console.log("📄 Configuración de Role encontrada por nombre:", result);
+        console.log("📄 Configuración de Role encontrada y actualizada:", result);
         
 
     } catch (error) {
@@ -35,7 +44,7 @@ const runTestFindRoleConfigByName = async () => {
     }
 }
 
-runTestFindRoleConfigByName().then(() => {
+runTestUpdateRoleConfig().then(() => {
 
     console.log('Proceso de seed completo');
 })

@@ -115,7 +115,9 @@
     "script:findbyname-roleconfig" : "ts-node src/scripts/roleConfig/testFindRoleConfigByName.ts",
     "script:searchbyfilter-roleconfig" : "ts-node src/scripts/roleConfig/testFindRoleConfigByFilter.ts",
     "script:activate-roleconfig" : "ts-node src/scripts/roleConfig/testActivateRoleConfig.ts",
-    "script:delete-roleconfig" : "ts-node src/scripts/roleConfig/testDeleteRoleConfig.ts"
+    "script:delete-roleconfig" : "ts-node src/scripts/roleConfig/testDeleteRoleConfig.ts",
+    "script:create-roleconfig" : "ts-node src/scripts/roleConfig/testCreateRoleConfig",
+    "script:update-roleconfig" : "ts-node src/scripts/roleConfig/testUpdateRoleConfig.ts"
 
   },
   "author": "Google LLC",

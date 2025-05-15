@@ -11,7 +11,7 @@ export class RoleConfigValidator {
 
     constructor(
         @inject("IRoleConfigRepository") private readonly roleConfigRepository: IRoleConfigRepository,
-        @inject("IRoleConfigRepository") private readonly roleRepository: IRoleRepository
+        @inject("IRoleRepository") private readonly roleRepository: IRoleRepository
     ) { }
 
     static validateRoleConfigExists(roleConfig: RoleConfigDocument): void {
@@ -64,6 +64,9 @@ export class RoleConfigValidator {
     }
 
     async validateRoleExists(rolId: ObjectIdParam) : Promise<void> {
+
+        console.log(rolId);
+        
 
         const role = await this.roleRepository.findRoleById(rolId);
 

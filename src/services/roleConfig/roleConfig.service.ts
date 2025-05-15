@@ -6,7 +6,6 @@ import { ObjectIdParam, RoleConfigDto, UpdateRoleConfigDto } from "../../validat
 import { handleError } from "../../core/exceptions";
 import { RoleConfigDocument } from "../../db/models/roleModels/roleConfig.model";
 import { FilterOptions, RoleConfigFilterKeys } from "../../core/types";
-import { ClientSession } from "mongoose";
 
 @injectable()
 export class RoleConfigService {
@@ -125,9 +124,13 @@ export class RoleConfigService {
 
                 try {
 
+                    console.log(dataConfigRole);
+                    
                     await this.roleConfigValidator.validateUniquenessRoleConfig(dataConfigRole.rolName);
 
                     await this.roleConfigValidator.validateRoleExists(dataConfigRole.rolID);
+
+                    RoleConfigValidator.validateMaxLoginAttemptsMajorEqualTwo(dataConfigRole.maxLoginAttempts);
 
                     return await this.roleConfigRepository.createConfigRole(dataConfigRole, session);
                     

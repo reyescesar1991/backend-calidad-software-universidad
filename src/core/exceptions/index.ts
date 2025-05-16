@@ -86,6 +86,17 @@ export {RoleConfigAlreadyExistsError} from './roles/roleConfig.exception';
 export {RoleConfigRoleNotExistsError} from './roles/roleConfig.exception';
 export {RolConfigMaxLoginAttemptsNotValidError} from './roles/roleConfig.exception';
 
+
+//headquarter
+
+export {LocationHeadquarterInvalidError} from './headquarter/headquarter.exception';
+export {HeadquarterNotExistsError} from './headquarter/headquarter.exception';
+export {HeadquarterIsAlreadyActiveError} from './headquarter/headquarter.exception';
+export {HeadquarterIsAlreadyDesactiveError} from './headquarter/headquarter.exception';
+export {HeadquarterAlreadyExistsError} from './headquarter/headquarter.exception';
+export {FilterHeadquarterError} from './headquarter/headquarter.exception';
+export {HeadquartersByFilterNotFoudError} from './headquarter/headquarter.exception';
+
 //generales
 
 export {AppError} from './generals/general.exceptions';

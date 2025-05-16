@@ -3,9 +3,8 @@ import { IRoleRepository } from "../../../services/role/interfaces/IRoleReposito
 import { PermissionSecurityDocument, RoleDocument } from "../../../db/models";
 import { FilterRoleError, IdRoleAlreadyExistsError, PermissionNotFoundError, PermissionSecurityNotFoundError, RoleAlreadyActiveError, RoleAlreadyExistsError, RoleAlreadyInactiveError, RoleIdLockError, RoleIsNotActiveError, RoleNotFoundError, RoleNotValidDefaultSystemError, RolesNotFoundByFilterError, RolesNotFoundDatabaseError, RolNotHavePermissionSecurityError, RolNotHavePermissionsError, RolNotHavePermissionsSecurityError, RolPermissionAlreadyAvailableError, RolPermissionNotAvailableError, RolPermissionSecurityAlreadyAvailableError, RolPermissionSecurityNotAvailableError } from "../../exceptions";
 import { FilterOptions, RoleFilterKeys } from "../../types";
-import { ObjectIdParam, RoleFilterSchema } from "../../../validations";
+import { RoleFilterSchema } from "../../../validations";
 import { ROLS_DEFAULT, ROLS_NOT_VALID_DEFAULT, VALID_PERMISSIONS, VALID_PERMISSIONS_SECURITY } from "../../const";
-import { ObjectId, Types } from "mongoose";
 import { PermissionDocument } from "../../../db/models/permissionsModels/permission.model";
 
 @injectable()

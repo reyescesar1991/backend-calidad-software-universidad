@@ -28,3 +28,4 @@ export {RouteFilterKeys} from './filtersOptions/filterOptions.filter';
 export {ModuleFilterKeys} from './filtersOptions/filterOptions.filter';
 export {RoleFilterKeys} from './filtersOptions/filterOptions.filter';
 export {RoleConfigFilterKeys} from './filtersOptions/filterOptions.filter';
+export {HeadquarterConfigFilterKeys} from './filtersOptions/filterOptions.filter';

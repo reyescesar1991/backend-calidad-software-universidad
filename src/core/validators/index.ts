@@ -18,6 +18,10 @@ export {ModuleValidator} from './modules/module.validator';
 
 export {labelSchema} from './permissions/schemas/labelSchema.zod';
 
+//location
+
+export {HeadquarterValidator} from './headquarters/headquarter.validator';
+
 //roles
 
 export {RoleValidator} from './roles/role.validator';

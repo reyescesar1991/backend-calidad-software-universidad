@@ -8,6 +8,7 @@ export {RouteDocument} from './menuModels/route.model';
 export {RoleModel} from './roleModels/role.model';
 export {RoleDocument} from './roleModels/role.model';
 export {HeadquartersModel} from './headquartersModels/headquarter.model';
+export {HeadquartersDocument} from './headquartersModels/headquarter.model';
 export {PermissionSecurityModel} from './permissionsSecurityModels/permissionSecurity.model';
 export {PermissionSecurityDocument} from './permissionsSecurityModels/permissionSecurity.model';
 export {CategoryProductModel} from './categoryProductModels/categoryProduct.model';

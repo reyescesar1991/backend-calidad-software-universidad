@@ -115,7 +115,15 @@ export class LocationService {
 
                     await this.headquarterValidator.validateHeadquarterUniqueness(dataHeadquarter.idHeadquarter);
 
-                    return null
+                    await this.headquarterValidator.validateHeadquarterUniqueKeys(
+                        {
+                            label : dataHeadquarter.label,
+                            phoneNumber : dataHeadquarter.phoneNumber,
+                            email : dataHeadquarter.email,
+                        }
+                    )
+
+                    return await this.headquarterRepository.createHeadquarter(dataHeadquarter, session);
                     
                 } catch (error) {
                     

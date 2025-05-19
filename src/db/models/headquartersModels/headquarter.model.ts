@@ -28,7 +28,6 @@ export const HeadquarterSchema = new Schema<HeadquartersDocument>({
     label : {type: String, required: true},
     name : {type: String, required: true},
     address : {type: String, required: true},
-    zipCode : {type: String, required: true},
     country : {type: String, required: false, default : 'Venezuela'},
     phoneNumber : {type: String, required: true},
     email : {type: String, required: true},

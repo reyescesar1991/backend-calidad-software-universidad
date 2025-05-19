@@ -6,7 +6,7 @@ import { IHeadquarterRepositoryImpl } from "../../../services/locationService/re
 import { HeadquarterValidator } from "../../validators";
 import { LocationService } from "../../../services/locationService/Location.service";
 
-export const configureDependenciesRoles = async () => {
+export const configureDependenciesHeadquarters = async () => {
 
     container.register("TransactionManager", TransactionManager);
     container.register("HeadquartersModel", {useValue : HeadquartersModel});

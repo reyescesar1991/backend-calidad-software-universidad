@@ -117,7 +117,15 @@
     "script:activate-roleconfig" : "ts-node src/scripts/roleConfig/testActivateRoleConfig.ts",
     "script:delete-roleconfig" : "ts-node src/scripts/roleConfig/testDeleteRoleConfig.ts",
     "script:create-roleconfig" : "ts-node src/scripts/roleConfig/testCreateRoleConfig",
-    "script:update-roleconfig" : "ts-node src/scripts/roleConfig/testUpdateRoleConfig.ts"
+    "script:update-roleconfig" : "ts-node src/scripts/roleConfig/testUpdateRoleConfig.ts",
+
+
+
+
+    "script:create-headquarter" : "ts-node src/scripts/headquarter/testCreateHeadquarter.ts",
+    "script:findbyid-headquarter" : "ts-node src/scripts/headquarter/testFindHeadquarterById.ts",
+    "script:findbycustomid-headquarter" : "ts-node src/scripts/headquarter/testFindHeadquarterByCustomId.ts",
+    "script:searchbyfilter-headquarter" : "ts-node src/scripts/headquarter/testSearchByFilterHeadquarter.ts"
 
   },
   "author": "Google LLC",

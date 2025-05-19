@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IHeadquarterRepository } from "../../../services/locationService";
 import { ObjectIdParam } from "../../../validations";
 import { HeadquartersDocument } from "../../../db/models";
-import { FilterHeadquarterError, HeadquarterAlreadyExistsError, HeadquarterIsAlreadyActiveError, HeadquarterIsAlreadyDesactiveError, HeadquarterNotExistsError, HeadquartersByFilterNotFoudError } from "../../exceptions";
+import { FilterHeadquarterError, HeadquarterAlreadyExistsError, HeadquarterIsAlreadyActiveError, HeadquarterIsAlreadyDesactiveError, HeadquarterKeysAlreadyExistError, HeadquarterNotExistsError, HeadquartersByFilterNotFoudError } from "../../exceptions";
 import { FilterOptions, HeadquarterConfigFilterKeys } from "../../types";
 import { HeadquarterFilterSchema } from "../../../validations/sharedValidators/headquarterFilterValidator";
 
@@ -77,5 +77,15 @@ export class HeadquarterValidator {
         if (headquarters.length < 1) throw new HeadquartersByFilterNotFoudError();
 
         return headquarters;
+    }
+
+    async validateHeadquarterUniqueKeys(filter : FilterOptions<HeadquarterConfigFilterKeys>): Promise<void> {
+
+        const headquarter = await this.headquarterRepository.searchHeadquarterByFilterWithOr(filter);
+
+        console.log(headquarter);
+        
+        if (headquarter.length >= 1) throw new HeadquarterKeysAlreadyExistError();
+
     }
 }

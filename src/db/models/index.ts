@@ -16,6 +16,7 @@ export {SupplierModel} from './supplierModels/supplier.model';
 export {PaymentTermModel} from './paymentTermModels/paymentTerm.model';
 export {TwoFactorAuthModel} from './oauthModels/twoFactorAuth.model';
 export {DepartmentModel} from './departmentModels/department.model';
+export {DepartmentDocument} from './departmentModels/department.model';
 export {RoleConfigModel} from './roleModels/roleConfig.model';
 export {UserModel} from './users/user.model';
 export {WarehouseModel} from './warehouseModels/warehouse.model';

@@ -125,7 +125,11 @@
     "script:create-headquarter" : "ts-node src/scripts/headquarter/testCreateHeadquarter.ts",
     "script:findbyid-headquarter" : "ts-node src/scripts/headquarter/testFindHeadquarterById.ts",
     "script:findbycustomid-headquarter" : "ts-node src/scripts/headquarter/testFindHeadquarterByCustomId.ts",
-    "script:searchbyfilter-headquarter" : "ts-node src/scripts/headquarter/testSearchByFilterHeadquarter.ts"
+    "script:searchbyfilter-headquarter" : "ts-node src/scripts/headquarter/testSearchByFilterHeadquarter.ts",
+    "script:activate-headquarter" : "ts-node src/scripts/headquarter/testActivateHeadquarter.ts",
+    "script:desactivate-headquarter" : "ts-node src/scripts/headquarter/testInactivateHeadquarter.ts",
+    "script:list-headquarters" : "ts-node src/scripts/headquarter/testListHeadquarters.ts",
+    "script:update-headquarter" : "ts-node src/scripts/headquarter/testUpdateHeadquarter.ts"
 
   },
   "author": "Google LLC",

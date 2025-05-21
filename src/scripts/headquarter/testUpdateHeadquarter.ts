@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { disconnectMongo, initializeTestEnvironment } from '../../core/utils/connectDb';
 import "../../core/config/dependenciesPermissions/dependencies";
-import { objectIdSchema } from '../../validations';
+import { objectIdSchema, UpdateHeadquarterDto } from '../../validations';
 import { container } from 'tsyringe';
 import { configureDependenciesHeadquarters } from '../../core/config/dependenciesHeadquarters/dependencies';
 import { LocationService } from '../../services/locationService/Location.service';
@@ -11,7 +11,7 @@ import { configureDependenciesDepartments } from '../../core/config/dependencies
 initializeTestEnvironment();
 
 
-const runTestFindByIdHeadquarter = async () => {
+const runTestCreateHeadquarter = async () => {
 
 
     try {
@@ -21,12 +21,22 @@ const runTestFindByIdHeadquarter = async () => {
         await configureDependenciesDepartments();
 
         const idHeadquarter = objectIdSchema.parse("682a620888424f4918faf669");
+
+        const headquarter : UpdateHeadquarterDto = {
+            // "label": "Almacén Central test test test",
+            // "name": "Deposito Principal test test test",
+            // "phoneNumber": "02127778882",
+            "email": "almacenTestttttTestttt@logistica.net",
+          }
+
+          console.log(headquarter);
           
+
         const locationService = container.resolve(LocationService);
 
-        const result = await locationService.findHeadquarterById(idHeadquarter);
+        const result = await locationService.updateHeadquarter(idHeadquarter, headquarter);
 
-        console.log("📄 Sucursal encontrada por ID:", result);
+        console.log("📄 Sucursal actualizada:", result);
         
     } catch (error) {
 
@@ -39,7 +49,7 @@ const runTestFindByIdHeadquarter = async () => {
     }
 }
 
-runTestFindByIdHeadquarter().then(() => {
+runTestCreateHeadquarter().then(() => {
 
     console.log('Proceso de seed completo');
 })

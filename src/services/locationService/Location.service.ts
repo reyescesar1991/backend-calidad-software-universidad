@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IHeadquarterRepository } from "./interfaces/IHeadquarterRepository";
 import { HeadquarterValidator } from "../../core/validators";
-import { HeadquarterDto, ObjectIdParam } from "../../validations";
+import { HeadquarterDto, ObjectIdParam, UpdateHeadquarterDto } from "../../validations";
 import { HeadquartersDocument } from "../../db/models";
 import { handleError } from "../../core/exceptions";
 import { TransactionManager } from "../../core/database/transactionManager";
@@ -54,6 +54,20 @@ export class LocationService {
             const headquarters = await this.headquarterValidator.validateHeadquartersByFilter(filter);
 
             return headquarters;
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    async listHeadquarter() : Promise<HeadquartersDocument[] | null>{
+
+        try {
+
+            const headquarter = await this.headquarterValidator.validateHeadquartersList();
+
+            return headquarter;
             
         } catch (error) {
             
@@ -131,5 +145,38 @@ export class LocationService {
                 }
             }
         )
+    }
+
+    async updateHeadquarter(idHeadquarter : ObjectIdParam, dataUpdateHeadquarter : UpdateHeadquarterDto) : Promise<HeadquartersDocument | null>{
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+
+                try {
+
+                    await this.headquarterValidator.validateHeadquarterExists(idHeadquarter);
+
+                    await this.headquarterValidator.validateHeadquarterUniqueKeys(
+                        {
+                            label : dataUpdateHeadquarter.label,
+                            phoneNumber : dataUpdateHeadquarter.phoneNumber,
+                            email : dataUpdateHeadquarter.email,
+                            name : dataUpdateHeadquarter.name,
+                        }
+                    );
+
+                    const headquarter = await this.headquarterRepository.updateHeadquarter(idHeadquarter, dataUpdateHeadquarter, session);
+
+                    return headquarter;
+
+                } catch (error) {
+                    
+                    handleError(error);
+                }
+            }
+        )
+        
     }
 }

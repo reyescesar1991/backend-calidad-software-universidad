@@ -72,10 +72,20 @@ export class HeadquartersByFilterNotFoudError extends AppError{
 
 export class HeadquarterKeysAlreadyExistError extends AppError{
     code = 1608;
-    constructor(message : string = "Los campos etiqueta, telefono y email deben ser unicos por sucursal. Intente con datos diferentes"){
+    constructor(message : string = "Los campos etiqueta, telefono, email y nombre deben ser unicos por sucursal. Intente con datos diferentes"){
 
         super(message);
         this.name = "HeadquarterKeysAlreadyExistError"
+        
+    }
+}
+
+export class HeadquartersListNotFoudError extends AppError{
+    code = 1609;
+    constructor(message : string = "No existen sucursales registradas en la base de datos"){
+
+        super(message);
+        this.name = "HeadquartersListNotFoudError"
         
     }
 }

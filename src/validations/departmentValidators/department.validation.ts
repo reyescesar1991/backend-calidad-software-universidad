@@ -36,4 +36,12 @@ export const departmentSchemaZod = z.object({
     isActive : z.boolean().optional(),
 });
 
+export const updateDepartmentSchemaZod = z.object({
+
+    label : z.string().min(1, "Etiqueta de departamento es requerida").optional(),
+    name : z.string().min(1, "Nombre de departamento es requerido").optional(),
+    description : z.string().min(1, "Descripción de departamento es requerida").optional(),
+});
+
 export type DepartmentDto = z.infer<typeof departmentSchemaZod>;
+export type UpdateDepartmentDto = z.infer<typeof updateDepartmentSchemaZod>;

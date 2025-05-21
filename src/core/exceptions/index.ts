@@ -97,6 +97,7 @@ export {HeadquarterAlreadyExistsError} from './headquarter/headquarter.exception
 export {FilterHeadquarterError} from './headquarter/headquarter.exception';
 export {HeadquartersByFilterNotFoudError} from './headquarter/headquarter.exception';
 export {HeadquarterKeysAlreadyExistError} from './headquarter/headquarter.exception';
+export {HeadquartersListNotFoudError} from './headquarter/headquarter.exception';
 
 //generales
 

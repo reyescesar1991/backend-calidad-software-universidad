@@ -54,6 +54,11 @@ export class IHeadquarterRepositoryImpl implements IHeadquarterRepository {
         }).exec();
     }
 
+    async listHeadquarter(): Promise<HeadquartersDocument[] | null> {
+        
+        return await this.HeadquarterModel.find({}).exec();
+    }
+
     async activateHeadquarter(idHeadquarter: ObjectIdParam, session?: ClientSession): Promise<HeadquartersDocument | null> {
 
         return await this.HeadquarterModel.findByIdAndUpdate(

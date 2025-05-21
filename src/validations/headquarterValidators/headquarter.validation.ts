@@ -22,7 +22,6 @@ export const updateHeadquarterSchemaZod = z.object({
     name : z.string().min(1, "El nombre de sede es requerido").optional(),
     phoneNumber : z.string().min(1, "Telefono de sede es requerido").regex(/^(0212)\d{7}$/, { message: 'Formato de telefono erroneo' }).optional(),
     email : z.string().min(1, "Email de sede es requerido").email("Formato de correo de sede no es valido").optional(),
-    isActive : z.boolean().optional(),
 });
 
 export type HeadquarterDto = z.infer<typeof headquarterSchemaZod>;

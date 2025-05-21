@@ -9,3 +9,5 @@ export type RoleFilterKeys = "idRole" | "name"| "label" | "description"| "isActi
 export type RoleConfigFilterKeys = "maxLoginAttempts" | "rolName"| "isActive"
 
 export type HeadquarterConfigFilterKeys = "idHeadquarter" | "label"| "name" | "address" | "phoneNumber" | "email" | "geoLocation" | "isActive"
+
+export type DepartmentConfigFilterKeys = "idDepartment" | "label"| "name" | "headquartersName" | "isActive"

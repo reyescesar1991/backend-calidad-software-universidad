@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 import { disconnectMongo, initializeTestEnvironment } from '../../core/utils/connectDb';
 import "../../core/config/dependenciesPermissions/dependencies";
-import { objectIdSchema } from '../../validations';
 import { container } from 'tsyringe';
 import { configureDependenciesHeadquarters } from '../../core/config/dependenciesHeadquarters/dependencies';
 import { LocationService } from '../../services/locationService/Location.service';
@@ -11,7 +10,7 @@ import { configureDependenciesDepartments } from '../../core/config/dependencies
 initializeTestEnvironment();
 
 
-const runTestFindByIdHeadquarter = async () => {
+const runTestListHeadquarters = async () => {
 
 
     try {
@@ -19,14 +18,12 @@ const runTestFindByIdHeadquarter = async () => {
         await configureDependenciesHeadquarters();
 
         await configureDependenciesDepartments();
-
-        const idHeadquarter = objectIdSchema.parse("682a620888424f4918faf669");
           
         const locationService = container.resolve(LocationService);
 
-        const result = await locationService.findHeadquarterById(idHeadquarter);
+        const result = await locationService.listHeadquarter();
 
-        console.log("📄 Sucursal encontrada por ID:", result);
+        console.log("📄 Sucursales en la base de datos:", result);
         
     } catch (error) {
 
@@ -39,7 +36,7 @@ const runTestFindByIdHeadquarter = async () => {
     }
 }
 
-runTestFindByIdHeadquarter().then(() => {
+runTestListHeadquarters().then(() => {
 
     console.log('Proceso de seed completo');
 })

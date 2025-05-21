@@ -1,10 +1,11 @@
 import 'reflect-metadata';
 import { disconnectMongo, initializeTestEnvironment } from '../../core/utils/connectDb';
 import "../../core/config/dependenciesPermissions/dependencies";
-import { HeadquarterDto, objectIdSchema } from '../../validations';
+import { HeadquarterDto } from '../../validations';
 import { container } from 'tsyringe';
 import { configureDependenciesHeadquarters } from '../../core/config/dependenciesHeadquarters/dependencies';
 import { LocationService } from '../../services/locationService/Location.service';
+import { configureDependenciesDepartments } from '../../core/config/dependenciesDepartments/dependencies';
 
 
 initializeTestEnvironment();
@@ -16,6 +17,8 @@ const runTestCreateHeadquarter = async () => {
     try {
 
         await configureDependenciesHeadquarters();
+
+        await configureDependenciesDepartments();
 
         const headquarter : HeadquarterDto = {
             "idHeadquarter": "id_test_4",

@@ -6,10 +6,11 @@ import { FilterOptions, HeadquarterConfigFilterKeys } from "../../../core/types"
 
 export interface IHeadquarterRepository{
 
-    //TODO: Hacer list todas las sucursales
+    
     findHeadquarterById(idHeadquarter : ObjectIdParam) : Promise<HeadquartersDocument | null>;
     findHeadquarterByCustomId(customIdHeadquarter : string) : Promise<HeadquartersDocument | null>;
     searchHeadquarterByFilter(filter : FilterOptions<HeadquarterConfigFilterKeys>) : Promise<HeadquartersDocument[] | null>;
+    listHeadquarter() : Promise<HeadquartersDocument[] | null>;
     activateHeadquarter(idHeadquarter : ObjectIdParam, session?: ClientSession) : Promise<HeadquartersDocument | null>;
     desactivateHeadquarter(idHeadquarter : ObjectIdParam, session?: ClientSession) : Promise<HeadquartersDocument | null>;
     createHeadquarter(dataHeadquarter : HeadquarterDto, session?: ClientSession) : Promise<HeadquartersDocument | null>;

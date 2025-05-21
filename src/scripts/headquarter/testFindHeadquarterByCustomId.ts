@@ -4,6 +4,7 @@ import "../../core/config/dependenciesPermissions/dependencies";
 import { container } from 'tsyringe';
 import { configureDependenciesHeadquarters } from '../../core/config/dependenciesHeadquarters/dependencies';
 import { LocationService } from '../../services/locationService/Location.service';
+import { configureDependenciesDepartments } from '../../core/config/dependenciesDepartments/dependencies';
 
 
 initializeTestEnvironment();
@@ -15,6 +16,8 @@ const runTestFindByCustomIdHeadquarter = async () => {
     try {
 
         await configureDependenciesHeadquarters();
+
+        await configureDependenciesDepartments();
 
         const customIdHeadquarter : string = "id_test_3";
           

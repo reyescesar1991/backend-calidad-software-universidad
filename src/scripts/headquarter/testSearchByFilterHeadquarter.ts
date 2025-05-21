@@ -5,6 +5,7 @@ import { container } from 'tsyringe';
 import { configureDependenciesHeadquarters } from '../../core/config/dependenciesHeadquarters/dependencies';
 import { LocationService } from '../../services/locationService/Location.service';
 import { FilterOptions, HeadquarterConfigFilterKeys } from '../../core/types';
+import { configureDependenciesDepartments } from '../../core/config/dependenciesDepartments/dependencies';
 
 
 initializeTestEnvironment();
@@ -17,12 +18,12 @@ const runTestSearchByFilterHeadquarter = async () => {
 
         await configureDependenciesHeadquarters();
 
-        //TODO: Cambiar en base de datos las sucursales de location a geolocation
+        await configureDependenciesDepartments();
 
         const filterHeadquarter : FilterOptions<HeadquarterConfigFilterKeys> = {
 
             geoLocation : { city: 'Caracas'},
-            idHeadquarter : 'id_test_2',
+            idHeadquarter : 'CAR-HQ-01',
         };
           
         const locationService = container.resolve(LocationService);

@@ -1,8 +1,17 @@
 import { model, Schema } from "mongoose";
-import { IDepartmentType } from "../../../core/types";
 import mongoose from "mongoose";
 
-export interface DepartmentDocument extends Document, IDepartmentType {}
+export interface DepartmentDocument extends Document {
+
+    _id: mongoose.Types.ObjectId;
+    idDepartment : string,
+    label : string,
+    name : string,
+    description : string,
+    headquartersId : Schema.Types.ObjectId
+    headquartersName : string,
+    isActive : boolean,
+}
 
 export const departmentSchema = new Schema<DepartmentDocument>({
 

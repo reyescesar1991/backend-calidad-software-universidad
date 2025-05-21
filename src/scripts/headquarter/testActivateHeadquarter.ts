@@ -11,7 +11,7 @@ import { configureDependenciesDepartments } from '../../core/config/dependencies
 initializeTestEnvironment();
 
 
-const runTestFindByIdHeadquarter = async () => {
+const runTestActivateHeadquarter = async () => {
 
 
     try {
@@ -24,9 +24,9 @@ const runTestFindByIdHeadquarter = async () => {
           
         const locationService = container.resolve(LocationService);
 
-        const result = await locationService.findHeadquarterById(idHeadquarter);
+        const result = await locationService.activateHeadquarter(idHeadquarter);
 
-        console.log("📄 Sucursal encontrada por ID:", result);
+        console.log("📄 Sucursal activada por ID:", result);
         
     } catch (error) {
 
@@ -39,7 +39,7 @@ const runTestFindByIdHeadquarter = async () => {
     }
 }
 
-runTestFindByIdHeadquarter().then(() => {
+runTestActivateHeadquarter().then(() => {
 
     console.log('Proceso de seed completo');
 })

@@ -25,12 +25,12 @@ export interface HeadquartersDocument extends Document{
 export const HeadquarterSchema = new Schema<HeadquartersDocument>({
 
     idHeadquarter : {type: String, required: true},
-    label : {type: String, required: true},
-    name : {type: String, required: true},
+    label : {type: String, required: true, unique: true},
+    name : {type: String, required: true, unique: true},
     address : {type: String, required: true},
     country : {type: String, required: false, default : 'Venezuela'},
-    phoneNumber : {type: String, required: true},
-    email : {type: String, required: true},
+    phoneNumber : {type: String, required: true, unique: true},
+    email : {type: String, required: true, unique: true},
     isActive : {type: Boolean, required: true},
     geoLocation: {
         city: { type: String, required: true },

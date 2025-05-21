@@ -4,17 +4,18 @@ import { DepartmentDto, ObjectIdParam, UpdateDepartmentDto } from "../../../vali
 import { DepartmentConfigFilterKeys, FilterOptions } from "../../../core/types";
 
 
-export interface IHeadquarterRepository{
+export interface IDepartmentRepository{
 
     
-    findHeadquarterById(idHeadquarter : ObjectIdParam) : Promise<DepartmentDocument | null>;
-    findHeadquarterByCustomId(customIdHeadquarter : string) : Promise<DepartmentDocument | null>;
-    searchHeadquarterByFilter(filter : FilterOptions<DepartmentConfigFilterKeys>) : Promise<DepartmentDocument[] | null>;
-    listHeadquarter() : Promise<DepartmentDocument[] | null>;
-    activateHeadquarter(idHeadquarter : ObjectIdParam, session?: ClientSession) : Promise<DepartmentDocument | null>;
-    desactivateHeadquarter(idHeadquarter : ObjectIdParam, session?: ClientSession) : Promise<DepartmentDocument | null>;
-    createHeadquarter(dataHeadquarter : DepartmentDto, session?: ClientSession) : Promise<DepartmentDocument | null>;
-    updateHeadquarter(idHeadquarter : ObjectIdParam, dataUpdateHeadquarter : UpdateDepartmentDto, session?: ClientSession) : Promise<DepartmentDocument | null>;
-    searchHeadquarterByFilterWithOr(filter : FilterOptions<DepartmentConfigFilterKeys>) : Promise<DepartmentDocument[] | null>;
+    findDepartmentById(idDepartment : ObjectIdParam) : Promise<DepartmentDocument | null>;
+    findDepartmentByCustomId(customIdDepartment : string) : Promise<DepartmentDocument | null>;
+    findDepartmentsByHeadquarter(idHeadquarter : ObjectIdParam) : Promise<DepartmentDocument[] | null>;
+    searchDepartmentByFilter(filter : FilterOptions<DepartmentConfigFilterKeys>) : Promise<DepartmentDocument[] | null>;
+    listDepartment() : Promise<DepartmentDocument[] | null>;
+    activateDepartment(idDepartment : ObjectIdParam, session?: ClientSession) : Promise<DepartmentDocument | null>;
+    desactivateDepartment(idDepartment : ObjectIdParam, session?: ClientSession) : Promise<DepartmentDocument | null>;
+    createDepartment(dataDepartment : DepartmentDto, session?: ClientSession) : Promise<DepartmentDocument | null>;
+    updateDepartment(idDepartment : ObjectIdParam, dataUpdateDepartment : UpdateDepartmentDto, session?: ClientSession) : Promise<DepartmentDocument | null>;
+    searchDepartmentByFilterWithOr(filter : FilterOptions<DepartmentConfigFilterKeys>) : Promise<DepartmentDocument[] | null>;
 
 }

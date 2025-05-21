@@ -21,6 +21,7 @@ export {labelSchema} from './permissions/schemas/labelSchema.zod';
 //location
 
 export {HeadquarterValidator} from './headquarters/headquarter.validator';
+export {DepartmentValidator} from './departments/department.validator';
 
 //roles
 

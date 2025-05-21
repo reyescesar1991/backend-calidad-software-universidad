@@ -15,7 +15,7 @@ export interface DepartmentDocument extends Document {
 
 export const departmentSchema = new Schema<DepartmentDocument>({
 
-    idDepartment : {type: String, required: true},
+    idDepartment : {type: String, required: true, unique: true},
     label : {type: String, required: true},
     name : {type: String, required: true},
     description : {type: String, required: false},

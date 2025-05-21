@@ -9,6 +9,10 @@ import { HeadquarterFilterSchema } from "../../../validations/sharedValidators/h
 @injectable()
 export class HeadquarterValidator {
 
+    /*
+        Usa un enfoque de ahorro de consultas, pero no siempre es valido, se pierde URP pero se gana eficiencia
+    */ 
+
     constructor(
         @inject("IHeadquarterRepository") private readonly headquarterRepository: IHeadquarterRepository,
     ) { }

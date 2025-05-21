@@ -129,7 +129,20 @@
     "script:activate-headquarter" : "ts-node src/scripts/headquarter/testActivateHeadquarter.ts",
     "script:desactivate-headquarter" : "ts-node src/scripts/headquarter/testInactivateHeadquarter.ts",
     "script:list-headquarters" : "ts-node src/scripts/headquarter/testListHeadquarters.ts",
-    "script:update-headquarter" : "ts-node src/scripts/headquarter/testUpdateHeadquarter.ts"
+    "script:update-headquarter" : "ts-node src/scripts/headquarter/testUpdateHeadquarter.ts",
+
+
+
+
+    "script:findbyid-department" : "ts-node src/scripts/departments/testFindDepartmentById.ts",
+    "script:findbycustomid-department" : "ts-node src/scripts/departments/testFindDeparmentByCustomId.ts",
+    "script:findbyheadquarter-department" : "ts-node src/scripts/departments/testFindDepartmentByHeadquarter.ts",
+    "script:searchbyfilter-department" : "ts-node src/scripts/departments/testSearchDepartmentByFilter.ts",
+    "script:list-departments" : "ts-node src/scripts/departments/testListDepartments.ts",
+    "script:create-department" : "ts-node src/scripts/departments/testCreateDepartment.ts",
+    "script:activate-department" : "ts-node src/scripts/departments/testActivateDepartment.ts",
+    "script:inactivate-department" : "ts-node src/scripts/departments/testInactivateDepartment.ts",
+    "script:update-department" : "ts-node src/scripts/departments/testUpdateDepartment.ts"
 
   },
   "author": "Google LLC",

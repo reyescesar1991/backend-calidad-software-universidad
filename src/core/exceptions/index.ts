@@ -99,6 +99,18 @@ export {HeadquartersByFilterNotFoudError} from './headquarter/headquarter.except
 export {HeadquarterKeysAlreadyExistError} from './headquarter/headquarter.exception';
 export {HeadquartersListNotFoudError} from './headquarter/headquarter.exception';
 
+//department
+
+export {DepartmentNotFoundError} from './department/department.exception';
+export {DepartmentsNotFoundByHeadquarterError} from './department/department.exception';
+export {FilterDepartmentError} from './department/department.exception';
+export {DepartmentsNotFoundByFilterError} from './department/department.exception';
+export {DepartmentsNotFoundByDataBaseError} from './department/department.exception';
+export {DepartmentIsAlreadyActiveError} from './department/department.exception';
+export {DepartmentIsAlreadyInactiveError} from './department/department.exception';
+export {DepartmentAlreadyExistsError} from './department/department.exception';
+export {DepartmentUniqueKeysError} from './department/department.exception';
+
 //generales
 
 export {AppError} from './generals/general.exceptions';

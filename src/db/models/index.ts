@@ -19,6 +19,7 @@ export {DepartmentModel} from './departmentModels/department.model';
 export {DepartmentDocument} from './departmentModels/department.model';
 export {RoleConfigModel} from './roleModels/roleConfig.model';
 export {UserModel} from './users/user.model';
+export {UserDocument} from './users/user.model';
 export {WarehouseModel} from './warehouseModels/warehouse.model';
 export {ProductModel} from './productModels/product.model';
 export {UserPermissionModel} from './userPermission/userPermission.model';

@@ -4,16 +4,28 @@ import mongoose from "mongoose";
 import { StatusUserEnum } from "../../../core/enums";
 
 
-export interface UserDocument extends Document, IUsersType { };
+export interface UserDocument extends Document { 
+
+    _id: mongoose.Types.ObjectId;
+    idUser: string,
+    name: string,
+    lastName: string,
+    codeCountry: string,
+    phoneNumber: string,
+    email: string,
+    password: string,
+    username: string,
+    status: StatusUserEnum.ACTIVE,
+    hasTwoFactor : boolean,
+    lastLogin : string,
+    department : Schema.Types.ObjectId,
+    roleConfig : Schema.Types.ObjectId,
+    passwordHistory : Array<string>,
+};
 
 export const userSchema = new Schema<UserDocument>({
 
     idUser: { type: String, required: true, unique: true },
-    rol: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Role",
-        required: true
-    },
     name: { type: String, required: true },
     lastName: { type: String, required: true },
     codeCountry: { type: String, required: true, default: '58' },

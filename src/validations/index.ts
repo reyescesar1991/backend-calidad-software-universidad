@@ -18,6 +18,7 @@ export {UpdateDepartmentDto} from './departmentValidators/department.validation'
 export {RoleConfigDto} from './roleValidators/roleConfig.validation';
 export {UpdateRoleConfigDto} from './roleValidators/roleConfig.validation';
 export {UserDto} from './usersValidators/user.validation';
+export {UpdateUserDto} from './usersValidators/user.validation';
 export {WarehouseDto} from './warehouseValidators/warehouse.validation';
 export {ProductDto} from './productValidators/product.validation';
 export {ObjectIdParam} from './sharedValidators/sharedValidators';
@@ -47,6 +48,7 @@ export {updateDepartmentSchemaZod} from './departmentValidators/department.valid
 export {roleConfigSchemaZod} from './roleValidators/roleConfig.validation';
 export {updateRoleConfigSchemaZod} from './roleValidators/roleConfig.validation';
 export {userSchemaZod} from './usersValidators/user.validation';
+export {updateUserSchemaZod} from './usersValidators/user.validation';
 export {warehouseSchemaZod} from './warehouseValidators/warehouse.validation';
 export {productSchemaZod} from './productValidators/product.validation';
 export {objectIdSchema} from './sharedValidators/sharedValidators';

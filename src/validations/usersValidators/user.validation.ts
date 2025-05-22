@@ -47,14 +47,6 @@ export const updateUserSchemaZod = z.object({
     username: z.string().min(6, "El usuario debe tener al menos 6 carácteres").optional(),
     status: z.string().min(1, "El estatus del usuario es requerido").optional(),
     hasTwoFactor: z.boolean().optional(),
-    department: z.instanceof(mongoose.Types.ObjectId).refine(
-        val => val instanceof mongoose.Types.ObjectId,
-        { message: "Debe ser un ObjectId válido de Mongoose" }
-    ).optional(),
-    roleConfig: z.instanceof(mongoose.Types.ObjectId).refine(
-        val => val instanceof mongoose.Types.ObjectId,
-        { message: "Debe ser un ObjectId válido de Mongoose" }
-    ).optional(),
 });
 
 export type UserDto = z.infer<typeof userSchemaZod>;

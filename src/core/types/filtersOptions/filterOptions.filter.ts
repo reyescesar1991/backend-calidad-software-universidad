@@ -10,4 +10,6 @@ export type RoleConfigFilterKeys = "maxLoginAttempts" | "rolName"| "isActive"
 
 export type HeadquarterConfigFilterKeys = "idHeadquarter" | "label"| "name" | "address" | "phoneNumber" | "email" | "geoLocation" | "isActive"
 
-export type DepartmentConfigFilterKeys = "idDepartment" | "label"| "name" | "headquartersName" | "isActive"
+export type DepartmentConfigFilterKeys = "idDepartment" | "label"| "name" | "headquartersName" | "isActive";
+
+export type UserConfigFilterKeys = "idUser" | "name"| "lastName" | "codeCountry" | "phoneNumber" | "email" | "username" | "status" | "hasTwoFactor" | "department" | "roleConfig";

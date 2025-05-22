@@ -15,7 +15,7 @@ export interface UserDocument extends Document {
     email: string,
     password: string,
     username: string,
-    status: StatusUserEnum.ACTIVE,
+    status: string,
     hasTwoFactor : boolean,
     lastLogin : string,
     department : Schema.Types.ObjectId,

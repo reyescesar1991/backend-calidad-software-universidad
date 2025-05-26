@@ -27,10 +27,6 @@
     "seed:user-permission": "ts-node src/db/seeders/userPermissionSeeders/userPermission.seed.ts",
     "seed:user-permission-security": "ts-node src/db/seeders/userPermissionSeeders/userPermissionSecurity.seed.ts",
     "update:capacity-warehouse": "ts-node src/db/seeders/capacity-updaters/updateWarehouseCapacity.ts",
-
-
-
-    
     "script:create-permission": "ts-node src/scripts/permissions/testCreatePermission.ts",
     "script:findbyid-permission": "ts-node src/scripts/permissions/testFindPermissionById.ts",
     "script:update-permission": "ts-node src/scripts/permissions/testUpdatePermission.ts",
@@ -40,10 +36,6 @@
     "script:delete-perma-permission": "ts-node src/scripts/permissions/testPermanentlyDeletePermission.ts",
     "script:list-permissions": "ts-node src/scripts/permissions/testListPermission.ts",
     "script:get-permissions-status": "ts-node src/scripts/permissions/testGetPermissionByStatus.ts",
-
-
-
-
     "script:create-security-permission": "ts-node src/scripts/permissionsSecurity/testCreatePermissionSecurity.ts",
     "script:findbyid-permission-security": "ts-node src/scripts/permissionsSecurity/testFindPermissionSecurityById.ts",
     "script:update-permission-security": "ts-node src/scripts/permissionsSecurity/testUpdatePermissionSecurity.ts",
@@ -54,10 +46,6 @@
     "script:get-permissions-security-bystatus": "ts-node src/scripts/permissionsSecurity/testGetPermissionSecurityByStatus.ts",
     "script:toggle-systemdefined-permission-security": "ts-node src/scripts/permissionsSecurity/testChangeIsSystemDefined.ts",
     "script:delete-perma-permission-security": "ts-node src/scripts/permissionsSecurity/testPermanentlyDeletePermissionSecurity.ts",
-
-
-
-
     "script:create-subroute": "ts-node src/scripts/menu/subroute/testCreateSubroute.ts",
     "script:update-subroute": "ts-node src/scripts/menu/subroute/testUpdateSubroute.ts",
     "script:findbyid-subroute": "ts-node src/scripts/menu/subroute/testFindSubrouteById.ts",
@@ -69,9 +57,6 @@
     "script:findbymainroute-subroute": "ts-node src/scripts/menu/subroute/testFindSubrouteByMainRoute.ts",
     "script:finbycustomid-subroute": "ts-node src/scripts/menu/subroute/testFindCustomIdSubroute.ts",
     "script:delete-permanently-subroute": "ts-node src/scripts/menu/subroute/testDeletePermanentlySubroute.ts",
-
-
-
     "script:create-route": "ts-node src/scripts/menu/route/testCreateRoute.ts",
     "script:findbyid-route": "ts-node src/scripts/menu/route/testFindRouteById.ts",
     "script:update-route": "ts-node src/scripts/menu/route/testUpdateRoute.ts",
@@ -81,69 +66,51 @@
     "script:getcustomid-route": "ts-node src/scripts/menu/route/testFindRouteCustomId.ts",
     "script:search-filter-route": "ts-node src/scripts/menu/route/testSearchFilterRoute.ts",
     "script:list-routes": "ts-node src/scripts/menu/route/testListRoutes.ts",
-
-
-
-    "script:findbyid-module" : "ts-node src/scripts/menu/modules/testFindModuleById.ts",
-    "script:findbycustomid-module" : "ts-node src/scripts/menu/modules/testFindModuleByCustomId.ts",
-    "script:searchfilter-module" : "ts-node src/scripts/menu/modules/testSearchModulesByFilter.ts",
-    "script:create-module" : "ts-node src/scripts/menu/modules/testCreateModule.ts",
-    "script:update-module" : "ts-node src/scripts/menu/modules/testUpdateModule.ts",
-    "script:activate-module" : "ts-node src/scripts/menu/modules/testActivateModule.ts",
-    "script:delete-module" : "ts-node src/scripts/menu/modules/testDeleteModule.ts",
-    "script:getroutes-module" : "ts-node src/scripts/menu/modules/testGetRoutesWithModule.ts",
-
-
-
-    "script:findbyid-role" : "ts-node src/scripts/roles/testFindRoleById.ts",
-    "script:findbycustom-role" : "ts-node src/scripts/roles/testFindRoleByCustomId.ts",
-    "script:findbyfilter-role" : "ts-node src/scripts/roles/testSearchRolesByFilter.ts",
-    "script:list-roles" : "ts-node src/scripts/roles/testListRoles.ts",
-    "script:create-role" : "ts-node src/scripts/roles/testCreateRole.ts",
-    "script:update-role" : "ts-node src/scripts/roles/testUpdateRole.ts",
-    "script:defaultsystem-rol" : "ts-node src/scripts/roles/testSetDefaultRole.ts",
-    "script:activate-rol" : "ts-node src/scripts/roles/testActivateRole.ts",
-    "script:delete-rol" : "ts-node src/scripts/roles/testDeleteRole.ts",
-    "script:addpermission-rol" : "ts-node src/scripts/roles/testAddPermissionRole.ts",
-    "script:deletepermission-rol" : "ts-node src/scripts/roles/testDeletePermissionRole.ts",
-    "script:addpermissionsecurity-rol" : "ts-node src/scripts/roles/testAddPermissionSecurity.ts",
-    "script:deletepermissionsecurity-rol" : "ts-node src/scripts/roles/testDeletePermissionSecurity.ts",
-
-
-
-    "script:findbyid-roleconfig" : "ts-node src/scripts/roleConfig/testFinRoleConfigById.ts",
-    "script:findbyname-roleconfig" : "ts-node src/scripts/roleConfig/testFindRoleConfigByName.ts",
-    "script:searchbyfilter-roleconfig" : "ts-node src/scripts/roleConfig/testFindRoleConfigByFilter.ts",
-    "script:activate-roleconfig" : "ts-node src/scripts/roleConfig/testActivateRoleConfig.ts",
-    "script:delete-roleconfig" : "ts-node src/scripts/roleConfig/testDeleteRoleConfig.ts",
-    "script:create-roleconfig" : "ts-node src/scripts/roleConfig/testCreateRoleConfig",
-    "script:update-roleconfig" : "ts-node src/scripts/roleConfig/testUpdateRoleConfig.ts",
-
-
-
-
-    "script:create-headquarter" : "ts-node src/scripts/headquarter/testCreateHeadquarter.ts",
-    "script:findbyid-headquarter" : "ts-node src/scripts/headquarter/testFindHeadquarterById.ts",
-    "script:findbycustomid-headquarter" : "ts-node src/scripts/headquarter/testFindHeadquarterByCustomId.ts",
-    "script:searchbyfilter-headquarter" : "ts-node src/scripts/headquarter/testSearchByFilterHeadquarter.ts",
-    "script:activate-headquarter" : "ts-node src/scripts/headquarter/testActivateHeadquarter.ts",
-    "script:desactivate-headquarter" : "ts-node src/scripts/headquarter/testInactivateHeadquarter.ts",
-    "script:list-headquarters" : "ts-node src/scripts/headquarter/testListHeadquarters.ts",
-    "script:update-headquarter" : "ts-node src/scripts/headquarter/testUpdateHeadquarter.ts",
-
-
-
-
-    "script:findbyid-department" : "ts-node src/scripts/departments/testFindDepartmentById.ts",
-    "script:findbycustomid-department" : "ts-node src/scripts/departments/testFindDeparmentByCustomId.ts",
-    "script:findbyheadquarter-department" : "ts-node src/scripts/departments/testFindDepartmentByHeadquarter.ts",
-    "script:searchbyfilter-department" : "ts-node src/scripts/departments/testSearchDepartmentByFilter.ts",
-    "script:list-departments" : "ts-node src/scripts/departments/testListDepartments.ts",
-    "script:create-department" : "ts-node src/scripts/departments/testCreateDepartment.ts",
-    "script:activate-department" : "ts-node src/scripts/departments/testActivateDepartment.ts",
-    "script:inactivate-department" : "ts-node src/scripts/departments/testInactivateDepartment.ts",
-    "script:update-department" : "ts-node src/scripts/departments/testUpdateDepartment.ts"
-
+    "script:findbyid-module": "ts-node src/scripts/menu/modules/testFindModuleById.ts",
+    "script:findbycustomid-module": "ts-node src/scripts/menu/modules/testFindModuleByCustomId.ts",
+    "script:searchfilter-module": "ts-node src/scripts/menu/modules/testSearchModulesByFilter.ts",
+    "script:create-module": "ts-node src/scripts/menu/modules/testCreateModule.ts",
+    "script:update-module": "ts-node src/scripts/menu/modules/testUpdateModule.ts",
+    "script:activate-module": "ts-node src/scripts/menu/modules/testActivateModule.ts",
+    "script:delete-module": "ts-node src/scripts/menu/modules/testDeleteModule.ts",
+    "script:getroutes-module": "ts-node src/scripts/menu/modules/testGetRoutesWithModule.ts",
+    "script:findbyid-role": "ts-node src/scripts/roles/testFindRoleById.ts",
+    "script:findbycustom-role": "ts-node src/scripts/roles/testFindRoleByCustomId.ts",
+    "script:findbyfilter-role": "ts-node src/scripts/roles/testSearchRolesByFilter.ts",
+    "script:list-roles": "ts-node src/scripts/roles/testListRoles.ts",
+    "script:create-role": "ts-node src/scripts/roles/testCreateRole.ts",
+    "script:update-role": "ts-node src/scripts/roles/testUpdateRole.ts",
+    "script:defaultsystem-rol": "ts-node src/scripts/roles/testSetDefaultRole.ts",
+    "script:activate-rol": "ts-node src/scripts/roles/testActivateRole.ts",
+    "script:delete-rol": "ts-node src/scripts/roles/testDeleteRole.ts",
+    "script:addpermission-rol": "ts-node src/scripts/roles/testAddPermissionRole.ts",
+    "script:deletepermission-rol": "ts-node src/scripts/roles/testDeletePermissionRole.ts",
+    "script:addpermissionsecurity-rol": "ts-node src/scripts/roles/testAddPermissionSecurity.ts",
+    "script:deletepermissionsecurity-rol": "ts-node src/scripts/roles/testDeletePermissionSecurity.ts",
+    "script:findbyid-roleconfig": "ts-node src/scripts/roleConfig/testFinRoleConfigById.ts",
+    "script:findbyname-roleconfig": "ts-node src/scripts/roleConfig/testFindRoleConfigByName.ts",
+    "script:searchbyfilter-roleconfig": "ts-node src/scripts/roleConfig/testFindRoleConfigByFilter.ts",
+    "script:activate-roleconfig": "ts-node src/scripts/roleConfig/testActivateRoleConfig.ts",
+    "script:delete-roleconfig": "ts-node src/scripts/roleConfig/testDeleteRoleConfig.ts",
+    "script:create-roleconfig": "ts-node src/scripts/roleConfig/testCreateRoleConfig",
+    "script:update-roleconfig": "ts-node src/scripts/roleConfig/testUpdateRoleConfig.ts",
+    "script:create-headquarter": "ts-node src/scripts/headquarter/testCreateHeadquarter.ts",
+    "script:findbyid-headquarter": "ts-node src/scripts/headquarter/testFindHeadquarterById.ts",
+    "script:findbycustomid-headquarter": "ts-node src/scripts/headquarter/testFindHeadquarterByCustomId.ts",
+    "script:searchbyfilter-headquarter": "ts-node src/scripts/headquarter/testSearchByFilterHeadquarter.ts",
+    "script:activate-headquarter": "ts-node src/scripts/headquarter/testActivateHeadquarter.ts",
+    "script:desactivate-headquarter": "ts-node src/scripts/headquarter/testInactivateHeadquarter.ts",
+    "script:list-headquarters": "ts-node src/scripts/headquarter/testListHeadquarters.ts",
+    "script:update-headquarter": "ts-node src/scripts/headquarter/testUpdateHeadquarter.ts",
+    "script:findbyid-department": "ts-node src/scripts/departments/testFindDepartmentById.ts",
+    "script:findbycustomid-department": "ts-node src/scripts/departments/testFindDeparmentByCustomId.ts",
+    "script:findbyheadquarter-department": "ts-node src/scripts/departments/testFindDepartmentByHeadquarter.ts",
+    "script:searchbyfilter-department": "ts-node src/scripts/departments/testSearchDepartmentByFilter.ts",
+    "script:list-departments": "ts-node src/scripts/departments/testListDepartments.ts",
+    "script:create-department": "ts-node src/scripts/departments/testCreateDepartment.ts",
+    "script:activate-department": "ts-node src/scripts/departments/testActivateDepartment.ts",
+    "script:inactivate-department": "ts-node src/scripts/departments/testInactivateDepartment.ts",
+    "script:update-department": "ts-node src/scripts/departments/testUpdateDepartment.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

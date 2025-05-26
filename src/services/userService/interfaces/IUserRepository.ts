@@ -4,7 +4,7 @@ import { UserDocument } from "../../../db/models";
 import { ObjectIdParam, UpdateUserDto, UserDto } from "../../../validations";
 
 
-export interface UserRepository {
+export interface IUserRepository {
 
     findUserById(idUser : ObjectIdParam) : Promise<UserDocument | null>;
     findUserByCustomId(customIdUser : string) : Promise<UserDocument | null>;

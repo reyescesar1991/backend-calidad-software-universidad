@@ -67,3 +67,4 @@ export {ModuleFilterSchemaZod} from './sharedValidators/routeFormatValidator';
 export {RoleFilterSchema} from './sharedValidators/roleFormatValidator';
 export {RoleConfigFilterSchema} from './sharedValidators/roleConfigFilterValidator';
 export {DepartmentFilterSchema} from './sharedValidators/departmentFilterValidator';
+export {UserFilterSchema} from './sharedValidators/userFilterValidator';

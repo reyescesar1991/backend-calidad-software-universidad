@@ -1,12 +1,12 @@
 import { inject, injectable } from "tsyringe";
-import { UserRepository } from "../interfaces/IUserRepository";
+import { IUserRepository } from "../interfaces/IUserRepository";
 import { ClientSession, Model } from "mongoose";
 import { UserDocument } from "../../../db/models";
 import { FilterOptions, UserConfigFilterKeys } from "../../../core/types";
 import { ObjectIdParam, UserDto, UpdateUserDto } from "../../../validations";
 
 @injectable()
-export class UserRepositoryImpl implements UserRepository {
+export class UserRepositoryImpl implements IUserRepository {
 
     constructor(@inject("UserModel") private readonly UserModel: Model<UserDocument>) { }
 

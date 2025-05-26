@@ -111,6 +111,11 @@ export {DepartmentIsAlreadyInactiveError} from './department/department.exceptio
 export {DepartmentAlreadyExistsError} from './department/department.exception';
 export {DepartmentUniqueKeysError} from './department/department.exception';
 
+//users
+export {UserNotFoundByIdError} from './user/user.exception';
+export {UserNotFoundByUsernameError} from './user/user.exception';
+export {FilterUserConfigError} from './user/user.exception';
+
 //generales
 
 export {AppError} from './generals/general.exceptions';

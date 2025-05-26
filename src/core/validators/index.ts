@@ -23,6 +23,10 @@ export {labelSchema} from './permissions/schemas/labelSchema.zod';
 export {HeadquarterValidator} from './headquarters/headquarter.validator';
 export {DepartmentValidator} from './departments/department.validator';
 
+//user
+
+export {UserValidator} from './users/user.validator';
+
 //roles
 
 export {RoleValidator} from './roles/role.validator';

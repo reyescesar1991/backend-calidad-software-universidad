@@ -6,6 +6,7 @@ import { RoleRepositoryImpl } from "../../../services/role/repositories/roleRepo
 import { RolePermissionRepositoryImpl } from "../../../services/role/repositories/rolePermissionRepository";
 import { RolePermissionSecurityImpl } from "../../../services/role/repositories/rolePermissionSecurityRepository";
 import { RoleValidator } from "../../validators";
+import { RoleService } from "../../../services/role/Role.service";
 
 export const configureDependenciesRoles = async () => {
 
@@ -14,6 +15,8 @@ export const configureDependenciesRoles = async () => {
     container.register<IRoleRepository>("IRoleRepository", {useClass : RoleRepositoryImpl});
     container.register<IRolePermissionRepository>("IRolePermissionRepository", {useClass : RolePermissionRepositoryImpl});
     container.register<IRolePermissionSecurityRepository>("IRolePermissionSecurityRepository", {useClass : RolePermissionSecurityImpl});
+
+    container.register("RoleService", {useClass : RoleService});
 
     //validator roles
 

@@ -110,7 +110,8 @@
     "script:create-department": "ts-node src/scripts/departments/testCreateDepartment.ts",
     "script:activate-department": "ts-node src/scripts/departments/testActivateDepartment.ts",
     "script:inactivate-department": "ts-node src/scripts/departments/testInactivateDepartment.ts",
-    "script:update-department": "ts-node src/scripts/departments/testUpdateDepartment.ts"
+    "script:update-department": "ts-node src/scripts/departments/testUpdateDepartment.ts",
+    "script:create-user" : "ts-node src/scripts/users/testCreateUser.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

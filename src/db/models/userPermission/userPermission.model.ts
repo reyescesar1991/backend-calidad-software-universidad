@@ -7,8 +7,7 @@ export const userPermissionSchema = new Schema<UserPermissionDocument>({
 
     idUser : {type: String, required: true, unique: true},
     roleId : {
-        type: Schema.Types.ObjectId,
-        ref: "Role", // 👈 Referencia a la colección
+        type: String,
         required: true,
         index : true
     },
@@ -25,7 +24,7 @@ export const userPermissionSchema = new Schema<UserPermissionDocument>({
                     required: true,
                     default: true
                 },
-                permissionKey : {
+                permissionLabel : {
 
                     type: String,
                     required: true,

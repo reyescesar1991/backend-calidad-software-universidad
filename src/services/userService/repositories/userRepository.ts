@@ -1,14 +1,17 @@
 import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "../interfaces/IUserRepository";
 import { ClientSession, Model } from "mongoose";
-import { UserDocument } from "../../../db/models";
+import { RoleDocument, UserDocument } from "../../../db/models";
 import { FilterOptions, UserConfigFilterKeys } from "../../../core/types";
 import { ObjectIdParam, UserDto, UpdateUserDto } from "../../../validations";
+import { RoleConfigDocument } from "../../../db/models/roleModels/roleConfig.model";
 
 @injectable()
 export class UserRepositoryImpl implements IUserRepository {
 
     constructor(@inject("UserModel") private readonly UserModel: Model<UserDocument>) { }
+
+    
 
     async findUserById(idUser: ObjectIdParam): Promise<UserDocument | null> {
 
@@ -109,22 +112,36 @@ export class UserRepositoryImpl implements IUserRepository {
         return !!result;
     }
     async enableTwoFactorAuth(userId: ObjectIdParam, session?: ClientSession): Promise<UserDocument> {
-        
+
         return await this.UserModel.findByIdAndUpdate(
 
             userId,
-            {$set : {hasTwoFactor : true}},
-            {new: true, runValidators: true, session}
+            { $set: { hasTwoFactor: true } },
+            { new: true, runValidators: true, session }
         ).exec();
     }
     async disableTwoFactorAuth(userId: ObjectIdParam, session?: ClientSession): Promise<UserDocument> {
-        
+
         return await this.UserModel.findByIdAndUpdate(
 
             userId,
-            {$set : {hasTwoFactor : false}},
-            {new: true, runValidators: true, session}
+            { $set: { hasTwoFactor: false } },
+            { new: true, runValidators: true, session }
         ).exec();
+    }
+
+    async searchUsersByFilterWithOr(filter: FilterOptions<UserConfigFilterKeys>): Promise<UserDocument[] | null> {
+
+        const orConditions = Object.entries(filter).map(([key, value]) => ({
+            [key]: value
+        }));
+
+        // Si no hay condiciones, retornar array vacío
+        if (orConditions.length === 0) return [];
+
+        return await this.UserModel.find({
+            $or: orConditions
+        }).exec();
     }
 
 

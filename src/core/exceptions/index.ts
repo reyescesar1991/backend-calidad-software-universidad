@@ -115,6 +115,9 @@ export {DepartmentUniqueKeysError} from './department/department.exception';
 export {UserNotFoundByIdError} from './user/user.exception';
 export {UserNotFoundByUsernameError} from './user/user.exception';
 export {FilterUserConfigError} from './user/user.exception';
+export {UserNotFoundByFilterError} from './user/user.exception';
+export {UserAlreadyExistsError} from './user/user.exception';
+export {UserUniqueKeysError} from './user/user.exception';
 
 //generales
 

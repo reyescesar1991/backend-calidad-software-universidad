@@ -2,6 +2,7 @@ import { ClientSession } from "mongoose";
 import { FilterOptions, RoleConfigFilterKeys } from "../../../core/types";
 import { RoleConfigDocument } from "../../../db/models/roleModels/roleConfig.model";
 import { ObjectIdParam, RoleConfigDto, UpdateRoleConfigDto } from "../../../validations";
+import { RoleDocument } from "../../../db/models";
 
 
 export interface IRoleConfigRepository{
@@ -13,5 +14,7 @@ export interface IRoleConfigRepository{
     deleteConfigRole(idConfigRole : ObjectIdParam, session?: ClientSession) : Promise<RoleConfigDocument | null>;
     createConfigRole(dataConfigRole : RoleConfigDto, session?: ClientSession) : Promise<RoleConfigDocument | null>;
     updateConfigRole(idConfigRole : ObjectIdParam, dataConfigRoleUpdate : UpdateRoleConfigDto, session?: ClientSession) : Promise<RoleConfigDocument | null>;
-    
+    findRoleConfigWithRole(
+        roleConfigId: ObjectIdParam
+      ): Promise<RoleDocument | null>;
 }

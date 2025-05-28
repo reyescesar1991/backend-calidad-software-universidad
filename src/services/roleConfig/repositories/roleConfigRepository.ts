@@ -4,6 +4,7 @@ import { ClientSession, Model } from "mongoose";
 import { RoleConfigDocument } from "../../../db/models/roleModels/roleConfig.model";
 import { FilterOptions, RoleConfigFilterKeys } from "../../../core/types";
 import { ObjectIdParam, RoleConfigDto, UpdateRoleConfigDto } from "../../../validations";
+import { RoleDocument } from "../../../db/models";
 
 @injectable()
 export class RoleConfigRepositoryImpl implements IRoleConfigRepository {
@@ -52,6 +53,15 @@ export class RoleConfigRepositoryImpl implements IRoleConfigRepository {
             { new: true, runValidators: true, session }
         ).exec();
     }
+
+    async findRoleConfigWithRole(
+    roleConfigId: ObjectIdParam
+  ): Promise<RoleDocument | null> {
+
+    const roleConfig = await this.RoleConfigModel.findById(roleConfigId).populate<{ rolID: RoleDocument }>('rolID').exec();
+
+    return roleConfig.rolID;
+  }
 
 
 }

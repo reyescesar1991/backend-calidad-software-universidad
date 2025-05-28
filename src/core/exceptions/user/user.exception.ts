@@ -30,3 +30,33 @@ export class FilterUserConfigError extends AppError{
         
     }
 }
+
+export class UserNotFoundByFilterError extends AppError{
+    code = 1804;
+    constructor(message : string = "No se han encontrado usuarios de acuerdo a los parámetros del filtro"){
+
+        super(message);
+        this.name = "UserNotFoundByFilterError"
+        
+    }
+}
+
+export class UserAlreadyExistsError extends AppError{
+    code = 1805;
+    constructor(message : string = "El usuario ya existe en el sistema, introduzca un ID diferente"){
+
+        super(message);
+        this.name = "UserAlreadyExistsError"
+        
+    }
+}
+
+export class UserUniqueKeysError extends AppError{
+    code = 1806;
+    constructor(message : string = "Los campos idUser, username, phone y email deben ser unicos por usuario, alguno de los valores colocados ya le pertenecen a otro usuario"){
+
+        super(message);
+        this.name = "UserUniqueKeysError"
+        
+    }
+}

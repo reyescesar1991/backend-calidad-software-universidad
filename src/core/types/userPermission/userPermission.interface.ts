@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 export interface IUserPermission{
 
     idUser : string;
-    roleId : mongoose.Types.ObjectId;
+    roleId : string;
     customPermissions : {
 
         permissionId : mongoose.Types.ObjectId;
         can : boolean;
-        permissionKey : string,
+        permissionLabel : string,
     }[];
 }

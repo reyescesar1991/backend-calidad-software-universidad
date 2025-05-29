@@ -60,3 +60,34 @@ export class UserUniqueKeysError extends AppError{
         
     }
 }
+
+
+export class UserStatusAlreadyItsSameError extends AppError{
+    code = 1807;
+    constructor(message : string = "El estatus actual del usuario es el mismo que se quiere colocar, intente con uno diferente"){
+
+        super(message);
+        this.name = "UserStatusAlreadyItsSameError"
+        
+    }
+}
+
+export class UserNotActiveError extends AppError{
+    code = 1808;
+    constructor(message : string = "El usuario no se encuentra activo en el sistema, no puede realizar operaciones"){
+
+        super(message);
+        this.name = "UserNotActiveError"
+        
+    }
+}
+
+export class PasswordIsNotInTheHistoryUserError extends AppError{
+    code = 1809;
+    constructor(message : string = "La contraseña no se encontró en el historico del usuario, intente de nuevo"){
+
+        super(message);
+        this.name = "PasswordIsNotInTheHistoryUserError"
+        
+    }
+}

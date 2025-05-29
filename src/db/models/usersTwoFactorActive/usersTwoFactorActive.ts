@@ -23,4 +23,4 @@ export const UserTwoFactorActiveSchema = new Schema<UsersTwoFactorActiveDocument
     
 } , {timestamps: true, versionKey: false});
 
-export const RoleModel = model<UsersTwoFactorActiveDocument>("UserTwoFactorModel", UserTwoFactorActiveSchema);
+export const UserTwoFactorActiveModel = model<UsersTwoFactorActiveDocument>("UserTwoFactorModel", UserTwoFactorActiveSchema);

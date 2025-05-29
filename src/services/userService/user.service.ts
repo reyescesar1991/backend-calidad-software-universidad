@@ -11,6 +11,7 @@ import { IRoleRepository } from "../role/interfaces/IRoleRepository";
 import { IUserPermissionSecurityRepository } from "./interfaces/IUserPermissionSecurityRepository";
 import { IRoleConfigRepository } from "../roleConfig";
 import { IDepartmentRepository } from "../locationService";
+import { ITwoFactorUserRepository } from "./interfaces/ITwoFactorActiveUser";
 
 @injectable()
 export class UserService {
@@ -20,6 +21,8 @@ export class UserService {
         @inject("IUserPermissionRepository") private readonly userPermissionRepository: IUserPermissionRepository,
         @inject("IUserPermissionSecurityRepository") private readonly userPermissionSecurityRepository: IUserPermissionSecurityRepository,
         @inject("IRoleConfigRepository") private readonly roleConfigRepository: IRoleConfigRepository,
+        @inject("ITwoFactorUserRepository") private readonly twoFactorUserActiveRepository: ITwoFactorUserRepository,
+
         @inject("UserValidator") private readonly userValidator: UserValidator,
         @inject("TransactionManager") private readonly transactionManager: TransactionManager,
         @inject("IRoleRepository") private readonly roleRepository: IRoleRepository,
@@ -97,6 +100,7 @@ export class UserService {
         }
     }
 
+    //TODO: Metodo para administradores, middleware de autorizacion
     async createUser(dataUser: UserDto, idConfigRoleParam: ObjectIdParam): Promise<UserDocument | null> {
 
         return await this.transactionManager.executeTransaction(
@@ -190,6 +194,8 @@ export class UserService {
             }
         )
     }
+
+    //TODO: Metodo para administradores, middleware de autorizacion
 
     async updateUser(idUser: ObjectIdParam, idCustomUser: string, updateDataUser: UpdateUserDto): Promise<UserDocument | null> {
 
@@ -309,6 +315,131 @@ export class UserService {
 
                 } catch (error) {
 
+                    handleError(error);
+                }
+            }
+        )
+    }
+
+    //TODO: Metodo para administradores, middleware de autorizacion
+
+    async changeStatusUser(newStatus: string, idUser: ObjectIdParam): Promise<UserDocument | null>{
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    //1. Validamos que el usuario exista
+                    await this.userValidator.validateExistsUserDataAsync(idUser);
+
+                    //2. Validamos que el estatus nuevo sea distinto al actual
+                    await this.userValidator.validateStatusUserForChange(idUser, newStatus);
+
+                    //3. Cambiamos el estatus
+                    return await this.userRepository.changeStatusUser(newStatus, idUser, session);
+                    
+                } catch (error) {
+                    
+                    handleError(error);
+                }
+            }
+        )
+    }
+
+    async addPasswordToHistory(userId: ObjectIdParam, hashedPassword: string): Promise<void>{
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    //1. Validamos que exista el usuario
+                    await this.userValidator.validateExistsUserDataAsync(userId);
+
+                    //2. Agregamos la contraseña al array de password historico para almacenarla
+                    return await this.userRepository.addPasswordToHistory(userId, hashedPassword, session);
+                    
+                } catch (error) {
+                    
+                    handleError(error);
+                }
+            }
+        )
+    }
+
+    async isPasswordInHistory(userId: ObjectIdParam, hashedPassword: string): Promise<boolean>{
+
+        try {
+
+            //1. Validamos que exista el usuario
+            await this.userValidator.validateExistsUserDataAsync(userId);
+
+            //2. Verificamos si la contraseña ya esta presente en el array de contraseñas
+            const isPasswordInHistory = await this.userRepository.isPasswordInHistory(userId, hashedPassword);
+
+            return isPasswordInHistory;
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    async deletePasswordInHistory(userId: ObjectIdParam, hashedPassword: string): Promise<boolean>{
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    //1. Validamos que exista el usuario
+                    await this.userValidator.validateExistsUserDataAsync(userId); 
+
+                    //2. Verificamos que la contraseña si este presente en el array de contraseñas
+                    const isPasswordInHistory = await this.userRepository.isPasswordInHistory(userId, hashedPassword);
+
+                    //3. Usamos el validador pasandole el valor y que el se encargue de lanzar el error si es necesario
+                    UserValidator.validatePasswordInHistory(isPasswordInHistory);
+
+                    //4. Hacemos la operacion y devolvemos el valor
+                    const passwordDelete = await this.userRepository.deletePasswordInHistory(userId, hashedPassword, session);
+
+                    return passwordDelete;
+                    
+                } catch (error) {
+                    
+                    handleError(error);
+                }
+            }
+        )
+    }
+
+    async enableTwoFactorAuth(userId: ObjectIdParam): Promise<UserDocument>{
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    //1. Validamos que el usuario exista
+
+                    //2. Validamos que el segundo factor ya no este activo
+
+                    //3. Sin importar el resultado verificamos que si es true, exista su registro en la tabla intermedia
+
+                    //4. Sino existe el registro lo creamos
+
+                    //5. Si ya existe no lo creamos
+
+                    //6. Si existe y esta desactivado, lo activamos en el usuario y en la tabla intermedia
+                    
+                } catch (error) {
+                    
                     handleError(error);
                 }
             }

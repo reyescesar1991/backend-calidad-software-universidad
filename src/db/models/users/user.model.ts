@@ -1,5 +1,4 @@
 import { model, Schema } from "mongoose";
-import { IUsersType } from "../../../core/types";
 import mongoose from "mongoose";
 import { StatusUserEnum } from "../../../core/enums";
 
@@ -47,6 +46,23 @@ export const userSchema = new Schema<UserDocument>({
         required: true 
     },
     passwordHistory : {type: [String], required: false, default : []},
+});
+
+// Define el límite para el historial de contraseñas
+const PASSWORD_HISTORY_LIMIT = 5; // Por ejemplo, mantener las últimas 5 contraseñas
+
+// Middleware 'pre' para el evento 'save'
+// Esto se ejecutará antes de que el documento se guarde en la base de datos
+userSchema.pre('save', function(next) {
+    // 'this' se refiere al documento actual que se está guardando
+    // Si el historial de contraseñas excede el límite, eliminamos las más antiguas
+    if (this.passwordHistory && this.passwordHistory.length > PASSWORD_HISTORY_LIMIT) {
+        // slice(startIndex, endIndex) crea un nuevo array desde startIndex hasta endIndex (sin incluir endIndex)
+        // Si PASSWORD_HISTORY_LIMIT es 5, y tenemos 6 elementos, queremos los últimos 5,
+        // por lo que el inicio sería 6 - 5 = 1.
+        this.passwordHistory = this.passwordHistory.slice(this.passwordHistory.length - PASSWORD_HISTORY_LIMIT);
+    }
+    next(); // Continúa con la operación de guardado
 });
 
 export const UserModel = model<UserDocument>("User", userSchema);

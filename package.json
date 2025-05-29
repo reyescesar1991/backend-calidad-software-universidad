@@ -116,7 +116,11 @@
     "script:findbycustomid-user" : "ts-node src/scripts/users/testFindUserByCustomId.ts",
     "script:findbyusername-user" : "ts-node src/scripts/users/testFindUserByUsername.ts",
     "script:searchbyfilter-user" : "ts-node src/scripts/users/testSearchUserByFilter.ts",
-    "script:update-user" : "ts-node src/scripts/users/testUpdateUser.ts"
+    "script:update-user" : "ts-node src/scripts/users/testUpdateUser.ts",
+    "script:changestatus-user" : "ts-node src/scripts/users/testChangeStatusUser.ts",
+    "script:addpasswordhistory-user" : "ts-node src/scripts/users/testAddPasswordHistory.ts",
+    "script:passwordinhistory-user" : "ts-node src/scripts/users/testIsPasswordInHistory.ts",
+    "script:deletepasswordinhistory-user" : "ts-node src/scripts/users/testDeletePasswordInHistory.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

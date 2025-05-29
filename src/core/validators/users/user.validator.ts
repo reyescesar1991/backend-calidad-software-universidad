@@ -1,9 +1,10 @@
 import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "../../../services/userService";
 import { UserDocument } from "../../../db/models";
-import { FilterUserConfigError, UserAlreadyExistsError, UserNotFoundByFilterError, UserNotFoundByIdError, UserNotFoundByUsernameError, UserUniqueKeysError } from "../../exceptions";
+import { FilterUserConfigError, PasswordIsNotInTheHistoryUserError, UserAlreadyExistsError, UserNotActiveError, UserNotFoundByFilterError, UserNotFoundByIdError, UserNotFoundByUsernameError, UserStatusAlreadyItsSameError, UserUniqueKeysError } from "../../exceptions";
 import { FilterOptions, RoleConfigFilterKeys, UserConfigFilterKeys } from "../../types";
 import { ObjectIdParam, UserFilterSchema } from "../../../validations";
+import { StatusUserEnum } from "../../enums";
 
 @injectable()
 export class UserValidator {
@@ -37,6 +38,11 @@ export class UserValidator {
         }
     }
 
+    static validatePasswordInHistory(isPasswordInHistory : boolean) : void{
+
+        if(!isPasswordInHistory) throw new PasswordIsNotInTheHistoryUserError();
+    }
+
     async validateUniquenessUserData(idUser: string): Promise<void> {
 
 
@@ -57,5 +63,20 @@ export class UserValidator {
         const users = await this.userRepository.searchUsersByFilterWithOr(filter);
 
         if (users.length >= 1) throw new UserUniqueKeysError();
+    }
+
+    async validateStatusUserForChange(idUser : ObjectIdParam, newStatus : string) : Promise<void>{
+
+        const user = await this.userRepository.findUserById(idUser);
+
+        if(user.status === newStatus) throw new UserStatusAlreadyItsSameError();
+    }
+
+    //TODO: Para el middleware de verificacion de status del usuario que realiza las acciones
+    async validateStatusUser(idUser : ObjectIdParam) : Promise<void>{
+
+        const user = await this.userRepository.findUserById(idUser);
+
+        if(user.status !== StatusUserEnum.ACTIVE) throw new UserNotActiveError();
     }
 }

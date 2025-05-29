@@ -25,6 +25,7 @@ export {ProductModel} from './productModels/product.model';
 export {UserPermissionModel} from './userPermission/userPermission.model';
 export {UserPermissionSecurityModel} from './userPermission/userPermissionSecurity.model';
 export {UsersTwoFactorActiveDocument} from './usersTwoFactorActive/usersTwoFactorActive';
+export {UserTwoFactorActiveModel} from './usersTwoFactorActive/usersTwoFactorActive';
 export {RoleSchema} from './roleModels/role.model';
 export {RouteSchema} from './menuModels/route.model';
 export {SubrouteSchema} from './menuModels/subroute.model';

@@ -1,17 +1,14 @@
 import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "../interfaces/IUserRepository";
 import { ClientSession, Model } from "mongoose";
-import { RoleDocument, UserDocument } from "../../../db/models";
+import { UserDocument } from "../../../db/models";
 import { FilterOptions, UserConfigFilterKeys } from "../../../core/types";
 import { ObjectIdParam, UserDto, UpdateUserDto } from "../../../validations";
-import { RoleConfigDocument } from "../../../db/models/roleModels/roleConfig.model";
 
 @injectable()
 export class UserRepositoryImpl implements IUserRepository {
 
     constructor(@inject("UserModel") private readonly UserModel: Model<UserDocument>) { }
-
-    
 
     async findUserById(idUser: ObjectIdParam): Promise<UserDocument | null> {
 
@@ -48,24 +45,7 @@ export class UserRepositoryImpl implements IUserRepository {
 
         return await this.UserModel.findByIdAndUpdate(
             idUser,
-            { $set: { status: { newStatus } } },
-            { new: true, runValidators: true, session }
-        ).exec();
-    }
-    async changeDepartmentUser(idUser: ObjectIdParam, idNewDepartment: ObjectIdParam, session?: ClientSession): Promise<UserDocument | null> {
-
-        return await this.UserModel.findByIdAndUpdate(
-            idUser,
-            { $set: { department: { idNewDepartment } } },
-            { new: true, runValidators: true, session },
-        ).exec();
-    }
-    async changeRoleConfig(idUser: ObjectIdParam, idNewConfigRole: ObjectIdParam, session?: ClientSession): Promise<UserDocument | null> {
-
-        return await this.UserModel.findByIdAndUpdate(
-
-            idUser,
-            { $set: { roleConfig: { idNewConfigRole } } },
+            { $set: { status: newStatus } },
             { new: true, runValidators: true, session }
         ).exec();
     }
@@ -73,18 +53,38 @@ export class UserRepositoryImpl implements IUserRepository {
 
         await this.UserModel.findByIdAndUpdate(
             userId,
-            {
-                $addToSet: {
-                    passwordHistory: {
-                        $each: [hashedPassword], // Agrega la nueva contraseña
-                        $position: 0, // Al inicio del array
-                        $slice: 5 // Mantén solo las últimas 5 contraseñas
+            [
+                {
+                    $set: {
+                        passwordHistory: {
+                            $filter: {
+                                input: "$passwordHistory",
+                                as: "ph", //Recorre elemento por elemento del array
+                                cond: { $ne: ["$$ph", hashedPassword] } // Elimina duplicados
+                            }
+                        }
+                    }
+                },
+                {
+                    $set: {
+                        passwordHistory: {
+                            $concatArrays: [
+                                [hashedPassword], // Nuevo elemento
+                                "$passwordHistory" // Array existente
+                            ]
+                        }
+                    }
+                },
+                {
+                    $set: {
+                        passwordHistory: { $slice: ["$passwordHistory", 5] } // Limitar a 5
                     }
                 }
-            },
-            { session } // Opcional: sesión de transacción
-        ).exec();
+            ],
+            { session }
+        );
     }
+
     async isPasswordInHistory(userId: ObjectIdParam, hashedPassword: string): Promise<boolean> {
 
         const user = await this.UserModel.findById(userId)

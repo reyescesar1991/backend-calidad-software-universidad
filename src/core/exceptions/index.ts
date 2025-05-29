@@ -118,6 +118,9 @@ export {FilterUserConfigError} from './user/user.exception';
 export {UserNotFoundByFilterError} from './user/user.exception';
 export {UserAlreadyExistsError} from './user/user.exception';
 export {UserUniqueKeysError} from './user/user.exception';
+export {UserStatusAlreadyItsSameError} from './user/user.exception';
+export {UserNotActiveError} from './user/user.exception';
+export {PasswordIsNotInTheHistoryUserError} from './user/user.exception';
 
 //generales
 

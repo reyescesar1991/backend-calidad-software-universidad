@@ -45,12 +45,17 @@ export class UserValidator {
         if (user) throw new UserAlreadyExistsError();
     }
 
+    async validateExistsUserDataAsync(idUser: ObjectIdParam): Promise<void> {
+
+        const user = await this.userRepository.findUserById(idUser);
+
+        if (!user) throw new UserNotFoundByIdError();
+    }
+
     async validateUniqueKeysUser(filter: FilterOptions<UserConfigFilterKeys>): Promise<void> {
 
         const users = await this.userRepository.searchUsersByFilterWithOr(filter);
 
-        console.log(users);
-
-        if (users.length > 1) throw new UserUniqueKeysError();
+        if (users.length >= 1) throw new UserUniqueKeysError();
     }
 }

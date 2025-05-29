@@ -23,7 +23,9 @@ export {WarehouseDto} from './warehouseValidators/warehouse.validation';
 export {ProductDto} from './productValidators/product.validation';
 export {ObjectIdParam} from './sharedValidators/sharedValidators';
 export {UserPermissionDto} from './userPermissionValidators/userPermission.validator';
+export {UpdateUserPermissionDto} from './userPermissionValidators/userPermission.validator';
 export {UserPermissionSecurityDto} from './userPermissionValidators/userPermissionSecurity.validator';
+export {UpdateUserPermissionSecurityDto} from './userPermissionValidators/userPermissionSecurity.validator';
 export {UpdatePermissionSecurityDto} from './permissionsSecurityValidators/permissionSecurity.validation';
 export {ModuleDto} from './menuValidators/menu.validation';
 export {ModuleUpdateDto} from './menuValidators/menu.validation';
@@ -53,8 +55,13 @@ export {updateUserSchemaZod} from './usersValidators/user.validation';
 export {warehouseSchemaZod} from './warehouseValidators/warehouse.validation';
 export {productSchemaZod} from './productValidators/product.validation';
 export {objectIdSchema} from './sharedValidators/sharedValidators';
+
 export {userPermissionSchemaZod} from './userPermissionValidators/userPermission.validator';
+export {UpdateUserPermissionSchemaZod} from './userPermissionValidators/userPermission.validator';
+
 export {userPermissionSecuritySchemaZod} from './userPermissionValidators/userPermissionSecurity.validator';
+export {UpdateUserPermissionSecuritySchemaZod} from './userPermissionValidators/userPermissionSecurity.validator';
+
 export {updatePermissionSecurityZodSchema} from './permissionsSecurityValidators/permissionSecurity.validation';
 export {UserTwoFactorActiveSchemaZod} from './userTwoFactorValidators/userTwoFactor.validation';
  

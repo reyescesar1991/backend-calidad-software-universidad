@@ -30,4 +30,32 @@ export const userPermissionSchemaZod = z.object({
 
 });
 
+export const UpdateUserPermissionSchemaZod = z.object({
+
+    roleId : z.string().min(1, "ID de role es requerido").optional(),
+    customPermissions: z.array( // 👈 Definición directa
+        z.object({
+            permissionId: z.instanceof(mongoose.Types.ObjectId).refine(
+                val => val instanceof mongoose.Types.ObjectId,
+                { message: "Debe ser un ObjectId válido de Mongoose" }
+            ),
+            can: z.boolean({
+                required_error: "El campo 'can' es requerido",
+                invalid_type_error: "'can' debe ser verdadero o falso"
+            }),
+            permissionLabel: z.string().min(1, "Label del permiso es requerido"),
+        })
+    )
+    .refine(
+        permissions => {
+            const ids = permissions.map(p => p.permissionId);
+            return new Set(ids).size === ids.length; // Validar duplicados
+        }, 
+        "No se permiten permisos repetidos"
+    )
+    .default([]).optional(),
+
+});
+
 export type UserPermissionDto = z.infer<typeof userPermissionSchemaZod>;
+export type UpdateUserPermissionDto = z.infer<typeof UpdateUserPermissionSchemaZod>;

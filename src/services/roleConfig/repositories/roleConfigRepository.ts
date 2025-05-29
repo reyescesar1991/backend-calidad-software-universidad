@@ -59,7 +59,7 @@ export class RoleConfigRepositoryImpl implements IRoleConfigRepository {
   ): Promise<RoleDocument | null> {
 
     const roleConfig = await this.RoleConfigModel.findById(roleConfigId).populate<{ rolID: RoleDocument }>('rolID').exec();
-
+    
     return roleConfig.rolID;
   }
 

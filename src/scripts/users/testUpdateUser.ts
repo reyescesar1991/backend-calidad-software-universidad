@@ -2,16 +2,15 @@ import 'reflect-metadata';
 import { container } from "tsyringe";
 import { configureUserDependencies } from "../../core/config/dependenciesUsers/dependencies";
 import { disconnectMongo, initializeTestEnvironment } from "../../core/utils/connectDb";
-import { objectIdSchema, UserDto } from "../../validations";
+import { objectIdSchema, UpdateUserDto, UserDto } from "../../validations";
 import { UserService } from "../../services/userService/user.service";
-import { StatusUserEnum } from "../../core/enums";
 import { configureDependenciesRoles } from '../../core/config/dependenciesRoles/dependencies';
 import { configureDependenciesRoleConfig } from '../../core/config/dependenciesRoleConfig/dependencies';
 import { configureDependenciesDepartments } from '../../core/config/dependenciesDepartments/dependencies';
 
 initializeTestEnvironment();
 
-const runTestCreateUser = async () => {
+const runTestUpdateUser = async () => {
 
     try {
 
@@ -20,29 +19,22 @@ const runTestCreateUser = async () => {
         await configureDependenciesRoleConfig();
         await configureDependenciesDepartments();
 
-        const dataUser : UserDto = {
+        const dataUser : UpdateUserDto = {
 
-            idUser : "USER9999",
-            name : "Test",
-            lastName : "Test",
-            codeCountry : "58",
-            phoneNumber : "04242746760",
-            email : "testestest@gmail.com",
-            password : "Contraseña.Test.01",
-            username : "testUser",
-            status : StatusUserEnum.ACTIVE,
-            hasTwoFactor : false,
-            department : objectIdSchema.parse("682e325a174576bd98f15671"),
-            roleConfig : objectIdSchema.parse("68263fc7f016933bfed2ec24"),
+            // roleConfig : objectIdSchema.parse("68263fc7f016933bfed2ec24"),
+            // department : objectIdSchema.parse("67eead413bf36442a108d301"),
+            // phoneNumber : "04161119988"
+            name : "Test Update Name",
+            lastName : "Test Update Lastname"
         }
 
-        const idRole = objectIdSchema.parse("68263fc7f016933bfed2ec24");
+        const idUser = objectIdSchema.parse("6837729bc8dd4394aae758a9");
 
         const userService = container.resolve(UserService);
 
-        const result = await userService.createUser(dataUser, idRole);
+        const result = await userService.updateUser(idUser, "USER9999", dataUser);
 
-        console.log("📄 Usuario creado:", result);
+        console.log("📄 Usuario actualizado:", result);
         
     } catch (error) {
 
@@ -55,7 +47,7 @@ const runTestCreateUser = async () => {
     }
 }
 
-runTestCreateUser().then(() => {
+runTestUpdateUser().then(() => {
 
     console.log('Proceso de seed completo');
 })

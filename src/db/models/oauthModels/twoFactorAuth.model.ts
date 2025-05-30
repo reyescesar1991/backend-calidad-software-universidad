@@ -1,7 +1,12 @@
-import { model, Schema } from "mongoose";
-import { ITwoFactorAuthType } from "../../../core/types";
+import mongoose, { model, Schema } from "mongoose";
 
-export interface TwoFactorAuthDocument extends Document, ITwoFactorAuthType {};
+export interface TwoFactorAuthDocument extends Document {
+
+    _id : mongoose.Types.ObjectId;
+    method : string,
+    isEnabled : boolean,
+    quantityUsers : number,
+};
 
 export const twoFactorAuthSchema = new Schema<TwoFactorAuthDocument>({
 

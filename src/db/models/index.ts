@@ -15,6 +15,7 @@ export {CategoryProductModel} from './categoryProductModels/categoryProduct.mode
 export {SupplierModel} from './supplierModels/supplier.model';
 export {PaymentTermModel} from './paymentTermModels/paymentTerm.model';
 export {TwoFactorAuthModel} from './oauthModels/twoFactorAuth.model';
+export {TwoFactorAuthDocument} from './oauthModels/twoFactorAuth.model';
 export {DepartmentModel} from './departmentModels/department.model';
 export {DepartmentDocument} from './departmentModels/department.model';
 export {RoleConfigModel} from './roleModels/roleConfig.model';

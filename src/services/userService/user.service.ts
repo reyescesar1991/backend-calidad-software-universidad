@@ -425,6 +425,7 @@ export class UserService {
         )
     }
 
+    //TODO: Validar una vez que este listo el repositorio de twofactors, validar que el twofactor este activo en su tabla
     async enableTwoFactorAuth(userIdParam: ObjectIdParam): Promise<UserDocument>{
 
         return await this.transactionManager.executeTransaction(
@@ -474,6 +475,7 @@ export class UserService {
         )
     }
 
+    //TODO: Validar una vez que este listo el repositorio de twofactors, validar que el twofactor este activo en su tabla
     async disableTwoFactorAuth(userIdParam: ObjectIdParam): Promise<UserDocument>{
 
         return await this.transactionManager.executeTransaction(

@@ -2,7 +2,16 @@ import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "./interfaces/IUserRepository";
 import { DepartmentValidator, RoleValidator, UserValidator } from "../../core/validators";
 import { TransactionManager } from "../../core/database/transactionManager";
-import { ObjectIdParam, objectIdSchema, UpdateUserDto, UpdateUserPermissionDto, UpdateUserPermissionSecurityDto, UserDto, UserPermissionDto, UserPermissionSecurityDto, UserTwoFactorActiveDto } from "../../validations";
+import { ObjectIdParam,
+         objectIdSchema, 
+         UpdateUserDto, 
+         UpdateUserPermissionDto, 
+         UpdateUserPermissionSecurityDto, 
+         UserDto, 
+         UserPermissionDto, 
+         UserPermissionSecurityDto, 
+         UserTwoFactorActiveDto 
+} from "../../validations";
 import { UserDocument } from "../../db/models";
 import { handleError } from "../../core/exceptions";
 import { FilterOptions, UserConfigFilterKeys } from "../../core/types";
@@ -10,7 +19,6 @@ import { IUserPermissionRepository } from "./interfaces/IUserPermissionRepositor
 import { IRoleRepository } from "../role/interfaces/IRoleRepository";
 import { IUserPermissionSecurityRepository } from "./interfaces/IUserPermissionSecurityRepository";
 import { IRoleConfigRepository } from "../roleConfig";
-import { IDepartmentRepository } from "../locationService";
 import { ITwoFactorUserRepository } from "./interfaces/ITwoFactorActiveUser";
 
 @injectable()
@@ -26,7 +34,7 @@ export class UserService {
         @inject("UserValidator") private readonly userValidator: UserValidator,
         @inject("TransactionManager") private readonly transactionManager: TransactionManager,
         @inject("IRoleRepository") private readonly roleRepository: IRoleRepository,
-        
+
         @inject("DepartmentValidator") private readonly departmentValidator: DepartmentValidator,
     ) { }
 

@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "./interfaces/IUserRepository";
 import { DepartmentValidator, RoleValidator, UserValidator } from "../../core/validators";
 import { TransactionManager } from "../../core/database/transactionManager";
-import { ObjectIdParam, UpdateUserDto, UpdateUserPermissionDto, UpdateUserPermissionSecurityDto, UserDto, UserPermissionDto, UserPermissionSecurityDto } from "../../validations";
+import { ObjectIdParam, objectIdSchema, UpdateUserDto, UpdateUserPermissionDto, UpdateUserPermissionSecurityDto, UserDto, UserPermissionDto, UserPermissionSecurityDto, UserTwoFactorActiveDto } from "../../validations";
 import { UserDocument } from "../../db/models";
 import { handleError } from "../../core/exceptions";
 import { FilterOptions, UserConfigFilterKeys } from "../../core/types";
@@ -26,8 +26,7 @@ export class UserService {
         @inject("UserValidator") private readonly userValidator: UserValidator,
         @inject("TransactionManager") private readonly transactionManager: TransactionManager,
         @inject("IRoleRepository") private readonly roleRepository: IRoleRepository,
-
-        @inject("IDepartmentRepository") private readonly departmentRepository: IDepartmentRepository,
+        
         @inject("DepartmentValidator") private readonly departmentValidator: DepartmentValidator,
     ) { }
 
@@ -418,7 +417,7 @@ export class UserService {
         )
     }
 
-    async enableTwoFactorAuth(userId: ObjectIdParam): Promise<UserDocument>{
+    async enableTwoFactorAuth(userIdParam: ObjectIdParam): Promise<UserDocument>{
 
         return await this.transactionManager.executeTransaction(
 
@@ -427,16 +426,67 @@ export class UserService {
                 try {
 
                     //1. Validamos que el usuario exista
+                    const user = await this.userRepository.findUserById(userIdParam);
+                    UserValidator.validateUserExists(user);
 
                     //2. Validamos que el segundo factor ya no este activo
+                    UserValidator.validateTwoFactorUserIsAlreadyActive(user.hasTwoFactor);
 
-                    //3. Sin importar el resultado verificamos que si es true, exista su registro en la tabla intermedia
+                    //3. Sin importar el resultado verificamos que si es falso, exista su registro en la tabla intermedia y se cree por defecto
+                        const dataTwoFactorUser = await this.twoFactorUserActiveRepository.getTwoFactorUser(userIdParam);
 
-                    //4. Sino existe el registro lo creamos
+                        //4. Sino existe el registro lo creamos
+                        if(!dataTwoFactorUser){
 
-                    //5. Si ya existe no lo creamos
+                            let dataToAddUserFactor : UserTwoFactorActiveDto = {
 
-                    //6. Si existe y esta desactivado, lo activamos en el usuario y en la tabla intermedia
+                                userId : userIdParam,
+                                twoFactorId : objectIdSchema.parse("67e9e6c034fe5c9d5ab4acf0"), //Email por defecto
+                                isActive : true,
+                            }
+
+                            //5. Lo agregamos
+                            await this.twoFactorUserActiveRepository.addTwoFactorUser(dataToAddUserFactor, session);
+                        }
+                        else{
+
+                            //6. Si existe y esta desactivado, lo activamos en el usuario y en la tabla intermedia
+                            await this.twoFactorUserActiveRepository.activateTwoFactorUser(userIdParam, session);
+
+                        }
+
+                        //7. Actualizo el estatus en el registro de user
+                        return await this.userRepository.enableTwoFactorAuth(userIdParam, session);
+                    
+                } catch (error) {
+                    
+                    handleError(error);
+                }
+            }
+        )
+    }
+
+    async disableTwoFactorAuth(userIdParam: ObjectIdParam): Promise<UserDocument>{
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    //1. Validamos que el usuario exista
+                    const user = await this.userRepository.findUserById(userIdParam);
+                    UserValidator.validateUserExists(user);
+
+                    //2. Validamos que el segundo factor ya no este inactivo
+                    UserValidator.validateTwoFactorUserIsAlreadyInactive(user.hasTwoFactor);
+
+                    //3. Si existe y esta desactivado, lo desactivamos en el usuario y en la tabla intermedia
+                    await this.twoFactorUserActiveRepository.inactivateTwoFactorUser(userIdParam, session);
+
+                    //7. Actualizo el estatus en el registro de user
+                    return await this.userRepository.disableTwoFactorAuth(userIdParam, session);
+
                     
                 } catch (error) {
                     

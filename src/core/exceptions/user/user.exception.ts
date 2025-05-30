@@ -91,3 +91,23 @@ export class PasswordIsNotInTheHistoryUserError extends AppError{
         
     }
 }
+
+export class TwoFactorUserIsAlreadyActive extends AppError{
+    code = 1810;
+    constructor(message : string = "La validación por segundo factor del usuario ya se encuentra activa"){
+
+        super(message);
+        this.name = "TwoFactorUserIsAlreadyActive"
+        
+    }
+}
+
+export class TwoFactorUserIsAlreadyInactive extends AppError{
+    code = 1811;
+    constructor(message : string = "La validación por segundo factor del usuario ya se encuentra inactiva"){
+
+        super(message);
+        this.name = "TwoFactorUserIsAlreadyInactive"
+        
+    }
+}

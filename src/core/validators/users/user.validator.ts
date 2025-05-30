@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "../../../services/userService";
 import { UserDocument } from "../../../db/models";
-import { FilterUserConfigError, PasswordIsNotInTheHistoryUserError, UserAlreadyExistsError, UserNotActiveError, UserNotFoundByFilterError, UserNotFoundByIdError, UserNotFoundByUsernameError, UserStatusAlreadyItsSameError, UserUniqueKeysError } from "../../exceptions";
+import { FilterUserConfigError, PasswordIsNotInTheHistoryUserError, TwoFactorUserIsAlreadyActive, TwoFactorUserIsAlreadyInactive, UserAlreadyExistsError, UserNotActiveError, UserNotFoundByFilterError, UserNotFoundByIdError, UserNotFoundByUsernameError, UserStatusAlreadyItsSameError, UserUniqueKeysError } from "../../exceptions";
 import { FilterOptions, RoleConfigFilterKeys, UserConfigFilterKeys } from "../../types";
 import { ObjectIdParam, UserFilterSchema } from "../../../validations";
 import { StatusUserEnum } from "../../enums";
@@ -41,6 +41,16 @@ export class UserValidator {
     static validatePasswordInHistory(isPasswordInHistory : boolean) : void{
 
         if(!isPasswordInHistory) throw new PasswordIsNotInTheHistoryUserError();
+    }
+
+    static validateTwoFactorUserIsAlreadyActive(statusTwoFactorUser : boolean) : void {
+
+        if(statusTwoFactorUser) throw new TwoFactorUserIsAlreadyActive();
+    }
+
+    static validateTwoFactorUserIsAlreadyInactive(statusTwoFactorUser : boolean) : void {
+
+        if(!statusTwoFactorUser) throw new TwoFactorUserIsAlreadyInactive();
     }
 
     async validateUniquenessUserData(idUser: string): Promise<void> {

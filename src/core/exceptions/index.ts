@@ -121,6 +121,8 @@ export {UserUniqueKeysError} from './user/user.exception';
 export {UserStatusAlreadyItsSameError} from './user/user.exception';
 export {UserNotActiveError} from './user/user.exception';
 export {PasswordIsNotInTheHistoryUserError} from './user/user.exception';
+export {TwoFactorUserIsAlreadyActive} from './user/user.exception';
+export {TwoFactorUserIsAlreadyInactive} from './user/user.exception';
 
 //generales
 

@@ -4,7 +4,7 @@ import { ObjectIdParam, TwoFactorAuthDto, UpdateTwoFactorAuthDto } from "../../.
 
 export interface ITwoFactorDataRepository {
 
-    getFactorsAvailable() : Promise<TwoFactorAuthDocument | null>;
+    getFactorsAvailable() : Promise<TwoFactorAuthDocument[] | null>;
     findFactorById(factorId : ObjectIdParam) : Promise<TwoFactorAuthDocument | null>;
     findFactorByMethod(methodFactor : string) : Promise<TwoFactorAuthDocument | null>;
     addFactor(dataFactor : TwoFactorAuthDto, session?: ClientSession) : Promise<TwoFactorAuthDocument | null>;

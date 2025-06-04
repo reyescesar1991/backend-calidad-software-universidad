@@ -124,6 +124,13 @@ export {PasswordIsNotInTheHistoryUserError} from './user/user.exception';
 export {TwoFactorUserIsAlreadyActive} from './user/user.exception';
 export {TwoFactorUserIsAlreadyInactive} from './user/user.exception';
 
+//two factor data
+
+export {TwoFactorDataNotFoundInDatabaseError} from './twoFactorData/twoFactorData.exception';
+export {TwoFactorDataNotExistsError} from './twoFactorData/twoFactorData.exception';
+export {TwoFactorDataNotExistsByMethodError} from './twoFactorData/twoFactorData.exception';
+export {TwoFactorDataQuantityNewFactorError} from './twoFactorData/twoFactorData.exception';
+
 //generales
 
 export {AppError} from './generals/general.exceptions';

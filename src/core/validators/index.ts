@@ -31,3 +31,7 @@ export {UserValidator} from './users/user.validator';
 
 export {RoleValidator} from './roles/role.validator';
 export {RoleConfigValidator} from './roles/roleConfig.validator';
+
+//two factor
+
+export {TwoFactorDataValidator} from './twoFactorData/twoFactorData.validator';

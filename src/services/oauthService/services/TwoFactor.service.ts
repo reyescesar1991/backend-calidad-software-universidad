@@ -3,18 +3,19 @@ import { ITwoFactorDataRepository } from "../interfaces/ITwoFactorDataRepository
 import { handleError } from "../../../core/exceptions";
 import { TwoFactorAuthDocument } from "../../../db/models";
 import { TwoFactorDataValidator } from "../../../core/validators";
-import { ObjectIdParam, TwoFactorAuthDto } from "../../../validations";
+import { ObjectIdParam, TwoFactorAuthDto, UpdateTwoFactorAuthDto } from "../../../validations";
 import { TransactionManager } from "../../../core/database/transactionManager";
 
 @injectable()
-export class TwoFactorService{
+export class TwoFactorService {
 
     constructor(
-        @inject("ITwoFactorDataRepository") private readonly twoFactorDataRepository : ITwoFactorDataRepository,
+        @inject("ITwoFactorDataRepository") private readonly twoFactorDataRepository: ITwoFactorDataRepository,
         @inject("TransactionManager") private readonly transactionManager: TransactionManager,
-    ){}
+        @inject("TwoFactorDataValidator") private readonly twoFactorDataValidator: TwoFactorDataValidator,
+    ) { }
 
-    async getFactorsAvailable(): Promise<TwoFactorAuthDocument[] | null>{
+    async getFactorsAvailable(): Promise<TwoFactorAuthDocument[] | null> {
 
         try {
 
@@ -23,14 +24,14 @@ export class TwoFactorService{
             TwoFactorDataValidator.validateTwoFactorDataBase(twoFactorData);
 
             return twoFactorData;
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
-    async findFactorById(factorId: ObjectIdParam): Promise<TwoFactorAuthDocument | null>{
+    async findFactorById(factorId: ObjectIdParam): Promise<TwoFactorAuthDocument | null> {
 
         try {
 
@@ -39,14 +40,14 @@ export class TwoFactorService{
             TwoFactorDataValidator.validateFactorExists(factor);
 
             return factor;
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
-    async findFactorByMethod(methodFactor: string): Promise<TwoFactorAuthDocument | null>{
+    async findFactorByMethod(methodFactor: string): Promise<TwoFactorAuthDocument | null> {
 
         try {
 
@@ -55,14 +56,14 @@ export class TwoFactorService{
             TwoFactorDataValidator.validateFactorExistsByMethod(factor);
 
             return factor;
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
-    async addFactor(dataFactor: TwoFactorAuthDto): Promise<TwoFactorAuthDocument | null>{
+    async addFactor(dataFactor: TwoFactorAuthDto): Promise<TwoFactorAuthDocument | null> {
 
         return await this.transactionManager.executeTransaction(
 
@@ -70,17 +71,108 @@ export class TwoFactorService{
 
                 try {
 
-                    const factor = await this.twoFactorDataRepository.findFactorByMethod(dataFactor.method);
-
-                    TwoFactorDataValidator.validateFactorExistsByMethod(factor);
+                    console.log(dataFactor);
+                    
+                    await this.twoFactorDataValidator.validateFactorUniquenessByMethod(dataFactor.method);
 
                     TwoFactorDataValidator.validateNewFactorQuantity(dataFactor.quantityUsers);
 
-                    return factor;
+                    return await this.twoFactorDataRepository.addFactor(dataFactor, session);
 
-                    
                 } catch (error) {
-                    
+
+                    handleError(error);
+                }
+            }
+        )
+    }
+
+    async updateFactor(factorId: ObjectIdParam, dataFactor: UpdateTwoFactorAuthDto): Promise<TwoFactorAuthDocument | null> {
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    const factor = await this.twoFactorDataRepository.findFactorById(factorId);
+
+                    TwoFactorDataValidator.validateFactorExists(factor);
+
+                    return await this.twoFactorDataRepository.updateFactor(factorId, dataFactor, session);
+
+                } catch (error) {
+
+                    handleError(error);
+                }
+            }
+        )
+    }
+
+    async enableFactor(factorId: ObjectIdParam): Promise<TwoFactorAuthDocument | null> {
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    const factor = await this.twoFactorDataRepository.findFactorById(factorId);
+
+                    TwoFactorDataValidator.validateFactorExists(factor);
+
+                    TwoFactorDataValidator.validateFactorAlreadyEnable(factor);
+
+                    return await this.twoFactorDataRepository.enableFactor(factorId, session);
+
+                } catch (error) {
+
+                    handleError(error);
+                }
+            }
+        )
+    }
+
+    async disableFactor(factorId: ObjectIdParam): Promise<TwoFactorAuthDocument | null> {
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    const factor = await this.twoFactorDataRepository.findFactorById(factorId);
+
+                    TwoFactorDataValidator.validateFactorExists(factor);
+
+                    TwoFactorDataValidator.validateFactorAlreadyDisable(factor);
+
+                    return await this.twoFactorDataRepository.disableFactor(factorId, session);
+
+                } catch (error) {
+
+                    handleError(error);
+                }
+            }
+        )
+    }
+
+    async addUserQuantity(factorId: ObjectIdParam): Promise<TwoFactorAuthDocument | null> {
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    const factor = await this.twoFactorDataRepository.findFactorById(factorId);
+
+                    TwoFactorDataValidator.validateFactorExists(factor);
+
+                    return await this.twoFactorDataRepository.addUserQuantity(factorId, session);
+
+                } catch (error) {
+
                     handleError(error);
                 }
             }

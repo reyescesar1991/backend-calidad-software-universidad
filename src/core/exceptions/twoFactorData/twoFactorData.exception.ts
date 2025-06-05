@@ -17,11 +17,11 @@ export class TwoFactorDataNotExistsError extends AppError{
     }
 }
 
-export class TwoFactorDataNotExistsByMethodError extends AppError{
+export class TwoFactorDataAlreadyExistsByMethodError extends AppError{
     code = 1903;
-    constructor(message: string = "No se encontró un factor asociado a ese nombre de método, intente nuevamente"){
+    constructor(message: string = "Se encontró un factor asociado a ese nombre de método, intente nuevamente con uno diferente"){
         super(message);
-        this.name = "TwoFactorDataNotExistsByMethodError"
+        this.name = "TwoFactorDataAlreadyExistsByMethodError"
     }
 }
 
@@ -30,5 +30,29 @@ export class TwoFactorDataQuantityNewFactorError extends AppError{
     constructor(message: string = "La cantidad de personas asociadas a un nuevo factor de autenticación debe ser cero"){
         super(message);
         this.name = "TwoFactorDataQuantityNewFactorError"
+    }
+}
+
+export class TwoFactorDataNotFoundByMethodError extends AppError{
+    code = 1905;
+    constructor(message: string = "No se encontró un factor asociado a ese nombre de método, intente nuevamente con uno diferente"){
+        super(message);
+        this.name = "TwoFactorDataNotFoundByMethodError"
+    }
+}
+
+export class TwoFactorDataAlreadyEnableError extends AppError{
+    code = 1906;
+    constructor(message: string = "El factor de autenticación ya se encuentra activo"){
+        super(message);
+        this.name = "TwoFactorDataAlreadyEnableError"
+    }
+}
+
+export class TwoFactorDataAlreadyDisableError extends AppError{
+    code = 1907;
+    constructor(message: string = "El factor de autenticación ya se encuentra inactivo"){
+        super(message);
+        this.name = "TwoFactorDataAlreadyDisableError"
     }
 }

@@ -122,7 +122,11 @@
     "script:passwordinhistory-user" : "ts-node src/scripts/users/testIsPasswordInHistory.ts",
     "script:deletepasswordinhistory-user" : "ts-node src/scripts/users/testDeletePasswordInHistory.ts",
     "script:enabletwofactor-user" : "ts-node src/scripts/users/testEnableTwoFactorAuth.ts",
-    "script:disabletwofactor-user" : "ts-node src/scripts/users/testDisableTwoFactorAuth.ts"
+    "script:disabletwofactor-user" : "ts-node src/scripts/users/testDisableTwoFactorAuth.ts",
+    "script:get-factor" : "ts-node src/scripts/twoFactorData/testGetFactorsAvailable.ts",
+    "script:findbyid-factor" : "ts-node src/scripts/twoFactorData/testFindFactorById.ts",
+    "script:findbymethod-factor" : "ts-node src/scripts/twoFactorData/testFindFactorByMethod.ts",
+    "script:add-factor" : "ts-node src/scripts/twoFactorData/testFactorAdd.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

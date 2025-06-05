@@ -128,8 +128,11 @@ export {TwoFactorUserIsAlreadyInactive} from './user/user.exception';
 
 export {TwoFactorDataNotFoundInDatabaseError} from './twoFactorData/twoFactorData.exception';
 export {TwoFactorDataNotExistsError} from './twoFactorData/twoFactorData.exception';
-export {TwoFactorDataNotExistsByMethodError} from './twoFactorData/twoFactorData.exception';
+export {TwoFactorDataAlreadyExistsByMethodError} from './twoFactorData/twoFactorData.exception';
 export {TwoFactorDataQuantityNewFactorError} from './twoFactorData/twoFactorData.exception';
+export {TwoFactorDataNotFoundByMethodError} from './twoFactorData/twoFactorData.exception';
+export {TwoFactorDataAlreadyEnableError} from './twoFactorData/twoFactorData.exception';
+export {TwoFactorDataAlreadyDisableError} from './twoFactorData/twoFactorData.exception';
 
 //generales
 

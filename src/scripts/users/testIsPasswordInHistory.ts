@@ -7,6 +7,7 @@ import { UserService } from "../../services/userService/user.service";
 import { configureDependenciesRoles } from '../../core/config/dependenciesRoles/dependencies';
 import { configureDependenciesRoleConfig } from '../../core/config/dependenciesRoleConfig/dependencies';
 import { configureDependenciesDepartments } from '../../core/config/dependenciesDepartments/dependencies';
+import { configureDependenciesTwoFactorUser } from '../../core/config/dependenciesTwoFactorUser/dependencies';
 
 initializeTestEnvironment();
 
@@ -18,6 +19,7 @@ const runTestIsPasswordInHistory = async () => {
         await configureUserDependencies();
         await configureDependenciesRoleConfig();
         await configureDependenciesDepartments();
+        await configureDependenciesTwoFactorUser();
 
         const idUser = objectIdSchema.parse("6837729bc8dd4394aae758a9");
 

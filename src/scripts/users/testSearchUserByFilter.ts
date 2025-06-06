@@ -9,6 +9,7 @@ import { FilterOptions, UserConfigFilterKeys } from '../../core/types';
 import { StatusUserEnum } from '../../core/enums';
 import { objectIdSchema } from '../../validations';
 import { configureDependenciesDepartments } from '../../core/config/dependenciesDepartments/dependencies';
+import { configureDependenciesTwoFactorUser } from '../../core/config/dependenciesTwoFactorUser/dependencies';
 
 initializeTestEnvironment();
 
@@ -20,6 +21,7 @@ const runTestSearchUserByFilter = async () => {
         await configureUserDependencies();
         await configureDependenciesRoleConfig();
         await configureDependenciesDepartments();
+        await configureDependenciesTwoFactorUser();
 
         const filter : FilterOptions<UserConfigFilterKeys> = {
 

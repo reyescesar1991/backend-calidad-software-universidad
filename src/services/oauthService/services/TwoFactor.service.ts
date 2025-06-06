@@ -99,6 +99,8 @@ export class TwoFactorService {
 
                     TwoFactorDataValidator.validateFactorExists(factor);
 
+                    await this.twoFactorDataValidator.validateFactorUniquenessByMethod(dataFactor.method);
+
                     return await this.twoFactorDataRepository.updateFactor(factorId, dataFactor, session);
 
                 } catch (error) {
@@ -158,6 +160,9 @@ export class TwoFactorService {
     }
 
     async addUserQuantity(factorId: ObjectIdParam): Promise<TwoFactorAuthDocument | null> {
+
+        console.log(factorId);
+        
 
         return await this.transactionManager.executeTransaction(
 

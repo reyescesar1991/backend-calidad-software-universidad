@@ -8,6 +8,7 @@ import { StatusUserEnum } from "../../core/enums";
 import { configureDependenciesRoles } from '../../core/config/dependenciesRoles/dependencies';
 import { configureDependenciesRoleConfig } from '../../core/config/dependenciesRoleConfig/dependencies';
 import { configureDependenciesDepartments } from '../../core/config/dependenciesDepartments/dependencies';
+import { configureDependenciesTwoFactorUser } from '../../core/config/dependenciesTwoFactorUser/dependencies';
 
 initializeTestEnvironment();
 
@@ -19,6 +20,7 @@ const runTestCreateUser = async () => {
         await configureUserDependencies();
         await configureDependenciesRoleConfig();
         await configureDependenciesDepartments();
+        await configureDependenciesTwoFactorUser();
 
         const dataUser : UserDto = {
 

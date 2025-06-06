@@ -2,11 +2,12 @@ import 'reflect-metadata';
 import { container } from "tsyringe";
 import { configureUserDependencies } from "../../core/config/dependenciesUsers/dependencies";
 import { disconnectMongo, initializeTestEnvironment } from "../../core/utils/connectDb";
-import { objectIdSchema, UpdateUserDto, UserDto } from "../../validations";
+import { objectIdSchema, UpdateUserDto } from "../../validations";
 import { UserService } from "../../services/userService/user.service";
 import { configureDependenciesRoles } from '../../core/config/dependenciesRoles/dependencies';
 import { configureDependenciesRoleConfig } from '../../core/config/dependenciesRoleConfig/dependencies';
 import { configureDependenciesDepartments } from '../../core/config/dependenciesDepartments/dependencies';
+import { configureDependenciesTwoFactorUser } from '../../core/config/dependenciesTwoFactorUser/dependencies';
 
 initializeTestEnvironment();
 
@@ -18,6 +19,7 @@ const runTestUpdateUser = async () => {
         await configureUserDependencies();
         await configureDependenciesRoleConfig();
         await configureDependenciesDepartments();
+        await configureDependenciesTwoFactorUser();
 
         const dataUser : UpdateUserDto = {
 

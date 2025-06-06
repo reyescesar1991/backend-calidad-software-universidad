@@ -3,8 +3,8 @@ import mongoose, { model, Schema } from "mongoose";
 export interface UsersTwoFactorActiveDocument extends Document {
 
     _id: mongoose.Types.ObjectId;
-    userId : Schema.Types.ObjectId
-    twoFactorId : Schema.Types.ObjectId
+userId: mongoose.Types.ObjectId; // <-- Corregido
+    twoFactorId: mongoose.Types.ObjectId;
     isActive : boolean,
 };
 

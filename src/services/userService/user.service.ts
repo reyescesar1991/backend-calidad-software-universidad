@@ -26,7 +26,6 @@ import { IUserPermissionSecurityRepository } from "./interfaces/IUserPermissionS
 import { IRoleConfigRepository } from "../roleConfig";
 import { ITwoFactorUserRepository } from "./interfaces/ITwoFactorActiveUser";
 import { TwoFactorService } from "../oauthService";
-import mongoose from "mongoose";
 
 @injectable()
 export class UserService {
@@ -51,7 +50,7 @@ export class UserService {
 
     @inject("TwoFactorService")
     private readonly twoFactorService: TwoFactorService
-  ) {}
+  ) { }
 
   async findUserById(idUser: ObjectIdParam): Promise<UserDocument | null> {
     try {
@@ -424,7 +423,6 @@ export class UserService {
     });
   }
 
-  //TODO: Validar una vez que este listo el repositorio de twofactors, validar que el twofactor este activo en su tabla
   async enableTwoFactorAuth(userIdParam: ObjectIdParam): Promise<UserDocument> {
     return await this.transactionManager.executeTransaction(async (session) => {
       try {
@@ -473,12 +471,12 @@ export class UserService {
     });
   }
 
-  //TODO: Validar una vez que este listo el repositorio de twofactors, validar que el twofactor este activo en su tabla
   async disableTwoFactorAuth(
     userIdParam: ObjectIdParam
   ): Promise<UserDocument> {
     return await this.transactionManager.executeTransaction(async (session) => {
       try {
+
         //1. Validamos que el usuario exista
         const user = await this.userRepository.findUserById(userIdParam);
         UserValidator.validateUserExists(user);

@@ -19,6 +19,11 @@ export {IProductType} from './product/product.interface';
 export {IUserPermission} from './userPermission/userPermission.interface';
 export {IUserPermissionSecurity} from './userPermission/userPermissionSecurity.interface';
 
+//jwt
+
+export {JwtPayload} from './jwt/jwt.interface';
+export {JwtTokenData} from './jwt/jwt.interface';
+
 
 //filters
 

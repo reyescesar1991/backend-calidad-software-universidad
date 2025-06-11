@@ -4,24 +4,22 @@ import mongoose from "mongoose";
 export interface SessionManagementDocument extends Document {
 
     _id : mongoose.Types.ObjectId;
-    userId : mongoose.Schema.Types.ObjectId, 
+    userId : string, 
     token : string,
     ipAddress : string,
     userAgent : string,
+    expiresAt: number
 
 };
 
 export const sessionManagementSchema = new Schema<SessionManagementDocument>({
 
-    userId : { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: "User", 
-        required: true 
-    },
+    userId : { type: String, required: true, unique: true},
     token : {type: String, required: true, unique: true},
     ipAddress : {type: String, required: true},
     userAgent : {type: String, required: true},
-});
+    expiresAt: { type: Number, required: true} 
+}, {timestamps : true, versionKey : false});
 
 sessionManagementSchema.index({expiresAt : 1}, {expireAfterSeconds: 0});
 

@@ -20,6 +20,7 @@ export interface IUserRepository {
     deletePasswordInHistory(userId: ObjectIdParam, hashedPassword: string, session?: ClientSession): Promise<boolean>;
     enableTwoFactorAuth(userId: ObjectIdParam, session?: ClientSession): Promise<UserDocument>;
     disableTwoFactorAuth(userId: ObjectIdParam, session?: ClientSession): Promise<UserDocument>;
+    getStatusUser(customIdUser : string) : Promise<string>;
 
     // getUserRole(userId : string) : Promise<RoleDocument | null>;
     // getUserConfigRole(userId: string) : Promise<RoleConfigDocument | null>;

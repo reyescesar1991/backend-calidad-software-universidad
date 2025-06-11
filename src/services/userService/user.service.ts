@@ -525,4 +525,40 @@ export class UserService {
       handleError(error);
     }
   }
+
+  async getStatusUser(customIdUser: string): Promise<string> {
+
+    try {
+
+      const user = await this.userRepository.findUserByCustomId(customIdUser);
+
+      UserValidator.validateUserExists(user);
+
+      return await this.userRepository.getStatusUser(customIdUser);
+
+    } catch (error) {
+
+      handleError(error);
+    }
+  }
+
+  async getStatusUserActive(customIdUser: string): Promise<string> {
+
+    try {
+
+      const user = await this.userRepository.findUserByCustomId(customIdUser);
+
+      UserValidator.validateUserExists(user);
+
+      const statusUser = await this.userRepository.getStatusUser(customIdUser);
+
+      UserValidator.validateStatusUserIsActive(statusUser);
+
+      return statusUser;
+
+    } catch (error) {
+
+      handleError(error);
+    }
+  }
 }

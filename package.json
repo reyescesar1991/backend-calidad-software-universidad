@@ -123,6 +123,8 @@
     "script:deletepasswordinhistory-user": "ts-node src/scripts/users/testDeletePasswordInHistory.ts",
     "script:enabletwofactor-user": "ts-node src/scripts/users/testEnableTwoFactorAuth.ts",
     "script:disabletwofactor-user": "ts-node src/scripts/users/testDisableTwoFactorAuth.ts",
+    "script:getstatus-user" : "ts-node src/scripts/users/testGetStatusUser.ts",
+    "script:getstatusactive-user" : "ts-node src/scripts/users/testValidateStatusUserIsActive.ts",
     "script:addQuantity-factorsusers": "ts-node src/scripts/users/testAddQuantityFactorsUsers.ts",
     "script:get-factor": "ts-node src/scripts/twoFactorData/testGetFactorsAvailable.ts",
     "script:findbyid-factor": "ts-node src/scripts/twoFactorData/testFindFactorById.ts",
@@ -132,7 +134,10 @@
     "script:enable-factor": "ts-node src/scripts/twoFactorData/testEnableFactor.ts",
     "script:disable-factor": "ts-node src/scripts/twoFactorData/testDisableFactor.ts",
     "script:addquantity-factor": "ts-node src/scripts/twoFactorData/testAddQuantityFactor.ts",
-    "script:create-token" : "ts-node src/scripts/jwt/testCreationJwt.ts"
+    "script:create-token" : "ts-node src/scripts/jwt/testCreationJwt.ts",
+    "script:create-session" : "ts-node src/scripts/sessionManagement/testCreateSessionUser.ts",
+    "script:update-session" : "ts-node src/scripts/sessionManagement/testUpdateSessionUser.ts",
+    "script:delete-session" : "ts-node src/scripts/sessionManagement/testDeleteSessionUser.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

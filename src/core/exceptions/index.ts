@@ -123,6 +123,7 @@ export {UserNotActiveError} from './user/user.exception';
 export {PasswordIsNotInTheHistoryUserError} from './user/user.exception';
 export {TwoFactorUserIsAlreadyActive} from './user/user.exception';
 export {TwoFactorUserIsAlreadyInactive} from './user/user.exception';
+export {UserStatusIsAlreadyNotActiveError} from './user/user.exception';
 
 //two factor data
 
@@ -141,6 +142,12 @@ export {InvalidParamError} from './generals/general.exceptions';
 export {BadFormatMongoIDError} from './generals/general.exceptions';
 export {DatabaseConnectionError} from './generals/general.exceptions';
 export {UnexpectedError} from './generals/general.exceptions';
+
+//session management
+
+export {UserAlreadyHaveASessionError} from './sessionManagement/sessionManagament.exception';
+export {UserIsNotLoggedError} from './sessionManagement/sessionManagament.exception';
+export {UserSessionTokenIsNotValid} from './sessionManagement/sessionManagament.exception';
 
 //function handle error
 

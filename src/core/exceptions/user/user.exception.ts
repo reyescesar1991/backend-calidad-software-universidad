@@ -111,3 +111,13 @@ export class TwoFactorUserIsAlreadyInactive extends AppError{
         
     }
 }
+
+export class UserStatusIsAlreadyNotActiveError extends AppError{
+    code = 1812;
+    constructor(message : string = "El usuario no se encuentra activo en la aplicación"){
+
+        super(message);
+        this.name = "UserStatusIsAlreadyNotActiveError"
+        
+    }
+}

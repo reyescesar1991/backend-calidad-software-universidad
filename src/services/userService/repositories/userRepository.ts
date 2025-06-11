@@ -144,6 +144,14 @@ export class UserRepositoryImpl implements IUserRepository {
         }).exec();
     }
 
+    async getStatusUser(customIdUser: string): Promise<string | null> {
+        const result = await this.UserModel.findOne(
+            { idUser: customIdUser },
+            { status: 1, _id: 0 }  // Proyección: solo el campo status
+        ).lean() //Mejora el rendimiento al evitar la hidratación completa del documento
+        .exec();
 
+        return result?.status || null;
+    }
 
 }

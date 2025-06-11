@@ -32,6 +32,10 @@ export {UserValidator} from './users/user.validator';
 export {RoleValidator} from './roles/role.validator';
 export {RoleConfigValidator} from './roles/roleConfig.validator';
 
+//session management
+
+export {SessionManagementValidator} from './sessionManagement/sessionManagement.validator';
+
 //two factor
 
 export {TwoFactorDataValidator} from './twoFactorData/twoFactorData.validator';

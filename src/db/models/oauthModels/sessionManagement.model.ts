@@ -1,8 +1,15 @@
 import { model, Schema } from "mongoose";
-import { ISessionManagementType } from "../../../core/types";
 import mongoose from "mongoose";
 
-export interface SessionManagementDocument extends Document, ISessionManagementType {};
+export interface SessionManagementDocument extends Document {
+
+    _id : mongoose.Types.ObjectId;
+    userId : mongoose.Schema.Types.ObjectId, 
+    token : string,
+    ipAddress : string,
+    userAgent : string,
+
+};
 
 export const sessionManagementSchema = new Schema<SessionManagementDocument>({
 
@@ -12,11 +19,8 @@ export const sessionManagementSchema = new Schema<SessionManagementDocument>({
         required: true 
     },
     token : {type: String, required: true, unique: true},
-    createdAt : {type: Date, default: Date.now},
-    expiresAt : {type: Date, required: true},
     ipAddress : {type: String, required: true},
     userAgent : {type: String, required: true},
-    isActive : {type: Boolean, default: false},
 });
 
 sessionManagementSchema.index({expiresAt : 1}, {expireAfterSeconds: 0});

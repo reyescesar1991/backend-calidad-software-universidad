@@ -31,6 +31,8 @@ export {UpdatePermissionSecurityDto} from './permissionsSecurityValidators/permi
 export {ModuleDto} from './menuValidators/menu.validation';
 export {ModuleUpdateDto} from './menuValidators/menu.validation';
 export {UserTwoFactorActiveDto} from './userTwoFactorValidators/userTwoFactor.validation';
+export {SessionManagementDto} from './usersValidators/sessionManagement.validation';
+export {UpdateSessionManagementDto} from './usersValidators/sessionManagement.validation';
 export {createPermissionSchemaZod} from './permissionsValidators/permission.validation';
 export {updatePermissionSchemaZod} from './permissionsValidators/permission.validation';
 export {subrouteSchemaZod} from './menuValidators/menu.validation';
@@ -67,6 +69,11 @@ export {UpdateUserPermissionSecuritySchemaZod} from './userPermissionValidators/
 export {updatePermissionSecurityZodSchema} from './permissionsSecurityValidators/permissionSecurity.validation';
 export {UserTwoFactorActiveSchemaZod} from './userTwoFactorValidators/userTwoFactor.validation';
  
+
+//session managment
+
+export {sessionManagementSchemaZod} from './usersValidators/sessionManagement.validation';
+export {UpdateSessionManagementSchemaZod} from './usersValidators/sessionManagement.validation';
 
 //shared
 

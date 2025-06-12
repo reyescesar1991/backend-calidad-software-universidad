@@ -1,5 +1,6 @@
 // src/core/auth/factories/jwt-payload.factory.ts
 import { JwtPayload } from "../types";
+import {v4 as uuidv4} from 'uuid';
 
 export class JwtPayloadFactory {
   // Crear payload base (sin rol)
@@ -7,6 +8,7 @@ export class JwtPayloadFactory {
     const now = Math.floor(Date.now() / 1000);
     return Object.freeze({
       userId,
+      jti : uuidv4(),
       lat: now,
       exp: now + expiresInSec
     });
@@ -16,7 +18,7 @@ export class JwtPayloadFactory {
   static createWithRole(
     userId: string,
     role: string,
-    expiresInSec: number
+    expiresInSec: number,
   ): JwtPayload {
     const base = this.createBase(userId, expiresInSec);
     return Object.freeze({
@@ -33,6 +35,7 @@ export class JwtPayloadFactory {
     return Object.freeze({
       userId: tokenPayload.userId,
       role: tokenPayload.role,
+      jti : uuidv4(),
       lat: Math.floor(Date.now() / 1000),
       exp: Math.floor(Date.now() / 1000) + expiresInSec
     });

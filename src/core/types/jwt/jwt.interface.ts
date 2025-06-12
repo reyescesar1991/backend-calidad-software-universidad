@@ -4,6 +4,7 @@ export interface JwtPayload {
   role?: string; // Rol opcional
   lat: number;   // issuedAt (timestamp)
   exp: number;   // expiration (timestamp)
+  jti: string;
 }
 
 export type JwtTokenData = {

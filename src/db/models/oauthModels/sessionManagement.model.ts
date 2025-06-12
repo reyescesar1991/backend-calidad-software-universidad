@@ -8,7 +8,7 @@ export interface SessionManagementDocument extends Document {
     token : string,
     ipAddress : string,
     userAgent : string,
-    expiresAt: number
+    expiresAt: Date;
 
 };
 
@@ -18,7 +18,7 @@ export const sessionManagementSchema = new Schema<SessionManagementDocument>({
     token : {type: String, required: true, unique: true},
     ipAddress : {type: String, required: true},
     userAgent : {type: String, required: true},
-    expiresAt: { type: Number, required: true} 
+    expiresAt: { type: Date, required: true} 
 }, {timestamps : true, versionKey : false});
 
 sessionManagementSchema.index({expiresAt : 1}, {expireAfterSeconds: 0});

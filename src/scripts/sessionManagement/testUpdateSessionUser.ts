@@ -27,7 +27,7 @@ const runTestUpdateSessionUser = async () => {
 
         const dataUser : UpdateSessionManagementDto = {
 
-            token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJVU0VSMDAxMSIsImxhdCI6MTc0OTY2NzgzNCwiZXhwIjoxNzQ5NjcxNDM0LCJyb2xlIjoiMDEiLCJpYXQiOjE3NDk2Njc4MzR9.JoLcVkqxcE2JwatStMmyLtUpaREypo1EcDPXRABBvio"
+            token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJVU0VSMDAxMSIsImxhdCI6MTc0OTczNzU5OSwiZXhwIjoxNzQ5NzQxMTk5LCJyb2xlIjoiMDEiLCJpYXQiOjE3NDk3Mzc1OTl9.rgUpfjm2-VJxuSexdPAnIsl_atBn6aPkYqQP8Or2XNE"
         }
 
         const sessionManagementService = container.resolve(SessionManagamentService);

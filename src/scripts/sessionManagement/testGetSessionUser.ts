@@ -2,19 +2,17 @@ import 'reflect-metadata';
 import { container } from "tsyringe";
 import { configureUserDependencies } from "../../core/config/dependenciesUsers/dependencies";
 import { disconnectMongo, initializeTestEnvironment } from "../../core/utils/connectDb";
-import { SessionManagementDto } from "../../validations";
 import { configureSessionManagementDependencies } from '../../core/config/dependenciesSessionManagement/dependencies';
-import { SessionManagamentService, TokenService } from '../../services/oauthService';
+import { SessionManagamentService } from '../../services/oauthService';
 import { configureJwtDependencies } from '../../core/config/dependenciesJwt/dependencies';
 import { configureDependenciesRoleConfig } from '../../core/config/dependenciesRoleConfig/dependencies';
 import { configureDependenciesRoles } from '../../core/config/dependenciesRoles/dependencies';
 import { configureDependenciesDepartments } from '../../core/config/dependenciesDepartments/dependencies';
 import { configureDependenciesTwoFactorUser } from '../../core/config/dependenciesTwoFactorUser/dependencies';
-import {v4 as uuidv4} from 'uuid';
 
 initializeTestEnvironment();
 
-const runTestCreateSessionUser = async () => {
+const runTestGetSessionUser = async () => {
 
     try {
 
@@ -26,27 +24,13 @@ const runTestCreateSessionUser = async () => {
         await configureDependenciesDepartments();
         await configureDependenciesTwoFactorUser();
 
-        const jwtService = container.resolve(TokenService);
-
-        const dataUser : SessionManagementDto = {
-
-            userId : "USER0011",
-            token : jwtService.generateToken(
-                {
-                    userId : "USER0011",
-                    role : "01",
-                    jti : uuidv4(),
-                }
-            ),
-            userAgent : "web",
-            ipAddress : "192.123.4.123",
-        }
+        const customId : string = 'USER0011';
 
         const sessionManagementService = container.resolve(SessionManagamentService);
 
-        const result = await sessionManagementService.createSessionUser(dataUser);
+        const result = await sessionManagementService.getSessionUserValidate(customId);
 
-        console.log("📄 Sesión de Usuario creada:", result);
+        console.log("📄 Sesión de Usuario encontrada:", result);
         
     } catch (error) {
 
@@ -59,7 +43,7 @@ const runTestCreateSessionUser = async () => {
     }
 }
 
-runTestCreateSessionUser().then(() => {
+runTestGetSessionUser().then(() => {
 
     console.log('Proceso de seed completo');
 })

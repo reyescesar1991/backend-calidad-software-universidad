@@ -9,7 +9,6 @@ import { TokenService } from "../services/Token.service";
 export class SessionManagementRepositoryImpl implements ISessionManagementRepository{
 
     constructor(@inject("SessionManagementModel") private readonly SessionManagementModel : Model<SessionManagementDocument>,
-        @inject("JwtService") private readonly tokenService : TokenService
     ){}
 
     async getSessionUserValidate(customId: string): Promise<SessionManagementDocument | null> {

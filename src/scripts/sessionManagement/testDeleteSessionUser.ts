@@ -27,7 +27,7 @@ const runTestDeleteSessionUser = async () => {
 
         const dataUser : UpdateSessionManagementDto = {
 
-            token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJVU0VSMDAxMSIsImxhdCI6MTc0OTY2ODM0NCwiZXhwIjoxNzQ5NjcxOTQ0LCJyb2xlIjoiMDEiLCJpYXQiOjE3NDk2NjgzNDR9.pAWU4eQQZYmCwVcuVnpqmLt21WzsIOGHJife4SNTQB0"
+            token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJVU0VSMDAxMSIsImp0aSI6ImJkODcyYWNkLWZlM2QtNGY0My05ODIwLWQ2MmJhOTZlMzhkNyIsImxhdCI6MTc0OTc1MjQ4MCwiZXhwIjoxNzQ5NzU2MDgwLCJyb2xlIjoiMDEiLCJpYXQiOjE3NDk3NTI0ODB9.HltGmfTUpGttZRH1uiA3sDghfaFWhkQGi4RA2a6SNLQ"
         }
 
         const sessionManagementService = container.resolve(SessionManagamentService);

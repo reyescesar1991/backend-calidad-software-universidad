@@ -13,13 +13,13 @@ export const sessionManagementSchemaZod = z.object({
         message: "La dirección IP no es válida",
     }),
     userAgent: z.string().min(1, "El dispositivo del usuario es requerido"),
-    expiresAt: z.number()
+    expiresAt: z.date()
 });
 
 export const UpdateSessionManagementSchemaZod = z.object({
 
     token: z.string(),
-    expiresAt: z.number(),
+    expiresAt: z.date(),
 });
 
 export type SessionManagementDto = z.infer<typeof sessionManagementSchemaZod>;

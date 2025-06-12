@@ -138,7 +138,7 @@
     "script:create-session": "ts-node src/scripts/sessionManagement/testCreateSessionUser.ts",
     "script:update-session": "ts-node src/scripts/sessionManagement/testUpdateSessionUser.ts",
     "script:delete-session": "ts-node src/scripts/sessionManagement/testDeleteSessionUser.ts",
-    "script:get-session" : "ts-node src/scripts/sessionManagement/testGetSessionUser.ts"
+    "script:get-session": "ts-node src/scripts/sessionManagement/testGetSessionUser.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",
@@ -147,12 +147,13 @@
     "@types/jsonwebtoken": "^9.0.9",
     "@upstash/redis": "^1.35.0",
     "bcrypt": "^5.1.1",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
     "dotenv-safe": "^9.1.0",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.14.2",
     "mongoose": "^8.12.1",
+    "nodemailer": "^7.0.3",
     "path": "^0.12.7",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.9.1",

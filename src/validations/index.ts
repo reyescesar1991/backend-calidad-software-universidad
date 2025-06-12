@@ -75,6 +75,11 @@ export {UserTwoFactorActiveSchemaZod} from './userTwoFactorValidators/userTwoFac
 export {sessionManagementSchemaZod} from './usersValidators/sessionManagement.validation';
 export {UpdateSessionManagementSchemaZod} from './usersValidators/sessionManagement.validation';
 
+// two factor value
+
+export {UserTwoFactorValueUserSchemaZod} from './usersValidators/twoFactorValue.validation';
+export {UserTwoFactorValueUserDto} from './usersValidators/twoFactorValue.validation';
+
 //shared
 
 export {SubrouteFilterSchema} from './sharedValidators/routeFormatValidator';

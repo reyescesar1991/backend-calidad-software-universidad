@@ -45,3 +45,10 @@ export {productSchema} from './productModels/product.model';
 export {userPermissionSchema} from './userPermission/userPermission.model';
 export {userPermissionSecuritySchema} from './userPermission/userPermissionSecurity.model';
 export {UserTwoFactorActiveSchema} from './usersTwoFactorActive/usersTwoFactorActive';
+
+
+//Two Factor value user
+
+export {TwoFactorValueUserDocument} from './oauthModels/twoFactorValue.model';
+export {TwoFactorUserValueModel} from './oauthModels/twoFactorValue.model';
+export {twoFactorUserValueSchema} from './oauthModels/twoFactorValue.model';

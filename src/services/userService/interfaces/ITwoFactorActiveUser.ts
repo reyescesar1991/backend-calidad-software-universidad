@@ -5,6 +5,7 @@ import { ObjectIdParam, UserTwoFactorActiveDto } from "../../../validations";
 export interface ITwoFactorUserRepository {
 
     getTwoFactorUser(userId : ObjectIdParam) : Promise<UsersTwoFactorActiveDocument | null>;
+    getTwoFactorUserActive(userIdParam: ObjectIdParam): Promise<boolean | null>
     listTwoFactorUsers() : Promise<UsersTwoFactorActiveDocument[] | null>;
     addTwoFactorUser(dataFactorUserParam: UserTwoFactorActiveDto, session?:ClientSession) : Promise<UsersTwoFactorActiveDocument | null>;
     activateTwoFactorUser(userId : ObjectIdParam, session?:ClientSession) : Promise<UsersTwoFactorActiveDocument | null>;

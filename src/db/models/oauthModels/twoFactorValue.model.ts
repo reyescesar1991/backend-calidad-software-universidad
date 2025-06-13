@@ -2,8 +2,8 @@ import mongoose, { model, Schema } from "mongoose";
 
 export interface TwoFactorValueUserDocument extends Document {
 
-    _id : mongoose.Types.ObjectId;
-    userId: string;
+    _id : mongoose.Schema.Types.ObjectId;
+    userId: mongoose.Schema.Types.ObjectId;
     value : string,
     method : string,
     expiresAt : Date,
@@ -11,7 +11,11 @@ export interface TwoFactorValueUserDocument extends Document {
 
 export const twoFactorUserValueSchema = new Schema<TwoFactorValueUserDocument>({
 
-    userId : {type: String, required: true, unique: true},
+    userId : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User", // 👈 Referencia a la colección
+        required: true
+    },
     value : {type: String, required: true, unique: true},
     method : {type: String, required: true, enum: ["sms", "email"], default: "email"},
     expiresAt : {type: Date, required: false, default: 0},

@@ -10,6 +10,11 @@ export {ISessionManagementRepository} from './interfaces/ISessionManagementRepos
 export {SessionManagementRepositoryImpl} from './repositories/sessionManagementRepository';
 export {SessionManagamentService} from './services/SessionManagement.service';
 
+// two factor value
+
+export {ITwoFactorValueRepository} from './interfaces/ITwoFactorValueRepository';
+export {TwoFactorValueRepositoryImpl} from './repositories/twoFactorValueRepository';
+
 //jwt
 
 export {TokenService} from './services/Token.service';

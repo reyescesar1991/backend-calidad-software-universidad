@@ -5,10 +5,13 @@ const regex = /^\d+$/;
 
 export const UserTwoFactorValueUserSchemaZod = z.object({
 
-    userId : z.string().min(1, "El ID de usuario es requerido"),
-    method : z.string().min(1, "El método es requerido"),
-    value : z.string().regex(regex, "El valor del factor de autenticación debe ser un valor númerico"),
-    expiresAt : z.date(),
+    userId: z.instanceof(mongoose.Types.ObjectId).refine(
+        val => val instanceof mongoose.Types.ObjectId,
+        { message: "Debe ser un ObjectId válido de Mongoose" }
+    ),
+    method: z.string().min(1, "El método es requerido"),
+    value: z.string().regex(regex, "El valor del factor de autenticación debe ser un valor númerico"),
+    expiresAt: z.date(),
 
 });
 

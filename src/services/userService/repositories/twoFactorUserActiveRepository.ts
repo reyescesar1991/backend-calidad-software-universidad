@@ -18,6 +18,12 @@ export class TwoFactorUserActiveRepositoryImpl implements ITwoFactorUserReposito
 
         return await this.UserTwoFactorModel.findOne({ userId: userIdParam }).exec();
     }
+
+    async getTwoFactorUserActive(userIdParam: ObjectIdParam): Promise<boolean | null> {
+
+        return (await this.UserTwoFactorModel.findOne({ userId: userIdParam }).exec()).isActive;
+    }
+
     async addTwoFactorUser(dataFactorUserParam: UserTwoFactorActiveDto, session?: ClientSession): Promise<UsersTwoFactorActiveDocument | null> {
 
         const [dataFactorUser] = await this.UserTwoFactorModel.create([dataFactorUserParam], { session });

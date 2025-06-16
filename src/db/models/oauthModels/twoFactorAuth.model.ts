@@ -2,7 +2,7 @@ import mongoose, { model, Schema } from "mongoose";
 
 export interface TwoFactorAuthDocument extends Document {
 
-    _id : mongoose.Types.ObjectId;
+    _id : mongoose.Schema.Types.ObjectId;
     method : string,
     isEnabled : boolean,
     quantityUsers : number,

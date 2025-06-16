@@ -121,3 +121,13 @@ export class UserStatusIsAlreadyNotActiveError extends AppError{
         
     }
 }
+
+export class UserEmailNotMatchError extends AppError{
+    code = 1813;
+    constructor(message : string = "El email del usuario no es el mismo registrado previamente, valide su información"){
+
+        super(message);
+        this.name = "UserEmailNotMatchError"
+        
+    }
+}

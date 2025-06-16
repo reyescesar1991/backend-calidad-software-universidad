@@ -124,6 +124,7 @@ export {PasswordIsNotInTheHistoryUserError} from './user/user.exception';
 export {TwoFactorUserIsAlreadyActive} from './user/user.exception';
 export {TwoFactorUserIsAlreadyInactive} from './user/user.exception';
 export {UserStatusIsAlreadyNotActiveError} from './user/user.exception';
+export {UserEmailNotMatchError} from './user/user.exception';
 
 //two factor data
 

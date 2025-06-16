@@ -15,7 +15,7 @@ export class TwoFactorValueRepositoryImpl implements ITwoFactorValueRepository{
             {userId : customIdUser},
         ).exec();
     }
-    async createTwoFactorValueUser(dataFactor: UserTwoFactorValueUserDto, session ?: ClientSession): Promise<TwoFactorValueUserDocument | null> {
+    async generateAndSendCode(dataFactor: UserTwoFactorValueUserDto, session ?: ClientSession): Promise<TwoFactorValueUserDocument | null> {
         
         const [twoFactorValue] = await this.TwoFactorUserValueModel.create([dataFactor], {session});
         return twoFactorValue;

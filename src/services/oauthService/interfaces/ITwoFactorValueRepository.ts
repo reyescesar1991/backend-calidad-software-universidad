@@ -1,9 +1,9 @@
 import { TwoFactorValueUserDocument } from "../../../db/models";
-import { UserTwoFactorValueUserDto } from "../../../validations";
+import { ObjectIdParam, UserTwoFactorValueUserDto } from "../../../validations";
 
 export interface ITwoFactorValueRepository {
 
-    findTwoFactorValueUserByCustomUserId(customIdUser : string) : Promise<TwoFactorValueUserDocument | null>;
+    findTwoFactorValueUserByCustomUserId(idUser : ObjectIdParam) : Promise<TwoFactorValueUserDocument | null>;
     generateAndSendCode(dataFactor : UserTwoFactorValueUserDto) : Promise<TwoFactorValueUserDocument | null>;
     deleteTwoFactorValueUser(customIdUser : string) : Promise<TwoFactorValueUserDocument | null>;
 }

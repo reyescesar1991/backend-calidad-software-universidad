@@ -5,7 +5,7 @@ import { ITwoFactorValueRepository } from "../interfaces/ITwoFactorValueReposito
 import { ObjectIdParam } from "../../../validations";
 import { TwoFactorValueUserDocument } from "../../../db/models";
 import { handleError } from "../../../core/exceptions";
-import { UserValidator } from "../../../core/validators";
+import { TwoFactorValueValidator, UserValidator } from "../../../core/validators";
 import { MailService } from "../../mailService/mail.service";
 
 @injectable()
@@ -30,7 +30,7 @@ export class TwoFactorUserService{
                     //1. Verificar que el usuario tenga un registro en tabla intermedia de factor-user y que este activo
                     const userFactorActive = await this.twoFactorUserActiveRepository.getTwoFactorUser(userId);
 
-                    UserValidator.validateTwoFactorUserIsAlreadyActive(userFactorActive.isActive);
+                    UserValidator.validateTwoFactorUserIsAlreadyInactive(userFactorActive.isActive);
 
                     //2. Validamos que el email este previamente registrado
                     await this.userValidator.validateEmailUser(userId, email);
@@ -52,6 +52,39 @@ export class TwoFactorUserService{
                         method : userFactorActive.twoFactorId,
                         expiresAt : expiresAt,
                     })
+
+                    
+                } catch (error) {
+                    
+                    handleError(error);
+                }
+            }
+        )
+    }
+
+    async validateFactorUser(userId : ObjectIdParam, code : string) : Promise<TwoFactorValueUserDocument | null>{
+
+        return await this.transactionManager.executeTransaction(
+
+            async (session) => {
+
+                try {
+
+                    //1. Verificar que el usuario tenga un registro en tabla intermedia de factor-user y que este activo
+                    const userFactorActive = await this.twoFactorUserActiveRepository.getTwoFactorUser(userId);
+
+                    UserValidator.validateTwoFactorUserIsAlreadyInactive(userFactorActive.isActive);
+
+                    //2. Verificamos que el usuario tenga un registro en la tabla valor de factor de autenticacion
+
+                    const userFactorValue = await this.twoFactorValueRepository.findTwoFactorValueUserByCustomUserId(userId);
+
+                    TwoFactorValueValidator.validateTwoFactorDataBase(userFactorValue);
+
+                    //3. Verificar el codigo dado por el usuario con el guardado en base de datos
+
+                    return null
+
 
                     
                 } catch (error) {

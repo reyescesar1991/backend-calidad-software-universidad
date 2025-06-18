@@ -4,11 +4,11 @@ import { TransactionManager } from "../../database/transactionManager";
 import { ITwoFactorValueRepository } from "../../../services/oauthService";
 import { TwoFactorValueRepositoryImpl } from "../../../services/oauthService/repositories/twoFactorValueRepository";
 
-export const configureDependenciesTwoFactorUser = async () => {
+export const configureDependenciesTwoFactorValueUser = async () => {
 
     container.register("TransactionManager", TransactionManager);
 
     container.register("TwoFactorUserValueModel", {useValue : TwoFactorUserValueModel});
 
-    container.register<ITwoFactorValueRepository>("ITwoFactorDataRepository" , {useClass : TwoFactorValueRepositoryImpl});
+    container.register<ITwoFactorValueRepository>("ITwoFactorValueRepository" , {useClass : TwoFactorValueRepositoryImpl});
 }

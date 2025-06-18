@@ -1,3 +1,5 @@
+import { E } from '@upstash/redis/zmscore-DzNHSWxc';
+
 export {PermissionNotFoundError} from './permissions/permission.exceptions';
 export {PermissionAlreadyInactiveError} from './permissions/permission.exceptions';
 export {PermissionUpdateError} from './permissions/permission.exceptions';
@@ -149,6 +151,11 @@ export {UnexpectedError} from './generals/general.exceptions';
 export {UserAlreadyHaveASessionError} from './sessionManagement/sessionManagament.exception';
 export {UserIsNotLoggedError} from './sessionManagement/sessionManagament.exception';
 export {UserSessionTokenIsNotValid} from './sessionManagement/sessionManagament.exception';
+
+//Two Factor value
+
+export {UserTwoFactorValueNotFoundError} from './twoFactorValue/twoFactorValue.exception';
+export {UserCodeNotMatchError} from './twoFactorValue/twoFactorValue.exception';
 
 //function handle error
 

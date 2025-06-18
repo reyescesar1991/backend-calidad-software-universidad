@@ -52,3 +52,8 @@ export {UserTwoFactorActiveSchema} from './usersTwoFactorActive/usersTwoFactorAc
 export {TwoFactorValueUserDocument} from './oauthModels/twoFactorValue.model';
 export {TwoFactorUserValueModel} from './oauthModels/twoFactorValue.model';
 export {twoFactorUserValueSchema} from './oauthModels/twoFactorValue.model';
+
+//Audit 
+
+export {SecurityAuditDocument} from './oauthModels/securityAudit.model';
+export {SecurityAuditModel} from './oauthModels/securityAudit.model';

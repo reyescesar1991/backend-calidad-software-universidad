@@ -80,6 +80,14 @@ export {UpdateSessionManagementSchemaZod} from './usersValidators/sessionManagem
 export {UserTwoFactorValueUserSchemaZod} from './usersValidators/twoFactorValue.validation';
 export {UserTwoFactorValueUserDto} from './usersValidators/twoFactorValue.validation';
 
+//audit security
+
+export {securityAuditSchemaZod} from './usersValidators/securityAudit.validation';
+export {SecurityAuditDto} from './usersValidators/securityAudit.validation';
+
+export {updateSecurityAuditSchemaZod} from './usersValidators/securityAudit.validation';
+export {UpdateSecurityAuditDto} from './usersValidators/securityAudit.validation';
+
 //shared
 
 export {SubrouteFilterSchema} from './sharedValidators/routeFormatValidator';

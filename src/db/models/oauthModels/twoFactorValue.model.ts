@@ -14,7 +14,8 @@ export const twoFactorUserValueSchema = new Schema<TwoFactorValueUserDocument>({
     userId : {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User", // 👈 Referencia a la colección
-        required: true
+        required: true,
+        unique : true
     },
     value : {type: String, required: true, unique: true},
     method : {

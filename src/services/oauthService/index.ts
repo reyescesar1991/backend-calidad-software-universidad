@@ -15,6 +15,11 @@ export {SessionManagamentService} from './services/SessionManagement.service';
 export {ITwoFactorValueRepository} from './interfaces/ITwoFactorValueRepository';
 export {TwoFactorValueRepositoryImpl} from './repositories/twoFactorValueRepository';
 
+//audit security
+
+export {ISecurityAuditRepository} from './interfaces/ISecurityAuditRepository';
+export {SecurityAuditService} from './services/SecurityAudit.service';
+
 //jwt
 
 export {TokenService} from './services/Token.service';

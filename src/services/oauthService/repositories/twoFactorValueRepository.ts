@@ -2,17 +2,17 @@ import { inject, injectable } from "tsyringe";
 import { ITwoFactorValueRepository } from "../interfaces/ITwoFactorValueRepository";
 import { ClientSession, Model } from "mongoose";
 import { TwoFactorValueUserDocument } from "../../../db/models";
-import { UserTwoFactorValueUserDto } from "../../../validations";
+import { ObjectIdParam, UserTwoFactorValueUserDto } from "../../../validations";
 
 @injectable()
 export class TwoFactorValueRepositoryImpl implements ITwoFactorValueRepository{
 
     constructor(@inject("TwoFactorUserValueModel") private readonly TwoFactorUserValueModel : Model<TwoFactorValueUserDocument>){}
 
-    async findTwoFactorValueUserByCustomUserId(customIdUser: string): Promise<TwoFactorValueUserDocument | null> {
+    async findTwoFactorValueUserByCustomUserId(idUser : ObjectIdParam): Promise<TwoFactorValueUserDocument | null> {
         
-        return await this.TwoFactorUserValueModel.findOne(
-            {userId : customIdUser},
+        return await this.TwoFactorUserValueModel.findById(
+            idUser
         ).exec();
     }
     async generateAndSendCode(dataFactor: UserTwoFactorValueUserDto, session ?: ClientSession): Promise<TwoFactorValueUserDocument | null> {

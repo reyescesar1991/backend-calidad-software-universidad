@@ -5,6 +5,8 @@ import { TwoFactorAuthDocument } from "../../../db/models";
 import { TwoFactorDataValidator } from "../../../core/validators";
 import { ObjectIdParam, TwoFactorAuthDto, UpdateTwoFactorAuthDto } from "../../../validations";
 import { TransactionManager } from "../../../core/database/transactionManager";
+import { ClientSession } from "mongoose";
+import { Transactional } from "../../../core/utils/transaccional-wrapper";
 
 @injectable()
 export class TwoFactorService {
@@ -63,28 +65,23 @@ export class TwoFactorService {
         }
     }
 
-    async addFactor(dataFactor: TwoFactorAuthDto): Promise<TwoFactorAuthDocument | null> {
+    @Transactional()
+    async addFactor(dataFactor: TwoFactorAuthDto, sessionParam?: ClientSession): Promise<TwoFactorAuthDocument | null> {
 
-        return await this.transactionManager.executeTransaction(
+        try {
 
-            async (session) => {
+            console.log(dataFactor);
 
-                try {
+            await this.twoFactorDataValidator.validateFactorUniquenessByMethod(dataFactor.method);
 
-                    console.log(dataFactor);
-                    
-                    await this.twoFactorDataValidator.validateFactorUniquenessByMethod(dataFactor.method);
+            TwoFactorDataValidator.validateNewFactorQuantity(dataFactor.quantityUsers);
 
-                    TwoFactorDataValidator.validateNewFactorQuantity(dataFactor.quantityUsers);
+            return await this.twoFactorDataRepository.addFactor(dataFactor, sessionParam);
 
-                    return await this.twoFactorDataRepository.addFactor(dataFactor, session);
+        } catch (error) {
 
-                } catch (error) {
-
-                    handleError(error);
-                }
-            }
-        )
+            handleError(error);
+        }
     }
 
     async updateFactor(factorId: ObjectIdParam, dataFactor: UpdateTwoFactorAuthDto): Promise<TwoFactorAuthDocument | null> {
@@ -162,7 +159,7 @@ export class TwoFactorService {
     async addUserQuantity(factorId: ObjectIdParam): Promise<TwoFactorAuthDocument | null> {
 
         console.log(factorId);
-        
+
 
         return await this.transactionManager.executeTransaction(
 

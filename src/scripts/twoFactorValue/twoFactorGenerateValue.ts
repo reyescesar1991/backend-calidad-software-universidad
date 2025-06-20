@@ -6,6 +6,10 @@ import { configureUserDependencies } from '../../core/config/dependenciesUsers/d
 import { TwoFactorUserService } from '../../services/oauthService/services/TwoFactorUser.service';
 import { objectIdSchema } from '../../validations';
 import { configureDependenciesTwoFactorValueUser } from '../../core/config/dependenciesTwoFactorValue/dependencies';
+import { configureDependenciesRoles } from '../../core/config/dependenciesRoles/dependencies';
+import { configureDependenciesRoleConfig } from '../../core/config/dependenciesRoleConfig/dependencies';
+import { configureDependenciesDepartments } from '../../core/config/dependenciesDepartments/dependencies';
+import { configureSecurityAuditDependencies } from '../../core/config/dependenciesSecurityAudit/dependencies';
 
 initializeTestEnvironment();
 
@@ -15,7 +19,12 @@ const runTestFactorValue = async () => {
 
         await configureUserDependencies();
         await configureDependenciesTwoFactorUser();
-        await configureDependenciesTwoFactorValueUser()
+        await configureDependenciesTwoFactorValueUser();
+        await configureDependenciesRoles();
+        await configureDependenciesRoleConfig();
+        await configureDependenciesDepartments();
+        await configureDependenciesTwoFactorUser();
+        await configureSecurityAuditDependencies();
 
         const twoFactorValueService = container.resolve(TwoFactorUserService);
 

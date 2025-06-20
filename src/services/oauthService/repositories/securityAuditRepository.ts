@@ -32,16 +32,62 @@ export class SecurityAuditRepositoryImpl implements ISecurityAuditRepository{
     }
 
     async addAttempLogin(userId: ObjectIdParam, session?: ClientSession): Promise<SecurityAuditDocument | null> {
-        throw new Error("Method not implemented.");
+        
+        return await this.SecurityAuditModel.findOneAndUpdate(
+            {userId : userId},
+            { $inc: { loginAttempts: 1 } },
+            {new: true, runValidators: true, session}
+        ).exec();
     }
     async resetAttempLogin(userId: ObjectIdParam, session?: ClientSession): Promise<SecurityAuditDocument | null> {
-        throw new Error("Method not implemented.");
+        
+        return await this.SecurityAuditModel.findOneAndUpdate(
+            {userId : userId},
+            { $set: { loginAttempts: 0 } },
+            {new: true, runValidators: true, session}
+        ).exec();
     }
     async addAttempSecondFactor(userId: ObjectIdParam, session?: ClientSession): Promise<SecurityAuditDocument | null> {
-        throw new Error("Method not implemented.");
+        
+        const user = await this.SecurityAuditModel.findOneAndUpdate(
+            {userId : userId},
+            { $inc: { secondFactorAttempts: 1 } },
+            {new: true, runValidators: true, session}
+        ).exec();
+
+        console.log("usuario recuperado para sumar",user);
+
+        return user;
+        
     }
     async resetAttempSecondFactor(userId: ObjectIdParam, session?: ClientSession): Promise<SecurityAuditDocument | null> {
-        throw new Error("Method not implemented.");
+        
+        return await this.SecurityAuditModel.findOneAndUpdate(
+            {userId : userId},
+            { $set: { secondFactorAttempts: 0 } },
+            {new: true, runValidators: true, session}
+        ).exec();
     }
-    
+
+    async getUserAttempsLogin(userId: ObjectIdParam): Promise<number | null> {
+        
+        const result = await this.SecurityAuditModel.findById(
+            { idUser: userId },
+            { loginAttempts: 1, _id: 0 }  // Proyección: solo el campo status
+        ).lean() //Mejora el rendimiento al evitar la hidratación completa del documento
+        .exec();
+
+        return result?.loginAttempts || null;
+    }
+
+    async getUserAttempsSecondFactor(userId: ObjectIdParam): Promise<number | null> {
+        
+        const result = await this.SecurityAuditModel.findById(
+            { idUser: userId },
+            { secondFactorAttempts: 1, _id: 0 }  // Proyección: solo el campo status
+        ).lean() //Mejora el rendimiento al evitar la hidratación completa del documento
+        .exec();
+
+        return result?.secondFactorAttempts || null;
+    }
 }

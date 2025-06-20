@@ -24,7 +24,7 @@ const runTestChangeStatusUser = async () => {
 
         const idUser = objectIdSchema.parse("6837729bc8dd4394aae758a9");
 
-        const newStatus = StatusUserEnum.INACTIVE;
+        const newStatus = StatusUserEnum.ACTIVE;
 
         const userService = container.resolve(UserService);
 

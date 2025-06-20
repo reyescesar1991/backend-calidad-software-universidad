@@ -10,8 +10,4 @@ export class TwoFactorValueValidator {
         if (twoFactorValueUser) throw new UserTwoFactorValueNotFoundError();
     }
 
-    static validateCodeTwoFactor(codeParam: string, codeDb: string): void {
-
-        if(codeParam !== codeDb) throw new UserCodeNotMatchError();
-    }
 }

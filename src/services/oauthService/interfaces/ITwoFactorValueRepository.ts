@@ -6,5 +6,5 @@ export interface ITwoFactorValueRepository {
 
     findTwoFactorValueUserByCustomUserId(idUser : ObjectIdParam) : Promise<TwoFactorValueUserDocument | null>;
     generateAndSendCode(dataFactor : UserTwoFactorValueUserDto, session ?: ClientSession) : Promise<TwoFactorValueUserDocument | null>;
-    deleteTwoFactorValueUser(customIdUser : string, session ?: ClientSession) : Promise<TwoFactorValueUserDocument | null>;
+    deleteTwoFactorValueUser(idUser : ObjectIdParam, session ?: ClientSession) : Promise<TwoFactorValueUserDocument | null>;
 }

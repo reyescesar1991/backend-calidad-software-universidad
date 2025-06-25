@@ -156,6 +156,12 @@ export {UserSessionTokenIsNotValid} from './sessionManagement/sessionManagament.
 
 export {UserTwoFactorValueNotFoundError} from './twoFactorValue/twoFactorValue.exception';
 export {UserCodeNotMatchError} from './twoFactorValue/twoFactorValue.exception';
+export {UserTwoFactorValueFoundError} from './twoFactorValue/twoFactorValue.exception';
+
+//Security Audit
+
+export {RegistryAuditNotFoundError} from './securityAudit/securityAudit.exception';
+export {RegistryAuditSecondFactorAttempsIsAlreadyMaxError} from './securityAudit/securityAudit.exception';
 
 //function handle error
 

@@ -10,20 +10,21 @@ export class TwoFactorValueRepositoryImpl implements ITwoFactorValueRepository{
     constructor(@inject("TwoFactorUserValueModel") private readonly TwoFactorUserValueModel : Model<TwoFactorValueUserDocument>){}
 
     async findTwoFactorValueUserByCustomUserId(idUser : ObjectIdParam): Promise<TwoFactorValueUserDocument | null> {
-        
-        return await this.TwoFactorUserValueModel.findById(
-            idUser
+
+        return await this.TwoFactorUserValueModel.findOne(
+            {userId : idUser}
         ).exec();
+
     }
     async generateAndSendCode(dataFactor: UserTwoFactorValueUserDto, session ?: ClientSession): Promise<TwoFactorValueUserDocument | null> {
         
         const [twoFactorValue] = await this.TwoFactorUserValueModel.create([dataFactor], {session});
         return twoFactorValue;
     }
-    async deleteTwoFactorValueUser(customIdUser: string, session ?: ClientSession): Promise<TwoFactorValueUserDocument | null> {
+    async deleteTwoFactorValueUser(idUser : ObjectIdParam, session ?: ClientSession): Promise<TwoFactorValueUserDocument | null> {
         
         return await this.TwoFactorUserValueModel.findOneAndDelete(
-            {userId : customIdUser},
+            {userId : idUser},
             {session},
         ).exec();
     }

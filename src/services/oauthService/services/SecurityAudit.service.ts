@@ -98,20 +98,6 @@ export class SecurityAuditService {
 
     }
 
-    // async addAttempLogin(userId: ObjectIdParam, sessionParam?: ClientSession): Promise<SecurityAuditDocument | null> {
-    //     // PREGUNTA CLAVE: ¿Me pasaron una sesión ya existente?
-    //     if (sessionParam) {
-    //         // SÍ: Ya estoy dentro de una transacción más grande.
-    //         // No creo una nueva, solo ejecuto la lógica con la sesión que me dieron.
-    //         return this._addAttempLogin(userId, sessionParam);
-    //     } else {
-    //         // NO: Nadie me pasó una sesión, así que debo gestionar la mía.
-    //         // Creo mi propia transacción y le paso la nueva sesión a la lógica.
-    //         return await this.transactionManager.executeTransaction(
-    //             (newSession) => this._addAttempLogin(userId, newSession)
-    //         );
-    //     }
-    // }
 
     @Transactional()
     async resetAttempLogin(userId: ObjectIdParam, sessionParam?: ClientSession): Promise<SecurityAuditDocument | null> {

@@ -12,7 +12,7 @@ import { configureDependenciesTwoFactorUser } from '../../core/config/dependenci
 
 initializeTestEnvironment();
 
-const runTestRegistrySecurityAudit = async () => {
+const runTestGetRegistrySecurityAudit = async () => {
 
     try {
 
@@ -25,17 +25,11 @@ const runTestRegistrySecurityAudit = async () => {
 
         const securityAuditService = container.resolve(SecurityAuditService);
 
-        const dataSecurityAudit : SecurityAuditDto = {
+        const idUser = objectIdSchema.parse("6837729bc8dd4394aae758a9");
 
-            userId : objectIdSchema.parse("6837729bc8dd4394aae758a9"),
-            loginAttempts : 0,
-            secondFactorAttempts : 0,
-            lastFailedLogin : new Date(Date.now()),
-        };
+        const result = await securityAuditService.getRegistrySecurityAuditByUser(idUser);
 
-        const result = await securityAuditService.createRegistrySecurityAudit(dataSecurityAudit);
-
-        console.log("📄 Registro de auditoria creado:", result);
+        console.log("📄 Registro de seguridad encontrado: ", result);
         
     } catch (error) {
 
@@ -48,7 +42,7 @@ const runTestRegistrySecurityAudit = async () => {
     }
 }
 
-runTestRegistrySecurityAudit().then(() => {
+runTestGetRegistrySecurityAudit().then(() => {
 
     console.log('Proceso de seed completo');
 })

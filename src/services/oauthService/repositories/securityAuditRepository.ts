@@ -19,8 +19,8 @@ export class SecurityAuditRepositoryImpl implements ISecurityAuditRepository{
 
     async updateRegistrySecurityAudit(userId : ObjectIdParam, dataUpdateAudit: UpdateSecurityAuditDto, session ?: ClientSession): Promise<SecurityAuditDocument | null> {
         
-        return await this.SecurityAuditModel.findByIdAndUpdate(
-            userId,
+        return await this.SecurityAuditModel.findOneAndUpdate(
+            {userId : userId},
             dataUpdateAudit,
             {new: true, runValidators: true, session}
         ).exec();
@@ -28,7 +28,7 @@ export class SecurityAuditRepositoryImpl implements ISecurityAuditRepository{
 
     async getRegistrySecurityAuditByUser(idUser: ObjectIdParam): Promise<SecurityAuditDocument | null> {
         
-        return await this.SecurityAuditModel.findById(idUser).exec();
+        return await this.SecurityAuditModel.findOne({userId : idUser}).exec();
     }
 
     async addAttempLogin(userId: ObjectIdParam, session?: ClientSession): Promise<SecurityAuditDocument | null> {

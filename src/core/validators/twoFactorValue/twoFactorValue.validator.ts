@@ -1,13 +1,18 @@
 import { injectable } from "tsyringe";
 import { TwoFactorValueUserDocument } from "../../../db/models";
-import { UserCodeNotMatchError, UserTwoFactorValueNotFoundError } from "../../exceptions";
+import { UserCodeNotMatchError, UserTwoFactorValueFoundError, UserTwoFactorValueNotFoundError } from "../../exceptions";
 
 @injectable()
 export class TwoFactorValueValidator {
 
-    static validateTwoFactorDataBase(twoFactorValueUser: TwoFactorValueUserDocument): void {
+    static validateTwoFactorDataBaseNotExists(twoFactorValueUser: TwoFactorValueUserDocument): void {
 
-        if (twoFactorValueUser) throw new UserTwoFactorValueNotFoundError();
+        if (!twoFactorValueUser) throw new UserTwoFactorValueNotFoundError();
+    }
+
+    static validateTwoFactorDataBaseExists(twoFactorValueUser: TwoFactorValueUserDocument): void {
+
+        if (twoFactorValueUser) throw new UserTwoFactorValueFoundError();
     }
 
 }

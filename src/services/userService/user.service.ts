@@ -26,6 +26,8 @@ import { IUserPermissionSecurityRepository } from "./interfaces/IUserPermissionS
 import { IRoleConfigRepository } from "../roleConfig";
 import { ITwoFactorUserRepository } from "./interfaces/ITwoFactorActiveUser";
 import { TwoFactorService } from "../oauthService";
+import { Transactional } from "../../core/utils/transaccional-wrapper";
+import { ClientSession } from "mongoose";
 
 @injectable()
 export class UserService {
@@ -327,11 +329,13 @@ export class UserService {
 
   //TODO: Metodo para administradores, middleware de autorizacion
 
+  @Transactional()
   async changeStatusUser(
     newStatus: string,
-    idUser: ObjectIdParam
+    idUser: ObjectIdParam,
+    sessionParam?: ClientSession
   ): Promise<UserDocument | null> {
-    return await this.transactionManager.executeTransaction(async (session) => {
+
       try {
         //1. Validamos que el usuario exista
         await this.userValidator.validateExistsUserDataAsync(idUser);
@@ -343,12 +347,11 @@ export class UserService {
         return await this.userRepository.changeStatusUser(
           newStatus,
           idUser,
-          session
+          sessionParam
         );
       } catch (error) {
         handleError(error);
       }
-    });
   }
 
   async addPasswordToHistory(

@@ -140,7 +140,9 @@
     "script:delete-session": "ts-node src/scripts/sessionManagement/testDeleteSessionUser.ts",
     "script:get-session": "ts-node src/scripts/sessionManagement/testGetSessionUser.ts",
     "script:generate-factor" : "ts-node src/scripts/twoFactorValue/twoFactorGenerateValue.ts",
-    "script:registry-audit" : "ts-node src/scripts/securityAudit/testRegistrySecurityAudit.ts"
+    "script:compare-factor" : "ts-node src/scripts/twoFactorValue/twoFactorCompareValue.ts",
+    "script:registry-audit" : "ts-node src/scripts/securityAudit/testRegistrySecurityAudit.ts",
+    "script:get-registry-audit" : "ts-node src/scripts/securityAudit/testGetRegistrySecurityAuditByUser.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

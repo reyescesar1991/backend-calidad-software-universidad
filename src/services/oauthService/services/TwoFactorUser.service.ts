@@ -2,10 +2,10 @@ import { inject, injectable } from "tsyringe";
 import { TransactionManager } from "../../../core/database/transactionManager";
 import { ITwoFactorUserRepository } from "../../userService";
 import { ITwoFactorValueRepository } from "../interfaces/ITwoFactorValueRepository";
-import { ObjectIdParam } from "../../../validations";
+import { ObjectIdParam, UpdateSecurityAuditDto } from "../../../validations";
 import { SecurityAuditDocument, TwoFactorValueUserDocument } from "../../../db/models";
 import { handleError } from "../../../core/exceptions";
-import { TwoFactorValueValidator, UserValidator } from "../../../core/validators";
+import { SecurityAuditValidator, TwoFactorValueValidator, UserValidator } from "../../../core/validators";
 import { MailService } from "../../mailService/mail.service";
 import { UserService } from "../../userService/user.service";
 import { SecurityAuditService } from "./SecurityAudit.service";
@@ -39,28 +39,47 @@ export class TwoFactorUserService {
             const statusUser = await this.userService.findUserById(userId);
             UserValidator.validateStatusUserIsActive(statusUser.status);
 
-            //2. Validamos que el email este previamente registrado
+            //2. Verificamos que el usuario tenga un registro en la tabla valor de factor de autenticacion, si es asi lanzamos un error
+            const userFactorValue = await this.twoFactorValueRepository.findTwoFactorValueUserByCustomUserId(userId);
+            TwoFactorValueValidator.validateTwoFactorDataBaseExists(userFactorValue);
+
+            //3. Validamos que el email este previamente registrado
             await this.userValidator.validateEmailUser(userId, email);
 
-            //3. Generar código de 6 dígitos
+            //4. Generar código de 6 dígitos
             const code = Math.floor(100000 + Math.random() * 900000).toString();
 
-            //4. Generar la fecha de expiracion
+            //5. Generar la fecha de expiracion
             const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
 
-            //5. Envio por correo el código
+            const registryAudit = await this.securityAuditService.getRegistrySecurityAuditByUser(userId);
+
+            console.log(registryAudit);
+
+
+            //6. Si no existe un registro en el audit, lo creamos para ese usuario
+            if (!registryAudit) {
+
+                //6.1 Si no existe, lo creamos
+                await this.securityAuditService.createRegistrySecurityAudit(
+                    {
+                        userId: userId,
+                    }, sessionParam
+                )
+            }
+            else {
+
+                //6.2 Si ya existe, verificamos que el maximo de intentos ya no haya superado los 3, si es asi el usuario se tendra que bloquear
+                await this.validateNumberAttempsFactor(registryAudit, userId, sessionParam);
+            }
+
+            //7. Envio por correo el código
             await this.mailService.sendTwoFactorCode(email, code);
 
-            await this.securityAuditService.createRegistrySecurityAudit(
-                {
-                    userId: userId,
-                }, sessionParam
-            )
+            // //8. Sumamos uno al segundo factor
+            // await this.securityAuditService.addAttempSecondFactor(userId, sessionParam);
 
-            //6. Sumamos uno al segundo factor
-            await this.securityAuditService.addAttempSecondFactor(userId, sessionParam);
-
-            //7. Creo el registro en la tabla temporal de valores
+            //8. Creo el registro en la tabla temporal de valores
             return await this.twoFactorValueRepository.generateAndSendCode({
 
                 userId: userFactorActive.userId,
@@ -77,38 +96,58 @@ export class TwoFactorUserService {
     }
 
     @Transactional()
-    async validateFactorUser(userId: ObjectIdParam, code: string): Promise<boolean | null> {
+    async validateFactorUser(userId: ObjectIdParam, code: string, sessionParam?: ClientSession): Promise<boolean | null> {
 
+        console.log("cODE: ", code);
 
         try {
 
-            //1. Verificar que el usuario tenga un registro en tabla intermedia de factor-user y que este activo
+            // PASO 1: OBTENER LOS DATOS CRÍTICOS UNA SOLA VEZ AL INICIO
+            const user = await this.userService.findUserById(userId);
+            const dataUserAudit = await this.securityAuditService.getRegistrySecurityAuditByUser(userId);
             const userFactorActive = await this.twoFactorUserActiveRepository.getTwoFactorUser(userId);
+
+            // =================================================================
+            // PASO 2: VALIDACIÓN DE BLOQUEO "FAIL FAST" (LA LÓGICA CLAVE)
+            // Si ya ha superado el límite de intentos, no procesamos nada más.
+            // =================================================================
             UserValidator.validateTwoFactorUserIsAlreadyInactive(userFactorActive.isActive);
+            SecurityAuditValidator.validateSecurityAuditRegistryExists(dataUserAudit);
+            SecurityAuditValidator.validateSecurityAuditAttempsUserSecondFactor(dataUserAudit);
 
-            //2. Verificamos que el usuario tenga un registro en la tabla valor de factor de autenticacion
+            // Ahora que sabemos que el usuario NO está bloqueado, validamos su estado actual.
+            // Esto previene otros estados como "PENDIENTE", "ELIMINADO", etc. 
+            UserValidator.validateStatusUserIsActive(user.status);
+
+
+            // PASO 3: OBTENER Y VALIDAR EL CÓDIGO 2FA
             const userFactorValue = await this.twoFactorValueRepository.findTwoFactorValueUserByCustomUserId(userId);
-            TwoFactorValueValidator.validateTwoFactorDataBase(userFactorValue);
+            TwoFactorValueValidator.validateTwoFactorDataBaseNotExists(userFactorValue);
 
-            //3. Verificar el codigo dado por el usuario con el guardado en base de datos
+            // PASO 4: COMPARAR EL CÓDIGO Y ACTUAR
             if (code !== userFactorValue.value) {
 
-                //3.1 Agregamos uno al segundo factor
-                await this.securityAuditService.addAttempSecondFactor(userId);
+                // El código es incorrecto
+                // 4.1 Incrementamos el contador
+                const updatedAudit  = await this.securityAuditService.addAttempSecondFactor(userId, sessionParam);
 
-                //3.2 Obtenemos la data de auditoria del usuario
-                const dataUserAudit = await this.securityAuditService.getRegistrySecurityAuditByUser(userId);
+                // 4.2 DESPUÉS de incrementar, verificamos si este fue el intento que lo bloquea
+                await this.validateNumberAttempsFactor(updatedAudit, userId, sessionParam);
 
-                //3.3 Validamos si ya alcanzo el limite de intentos
-                await this.validateNumberAttempsFactor(dataUserAudit, userId);
+                // 4.3 Actualizamos la fecha del último intento fallido
+                const lastAttempLogin: UpdateSecurityAuditDto = { lastFailedLogin: new Date(Date.now() + 10 * 60 * 1000) };
+                await this.securityAuditService.updateRegistrySecurityAudit(userId, lastAttempLogin, sessionParam);
 
                 return false;
             }
-            //4. En que caso de que sea igual al codigo enviado y almacenado en bd, seria exitoso
+            
             else {
 
-                //4.1 Reseteamos el contador de segundo factor ya que fue exitoso
-                await this.securityAuditService.resetAttempSecondFactor(userId);
+                // El código es correcto
+                // 4.4 Reseteamos el contador
+                await this.securityAuditService.resetAttempSecondFactor(userId, sessionParam);
+                // 4.5 Eliminamos el código de un solo uso
+                await this.twoFactorValueRepository.deleteTwoFactorValueUser(userId, sessionParam);
                 return true;
             }
 
@@ -118,15 +157,16 @@ export class TwoFactorUserService {
             handleError(error);
         }
 
-
     }
 
     //Funcion que me permite verificar que si el intentos ha sido mas de dos, bloquear al usuario
-    async validateNumberAttempsFactor(dataUserAudit: SecurityAuditDocument, idUser: ObjectIdParam) {
+    async validateNumberAttempsFactor(dataUserAudit: SecurityAuditDocument, idUser: ObjectIdParam, session: ClientSession): Promise<void> {
 
         if (dataUserAudit.secondFactorAttempts >= 3) {
 
-            await this.userService.changeStatusUser(StatusUserEnum.BLOCKED, idUser);
+            console.log(dataUserAudit.secondFactorAttempts);
+            await this.userService.changeStatusUser(StatusUserEnum.BLOCKED, idUser, session);
         }
+
     }
 }

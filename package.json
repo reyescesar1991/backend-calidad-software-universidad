@@ -142,7 +142,11 @@
     "script:generate-factor" : "ts-node src/scripts/twoFactorValue/twoFactorGenerateValue.ts",
     "script:compare-factor" : "ts-node src/scripts/twoFactorValue/twoFactorCompareValue.ts",
     "script:registry-audit" : "ts-node src/scripts/securityAudit/testRegistrySecurityAudit.ts",
-    "script:get-registry-audit" : "ts-node src/scripts/securityAudit/testGetRegistrySecurityAuditByUser.ts"
+    "script:get-registry-audit" : "ts-node src/scripts/securityAudit/testGetRegistrySecurityAuditByUser.ts",
+    "script:reset-secondfactor-attemp" : "ts-node src/scripts/securityAudit/testResetAttempSecondFactorUser.ts",
+    "script:reset-login-attemp" : "ts-node src/scripts/securityAudit/testResetAttempLoginUser.ts",
+    "script:add-login-attemp" : "ts-node src/scripts/securityAudit/testAddAttempLoginUser.ts",
+    "script:add-secondfactor-attemp" : "ts-node src/scripts/securityAudit/testAddAttempSecondFactorUser.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

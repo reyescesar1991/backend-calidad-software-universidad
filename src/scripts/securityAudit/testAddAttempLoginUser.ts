@@ -12,7 +12,7 @@ import { configureDependenciesTwoFactorUser } from '../../core/config/dependenci
 
 initializeTestEnvironment();
 
-const runTestGetRegistrySecurityAudit = async () => {
+const runTestAddAttempLoginUser = async () => {
 
     try {
 
@@ -27,9 +27,9 @@ const runTestGetRegistrySecurityAudit = async () => {
 
         const idUser = objectIdSchema.parse("6837729bc8dd4394aae758a9");
 
-        const result = await securityAuditService.getRegistrySecurityAuditByUser(idUser);
+        const result = await securityAuditService.addAttempLogin(idUser);
 
-        console.log("📄 Registro de seguridad encontrado: ", result);
+        console.log("📄 Intento de login sumado al registro de seguridad: ", result);
         
     } catch (error) {
 
@@ -42,7 +42,7 @@ const runTestGetRegistrySecurityAudit = async () => {
     }
 }
 
-runTestGetRegistrySecurityAudit().then(() => {
+runTestAddAttempLoginUser().then(() => {
 
     console.log('Proceso de seed completo');
 })

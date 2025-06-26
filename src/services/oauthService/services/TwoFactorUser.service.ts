@@ -159,6 +159,23 @@ export class TwoFactorUserService {
 
     }
 
+    @Transactional()
+    async deleteTwoFactorValueUser(userId : ObjectIdParam, session: ClientSession) : Promise<TwoFactorValueUserDocument | null>{
+
+        try {
+            const userFactorValue = await this.twoFactorValueRepository.findTwoFactorValueUserByCustomUserId(userId);
+
+            TwoFactorValueValidator.validateTwoFactorDataBaseExists(userFactorValue);
+
+            return await this.twoFactorValueRepository.deleteTwoFactorValueUser(userId, session);
+
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+
     //Funcion que me permite verificar que si el intentos ha sido mas de dos, bloquear al usuario
     async validateNumberAttempsFactor(dataUserAudit: SecurityAuditDocument, idUser: ObjectIdParam, session: ClientSession): Promise<void> {
 

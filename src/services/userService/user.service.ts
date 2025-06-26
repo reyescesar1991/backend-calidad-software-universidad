@@ -354,6 +354,8 @@ export class UserService {
       }
   }
 
+  
+
   async addPasswordToHistory(
     userId: ObjectIdParam,
     hashedPassword: string

@@ -12,7 +12,7 @@ import { configureDependenciesTwoFactorUser } from '../../core/config/dependenci
 
 initializeTestEnvironment();
 
-const runTestGetRegistrySecurityAudit = async () => {
+const runTestResetAttempSecondFactorUser = async () => {
 
     try {
 
@@ -27,9 +27,9 @@ const runTestGetRegistrySecurityAudit = async () => {
 
         const idUser = objectIdSchema.parse("6837729bc8dd4394aae758a9");
 
-        const result = await securityAuditService.getRegistrySecurityAuditByUser(idUser);
+        const result = await securityAuditService.resetAttempSecondFactor(idUser);
 
-        console.log("📄 Registro de seguridad encontrado: ", result);
+        console.log("📄 Intentos del segundo factor reseteados en el registro de seguridad: ", result);
         
     } catch (error) {
 
@@ -42,7 +42,7 @@ const runTestGetRegistrySecurityAudit = async () => {
     }
 }
 
-runTestGetRegistrySecurityAudit().then(() => {
+runTestResetAttempSecondFactorUser().then(() => {
 
     console.log('Proceso de seed completo');
 })

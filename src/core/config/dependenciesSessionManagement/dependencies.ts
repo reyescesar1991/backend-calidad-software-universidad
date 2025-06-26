@@ -1,7 +1,7 @@
 import { container } from "tsyringe"
 import { TransactionManager } from "../../database/transactionManager";
 import { SessionManagementModel } from "../../../db/models/oauthModels/sessionManagement.model";
-import { ISessionManagementRepository, SessionManagementRepositoryImpl } from "../../../services/oauthService";
+import { ISessionManagementRepository, SessionManagamentService, SessionManagementRepositoryImpl } from "../../../services/oauthService";
 import { SessionManagementValidator } from "../../validators";
 
 
@@ -14,5 +14,7 @@ export const configureSessionManagementDependencies = async () => {
     container.register("SessionManagementValidator" , {useClass: SessionManagementValidator});
 
     container.register<ISessionManagementRepository>("ISessionManagementRepository", { useClass: SessionManagementRepositoryImpl });
+
+    container.register("SessionManagamentService", {useClass : SessionManagamentService});
 }
 

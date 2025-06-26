@@ -14,6 +14,7 @@ export {SessionManagamentService} from './services/SessionManagement.service';
 
 export {ITwoFactorValueRepository} from './interfaces/ITwoFactorValueRepository';
 export {TwoFactorValueRepositoryImpl} from './repositories/twoFactorValueRepository';
+export {TwoFactorUserService} from './services/TwoFactorUser.service';
 
 //audit security
 

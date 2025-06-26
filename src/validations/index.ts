@@ -88,6 +88,19 @@ export {SecurityAuditDto} from './usersValidators/securityAudit.validation';
 export {updateSecurityAuditSchemaZod} from './usersValidators/securityAudit.validation';
 export {UpdateSecurityAuditDto} from './usersValidators/securityAudit.validation';
 
+//OAuth
+
+export {loginDataSchemaZod} from './oauthValidators/oauth.validation';
+export {LoginDataDto} from './oauthValidators/oauth.validation';
+export {accessDataUserSchemaZod} from './oauthValidators/oauth.validation';
+export {AccessDataUserDto} from './oauthValidators/oauth.validation';
+export {dataRecoverUsernameSchemaZod} from './oauthValidators/oauth.validation';
+export {RecoverUsernameDataUserDto} from './oauthValidators/oauth.validation';
+export {dataRecoverPasswordSchemaZod} from './oauthValidators/oauth.validation';
+export {RecoverPasswordUserDto} from './oauthValidators/oauth.validation';
+export {twoFactorCodeVerificationSchemaZod} from './oauthValidators/oauth.validation';
+export {TwoFactorCodeVerificationDto} from './oauthValidators/oauth.validation';
+export {SecondFactorRequestDto} from './oauthValidators/oauth.validation';
 //shared
 
 export {SubrouteFilterSchema} from './sharedValidators/routeFormatValidator';

@@ -14,7 +14,6 @@ export class SecurityAuditService {
 
     constructor(
         @inject("ISecurityAuditRepository") private readonly securityAuditRepository: ISecurityAuditRepository,
-        @inject("UserValidator") private readonly userValidator: UserValidator,
         @inject("UserService") private readonly userService: UserService,
         @inject("TransactionManager") private readonly transactionManager: TransactionManager,
     ) { }

@@ -37,7 +37,10 @@ export const dataRecoverPasswordSchemaZod = z.object({
 export const twoFactorCodeVerificationSchemaZod = z.object({
   // Puede ser email o userId, dependiendo de cómo quieras identificar al usuario en la API.
   // Si la API siempre recibe el email para todos los flujos 2FA, usa 'email'.
-  email: z.string().email("Formato de email inválido"),
+  userId: z.instanceof(mongoose.Types.ObjectId).refine(
+        val => val instanceof mongoose.Types.ObjectId,
+        { message: "Debe ser un ObjectId válido de Mongoose" }
+    ),
   code: z.string().length(6, "El código debe tener 6 dígitos"),
 });
 

@@ -198,12 +198,13 @@ export class UserService {
 
   //TODO: Metodo para administradores, middleware de autorizacion
 
+  @Transactional()
   async updateUser(
     idUser: ObjectIdParam,
     idCustomUser: string,
-    updateDataUser: UpdateUserDto
+    updateDataUser: UpdateUserDto,
+    session ?: ClientSession
   ): Promise<UserDocument | null> {
-    return await this.transactionManager.executeTransaction(async (session) => {
       try {
         //1. Validamos que el usuario exista
         await this.userValidator.validateExistsUserDataAsync(idUser);
@@ -315,6 +316,18 @@ export class UserService {
           );
         }
 
+        //14. Verificar si en data viene la contraseña del usuario para modificarla
+
+        if(updateDataUser.password){
+
+          const passwordInHistory = await this.isPasswordInHistory(idUser, updateDataUser.password);
+
+          if(!passwordInHistory){
+
+            await this.addPasswordToHistory(idUser, updateDataUser.password);
+          }
+        }
+
         //13. Actualiza el usuario
         return await this.userRepository.updateUser(
           idUser,
@@ -324,7 +337,6 @@ export class UserService {
       } catch (error) {
         handleError(error);
       }
-    });
   }
 
   //TODO: Metodo para administradores, middleware de autorizacion
@@ -563,6 +575,24 @@ export class UserService {
 
     } catch (error) {
 
+      handleError(error);
+    }
+  }
+
+  async getSecondFactorUserStatus(idUser : ObjectIdParam) : Promise<boolean>{
+
+    try {
+
+      const user = await this.userRepository.findUserById(idUser);
+
+      UserValidator.validateUserExists(user);
+
+      const statusSecondFactorUser = await this.twoFactorUserActiveRepository.getTwoFactorUserActive(idUser);
+
+      return statusSecondFactorUser;
+      
+    } catch (error) {
+      
       handleError(error);
     }
   }

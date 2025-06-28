@@ -135,7 +135,9 @@ export class TwoFactorUserService {
                 await this.validateNumberAttempsFactor(updatedAudit, userId, sessionParam);
 
                 // 4.3 Actualizamos la fecha del último intento fallido
-                const lastAttempLogin: UpdateSecurityAuditDto = { lastFailedLogin: new Date(Date.now() + 10 * 60 * 1000) };
+                const lastAttempLogin: UpdateSecurityAuditDto = { 
+                    lastFailedLogin: new Date(Date.now() + 10 * 60 * 1000)
+                };
                 await this.securityAuditService.updateRegistrySecurityAudit(userId, lastAttempLogin, sessionParam);
 
                 return false;
@@ -146,7 +148,15 @@ export class TwoFactorUserService {
                 // El código es correcto
                 // 4.4 Reseteamos el contador
                 await this.securityAuditService.resetAttempSecondFactor(userId, sessionParam);
-                // 4.5 Eliminamos el código de un solo uso
+
+                //4.5 Colocamos un minuto de duracion para la autenticacion
+                const twoFactorVerifiedUntil : UpdateSecurityAuditDto = {
+
+                    twoFactorVerifiedUntil : new Date(Date.now() + 60 * 1000),
+                };
+                await this.securityAuditService.updateRegistrySecurityAudit(userId, twoFactorVerifiedUntil, sessionParam);
+
+                // 4.6 Eliminamos el código de un solo uso
                 await this.twoFactorValueRepository.deleteTwoFactorValueUser(userId, sessionParam);
                 return true;
             }
@@ -177,7 +187,7 @@ export class TwoFactorUserService {
 
 
     //Funcion que me permite verificar que si el intentos ha sido mas de dos, bloquear al usuario
-    async validateNumberAttempsFactor(dataUserAudit: SecurityAuditDocument, idUser: ObjectIdParam, session: ClientSession): Promise<void> {
+    private async validateNumberAttempsFactor(dataUserAudit: SecurityAuditDocument, idUser: ObjectIdParam, session: ClientSession): Promise<void> {
 
         if (dataUserAudit.secondFactorAttempts >= 3) {
 

@@ -10,11 +10,13 @@ export const securityAuditSchemaZod = z.object({
     loginAttempts : z.number().gte(0, "El mínimo de intentos de login es de cero").max(3, "El usuario puede tener hasta 3 fallos de intento de login"),
     secondFactorAttempts : z.number().gte(0, "El mínimo de intentos de segundo factor es de cero").max(3, "El usuario puede tener hasta 3 fallos de intento de segundo factor"),
     lastFailedLogin : z.date().optional(),
+    twoFactorVerifiedUntil : z.date().optional(),
 });
 
 export const updateSecurityAuditSchemaZod = z.object({
 
     lastFailedLogin : z.date().optional(),
+    twoFactorVerifiedUntil : z.date().optional(),
 });
 
 

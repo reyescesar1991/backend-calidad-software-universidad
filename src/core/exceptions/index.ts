@@ -163,6 +163,11 @@ export {UserTwoFactorValueFoundError} from './twoFactorValue/twoFactorValue.exce
 export {RegistryAuditNotFoundError} from './securityAudit/securityAudit.exception';
 export {RegistryAuditSecondFactorAttempsIsAlreadyMaxError} from './securityAudit/securityAudit.exception';
 
+//OAuth
+
+export {UnauthorizedException2FAError} from './oauth/oauth.exception';
+export {AuthPasswordMismatchUsernameError} from './oauth/oauth.exception';
+
 //function handle error
 
 export {handleError} from './handleErrors/handleErrors';

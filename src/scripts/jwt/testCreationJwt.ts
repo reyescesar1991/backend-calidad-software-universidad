@@ -13,6 +13,7 @@ const createJwt = async () => {
     // Solo pasar los datos básicos (sin exp/lat)
     const token = jwtService.generateToken({
       userId : 'USER9999',
+      jti : "",
     });
 
     console.log("📄 Token creado:", token);

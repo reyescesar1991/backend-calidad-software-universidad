@@ -23,6 +23,11 @@ export {IUserPermissionSecurity} from './userPermission/userPermissionSecurity.i
 
 export {JwtPayload} from './jwt/jwt.interface';
 export {JwtTokenData} from './jwt/jwt.interface';
+export {JwtPreAuthPayload} from './jwt/jwt.interface';
+
+//oauth
+
+export {LoginResponseDto} from './oauth/login.response.interface';
 
 
 //filters

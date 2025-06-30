@@ -1,16 +1,25 @@
 // src/auth/services/token.service.ts
 import { sign, verify } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
-import { JWT_SECRET_TOKEN } from '../../../core/const';
-import { JwtPayload } from '../../../core/types';
+import { JWT_PREAUTH_SECRET, JWT_SECRET_TOKEN } from '../../../core/const';
+import { JwtPayload, JwtPreAuthPayload } from '../../../core/types';
 import { JwtValidator } from '../../../core/utils/jwt.util';
 import { JwtPayloadFactory } from '../../../core/factories/jwt-payload.factory';
+import { resolve } from 'path';
+import * as dotenv from 'dotenv';
 // Importar la factory
+
+// Cargar variables de entorno
+dotenv.config({ path: resolve(process.cwd(), ".env") });
+
+// Constantes reutilizables
+const SECRET = process.env.CONNECTION_STRING;
 
 @injectable()
 export class TokenService {
   constructor(
-    @inject(JWT_SECRET_TOKEN) private readonly secret: string
+    @inject(JWT_SECRET_TOKEN) private readonly secret: string,
+    @inject(JWT_PREAUTH_SECRET) private readonly secretPreAuth: string,
   ) { }
 
   generateToken(
@@ -27,10 +36,35 @@ export class TokenService {
     });
   }
 
+  generatePreAuthToken(
+    username : string,
+    userId : string
+  ): string {
+    // Usar la factory para crear el payload
+    const payload = JwtPayloadFactory.createBasePreAuth(username, userId);
+
+    return sign(payload, process.env.JWT_PREAUTH_SECRET, {
+      algorithm: 'HS256'
+    });
+  }
+
   verifyToken(token: string): JwtPayload {
     const decoded = verify(token, this.secret) as JwtPayload;
 
     if (!JwtValidator.isValid(decoded)) {
+      throw new Error('Token expirado');
+    }
+
+    return decoded;
+  }
+
+  verifyPreAuthToken(token: string): JwtPreAuthPayload {
+    const decoded = verify(token, this.secretPreAuth) as JwtPreAuthPayload;
+
+    console.log(this.secretPreAuth);
+    
+
+    if (!JwtValidator.isValidPreAuth(decoded)) {
       throw new Error('Token expirado');
     }
 

@@ -11,6 +11,8 @@ import { Transactional } from "../../core/utils/transaccional-wrapper";
 import { AuthPasswordMismatchUsernameError, handleError } from "../../core/exceptions";
 import { SecurityAuditValidator, UserValidator } from "../../core/validators";
 import { MailService } from "../mailService/mail.service";
+import { LoginResponseDto } from "../../core/types";
+import { JwtValidator } from "../../core/utils/jwt.util";
 
 @injectable()
 export class OAuthService {
@@ -29,12 +31,12 @@ export class OAuthService {
     /**
      * Metodo para solicitar el segundo factor en los flujos del OAuth
      * Inicia el flujo de reseteo de contraseña enviando un código 2FA al usuario.
-     * @param data DTO con el email del usuario y el userId necesario para el metodo generateCodeAndSend.
+     * @param dataLogin DTO con el username del usuario y la contraseña del usuario
      * @throws UserNotFoundByIdError si el usuario no es encontrado por el customId.
      * @returns Un mensaje de éxito indicando que el código 2FA ha sido enviado.
      */
     @Transactional()
-    async loginUser(dataLogin: LoginDataDto, session?: ClientSession): Promise<string> {
+    async loginUser(dataLogin: LoginDataDto, session?: ClientSession): Promise<LoginResponseDto> {
 
         try {
 
@@ -48,6 +50,7 @@ export class OAuthService {
             //2.1 En caso de no ser iguales lanzaremos la excepcion AuthPasswordMismatchUsernameError()
             if (user.password !== dataLogin.password) {
 
+                await this.securityAuditService.addAttempLogin(user._id);
                 throw new AuthPasswordMismatchUsernameError();
             }
 
@@ -66,29 +69,167 @@ export class OAuthService {
             if (!userTwoFactorStatus) {
 
                 //5.1.2 Creamos una session para el usuario
-                const sessionUserParam : SessionManagementDto = {
+                const sessionUserParam: SessionManagementDto = {
 
-                    userId : user.idUser,
-                    token : token,
-                    userAgent : "web",
-                    ipAddress : "192.123.4.123",
+                    userId: user.idUser,
+                    token: token,
+                    userAgent: "web",
+                    ipAddress: "192.123.4.123",
                 }
 
                 //5.1.3 La creamos en BD
-                await this.sessionManagamentService.createSessionUser(sessionUserParam);
+                await this.sessionManagamentService.createSessionUser(sessionUserParam, session);
 
-                //5.1.4 Retornamos el token que es lo que necesita el usuario para poder acceder a la app
-                return token;
+                //5.1.4 reseteamos los intentos de login
+                await this.securityAuditService.resetAttempLogin(user._id, session);
+
+                //5.1.5 Retornamos el token que es lo que necesita el usuario para poder acceder a la app
+                return { token: token };;
             }
-            //5.2 Si tiene segundo factor debemos hacer el flujo de validacion primero
-            else{
+            //5.2 Si tiene segundo factor debemos hacer el flujo de validacion primero, enviamos un booleano
+            else {
 
-                
+                //5.2.1 Genero un token temporal para poder pedir el segundo factor para el login
+                const preAuthToken = await this.JwtService.generatePreAuthToken(user.username, user.idUser);
+
+                await this.securityAuditService.addAttempLogin(user._id);
+
+                //5.2.2 Retorno una repuesta de login con pre Auth para poder pedir el segundo factor
+                return {
+
+                    needsTwoFactor: true,
+                    userId: user.idUser,
+                    preAuthToken: preAuthToken,
+                };
             }
 
 
         } catch (error) {
 
+            handleError(error);
+        }
+    }
+
+    /**
+     * Metodo para solicitar el segundo factor en los flujos del OAuth
+     * Inicia el flujo de solicitud de login con seguridad enviando un código 2FA al usuario.
+     * @param data DTO con el email del usuario y el userId necesario para el metodo generateCodeAndSend.
+     * @throws UserNotFoundByIdError si el usuario no es encontrado por el customId.
+     * @returns Un mensaje de éxito indicando que el código 2FA ha sido enviado.
+     */
+    @Transactional()
+    private async requestSecondFactorLogin(data: LoginResponseDto, session?: ClientSession): Promise<{ message: string }> {
+
+        try {
+
+            //1. Verificar que el usuario exista
+            const user = await this.userService.findUserByCustomId(data.userId);
+            UserValidator.validateUserExists(user);
+
+            //2. Verificamos la firma del token temporal
+            const preAuthToken = await this.JwtService.verifyPreAuthToken(data.preAuthToken);
+
+            //3. Validamos que el token aun sea valido
+            JwtValidator.isValidPreAuth(preAuthToken);
+
+            //4. Ya el email es validado por el servicio que genera el segundo factor
+            //5. Si todo va bien, genera el codigo y lo envia al correo registrado en la base de datos
+            await this.twoFactorUserService.generateAndSendCode(user._id, user.email, session);
+
+            return { message: "Un código de verificación ha sido enviado a tu email registrado." };
+
+        } catch (error) {
+
+            handleError(error);
+        }
+    }
+
+
+    /**
+ * Metodo para solicitar el segundo factor en los flujos del OAuth
+ * Confirma el segundo factor enviando un código 2FA al usuario para el login.
+ * @param dataConfirmSecondFactor DTO con el userId y el codigo enviando por el usuario para poder validarlo.
+ * @throws UserNotFoundError si el email no existe (o InvalidCredentialsError por seguridad).
+ * @returns Un booleano true si coincide el codigo con el almacenado, o false si no coincide el codigo almacenado
+ */
+    @Transactional()
+    private async confirmSecondFactorLogin(dataConfirmSecondFactor: TwoFactorCodeVerificationDto, session?: ClientSession): Promise<boolean> {
+
+        try {
+
+            //1. Verificar que el usuario exista
+            const user = await this.userService.findUserByCustomId(dataConfirmSecondFactor.userId);
+
+            //2. Validamos el usuario
+            UserValidator.validateUserExists(user);
+
+            //3. Validamos que el factor sea el enviado y almacenado en la base de datos
+            const validatedFactor = await this.twoFactorUserService.validateFactorUser(user._id, dataConfirmSecondFactor.code, session);
+
+            //4. Resetear el intento de login, ya que para este punto fue exitoso
+            await this.securityAuditService.resetAttempLogin(user._id);
+
+            //5. Generamos el token transaccional
+            const token = this.JwtService.generateToken({
+                userId: user.idUser,
+                jti: "",
+            });
+
+            //6. Creamos una session para el usuario
+                const sessionUserParam: SessionManagementDto = {
+
+                    userId: user.idUser,
+                    token: token,
+                    userAgent: "web",
+                    ipAddress: "192.123.4.123",
+            }
+
+            //7. Creamos
+            await this.sessionManagamentService.createSessionUser(sessionUserParam, session);
+
+            //5. Devolvemos el booleano
+            return validatedFactor;
+
+        } catch (error) {
+
+            handleError(error);
+        }
+    }
+
+
+    /**
+     * Metodo solicitar el 2FA para iniciar el login con seguridad
+     * @param data DTO con el payload del login necesario para poder pedir el segundo factor
+     * @throws UserNotFoundError si el usuario no existe
+     * @returns Un mensaje de exito confirmando el envio de un correo con el factor 2FA
+     */
+    @Transactional()
+    async initiateLogin2FA(data: LoginResponseDto, session?: ClientSession): Promise<{ message: string }> {
+
+        try {
+            // Llama al método genérico para solicitar el 2FA
+            return await this.requestSecondFactorLogin(data, session);
+
+        } catch (error) {
+            handleError(error);
+        }
+    }
+
+
+    /**
+     * Metodo confirmar el 2FA para recuperar la contraseña
+     * @param data DTO con el userId y el codigo para confirmar el 2FA para el flujo de recuperacion de contraseña
+     * @throws UserNotFoundError si el usuario no existe
+     * @returns Un booleano true si coincide el codigo con el almacenado, o false si no coincide el codigo almacenado
+     */
+    @Transactional()
+    async verify2FALogin(data: TwoFactorCodeVerificationDto, session?: ClientSession): Promise<boolean> {
+
+        try {
+
+            return await this.confirmSecondFactorLogin(data, session);
+
+        } catch (error) {
             handleError(error);
         }
     }
@@ -113,7 +254,7 @@ export class OAuthService {
 
             //2. Ya el email es validado por el servicio que genera el segundo factor
             //3. Si todo va bien, genera el codigo y lo envia al correo registrado en la base de datos
-            await this.twoFactorUserService.generateAndSendCode(data.userId, data.email, session);
+            await this.twoFactorUserService.generateAndSendCode(user._id, data.email, session);
 
             return { message: "Un código de verificación ha sido enviado a tu email registrado." };
 
@@ -142,7 +283,7 @@ export class OAuthService {
             UserValidator.validateUserExists(user);
 
             //3. Validamos que el factor sea el enviado y almacenado en la base de datos
-            const validatedFactor = await this.twoFactorUserService.validateFactorUser(dataConfirmSecondFactor.userId, dataConfirmSecondFactor.code, session);
+            const validatedFactor = await this.twoFactorUserService.validateFactorUser(user._id, dataConfirmSecondFactor.code, session);
 
             //4. Devolvemos el booleano
             return validatedFactor;

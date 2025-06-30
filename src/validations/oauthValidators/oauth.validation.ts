@@ -1,4 +1,5 @@
 import { z } from "zod";
+import mongoose from "mongoose";
 
 export const loginDataSchemaZod = z.object({
 
@@ -37,20 +38,24 @@ export const dataRecoverPasswordSchemaZod = z.object({
 export const twoFactorCodeVerificationSchemaZod = z.object({
   // Puede ser email o userId, dependiendo de cómo quieras identificar al usuario en la API.
   // Si la API siempre recibe el email para todos los flujos 2FA, usa 'email'.
-  userId: z.instanceof(mongoose.Types.ObjectId).refine(
-        val => val instanceof mongoose.Types.ObjectId,
-        { message: "Debe ser un ObjectId válido de Mongoose" }
-    ),
+  userId: z.string().refine((value) => {
+
+        const regex = /^[a-zA-Z]{4}\d{4}$/;
+        return regex.test(value);
+
+    }, "Formato de ID de usuario incorrecto, debe iniciar con 4 carácteres y seguido tener 4 números"),
   code: z.string().length(6, "El código debe tener 6 dígitos"),
 });
 
 
 export const secondFactorRequestSchemaZod = z.object({
 
-    userId: z.instanceof(mongoose.Types.ObjectId).refine(
-        val => val instanceof mongoose.Types.ObjectId,
-        { message: "Debe ser un ObjectId válido de Mongoose" }
-    ),
+    userId: z.string().refine((value) => {
+
+        const regex = /^[a-zA-Z]{4}\d{4}$/;
+        return regex.test(value);
+
+    }, "Formato de ID de usuario incorrecto, debe iniciar con 4 carácteres y seguido tener 4 números"),
     email : z.string().email(),
 })
 

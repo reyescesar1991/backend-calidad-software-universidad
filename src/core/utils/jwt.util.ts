@@ -1,5 +1,6 @@
 // src/core/auth/util/jwt.util.ts
 import { JwtPayload } from "../types";
+import { JwtPreAuthPayload } from "../types";
 
 export class JwtValidator {
   // Verificar si el payload contiene rol
@@ -9,6 +10,11 @@ export class JwtValidator {
 
   // Validar vigencia del token
   static isValid(payload: JwtPayload): boolean {
+    const now = Math.floor(Date.now() / 1000);
+    return payload.exp > now;
+  }
+
+  static isValidPreAuth(payload: JwtPreAuthPayload): boolean {
     const now = Math.floor(Date.now() / 1000);
     return payload.exp > now;
   }

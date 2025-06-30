@@ -135,6 +135,7 @@
     "script:disable-factor": "ts-node src/scripts/twoFactorData/testDisableFactor.ts",
     "script:addquantity-factor": "ts-node src/scripts/twoFactorData/testAddQuantityFactor.ts",
     "script:create-token": "ts-node src/scripts/jwt/testCreationJwt.ts",
+    "script:create-preauth-token": "ts-node src/scripts/jwt/testCreationPreAuthJwt.ts",
     "script:create-session": "ts-node src/scripts/sessionManagement/testCreateSessionUser.ts",
     "script:update-session": "ts-node src/scripts/sessionManagement/testUpdateSessionUser.ts",
     "script:delete-session": "ts-node src/scripts/sessionManagement/testDeleteSessionUser.ts",
@@ -146,7 +147,9 @@
     "script:reset-secondfactor-attemp" : "ts-node src/scripts/securityAudit/testResetAttempSecondFactorUser.ts",
     "script:reset-login-attemp" : "ts-node src/scripts/securityAudit/testResetAttempLoginUser.ts",
     "script:add-login-attemp" : "ts-node src/scripts/securityAudit/testAddAttempLoginUser.ts",
-    "script:add-secondfactor-attemp" : "ts-node src/scripts/securityAudit/testAddAttempSecondFactorUser.ts"
+    "script:add-secondfactor-attemp" : "ts-node src/scripts/securityAudit/testAddAttempSecondFactorUser.ts",
+    "script:first-step-recovery-password" : "ts-node src/scripts/oauth/resetPassword/TestInitiatePasswordReset.ts",
+    "script:second-step-validate2FA-recovery-password" : "ts-node src/scripts/oauth/resetPassword/TestValidatePasswordReset.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

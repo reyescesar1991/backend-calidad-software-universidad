@@ -15,3 +15,11 @@ export class AuthPasswordMismatchUsernameError extends AppError{
         this.name = "AuthPasswordMismatchUsernameError"
     }
 }
+
+export class TwoFactorRequiredError extends Error {
+    statusCode = 2302; // Unauthorized
+    constructor(message: string, public userId: string, public preAuthToken: string) {
+        super(message);
+        this.name = 'TwoFactorRequiredError';
+    }
+}

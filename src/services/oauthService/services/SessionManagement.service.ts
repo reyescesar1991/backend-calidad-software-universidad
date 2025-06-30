@@ -10,6 +10,8 @@ import { TokenService } from "./Token.service";
 import { JwtValidator } from "../../../core/utils/jwt.util";
 import { configureDateToJwt } from "../../../core/helper";
 import redisClient from "../../../core/utils/connectRedis";
+import { Transactional } from "../../../core/utils/transaccional-wrapper";
+import { ClientSession } from "mongoose";
 
 
 @injectable()
@@ -44,35 +46,30 @@ export class SessionManagamentService {
         }
     }
 
-    async createSessionUser(sessionUserParam: SessionManagementDto): Promise<SessionManagementDocument | null> {
+    @Transactional()
+    async createSessionUser(sessionUserParam: SessionManagementDto, session?: ClientSession): Promise<SessionManagementDocument | null> {
 
-        return await this.transactionManager.executeTransaction(
+        try {
 
-            async (session) => {
+            //1. Verificamos que el usuario se encuentre en un estado de activo y exista en una sola operacion a traves del servicio de user
 
-                try {
-
-                    //1. Verificamos que el usuario se encuentre en un estado de activo y exista en una sola operacion a traves del servicio de user
-
-                    await this.userService.getStatusUserActive(sessionUserParam.userId);
+            await this.userService.getStatusUserActive(sessionUserParam.userId);
 
 
-                    //2. Verificamos que ya no tenga previamente una sesion activa
-                    const sessionUser = await this.sessionManagementRepository.getSessionUserValidate(sessionUserParam.userId);
+            //2. Verificamos que ya no tenga previamente una sesion activa
+            const sessionUser = await this.sessionManagementRepository.getSessionUserValidate(sessionUserParam.userId);
 
-                    SessionManagementValidator.validateUserAlreadyHaveASessionActive(sessionUser);
+            SessionManagementValidator.validateUserAlreadyHaveASessionActive(sessionUser);
 
-                    //3. Creamos la sesion
-                    const jwtExpiration = this.tokenService.verifyToken(sessionUserParam.token).exp;
-                    sessionUserParam.expiresAt = configureDateToJwt(jwtExpiration);
-                    return await this.sessionManagementRepository.createSessionUser(sessionUserParam, session);
+            //3. Creamos la sesion
+            const jwtExpiration = this.tokenService.verifyToken(sessionUserParam.token).exp;
+            sessionUserParam.expiresAt = configureDateToJwt(jwtExpiration);
+            return await this.sessionManagementRepository.createSessionUser(sessionUserParam, session);
 
-                } catch (error) {
+        } catch (error) {
 
-                    handleError(error);
-                }
-            }
-        )
+            handleError(error);
+        }
     }
 
     async updateSessionUser(dataUpdate: UpdateSessionManagementDto): Promise<SessionManagementDocument | null> {

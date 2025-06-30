@@ -7,3 +7,4 @@ export {VALID_LOCATIONS} from './states/headquarter.const';
 //jwt
 
 export {JWT_SECRET_TOKEN} from './jwt/jwt.const';
+export {JWT_PREAUTH_SECRET} from './jwt/jwt.const';

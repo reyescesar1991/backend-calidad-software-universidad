@@ -9,6 +9,7 @@ import { configureDependenciesRoles } from '../../core/config/dependenciesRoles/
 import { configureDependenciesRoleConfig } from '../../core/config/dependenciesRoleConfig/dependencies';
 import { configureDependenciesDepartments } from '../../core/config/dependenciesDepartments/dependencies';
 import { configureDependenciesTwoFactorUser } from '../../core/config/dependenciesTwoFactorUser/dependencies';
+import { configureDependencies } from '../../core/config/dependenciesRoutes/dependencies';
 
 initializeTestEnvironment();
 
@@ -21,6 +22,7 @@ const runTestCreateUser = async () => {
         await configureDependenciesRoleConfig();
         await configureDependenciesDepartments();
         await configureDependenciesTwoFactorUser();
+        await configureDependencies();
 
         const dataUser : UserDto = {
 

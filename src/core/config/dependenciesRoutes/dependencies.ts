@@ -1,17 +1,26 @@
 import { container } from "tsyringe";
 import { TransactionManager } from "../../database/transactionManager";
-import { ModuleModel, RouteModel } from "../../../db/models";
+import { ModuleModel, RouteModel, SubrouteModel } from "../../../db/models";
 import { RouteRepository } from "../../../services/menu/repositories/routeRepository";
-import { IModuleRepository, IRouteRepository } from "../../../services/menu";
+import { IModuleRepository, IRouteRepository, ISubrouteRepository, SubrouteRepository } from "../../../services/menu";
 import { MenuService } from "../../../services/menu/Menu.service";
-import { initializeTestEnvironment } from "../../utils/connectDb";
-import { ModuleValidator, RouteValidator } from "../../validators";
+import { ModuleValidator, RouteValidator, SubrouteValidator } from "../../validators";
 import { ModuleRepositoryImpl } from "../../../services/menu/repositories/moduleRepository";
 
 
 export const configureDependencies = async () => {
-    // ✅ 1. Conectar PRIMERO
-    await initializeTestEnvironment();
+
+    container.register("TransactionManager" , TransactionManager);
+    
+    container.register("SubrouteModel" , {useValue : SubrouteModel});
+    
+    container.register<ISubrouteRepository>("ISubrouteRepository", {useClass: SubrouteRepository});
+    
+    container.register("MenuService", {useClass : MenuService});
+    
+    container.register("SubrouteValidator", {
+        useClass: SubrouteValidator
+    });
 
     container.register("TransactionManager", TransactionManager);
 

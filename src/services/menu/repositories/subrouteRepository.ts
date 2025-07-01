@@ -79,4 +79,32 @@ export class SubrouteRepository implements ISubrouteRepository{
     async findSubrouteByCustomId(customId: string): Promise<SubrouteDocument | null> {
         return this.subrouteModel.findOne({ id: customId }).exec();
     }
+
+
+
+    /**
+     * Obtiene los documentos SubrouteDocument que tienen un permissionKey que coincide
+     * con alguno de los strings en el array permissionLabels.
+     * @param permissionLabels Un array de strings (ej. ['modificar_producto', 'crear_usuario']).
+     * @returns Una promesa que resuelve a un array de SubrouteDocument que coinciden.
+     * Devuelve un array vacío si no se encuentran coincidencias.
+     */
+    async getSubroutesByPermissionKeys(permissionLabels: string[]): Promise<SubrouteDocument[]> {
+        try {
+            // Usamos el operador $in para buscar documentos donde 'permissionKey'
+            // esté contenido en el array 'permissionLabels'.
+            // Añadimos { active: true } para que solo devuelva rutas activas, si eso es lo deseado.
+            const subroutes = await this.subrouteModel.find({
+                permissionKey: { $in: permissionLabels },
+                active: true // Considera si quieres filtrar por activas o no
+            }).exec();
+
+            // Si no se encuentran documentos, find() devuelve un array vacío, lo cual es ideal.
+            return subroutes;
+        } catch (error) {
+            // Manejo de errores: loguear, envolver, o relanzar.
+            // Es crucial propagar el error para que la capa de servicio pueda manejarlo.
+            throw error;
+        }
+    }
 }

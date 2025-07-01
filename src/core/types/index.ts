@@ -18,6 +18,7 @@ export {IWarehouseType} from './warehouse/warehouse.interface';
 export {IProductType} from './product/product.interface';
 export {IUserPermission} from './userPermission/userPermission.interface';
 export {IUserPermissionSecurity} from './userPermission/userPermissionSecurity.interface';
+export {ICustomPermission} from './userPermission/userPermission.interface';
 
 //jwt
 

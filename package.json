@@ -125,6 +125,7 @@
     "script:disabletwofactor-user": "ts-node src/scripts/users/testDisableTwoFactorAuth.ts",
     "script:getstatus-user": "ts-node src/scripts/users/testGetStatusUser.ts",
     "script:getstatusactive-user": "ts-node src/scripts/users/testValidateStatusUserIsActive.ts",
+    "script:getCustomPermissions-user" : "ts-node src/scripts/users/testGetCustomPermissionsUser.ts",
     "script:addQuantity-factorsusers": "ts-node src/scripts/users/testAddQuantityFactorsUsers.ts",
     "script:get-factor": "ts-node src/scripts/twoFactorData/testGetFactorsAvailable.ts",
     "script:findbyid-factor": "ts-node src/scripts/twoFactorData/testFindFactorById.ts",

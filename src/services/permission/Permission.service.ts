@@ -131,4 +131,5 @@ export class PermissionService {
 
         return permissions;
     }
+
 }

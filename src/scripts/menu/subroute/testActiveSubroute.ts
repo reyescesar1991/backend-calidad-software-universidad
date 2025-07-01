@@ -4,6 +4,7 @@ import { container } from 'tsyringe';
 import { disconnectMongo, initializeTestEnvironment } from "../../../core/utils/connectDb";
 import { objectIdSchema } from "../../../validations";
 import { MenuService } from "../../../services/menu/Menu.service";
+import { configureDependencies } from "../../../core/config/dependenciesRoutes/dependencies";
 
 
 initializeTestEnvironment();
@@ -13,7 +14,9 @@ const runTestActiveSubroute = async () => {
 
     try {
 
-        const idSubroute = objectIdSchema.parse("6803f5ddd734053d607c363f");
+        await configureDependencies();
+
+        const idSubroute = objectIdSchema.parse("67d8d1d0fd39f39f4e30ff0d");
 
         const subrouteService = container.resolve(MenuService);
 

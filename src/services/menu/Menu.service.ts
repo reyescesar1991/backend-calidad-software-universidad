@@ -8,6 +8,8 @@ import { FilterOptions, ModuleFilterKeys, RouteFilterKeys, SubrouteFilterKeys } 
 import { IModuleRepository, IRouteRepository } from ".";
 import { TransactionManager } from "../../core/database/transactionManager";
 import { ClientSession } from "mongoose";
+import { RoleConfigService } from "../roleConfig/roleConfig.service";
+import { RoleService } from "../role/Role.service";
 
 @injectable()
 export class MenuService {
@@ -19,7 +21,10 @@ export class MenuService {
         @inject("IRouteRepository") private readonly routeRepository: IRouteRepository,
         @inject("ModuleValidator") private readonly moduleValidator: ModuleValidator,
         @inject("IModuleRepository") private readonly moduleRepository: IModuleRepository,
-        @inject("TransactionManager") private readonly transactionManager: TransactionManager) { }
+        @inject("TransactionManager") private readonly transactionManager: TransactionManager,
+        // @inject("RoleConfigService") private readonly roleConfigService : RoleConfigService,
+        // @inject("RoleService") private readonly roleService : RoleService,
+    ) { }
 
     async createSubroute(data: SubrouteDto): Promise<SubrouteDocument> {
 
@@ -671,6 +676,18 @@ export class MenuService {
 
             return await this.moduleRepository.getRoutesByModule(idModule);
 
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    async getSubroutesByPermissionKeys(permissionLabels: string[]): Promise<SubrouteDocument[]>{
+
+        try {
+
+            return await this.subrouteRepository.getSubroutesByPermissionKeys(permissionLabels);
+            
         } catch (error) {
             
             handleError(error);

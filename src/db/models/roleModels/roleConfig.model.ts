@@ -3,8 +3,8 @@ import { IRoleConfigType } from "../../../core/types";
 
 export interface RoleConfigDocument extends Document {
 
-    _id: mongoose.Types.ObjectId;
-    rolID : Schema.Types.ObjectId;
+    _id: mongoose.Types.ObjectId; // Cambiar aquí
+    rolID : mongoose.Types.ObjectId; // Cambiar aquí
     maxLoginAttempts : number;
     isActive : boolean;
     rolName : string;

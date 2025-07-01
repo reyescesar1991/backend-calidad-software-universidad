@@ -22,13 +22,15 @@ const runTestGetUserStatus = async () => {
         await configureDependenciesTwoFactorUser();
         await configureDependencies();
 
-        const idUser : string = "USER0011";
+        const idUser : string = "USER9999";
 
         const userService = container.resolve(UserService);
 
-        const result = await userService.getStatusUser(idUser);
+        const result = await userService.getCustomPermissionsUser(idUser);
+        
+        const subroutesUser = await userService.getSubroutesUser(idUser);
 
-        console.log(`📄 El estatus del usuario ${idUser} es:`, result);
+        console.log(`📄 Las subrutas del usuario ${idUser} son: `, subroutesUser);
         
     } catch (error) {
 

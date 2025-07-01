@@ -17,9 +17,9 @@ import {
   UserPermissionSecurityDto,
   UserTwoFactorActiveDto,
 } from "../../validations";
-import { UserDocument } from "../../db/models";
+import { SubrouteDocument, UserDocument } from "../../db/models";
 import { handleError } from "../../core/exceptions";
-import { FilterOptions, UserConfigFilterKeys } from "../../core/types";
+import { FilterOptions, ICustomPermission, UserConfigFilterKeys } from "../../core/types";
 import { IUserPermissionRepository } from "./interfaces/IUserPermissionRepository";
 import { IRoleRepository } from "../role/interfaces/IRoleRepository";
 import { IUserPermissionSecurityRepository } from "./interfaces/IUserPermissionSecurityRepository";
@@ -28,6 +28,8 @@ import { ITwoFactorUserRepository } from "./interfaces/ITwoFactorActiveUser";
 import { TwoFactorService } from "../oauthService";
 import { Transactional } from "../../core/utils/transaccional-wrapper";
 import { ClientSession } from "mongoose";
+import { MenuService } from "../menu/Menu.service";
+import { permission } from "process";
 
 @injectable()
 export class UserService {
@@ -51,7 +53,9 @@ export class UserService {
     private readonly departmentValidator: DepartmentValidator,
 
     @inject("TwoFactorService")
-    private readonly twoFactorService: TwoFactorService
+    private readonly twoFactorService: TwoFactorService,
+
+    @inject("MenuService") private readonly menuService : MenuService
   ) { }
 
   async findUserById(idUser: ObjectIdParam): Promise<UserDocument | null> {
@@ -600,6 +604,46 @@ export class UserService {
     } catch (error) {
       
       handleError(error);
+    }
+  }
+
+  async getCustomPermissionsUser(idUser : string) : Promise<ICustomPermission[] | null>{
+
+    try {
+
+      const user = await this.userRepository.findUserByCustomId(idUser);
+
+      UserValidator.validateUserExists(user);
+
+      const customPermissionsUser = await this.userPermissionRepository.getPermissionsUser(user.idUser);
+
+      return customPermissionsUser;
+      
+    } catch (error) {
+      
+      handleError(error);
+    }
+  }
+
+  async getSubroutesUser(idUser : string) : Promise<SubrouteDocument[] | null>{
+
+    try {
+
+      const customPermissions = await this.getCustomPermissionsUser(idUser);
+
+      console.log(customPermissions);
+      
+
+      const permissionsLabels = customPermissions.map((permission) => permission.permissionLabel);
+
+      console.log("PERMISSIONS LABELS ARRAY = ", permissionsLabels);
+      
+
+      return await this.menuService.getSubroutesByPermissionKeys(permissionsLabels);
+      
+    } catch (error) {
+      
+      handleError(error)
     }
   }
 }

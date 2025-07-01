@@ -6,8 +6,8 @@ export interface RoleDocument extends Document {
     idRole : string,
     name : string,
     label : string,
-    permissions : Schema.Types.ObjectId[]
-    permissionsSecurity : Schema.Types.ObjectId[]
+    permissions : mongoose.Types.ObjectId[] // Cambiar aquí
+    permissionsSecurity : mongoose.Types.ObjectId[]
     description : string,
     isActive : boolean,
     isDefault: boolean,

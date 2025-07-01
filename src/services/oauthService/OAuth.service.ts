@@ -15,6 +15,7 @@ import { LoginResponseDto } from "../../core/types";
 import { JwtValidator } from "../../core/utils/jwt.util";
 import { SecurityAuditDocument } from "../../db/models";
 import { StatusUserEnum } from "../../core/enums";
+import { RoleConfigService } from "../roleConfig/roleConfig.service";
 
 @injectable()
 export class OAuthService {
@@ -492,5 +493,40 @@ export class OAuthService {
             handleError(error);
         }
     }
+
+
+    /**
+     * Metodo para hacer el logout del usuario
+     * El usuario usara esto para cerrar su sesion y salir de la aplicacion
+     * @param dataLogout DTO con el userId para obtener el usuario
+     * @throws UserNotFoundError si el usuario no existe
+     * @returns Un mensaje de exito confirmando el cierre de la sesion
+     */
+    // @Transactional()
+    // async logoutSession(dataLogout: LogoutUserDto, session ?: ClientSession): Promise<{ message: string }> {
+
+    //     try {
+
+    //         //1. Verificar que el usuario exista
+    //         const user = await this.userService.findUserByCustomId(dataLogout.userId);
+
+    //         UserValidator.validateUserExists(user);
+
+    //         //2. Validamos que el usuario tenga una sesion activa
+    //         const sessionActive = await this.sessionManagamentService.getSessionUser(user.idUser);
+
+    //         //3. Eliminamos el registro en la tabla temporal de logueo
+    //         await this.sessionManagamentService.deleteSessionUser({
+    //             token: sessionActive.token,
+    //         }, session);
+
+    //         //4. Retorno el mensaje de exito
+    //         return { message: "Tu sesion fue cerrada de forma exitosa." };
+
+    //     } catch (error) {
+
+    //         handleError(error);
+    //     }
+    // }
 
 }

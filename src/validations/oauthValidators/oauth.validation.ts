@@ -57,7 +57,17 @@ export const secondFactorRequestSchemaZod = z.object({
 
     }, "Formato de ID de usuario incorrecto, debe iniciar con 4 carácteres y seguido tener 4 números"),
     email : z.string().email(),
-})
+});
+
+export const logoutRequestSchemaZod = z.object({
+
+    userId: z.string().refine((value) => {
+
+        const regex = /^[a-zA-Z]{4}\d{4}$/;
+        return regex.test(value);
+
+    }, "Formato de ID de usuario incorrecto, debe iniciar con 4 carácteres y seguido tener 4 números"),
+});
 
 //Tipo para el manejo de email y codigo para validar el segundo factor
 export type TwoFactorCodeVerificationDto = z.infer<typeof twoFactorCodeVerificationSchemaZod>;
@@ -76,3 +86,6 @@ export type RecoverUsernameDataUserDto = z.infer<typeof dataRecoverUsernameSchem
 
 //Request necesario para poder hacer la recuperacion de contraseña
 export type RecoverPasswordUserDto = z.infer<typeof dataRecoverPasswordSchemaZod>;
+
+//Request necesario para poder hacer el logout
+export type LogoutUserDto = z.infer<typeof logoutRequestSchemaZod>;

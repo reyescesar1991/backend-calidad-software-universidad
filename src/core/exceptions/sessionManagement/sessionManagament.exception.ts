@@ -23,3 +23,11 @@ export class UserSessionTokenIsNotValid extends AppError{
         this.name = "UserSessionTokenIsNotValid"
     }
 }
+
+export class UserAlreadyNotHaveASessionError extends AppError{
+    code = 2004;
+    constructor(message: string = "El usuario no tiene una sesión activa"){
+        super(message);
+        this.name = "UserAlreadyNotHaveASessionError"
+    }
+}

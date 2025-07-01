@@ -101,6 +101,9 @@ export {RecoverPasswordUserDto} from './oauthValidators/oauth.validation';
 export {twoFactorCodeVerificationSchemaZod} from './oauthValidators/oauth.validation';
 export {TwoFactorCodeVerificationDto} from './oauthValidators/oauth.validation';
 export {SecondFactorRequestDto} from './oauthValidators/oauth.validation';
+export {LogoutUserDto} from './oauthValidators/oauth.validation';
+
+
 //shared
 
 export {SubrouteFilterSchema} from './sharedValidators/routeFormatValidator';

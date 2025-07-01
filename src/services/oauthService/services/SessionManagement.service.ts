@@ -110,82 +110,77 @@ export class SessionManagamentService {
         )
     }
 
-    async deleteSessionUser(dataUpdate: UpdateSessionManagementDto): Promise<SessionManagementDocument | null> {
+    @Transactional()
+    async deleteSessionUser(dataUpdate: UpdateSessionManagementDto, session?: ClientSession): Promise<SessionManagementDocument | null> {
 
-        return await this.transactionManager.executeTransaction(
+        try {
 
-            async (session) => {
+            //1. Verificamos que el usuario se encuentre en un estado de activo y exista en una sola operacion a traves del servicio de user
+            const userData = await this.tokenService.verifyToken(dataUpdate.token);
+            await this.userService.getStatusUserActive(userData.userId);
 
-                try {
+            //2. Verificamos que tenga previamente una sesion activa
+            await this.sessionManagementValidator.validateUserIsLogged(userData.userId);
 
-                    //1. Verificamos que el usuario se encuentre en un estado de activo y exista en una sola operacion a traves del servicio de user
-                    const userData = await this.tokenService.verifyToken(dataUpdate.token);
-                    await this.userService.getStatusUserActive(userData.userId);
+            //3. Verificamos que el token sea valido
+            await this.sessionManagementValidator.validateUserTokenIsValid(userData.userId, dataUpdate.token);
 
-                    //2. Verificamos que tenga previamente una sesion activa
-                    await this.sessionManagementValidator.validateUserIsLogged(userData.userId);
+            console.log("Tiempo restante del token: ", JwtValidator.getRemainingTime(userData));
 
-                    //3. Verificamos que el token sea valido
-                    await this.sessionManagementValidator.validateUserTokenIsValid(userData.userId, dataUpdate.token);
+            const jti = userData.jti;
+            const remainingTimeInSeconds = 300;
 
-                    console.log("Tiempo restante del token: ", JwtValidator.getRemainingTime(userData));
+            //TODO: // src/core/middleware/auth.middleware.ts (EJEMPLO) EL MIDDLEWARE IMPLEMENTAR ESTO EN EL CONTROLADOR 
 
-                    const jti = userData.jti;
-                    const remainingTimeInSeconds = 300;
+            /*
+                    
+                    export async function authMiddleware(req: Request, res: Response, next: NextFunction) {
+const authHeader = req.headers['authorization'];
+const token = authHeader && authHeader.split(' ')[1];
 
-                    //TODO: // src/core/middleware/auth.middleware.ts (EJEMPLO) EL MIDDLEWARE IMPLEMENTAR ESTO EN EL CONTROLADOR 
-
-                    /*
-                            
-                            export async function authMiddleware(req: Request, res: Response, next: NextFunction) {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-
-    if (!token) {
-        return res.status(401).json({ message: 'No se proporcionó token.' });
-    }
-
-    try {
-        const decoded = verify(token, process.env.JWT_SECRET) as JwtPayload;
-
-        // --- LA NUEVA VERIFICACIÓN CON REDIS ---
-        const redisClient = redisService.getClient();
-        const isBlocked = await redisClient.get(`blocklist:${decoded.jti}`);
-
-        if (isBlocked) {
-            return res.status(401).json({ message: 'Token inválido o sesión cerrada.' });
-        }
-        // --- FIN DE LA VERIFICACIÓN ---
-
-        // Si todo está bien, adjuntamos los datos del usuario al request
-        req.user = decoded;
-        next();
-
-    } catch (error) {
-        return res.status(401).json({ message: 'Token inválido o expirado.' });
-    }
+if (!token) {
+return res.status(401).json({ message: 'No se proporcionó token.' });
 }
-                    */
 
-                    try {
-                        // Usa los comandos de Redis. Son muy parecidos.
-                        // set(key, value, options)
-                        await redisClient.set(`blocklist:${jti}`, 'blocked', {
-                            ex: remainingTimeInSeconds, // ex = expire en segundos
-                        });
-                        console.log(`Token ${jti} añadido a la lista negra.`);
-                    } catch (error) {
-                        console.error("Error al contactar Redis:", error);
-                    }
+try {
+const decoded = verify(token, process.env.JWT_SECRET) as JwtPayload;
 
-                    //4. Eliminamos la sesion del usuario
-                    return await this.sessionManagementRepository.deleteSessionUser(userData.userId, session);
+// --- LA NUEVA VERIFICACIÓN CON REDIS ---
+const redisClient = redisService.getClient();
+const isBlocked = await redisClient.get(`blocklist:${decoded.jti}`);
 
-                } catch (error) {
+if (isBlocked) {
+    return res.status(401).json({ message: 'Token inválido o sesión cerrada.' });
+}
+// --- FIN DE LA VERIFICACIÓN ---
 
-                    handleError(error);
-                }
+// Si todo está bien, adjuntamos los datos del usuario al request
+req.user = decoded;
+next();
+
+} catch (error) {
+return res.status(401).json({ message: 'Token inválido o expirado.' });
+}
+}
+            */
+
+            try {
+                // Usa los comandos de Redis. Son muy parecidos.
+                // set(key, value, options)
+                await redisClient.set(`blocklist:${jti}`, 'blocked', {
+                    ex: remainingTimeInSeconds, // ex = expire en segundos
+                });
+                console.log(`Token ${jti} añadido a la lista negra.`);
+            } catch (error) {
+                console.error("Error al contactar Redis:", error);
             }
-        )
+
+            //4. Eliminamos la sesion del usuario
+            return await this.sessionManagementRepository.deleteSessionUser(userData.userId, session);
+
+        } catch (error) {
+
+            handleError(error);
+        }
     }
 }

@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { ISessionManagementRepository } from "../../../services/oauthService";
 import { SessionManagementDocument } from "../../../db/models";
-import { UserAlreadyHaveASessionError, UserIsNotLoggedError, UserSessionTokenIsNotValid } from "../../exceptions";
+import { UserAlreadyHaveASessionError, UserAlreadyNotHaveASessionError, UserIsNotLoggedError, UserSessionTokenIsNotValid } from "../../exceptions";
 
 
 @injectable()
@@ -12,6 +12,11 @@ export class SessionManagementValidator{
     static validateUserAlreadyHaveASessionActive(sessionUser : SessionManagementDocument) : void {
 
         if(sessionUser) throw new UserAlreadyHaveASessionError();
+    }
+
+    static validateUserIsNotAlreadyHaveASessionActive(sessionUser : SessionManagementDocument) : void {
+
+        if(!sessionUser) throw new UserAlreadyNotHaveASessionError();
     }
 
     async validateUserTokenIsValid(customUserId : string, tokenParam : string) : Promise<void> {

@@ -5,11 +5,11 @@ import { SessionManagamentService } from "./services/SessionManagement.service";
 import { SecurityAuditService } from "./services/SecurityAudit.service";
 import { TokenService } from "./services/Token.service";
 import { UserService } from "../userService/user.service";
-import { LoginDataDto, RecoverPasswordUserDto, RecoverUsernameDataUserDto, SecondFactorRequestDto, SessionManagementDto, TwoFactorCodeVerificationDto } from "../../validations";
+import { LoginDataDto, LogoutUserDto, RecoverPasswordUserDto, RecoverUsernameDataUserDto, SecondFactorRequestDto, SessionManagementDto, TwoFactorCodeVerificationDto } from "../../validations";
 import { ClientSession } from "mongoose";
 import { Transactional } from "../../core/utils/transaccional-wrapper";
 import { AuthPasswordMismatchUsernameError, handleError } from "../../core/exceptions";
-import { SecurityAuditValidator, UserValidator } from "../../core/validators";
+import { SecurityAuditValidator, SessionManagementValidator, UserValidator } from "../../core/validators";
 import { MailService } from "../mailService/mail.service";
 import { LoginResponseDto } from "../../core/types";
 import { JwtValidator } from "../../core/utils/jwt.util";
@@ -428,6 +428,43 @@ export class OAuthService {
             await this.mailService.sendRecoverUsername(user.email, user.username);
 
             //3. Retorno el mensaje de exito
+            return { message: "Tu usuario ha sido enviado a tu email registrado." };
+
+        } catch (error) {
+
+            handleError(error);
+        }
+    }
+
+
+
+    /**
+     * Metodo para hacer el logout del usuario
+     * El usuario usara esto para cerrar su sesion y salir de la aplicacion
+     * @param dataLogout DTO con el userId para obtener el usuario
+     * @throws UserNotFoundError si el usuario no existe
+     * @returns Un mensaje de exito confirmando el cierre de la sesion
+     */
+    @Transactional()
+    async logoutSession(dataLogout: LogoutUserDto): Promise<{ message: string }> {
+
+        try {
+
+            //1. Verificar que el usuario exista
+            const user = await this.userService.findUserByCustomId(dataLogout.userId);
+
+            UserValidator.validateUserExists(user);
+
+            //2. Validamos que el usuario tenga una sesion activa
+            const sessionActive = await this.sessionManagamentService.getSessionUserValidate(user.idUser);
+            SessionManagementValidator.validateUserIsNotAlreadyHaveASessionActive(sessionActive);
+
+            //3. Eliminamos el registro en la tabla temporal de logueo
+            await this.sessionManagamentService.deleteSessionUser({
+                token : sessionActive.token,
+            });
+
+            //4. Retorno el mensaje de exito
             return { message: "Tu usuario ha sido enviado a tu email registrado." };
 
         } catch (error) {

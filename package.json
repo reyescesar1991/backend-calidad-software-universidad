@@ -149,7 +149,10 @@
     "script:add-login-attemp" : "ts-node src/scripts/securityAudit/testAddAttempLoginUser.ts",
     "script:add-secondfactor-attemp" : "ts-node src/scripts/securityAudit/testAddAttempSecondFactorUser.ts",
     "script:first-step-recovery-password" : "ts-node src/scripts/oauth/resetPassword/TestInitiatePasswordReset.ts",
-    "script:second-step-validate2FA-recovery-password" : "ts-node src/scripts/oauth/resetPassword/TestValidatePasswordReset.ts"
+    "script:second-step-validate2FA-recovery-password" : "ts-node src/scripts/oauth/resetPassword/TestValidatePasswordReset.ts",
+    "script:recovery-password" : "ts-node src/scripts/oauth/resetPassword/TestRecoveryPassword.ts",
+    "script:first-step-recovery-username" : "ts-node src/scripts/oauth/recoveryUser/TestInitiateRecoveryUser.ts",
+    "script:second-step-validate2FA-recovery-username" : "ts-node src/scripts/oauth/recoveryUser/TestValidateRecoveryUser.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

@@ -46,6 +46,25 @@ export class SessionManagamentService {
         }
     }
 
+    async getSessionUser(customId: string): Promise<SessionManagementDocument | null> {
+
+        try {
+
+            //1. Verificamos que el usuario este activo y exista
+            await this.userService.getStatusUserActive(customId);
+
+            //2. Verificamos que ya no tenga previamente una sesion activa
+            const sessionUser = await this.sessionManagementRepository.getSessionUserValidate(customId);
+            SessionManagementValidator.validateUserIsNotAlreadyHaveASessionActive(sessionUser);
+
+            return sessionUser;
+
+        } catch (error) {
+
+            handleError(error);
+        }
+    }
+
     @Transactional()
     async createSessionUser(sessionUserParam: SessionManagementDto, session?: ClientSession): Promise<SessionManagementDocument | null> {
 
@@ -164,16 +183,16 @@ return res.status(401).json({ message: 'Token inválido o expirado.' });
 }
             */
 
-            try {
-                // Usa los comandos de Redis. Son muy parecidos.
-                // set(key, value, options)
-                await redisClient.set(`blocklist:${jti}`, 'blocked', {
-                    ex: remainingTimeInSeconds, // ex = expire en segundos
-                });
-                console.log(`Token ${jti} añadido a la lista negra.`);
-            } catch (error) {
-                console.error("Error al contactar Redis:", error);
-            }
+            // try {
+            //     // Usa los comandos de Redis. Son muy parecidos.
+            //     // set(key, value, options)
+            //     await redisClient.set(`blocklist:${jti}`, 'blocked', {
+            //         ex: remainingTimeInSeconds, // ex = expire en segundos
+            //     });
+            //     console.log(`Token ${jti} añadido a la lista negra.`);
+            // } catch (error) {
+            //     console.error("Error al contactar Redis:", error);
+            // }
 
             //4. Eliminamos la sesion del usuario
             return await this.sessionManagementRepository.deleteSessionUser(userData.userId, session);

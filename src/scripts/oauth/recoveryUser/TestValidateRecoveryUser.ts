@@ -35,7 +35,7 @@ const runTestVerify2FARecoveryUser = async () => {
 
         const idUser : string = "USER9999";
 
-        const code : string = "";
+        const code : string = "760524";
 
         const result = await oauthService.verify2FAUsernameRecover({code : code, userId : idUser});
 

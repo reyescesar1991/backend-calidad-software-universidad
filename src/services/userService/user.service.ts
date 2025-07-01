@@ -68,7 +68,13 @@ export class UserService {
 
   async findUserByCustomId(customIdUser: string): Promise<UserDocument | null> {
     try {
+
+      console.log("CUSTOM ID EN EL SERVICIO USER: ", customIdUser);
+      
+
       const user = await this.userRepository.findUserByCustomId(customIdUser);
+
+      console.log("USER: ", user);
 
       UserValidator.validateUserExists(user);
 

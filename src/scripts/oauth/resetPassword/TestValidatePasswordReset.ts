@@ -35,7 +35,7 @@ const runTestVerify2FAPasswordReset = async () => {
 
         const idUser : string = "USER9999";
 
-        const code : string = "";
+        const code : string = "308160";
 
         const result = await oauthService.verify2FAPasswordReset({code : code, userId : idUser});
 

@@ -152,7 +152,12 @@
     "script:second-step-validate2FA-recovery-password" : "ts-node src/scripts/oauth/resetPassword/TestValidatePasswordReset.ts",
     "script:recovery-password" : "ts-node src/scripts/oauth/resetPassword/TestRecoveryPassword.ts",
     "script:first-step-recovery-username" : "ts-node src/scripts/oauth/recoveryUser/TestInitiateRecoveryUser.ts",
-    "script:second-step-validate2FA-recovery-username" : "ts-node src/scripts/oauth/recoveryUser/TestValidateRecoveryUser.ts"
+    "script:second-step-validate2FA-recovery-username" : "ts-node src/scripts/oauth/recoveryUser/TestValidateRecoveryUser.ts",
+    "script:recovery-username" : "ts-node src/scripts/oauth/recoveryUser/TestRecoveryUsername.ts",
+    "script:login-user" : "ts-node src/scripts/oauth/login/TestLoginUser.ts",
+    "script:request-login-2fa-user" : "ts-node src/scripts/oauth/login/TestLoginInitiateSecondFactorUser.ts",
+    "script:validate-login-2fa-user" : "ts-node src/scripts/oauth/login/TestLoginConfirm2FAUser.ts",
+    "script:logout-user" : "ts-node src/scripts/oauth/logout/TestLogoutUser.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

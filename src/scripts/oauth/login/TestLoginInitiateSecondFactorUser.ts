@@ -15,7 +15,7 @@ import { configureSessionManagementDependencies } from '../../../core/config/dep
 
 initializeTestEnvironment();
 
-const runTestRecoveryPassword = async () => {
+const runTestLogin2FAUser = async () => {
 
     try {
 
@@ -35,11 +35,11 @@ const runTestRecoveryPassword = async () => {
 
         const idUser : string = "USER9999";
 
-        const newPassword : string = "Hola123%34";
+        const preAuthToken : string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwidXNlcklkIjoiVVNFUjk5OTkiLCJqdGkiOiIyZjFmZTBiYS1lYzdkLTQ5MDAtODgyOS05NDhiZmEzY2M2MzYiLCJsYXQiOjE3NTEzODQ5ODksImV4cCI6MTc1MTM4NTA0OSwiaWF0IjoxNzUxMzg0OTg5fQ.Jfl4B0fCQw1WN6O__VpyQJMqLd-Rdr_-N3-jWkvsR3o";
 
-        const result = await oauthService.confirmPasswordReset({idUser : idUser, newPassword : newPassword});
+        const result = await oauthService.initiateLogin2FA({preAuthToken : preAuthToken, userId : idUser});
 
-        console.log("📄 Contraseña actualizada para el usuario: ", result);
+        console.log("📄 Login realizado con exito: ", result);
         
     } catch (error) {
 
@@ -52,7 +52,7 @@ const runTestRecoveryPassword = async () => {
     }
 }
 
-runTestRecoveryPassword().then(() => {
+runTestLogin2FAUser().then(() => {
 
     console.log('Proceso de seed completo');
 })

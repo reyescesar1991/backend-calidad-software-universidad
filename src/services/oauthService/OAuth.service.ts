@@ -5,7 +5,7 @@ import { SessionManagamentService } from "./services/SessionManagement.service";
 import { SecurityAuditService } from "./services/SecurityAudit.service";
 import { TokenService } from "./services/Token.service";
 import { UserService } from "../userService/user.service";
-import { LoginDataDto, LogoutUserDto, RecoverPasswordUserDto, RecoverUsernameDataUserDto, SecondFactorRequestDto, SessionManagementDto, TwoFactorCodeVerificationDto } from "../../validations";
+import { LoginDataDto, LogoutUserDto, ObjectIdParam, RecoverPasswordUserDto, RecoverUsernameDataUserDto, SecondFactorRequestDto, SessionManagementDto, TwoFactorCodeVerificationDto } from "../../validations";
 import { ClientSession } from "mongoose";
 import { Transactional } from "../../core/utils/transaccional-wrapper";
 import { AuthPasswordMismatchUsernameError, handleError } from "../../core/exceptions";
@@ -13,6 +13,8 @@ import { SecurityAuditValidator, SessionManagementValidator, UserValidator } fro
 import { MailService } from "../mailService/mail.service";
 import { LoginResponseDto } from "../../core/types";
 import { JwtValidator } from "../../core/utils/jwt.util";
+import { SecurityAuditDocument } from "../../db/models";
+import { StatusUserEnum } from "../../core/enums";
 
 @injectable()
 export class OAuthService {
@@ -28,6 +30,17 @@ export class OAuthService {
         @inject(MailService) private mailService: MailService,
     ) { }
 
+    //Funcion que me permite verificar que si el intentos ha sido mas de dos, bloquear al usuario
+    private async validateNumberAttempsLogin(dataUserAudit: SecurityAuditDocument, idUser: ObjectIdParam, session ?: ClientSession): Promise<void> {
+
+        if (dataUserAudit.loginAttempts >= 3) {
+
+            console.log(dataUserAudit.secondFactorAttempts);
+            await this.userService.changeStatusUser(StatusUserEnum.BLOCKED, idUser, session);
+        }
+
+    }
+
     /**
      * Metodo para solicitar el segundo factor en los flujos del OAuth
      * Inicia el flujo de reseteo de contraseña enviando un código 2FA al usuario.
@@ -41,16 +54,19 @@ export class OAuthService {
         try {
 
             //1. Primer paso es comprobar que el usuario exista por su username
-
             const user = await this.userService.findUserByUsername(dataLogin.username);
-
             UserValidator.validateUserExistsByUsername(user);
+
+            //1.1 Que el usuario no este bloqueado
+            UserValidator.validateStatusUserIsActive(user.status);
 
             //2. Luego comprobamos que la contraseña sea igual a la del user extraido de la DB
             //2.1 En caso de no ser iguales lanzaremos la excepcion AuthPasswordMismatchUsernameError()
             if (user.password !== dataLogin.password) {
 
-                await this.securityAuditService.addAttempLogin(user._id);
+                //2.1.1 Agrego el intento de login y valido que ya no exceda el limite, en tal caso bloqueo al usuario
+                const updateAudit = await this.securityAuditService.addAttempLogin(user._id);
+                await this.validateNumberAttempsLogin(updateAudit, user._id);
                 throw new AuthPasswordMismatchUsernameError();
             }
 
@@ -92,7 +108,9 @@ export class OAuthService {
                 //5.2.1 Genero un token temporal para poder pedir el segundo factor para el login
                 const preAuthToken = await this.JwtService.generatePreAuthToken(user.username, user.idUser);
 
-                await this.securityAuditService.addAttempLogin(user._id);
+                //5.2.2 Agrego el intento de login y valido que ya no exceda el limite, en tal caso bloqueo al usuario
+                const updateAudit = await this.securityAuditService.addAttempLogin(user._id);
+                await this.validateNumberAttempsLogin(updateAudit, user._id, session);
 
                 //5.2.2 Retorno una repuesta de login con pre Auth para poder pedir el segundo factor
                 return {
@@ -153,7 +171,7 @@ export class OAuthService {
  * @returns Un booleano true si coincide el codigo con el almacenado, o false si no coincide el codigo almacenado
  */
     @Transactional()
-    private async confirmSecondFactorLogin(dataConfirmSecondFactor: TwoFactorCodeVerificationDto, session?: ClientSession): Promise<boolean> {
+    private async confirmSecondFactorLogin(dataConfirmSecondFactor: TwoFactorCodeVerificationDto, session?: ClientSession): Promise<LoginResponseDto> {
 
         try {
 
@@ -164,10 +182,10 @@ export class OAuthService {
             UserValidator.validateUserExists(user);
 
             //3. Validamos que el factor sea el enviado y almacenado en la base de datos
-            const validatedFactor = await this.twoFactorUserService.validateFactorUser(user._id, dataConfirmSecondFactor.code, session);
+            await this.twoFactorUserService.validateFactorUser(user._id, dataConfirmSecondFactor.code, session);
 
             //4. Resetear el intento de login, ya que para este punto fue exitoso
-            await this.securityAuditService.resetAttempLogin(user._id);
+            await this.securityAuditService.resetAttempLogin(user._id, session);
 
             //5. Generamos el token transaccional
             const token = this.JwtService.generateToken({
@@ -176,19 +194,19 @@ export class OAuthService {
             });
 
             //6. Creamos una session para el usuario
-                const sessionUserParam: SessionManagementDto = {
+            const sessionUserParam: SessionManagementDto = {
 
-                    userId: user.idUser,
-                    token: token,
-                    userAgent: "web",
-                    ipAddress: "192.123.4.123",
+                userId: user.idUser,
+                token: token,
+                userAgent: "web",
+                ipAddress: "192.123.4.123",
             }
 
             //7. Creamos
             await this.sessionManagamentService.createSessionUser(sessionUserParam, session);
 
             //5. Devolvemos el booleano
-            return validatedFactor;
+            return { token: token };
 
         } catch (error) {
 
@@ -223,7 +241,7 @@ export class OAuthService {
      * @returns Un booleano true si coincide el codigo con el almacenado, o false si no coincide el codigo almacenado
      */
     @Transactional()
-    async verify2FALogin(data: TwoFactorCodeVerificationDto, session?: ClientSession): Promise<boolean> {
+    async verify2FALogin(data: TwoFactorCodeVerificationDto, session?: ClientSession): Promise<LoginResponseDto> {
 
         try {
 
@@ -415,9 +433,12 @@ export class OAuthService {
      * @returns Un mensaje de exito confirmando la actualizacion de la contraseña
      */
     @Transactional()
-    async confirmUsernameReset(dataUsername: RecoverUsernameDataUserDto): Promise<{ message: string }> {
+    async confirmUsernameReset(dataUsername: RecoverUsernameDataUserDto, session?: ClientSession): Promise<{ message: string }> {
 
         try {
+
+            console.log("Data username en el confirm: ", dataUsername);
+
 
             //1. Verificar que el usuario exista
             const user = await this.userService.findUserByCustomId(dataUsername.idUser);
@@ -446,7 +467,7 @@ export class OAuthService {
      * @returns Un mensaje de exito confirmando el cierre de la sesion
      */
     @Transactional()
-    async logoutSession(dataLogout: LogoutUserDto): Promise<{ message: string }> {
+    async logoutSession(dataLogout: LogoutUserDto, session ?: ClientSession): Promise<{ message: string }> {
 
         try {
 
@@ -456,16 +477,15 @@ export class OAuthService {
             UserValidator.validateUserExists(user);
 
             //2. Validamos que el usuario tenga una sesion activa
-            const sessionActive = await this.sessionManagamentService.getSessionUserValidate(user.idUser);
-            SessionManagementValidator.validateUserIsNotAlreadyHaveASessionActive(sessionActive);
+            const sessionActive = await this.sessionManagamentService.getSessionUser(user.idUser);
 
             //3. Eliminamos el registro en la tabla temporal de logueo
             await this.sessionManagamentService.deleteSessionUser({
-                token : sessionActive.token,
-            });
+                token: sessionActive.token,
+            }, session);
 
             //4. Retorno el mensaje de exito
-            return { message: "Tu usuario ha sido enviado a tu email registrado." };
+            return { message: "Tu sesion fue cerrada de forma exitosa." };
 
         } catch (error) {
 

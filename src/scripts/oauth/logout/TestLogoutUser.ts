@@ -15,7 +15,7 @@ import { configureSessionManagementDependencies } from '../../../core/config/dep
 
 initializeTestEnvironment();
 
-const runTestRecoveryPassword = async () => {
+const runTestLogoutUser = async () => {
 
     try {
 
@@ -35,11 +35,9 @@ const runTestRecoveryPassword = async () => {
 
         const idUser : string = "USER9999";
 
-        const newPassword : string = "Hola123%34";
+        const result = await oauthService.logoutSession({userId : idUser});
 
-        const result = await oauthService.confirmPasswordReset({idUser : idUser, newPassword : newPassword});
-
-        console.log("📄 Contraseña actualizada para el usuario: ", result);
+        console.log("📄 Logout realizado con exito: ", result);
         
     } catch (error) {
 
@@ -52,7 +50,7 @@ const runTestRecoveryPassword = async () => {
     }
 }
 
-runTestRecoveryPassword().then(() => {
+runTestLogoutUser().then(() => {
 
     console.log('Proceso de seed completo');
 })

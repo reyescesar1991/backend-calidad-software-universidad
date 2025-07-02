@@ -17,4 +17,6 @@ export interface IModuleRepository {
     deleteModule(idModule : ObjectIdParam, session?: ClientSession) : Promise<ModuleDocument | null>;
     getRoutesByModule(idModule: ObjectIdParam) : Promise<RouteDocument[] | null>;
     
+
+    getModulesByMainModuleIds(modulesIds: string[]): Promise<ModuleDocument[]>;
 }

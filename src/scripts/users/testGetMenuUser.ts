@@ -22,15 +22,20 @@ const runTestGetUserStatus = async () => {
         await configureDependenciesTwoFactorUser();
         await configureDependencies();
 
-        const idUser : string = "USER9999";
+        const idUser : string = "USER0044";
 
         const userService = container.resolve(UserService);
 
-        const result = await userService.getCustomPermissionsUser(idUser);
+        // const result = await userService.getCustomPermissionsUser(idUser);
         
-        const subroutesUser = await userService.getSubroutesUser(idUser);
+        // const subroutesUser = await userService.getSubroutesUser(idUser);
 
-        console.log(`📄 Las subrutas del usuario ${idUser} son: `, subroutesUser);
+        const menu = await userService.buildUserMenu(idUser);
+
+        console.log("MENU (JSON) : ", JSON.stringify(menu, null, 2));
+        
+
+        // console.log(`📄 Las subrutas del usuario ${idUser} son: `, subroutesUser);
         
     } catch (error) {
 

@@ -100,6 +100,31 @@ export class RouteRepository implements IRouteRepository {
         return await this.RouteModel.find({}).exec();
     }
 
-
+    /**
+     * Obtiene los documentos RouteModel basados en un array de 'id's de rutas principales.
+     * Excluye el campo 'subroutes' y otros campos de metadatos.
+     * @param mainRouteIds Un array de strings que representan los 'id's de las rutas principales.
+     * @returns Una promesa que resuelve a un array de IRoute (objetos planos).
+     * Devuelve un array vacío si no se encuentran coincidencias.
+     */
+    async getRoutesByMainRouteIds(mainRouteIds: string[]): Promise<RouteDocument[]> { // <-- TIPO DE RETORNO CAMBIADO A IRoute[]
+        try {
+            const routes = await this.RouteModel.find({
+                id: { $in: mainRouteIds },
+                active: true // Asumiendo que solo quieres rutas activas
+            })
+            // Proyección para incluir solo los campos deseados y excluir los no deseados
+            .select('id idModule name path icon active') // Incluye explícitamente los campos que quieres
+            // No necesitas excluir __v, createdAt, updatedAt si no están en tu `select`,
+            // pero es buena práctica si Mongoose los añade por defecto y no los quieres.
+            .lean<RouteDocument[]>() // <-- ¡CLAVE! Usa .lean<IRoute[]>() para el tipado correcto
+            .exec();
+            return routes;
+        } catch (error) {
+            // Es buena práctica manejar errores. Aquí lo relanzamos.
+            console.error("Error fetching routes by main route IDs:", error);
+            throw error;
+        }
+    }
 
 }

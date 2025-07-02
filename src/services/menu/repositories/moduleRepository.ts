@@ -81,5 +81,32 @@ export class ModuleRepositoryImpl implements IModuleRepository{
         return module;
     }
 
+
+    /**
+     * Obtiene los documentos RouteModel basados en un array de 'id's de rutas principales.
+     * Excluye el campo 'subroutes' y otros campos de metadatos.
+     * @param mainRouteIds Un array de strings que representan los 'id's de las rutas principales.
+     * @returns Una promesa que resuelve a un array de IRoute (objetos planos).
+     * Devuelve un array vacío si no se encuentran coincidencias.
+     */
+    async getModulesByMainModuleIds(modulesIds: string[]): Promise<ModuleDocument[]> { // <-- TIPO DE RETORNO CAMBIADO A IRoute[]
+        try {
+            const modules = await this.ModuleModel.find({
+                id: { $in: modulesIds },
+            })
+            // Proyección para incluir solo los campos deseados y excluir los no deseados
+            .select('id title') // Incluye explícitamente los campos que quieres
+            // No necesitas excluir __v, createdAt, updatedAt si no están en tu `select`,
+            // pero es buena práctica si Mongoose los añade por defecto y no los quieres.
+            .lean<ModuleDocument[]>() // <-- ¡CLAVE! Usa .lean<IRoute[]>() para el tipado correcto
+            .exec();
+            return modules;
+        } catch (error) {
+            // Es buena práctica manejar errores. Aquí lo relanzamos.
+            console.error("Error fetching routes by main route IDs:", error);
+            throw error;
+        }
+    }
+
     
 }

@@ -1,8 +1,26 @@
 import { model, Schema } from "mongoose";
-import { IWarehouseType } from "../../../core/types";
 import mongoose from "mongoose";
 
-export interface WarehouseDocument extends Document, IWarehouseType {};
+export interface WarehouseDocument extends Document {
+
+    _id: mongoose.Types.ObjectId;
+    idWarehouse : string,
+    idHeadquarter : mongoose.Types.ObjectId;
+    name : string;
+    address : string;
+    city : string;
+    state : string;
+    country : string;
+    currentCapacity : number;
+    capacity : number;
+    unitsPerBox : number;
+    boxesPerPallet : number;
+    isActive : boolean;
+    contactPerson : string;
+    phoneNumber : string;
+    email : string;
+    notes : string;
+};
 
 export const warehouseSchema = new Schema({
 

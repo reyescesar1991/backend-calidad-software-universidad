@@ -665,7 +665,6 @@ export class MenuService {
         )
     }
 
-
     async getRoutesByModule(idModule: ObjectIdParam) : Promise<RouteDocument[] | null>{
 
         try {
@@ -693,4 +692,29 @@ export class MenuService {
             handleError(error);
         }
     }
+
+    async getRoutesByMainRouteIds(mainRouteIds: string[]): Promise<RouteDocument[]>{
+
+        try {
+
+            return await this.routeRepository.getRoutesByMainRouteIds(mainRouteIds);
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    async getModulesByUserModules(mainModulesIds: string[]): Promise<ModuleDocument[]>{
+
+        try {
+
+            return await this.moduleRepository.getModulesByMainModuleIds(mainModulesIds);
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
 }

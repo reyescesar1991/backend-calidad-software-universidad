@@ -18,4 +18,6 @@ export interface IRouteRepository{
     searchRoutesByFilters(filter: FilterOptions<RouteFilterKeys>) : Promise<RouteDocument[] | null>;
     listRoutes() : Promise<RouteDocument[] | null>;
 
+    getRoutesByMainRouteIds(mainRouteIds: string[]): Promise<RouteDocument[]>;
+
 }

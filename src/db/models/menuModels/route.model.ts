@@ -28,3 +28,5 @@ export const RouteSchema = new Schema<RouteDocument>({
 } , { timestamps : true });
 
 export const RouteModel = model<RouteDocument>("Route", RouteSchema);
+
+export type SimplifiedRoute = Omit<RouteDocument, '_id' | 'subroutes' | '__v' | 'createdAt' | 'updatedAt'>;

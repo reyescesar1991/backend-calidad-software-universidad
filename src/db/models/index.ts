@@ -57,3 +57,7 @@ export {twoFactorUserValueSchema} from './oauthModels/twoFactorValue.model';
 
 export {SecurityAuditDocument} from './oauthModels/securityAudit.model';
 export {SecurityAuditModel} from './oauthModels/securityAudit.model';
+
+//simplificados
+
+export {SimplifiedRoute} from './menuModels/route.model';

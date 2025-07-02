@@ -2,10 +2,11 @@ import "reflect-metadata";
 import { container } from "tsyringe";
 import "../../../core/config/dependenciesSubroutes/dependencies"; 
 import { configureDependencies } from "../../../core/config/dependenciesRoutes/dependencies";
-import { disconnectMongo } from "../../../core/utils/connectDb"
+import { disconnectMongo, initializeTestEnvironment } from "../../../core/utils/connectDb"
 import { objectIdSchema } from "../../../validations";
 import { MenuService } from "../../../services/menu/Menu.service";
 
+initializeTestEnvironment();
 
 const runTestActivateRoute = async () => {
 
@@ -13,7 +14,7 @@ const runTestActivateRoute = async () => {
 
         await configureDependencies();
 
-        const idRoute = objectIdSchema.parse("680af64a04ba7b16208126f8");
+        const idRoute = objectIdSchema.parse("6803e79829528d9d98373608");
 
         const routeService = container.resolve(MenuService);
 

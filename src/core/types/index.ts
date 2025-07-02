@@ -30,6 +30,11 @@ export {JwtPreAuthPayload} from './jwt/jwt.interface';
 
 export {LoginResponseDto} from './oauth/login.response.interface';
 
+//menu types para la respuesta al usuario
+
+export {SimplifiedSubroute} from './menu/subrouteFormat.response';
+export {ModuleWithRoutes} from './menu/moduleWithRoutes.interface';
+export {RouteWithSubroutes} from './menu/routeWithSubroutes.interface';
 
 //filters
 

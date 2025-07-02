@@ -62,34 +62,48 @@ export class UserPermissionRepositoryImpl implements IUserPermissionRepository {
 
 
     /**
-     * Obtiene solo el campo 'customPermissions' para un usuario dado.
+     * Obtiene solo los 'customPermissions' para un usuario dado donde 'can' es true.
      * @param idCustomUserParam El ID del usuario.
-     * @returns Un array de objetos de permiso personalizado o null si el usuario no es encontrado.
+     * @returns Un array de objetos de permiso personalizado donde 'can' es true, o null si el usuario no es encontrado.
+     * Devuelve un array vacío si el usuario es encontrado pero no tiene permisos con 'can: true'.
      */
     async getPermissionsUser(idCustomUserParam: string): Promise<ICustomPermission[] | null> {
         try {
-            // Usamos .findOne() para encontrar el documento del usuario
-            // y .select('customPermissions') para proyectar solo ese campo.
-            // .lean() es opcional pero recomendado para lecturas si no necesitas métodos de documento Mongoose.
-            const userPermission = await this.UserPermissionModel.findOne(
-                { idUser: idCustomUserParam }
-            )
-            .select('customPermissions -_id') // Selecciona customPermissions y excluye _id
-            .lean() // Devuelve un objeto POJO (Plain Old JavaScript Object) en lugar de un documento Mongoose
-            .exec();
+            const result = await this.UserPermissionModel.aggregate([
+                // 1. Filtrar el documento del usuario por idUser
+                {
+                    $match: {
+                        idUser: idCustomUserParam
+                    }
+                },
+                // 2. Proyectar solo los customPermissions y filtrarlos por 'can: true'
+                {
+                    $project: {
+                        _id: 0, // Excluimos el _id del documento raíz si no lo necesitamos
+                        customPermissions: {
+                            $filter: {
+                                input: "$customPermissions", // El array sobre el que queremos iterar
+                                as: "permission",             // Nombre de la variable para cada elemento
+                                cond: { $eq: ["$$permission.can", true] } // Condición: si 'can' es true
+                            }
+                        }
+                    }
+                }
+            ]).exec();
 
-            // Si el documento no se encuentra, userPermission será null.
-            // Si se encuentra, pero customPermissions es null/undefined (aunque el esquema lo tiene como default: []),
-            // podemos devolver un array vacío o null.
-            if (!userPermission) {
-                return null; // O [] si prefieres un array vacío para indicar "no hay permisos personalizados"
+            // La agregación devuelve un array de documentos que coinciden con el $match.
+            // Si no se encuentra el usuario, el array estará vacío.
+            if (!result || result.length === 0) {
+                return null;
             }
 
-            // userPermission ahora contendrá solo { customPermissions: [...] }
-            return userPermission.customPermissions || []; // Aseguramos un array vacío si por alguna razón es null
+            // Si se encuentra el usuario, 'result' será un array con un solo objeto
+            // que contiene el array 'customPermissions' filtrado.
+            const userPermissionsDoc = result[0];
+
+            // Aseguramos que customPermissions sea un array, incluso si está vacío.
+            return userPermissionsDoc.customPermissions || [];
         } catch (error) {
-            // Es buena práctica manejar errores en el repositorio o propagarlos.
-            // Aquí, lo relanzamos para que la capa superior (servicio) lo maneje.
             throw error;
         }
     }

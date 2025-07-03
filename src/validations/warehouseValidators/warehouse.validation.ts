@@ -45,4 +45,18 @@ export const warehouseSchemaZod = z.object({
     }
 );
 
+export const updateWarehouseSchemaZod = z.object({
+
+    name: z.string().min(1, "Nombre de almacen es requerido").optional(),
+    address: z.string().min(1, "Dirección de almacen es requerido").optional(),
+    city: z.string().min(1, "Ciudad del almacen es requerido").optional(),
+    state: z.string().min(1, "Estado del pais del almacen es requerido").optional(),
+    isActive: z.boolean().optional(),
+    contactPerson: z.string().min(1, "Persona de contacto del almacen es requerida").optional(),
+    phoneNumber: z.string().regex(/^(0212)\d{7}$/, { message: 'Formato de telefono erroneo' }).optional(),
+    email: z.string().email().optional(),
+    notes: z.string().optional().optional(),
+})
+
 export type WarehouseDto = z.infer<typeof warehouseSchemaZod>
+export type UpdateWarehouseDto = z.infer<typeof updateWarehouseSchemaZod>

@@ -104,6 +104,11 @@ export {SecondFactorRequestDto} from './oauthValidators/oauth.validation';
 export {LogoutUserDto} from './oauthValidators/oauth.validation';
 
 
+//Warehouses
+
+export {UpdateWarehouseDto} from './warehouseValidators/warehouse.validation';
+
+
 //shared
 
 export {SubrouteFilterSchema} from './sharedValidators/routeFormatValidator';

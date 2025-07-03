@@ -1,7 +1,15 @@
-import { model, Schema } from "mongoose";
-import { IPaymentTermType } from "../../../core/types";
+import mongoose, { model, Schema } from "mongoose";
 
-export interface PaymentTermDocument extends Document, IPaymentTermType {};
+export interface PaymentTermDocument extends Document {
+
+    _id: mongoose.Types.ObjectId;
+    id : string,
+    name : string,
+    description : string,
+    daysToPay : number,
+    discount : number,
+    isActive : boolean,
+};
 
 export const paymentTermSchema = new Schema<PaymentTermDocument>({
 

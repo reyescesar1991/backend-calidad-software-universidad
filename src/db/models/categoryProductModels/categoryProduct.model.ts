@@ -1,7 +1,16 @@
-import { model, Schema } from "mongoose";
-import { ICategoryProduct } from "../../../core/types";
+import mongoose, { model, Schema } from "mongoose";
 
-export interface CategoryProductDocument extends Document, ICategoryProduct {};
+export interface CategoryProductDocument extends Document {
+
+    _id: mongoose.Types.ObjectId;
+    idCategory : string,
+    label : string,
+    name : string,
+    slug : string,
+    description : string,
+    isVisible : boolean,
+    isActive : boolean,
+};
 
 export const categoryProductSchema = new Schema<CategoryProductDocument>({
 

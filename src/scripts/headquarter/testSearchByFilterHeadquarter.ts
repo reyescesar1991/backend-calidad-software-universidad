@@ -6,6 +6,7 @@ import { configureDependenciesHeadquarters } from '../../core/config/dependencie
 import { LocationService } from '../../services/locationService/Location.service';
 import { FilterOptions, HeadquarterConfigFilterKeys } from '../../core/types';
 import { configureDependenciesDepartments } from '../../core/config/dependenciesDepartments/dependencies';
+import { configureWarehouseDependencies } from '../../core/config/dependenciesWarehouses/dependencies';
 
 
 initializeTestEnvironment();
@@ -19,6 +20,8 @@ const runTestSearchByFilterHeadquarter = async () => {
         await configureDependenciesHeadquarters();
 
         await configureDependenciesDepartments();
+
+        await configureWarehouseDependencies();
 
         const filterHeadquarter : FilterOptions<HeadquarterConfigFilterKeys> = {
 

@@ -30,8 +30,13 @@ export const warehouseSchemaZod = z.object({
     country: z.string().min(1, "País del almacen es requerido"),
     capacity: z.number().gte(10, "El mínimo de capacidad de un almacen son diez pallets"),
     currentCapacity: z.number().gte(0, "El mínimo de capacidad actual de un almacen es cero pallets"),
-    unitsPerBox: z.number().optional(),
-    boxesPerPallet: z.number().optional(),
+    unitsPerBox: z.literal(15, {
+        message: "Las unidades por caja deben ser exactamente 15."
+    }).optional(), // Opcional si no siempre es requerido
+
+    boxesPerPallet: z.literal(60, {
+        message: "Las cajas por pallet deben ser exactamente 60."
+    }).optional(), // Opcional si no siempre es requerido
     isActive: z.boolean().optional(),
     contactPerson: z.string().min(1, "Persona de contacto del almacen es requerida"),
     phoneNumber: z.string().regex(/^(0212)\d{7}$/, { message: 'Formato de telefono erroneo' }),
@@ -51,7 +56,6 @@ export const updateWarehouseSchemaZod = z.object({
     address: z.string().min(1, "Dirección de almacen es requerido").optional(),
     city: z.string().min(1, "Ciudad del almacen es requerido").optional(),
     state: z.string().min(1, "Estado del pais del almacen es requerido").optional(),
-    isActive: z.boolean().optional(),
     contactPerson: z.string().min(1, "Persona de contacto del almacen es requerida").optional(),
     phoneNumber: z.string().regex(/^(0212)\d{7}$/, { message: 'Formato de telefono erroneo' }).optional(),
     email: z.string().email().optional(),

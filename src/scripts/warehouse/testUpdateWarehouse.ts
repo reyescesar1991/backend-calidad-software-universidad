@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { disconnectMongo, initializeTestEnvironment } from '../../core/utils/connectDb';
 import "../../core/config/dependenciesPermissions/dependencies";
-import { objectIdSchema } from '../../validations';
+import { objectIdSchema, UpdateWarehouseDto, WarehouseDto } from '../../validations';
 import { container } from 'tsyringe';
 import { configureDependenciesHeadquarters } from '../../core/config/dependenciesHeadquarters/dependencies';
 import { LocationService } from '../../services/locationService/Location.service';
@@ -9,10 +9,11 @@ import { configureDependenciesDepartments } from '../../core/config/dependencies
 import { configureWarehouseDependencies } from '../../core/config/dependenciesWarehouses/dependencies';
 
 
+
 initializeTestEnvironment();
 
 
-const runTestFindByIdHeadquarter = async () => {
+const runTestUpdateWarehouse = async () => {
 
 
     try {
@@ -23,13 +24,24 @@ const runTestFindByIdHeadquarter = async () => {
 
         await configureWarehouseDependencies();
 
-        const idHeadquarter = objectIdSchema.parse("682a620888424f4918faf669");
-          
+        const idWarehouse = objectIdSchema.parse("6866da34d4c12d5c02d3edd3");
+
+        const dataWarehouse : UpdateWarehouseDto = {
+
+            // name : "Almacen test test",
+            // address : "address test test",
+            // city : "City test test",
+            // state : "State test test",
+            // contactPerson : "test person test",
+            phoneNumber : "021298765543",
+            // email : "emailtestalmacen88@gmail.com"
+        };
+      
         const locationService = container.resolve(LocationService);
 
-        const result = await locationService.findHeadquarterById(idHeadquarter);
+        const result = await locationService.updateWarehouse(idWarehouse, dataWarehouse);
 
-        console.log("📄 Sucursal encontrada por ID:", result);
+        console.log("📄 Almacén actualizado:", result);
         
     } catch (error) {
 
@@ -42,7 +54,7 @@ const runTestFindByIdHeadquarter = async () => {
     }
 }
 
-runTestFindByIdHeadquarter().then(() => {
+runTestUpdateWarehouse().then(() => {
 
     console.log('Proceso de seed completo');
 })

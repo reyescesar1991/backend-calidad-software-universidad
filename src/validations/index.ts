@@ -11,7 +11,9 @@ export {UpdateHeadquarterDto} from './headquarterValidators/headquarter.validati
 export {PermissionSecurityDto} from './permissionsSecurityValidators/permissionSecurity.validation';
 export {CategoryProductDto} from './categoryProductValidators/categoryProduct.validation';
 export {SupplierDto} from './supplierValidators/supplier.validator';
+export {UpdateSupplierDto} from './supplierValidators/supplier.validator';
 export {PaymentTermDto} from './paymentTermValidators/paymentTerm.validation';
+export {UpdatePaymentTermDto} from './paymentTermValidators/paymentTerm.validation';
 export {TwoFactorAuthDto} from './usersValidators/twoFactorAuth.validation';
 export {UpdateTwoFactorAuthDto} from './usersValidators/twoFactorAuth.validation';
 export {DepartmentDto} from './departmentValidators/department.validation';

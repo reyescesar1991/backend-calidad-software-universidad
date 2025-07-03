@@ -12,7 +12,7 @@ import { configureWarehouseDependencies } from '../../core/config/dependenciesWa
 initializeTestEnvironment();
 
 
-const runTestFindByIdHeadquarter = async () => {
+const runTestUpdateCapacityWarehouse = async () => {
 
 
     try {
@@ -23,13 +23,13 @@ const runTestFindByIdHeadquarter = async () => {
 
         await configureWarehouseDependencies();
 
-        const idHeadquarter = objectIdSchema.parse("682a620888424f4918faf669");
-          
+        const idWarehouse = objectIdSchema.parse("67f690a03ad8f43e09cec544");
+      
         const locationService = container.resolve(LocationService);
 
-        const result = await locationService.findHeadquarterById(idHeadquarter);
+        const result = await locationService.updateCapacityWarehousePerPallet(idWarehouse, 350);
 
-        console.log("📄 Sucursal encontrada por ID:", result);
+        console.log("📄 Capacidad del almacén actualizada:", result);
         
     } catch (error) {
 
@@ -42,7 +42,7 @@ const runTestFindByIdHeadquarter = async () => {
     }
 }
 
-runTestFindByIdHeadquarter().then(() => {
+runTestUpdateCapacityWarehouse().then(() => {
 
     console.log('Proceso de seed completo');
 })

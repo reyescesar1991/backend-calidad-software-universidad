@@ -169,6 +169,16 @@ export {RegistryAuditSecondFactorAttempsIsAlreadyMaxError} from './securityAudit
 export {UnauthorizedException2FAError} from './oauth/oauth.exception';
 export {AuthPasswordMismatchUsernameError} from './oauth/oauth.exception';
 
+//Warehouse
+
+export {WarehouseNotFoundError} from './warehouse/warehouse.exception';
+export {WarehouseCustomIdAlreadyExistsError} from './warehouse/warehouse.exception';
+export {CurrentCapacityExceedsCapacityWarehouseError} from './warehouse/warehouse.exception';
+export {WarehouseIsAlreadyInactiveError} from './warehouse/warehouse.exception';
+export {WarehouseIsAlreadyActiveError} from './warehouse/warehouse.exception';
+export {AddBoxesFormatError} from './warehouse/warehouse.exception';
+export {DecreaseBoxesFormatError} from './warehouse/warehouse.exception';
+
 //function handle error
 
 export {handleError} from './handleErrors/handleErrors';

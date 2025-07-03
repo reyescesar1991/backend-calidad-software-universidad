@@ -47,3 +47,7 @@ export {SecurityAuditValidator} from './securityAudit/securityAudit.validator';
 //two factor
 
 export {TwoFactorDataValidator} from './twoFactorData/twoFactorData.validator';
+
+//warehouses
+
+export {WarehouseValidator} from './warehouses/warehouse.validator';

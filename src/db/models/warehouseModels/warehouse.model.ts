@@ -22,7 +22,7 @@ export interface WarehouseDocument extends Document {
     notes : string;
 };
 
-export const warehouseSchema = new Schema({
+export const warehouseSchema = new Schema<WarehouseDocument>({
 
     idWarehouse : {type: String, unique: true, required: true},
     idHeadquarter : {
@@ -30,17 +30,17 @@ export const warehouseSchema = new Schema({
         ref: "Headquarter",
         required: true
     },
-    name : {type: String, required: true},
+    name : {type: String, required: true, unique: true},
     address : {type: String, required: true, unique: true},
     city : {type: String, required: true},
     state : {type: String, required: true},
     country : {type: String, required: true, default: "Ven"},
-    currentCapacity : {type: Number, required: true},
-    capacity : {type: Number, required: true},
+    currentCapacity : {type: Number, required: true, min : 0},
+    capacity : {type: Number, required: true,},
     unitsPerBox : {type: Number, required: false, default: 12}, 
     boxesPerPallet : {type: Number, required: false, default: 50},
     isActive : {type: Boolean, required: false, default: true},
-    contactPerson : {type: String, required: true},
+    contactPerson : {type: String, required: true, unique: true},
     phoneNumber : {type: String, required: true, unique: true},
     email : {type: String, required: true, unique: true},
     notes : {type: String, required: false},

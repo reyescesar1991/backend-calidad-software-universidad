@@ -12,7 +12,7 @@ import { configureWarehouseDependencies } from '../../core/config/dependenciesWa
 initializeTestEnvironment();
 
 
-const runTestFindByIdHeadquarter = async () => {
+const runTestAllWarehouses = async () => {
 
 
     try {
@@ -22,14 +22,12 @@ const runTestFindByIdHeadquarter = async () => {
         await configureDependenciesDepartments();
 
         await configureWarehouseDependencies();
-
-        const idHeadquarter = objectIdSchema.parse("682a620888424f4918faf669");
-          
+      
         const locationService = container.resolve(LocationService);
 
-        const result = await locationService.findHeadquarterById(idHeadquarter);
+        const result = await locationService.findAllWarehouses();
 
-        console.log("📄 Sucursal encontrada por ID:", result);
+        console.log("📄 Almacenes encontrados:", result);
         
     } catch (error) {
 
@@ -42,7 +40,7 @@ const runTestFindByIdHeadquarter = async () => {
     }
 }
 
-runTestFindByIdHeadquarter().then(() => {
+runTestAllWarehouses().then(() => {
 
     console.log('Proceso de seed completo');
 })

@@ -24,4 +24,27 @@ export const supplierSchemaZod = z.object({
     notes : z.string().optional(),
 });
 
+
+export const updateSupplierSchemaZod = z.object({
+
+    name : z.string().min(1, "Nombre de proveedor es requerido").optional(),
+    tradeName : z.string().min(1, "Nombre comercial del proveedor es requerido").optional(),
+    contactPerson : z.string().min(1, "Persona de contacto del proveedor es requerido").optional(),
+    phoneNumber : z.string().min(1, "Teléfono del proveedor es requerido").optional(),
+    email : z.string().email("Formato de correo del proveedor no es valido").optional(),
+    address : z.string().min(1, "Dirección del proveedor es requerida").optional(),
+    city : z.string().min(1, "Ciudad del proveedor es requerido").optional(),
+    state : z.string().min(1, "Estado del proveedor es requerido").optional(),
+    zipCode : z.string().min(1, "Código zip del proveedor es requerido").optional(),
+    country : z.string().min(1, "País del proveedor es requerido").optional(),
+    taxId : z.string().min(1, "ID fiscal del proveedor es requerido").optional(),
+    paymentTerm : z.instanceof(mongoose.Types.ObjectId).refine(
+        val => val instanceof mongoose.Types.ObjectId, 
+        { message: "Debe ser un ObjectId válido de Mongoose" }
+    ).optional(),
+    isActive : z.boolean().optional(),
+    notes : z.string().optional(),
+});
+
 export type SupplierDto = z.infer<typeof supplierSchemaZod>;
+export type UpdateSupplierDto = z.infer<typeof updateSupplierSchemaZod>;

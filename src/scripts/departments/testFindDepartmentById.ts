@@ -6,6 +6,7 @@ import { container } from 'tsyringe';
 import { configureDependenciesHeadquarters } from '../../core/config/dependenciesHeadquarters/dependencies';
 import { LocationService } from '../../services/locationService/Location.service';
 import { configureDependenciesDepartments } from '../../core/config/dependenciesDepartments/dependencies';
+import { configureWarehouseDependencies } from '../../core/config/dependenciesWarehouses/dependencies';
 
 
 initializeTestEnvironment();
@@ -19,6 +20,8 @@ const runTestFindByIdDepartment = async () => {
         await configureDependenciesHeadquarters();
 
         await configureDependenciesDepartments();
+
+        await configureWarehouseDependencies();
 
         const idDepartment = objectIdSchema.parse("67eead413bf36442a108d312");
           

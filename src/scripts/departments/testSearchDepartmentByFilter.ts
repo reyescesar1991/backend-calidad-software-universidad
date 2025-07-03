@@ -7,6 +7,7 @@ import { configureDependenciesHeadquarters } from '../../core/config/dependencie
 import { LocationService } from '../../services/locationService/Location.service';
 import { configureDependenciesDepartments } from '../../core/config/dependenciesDepartments/dependencies';
 import { DepartmentConfigFilterKeys, FilterOptions } from '../../core/types';
+import { configureWarehouseDependencies } from '../../core/config/dependenciesWarehouses/dependencies';
 
 
 initializeTestEnvironment();
@@ -20,6 +21,8 @@ const runTestSearchDepartmentByFilter = async () => {
         await configureDependenciesHeadquarters();
 
         await configureDependenciesDepartments();
+
+        await configureWarehouseDependencies();
 
         const filterDepartment : FilterOptions<DepartmentConfigFilterKeys> = {
 

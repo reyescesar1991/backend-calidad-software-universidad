@@ -6,6 +6,7 @@ import { container } from 'tsyringe';
 import { configureDependenciesHeadquarters } from '../../core/config/dependenciesHeadquarters/dependencies';
 import { LocationService } from '../../services/locationService/Location.service';
 import { configureDependenciesDepartments } from '../../core/config/dependenciesDepartments/dependencies';
+import { configureWarehouseDependencies } from '../../core/config/dependenciesWarehouses/dependencies';
 
 
 initializeTestEnvironment();
@@ -19,7 +20,9 @@ const runTestCreateHeadquarter = async () => {
         await configureDependenciesHeadquarters();
 
         await configureDependenciesDepartments();
-
+        
+        await configureWarehouseDependencies();
+        
         const headquarter : HeadquarterDto = {
             "idHeadquarter": "id_test_4",
             "label": "Almacén Central test",

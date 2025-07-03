@@ -1,12 +1,15 @@
 import { inject, injectable } from "tsyringe";
 import { IHeadquarterRepository } from "./interfaces/IHeadquarterRepository";
-import { DepartmentValidator, HeadquarterValidator } from "../../core/validators";
-import { DepartmentDto, HeadquarterDto, ObjectIdParam, UpdateDepartmentDto, UpdateHeadquarterDto } from "../../validations";
-import { DepartmentDocument, HeadquartersDocument } from "../../db/models";
-import { handleError } from "../../core/exceptions";
+import { DepartmentValidator, HeadquarterValidator, WarehouseValidator } from "../../core/validators";
+import { DepartmentDto, HeadquarterDto, ObjectIdParam, UpdateDepartmentDto, UpdateHeadquarterDto, UpdateWarehouseDto, WarehouseDto } from "../../validations";
+import { DepartmentDocument, HeadquartersDocument, WarehouseDocument } from "../../db/models";
+import { AddBoxesFormatError, DecreaseBoxesFormatError, handleError } from "../../core/exceptions";
 import { TransactionManager } from "../../core/database/transactionManager";
 import { DepartmentConfigFilterKeys, FilterOptions, HeadquarterConfigFilterKeys } from "../../core/types";
 import { IDepartmentRepository } from "./interfaces/IDepartmentRepository";
+import { IWarehouseRepository } from "./interfaces/IWarehouseRepository";
+import { Transactional } from "../../core/utils/transaccional-wrapper";
+import { ClientSession } from "mongoose";
 
 @injectable()
 export class LocationService {
@@ -18,6 +21,9 @@ export class LocationService {
 
         @inject("IDepartmentRepository") private readonly departmentRepository : IDepartmentRepository,
         @inject("DepartmentValidator") private readonly departmentValidator : DepartmentValidator,
+
+        @inject("IWarehouseRepository") private readonly warehouseRepository : IWarehouseRepository,
+        @inject("WarehouseValidator") private readonly warehouseValidator : WarehouseValidator,
 
     ){}
 
@@ -364,5 +370,228 @@ export class LocationService {
                 }
             }
         )
+    }
+
+    async findWarehouseById(idWarehouse: ObjectIdParam): Promise<WarehouseDocument | null>{
+
+        try {
+
+            const warehouse = await this.warehouseRepository.findWarehouseById(idWarehouse);
+
+            WarehouseValidator.validateWarehouseExists(warehouse);
+
+            return warehouse;
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    async findWarehouseByCustomId(idWarehouse: string): Promise<WarehouseDocument | null>{
+
+        try {
+
+            const warehouse = await this.warehouseRepository.findWarehouseByCustomId(idWarehouse);
+
+            WarehouseValidator.validateWarehouseExists(warehouse);
+
+            return warehouse;
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    @Transactional()
+    async createWarehouse(dataWarehouse: WarehouseDto, session?: ClientSession): Promise<WarehouseDocument | null>{
+
+        try {
+
+            await this.warehouseValidator.validateIdWarehouseUniqueness(dataWarehouse.idWarehouse);
+
+            await this.findHeadquarterById(dataWarehouse.idHeadquarter);
+
+            const warehouse = await this.warehouseRepository.createWarehouse(dataWarehouse, session);
+
+            return warehouse;
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    @Transactional()
+    async updateWarehouse(idWarehouse: ObjectIdParam, dataUpdateWarehouse: UpdateWarehouseDto, session?: ClientSession): Promise<WarehouseDocument | null>{
+
+        try {
+
+            const warehouse = await this.warehouseRepository.findWarehouseById(idWarehouse);
+
+            WarehouseValidator.validateWarehouseExists(warehouse);
+
+            const updatedWarehouse = await this.warehouseRepository.updateWarehouse(warehouse._id, dataUpdateWarehouse, session);
+
+            return updatedWarehouse;
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    @Transactional()
+    async inactivateWarehouse(idWarehouse: ObjectIdParam, session?: ClientSession): Promise<WarehouseDocument | null>{
+
+        try {
+
+            const warehouse = await this.warehouseRepository.findWarehouseById(idWarehouse);
+
+            WarehouseValidator.validateWarehouseExists(warehouse);
+
+            WarehouseValidator.validateWarehouseIsAlreadyInactive(warehouse);
+
+            return await this.warehouseRepository.inactivateWarehouse(idWarehouse, session);
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    @Transactional()
+    async activateWarehouse(idWarehouse: ObjectIdParam, session?: ClientSession): Promise<WarehouseDocument | null>{
+
+        try {
+
+            const warehouse = await this.warehouseRepository.findWarehouseById(idWarehouse);
+
+            WarehouseValidator.validateWarehouseExists(warehouse);
+
+            WarehouseValidator.validateWarehouseIsAlreadyActive(warehouse);
+
+            return await this.warehouseRepository.activateWarehouse(idWarehouse, session);
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    async findAllWarehouses(): Promise<WarehouseDocument[] | null>{
+
+        try {
+
+            return await this.warehouseRepository.findAllWarehouses();
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    async getCapacityWarehouse(idWarehouse: ObjectIdParam): Promise<number | null>{
+
+        try {
+
+            const warehouse = await this.warehouseRepository.findWarehouseById(idWarehouse);
+
+            WarehouseValidator.validateWarehouseExists(warehouse);
+
+            return await this.warehouseRepository.getCapacityWarehouse(idWarehouse);
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    @Transactional()
+    async updateCapacityWarehousePerPallet(idWarehouse: ObjectIdParam, newCurrentCapacityPallet: number, session?: ClientSession): Promise<WarehouseDocument | null>{
+
+        try {
+
+            const warehouse = await this.warehouseRepository.findWarehouseById(idWarehouse);
+
+            WarehouseValidator.validateWarehouseExists(warehouse);
+
+            WarehouseValidator.validateWarehouseIsAlreadyInactive(warehouse);
+
+            return await this.warehouseRepository.updateCapacityWarehousePerPallet(idWarehouse, newCurrentCapacityPallet, session);
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    async getCurrentCapacityWarehouse(idWarehouse: ObjectIdParam): Promise<number | null>{
+
+        try {
+
+            const warehouse = await this.warehouseRepository.findWarehouseById(idWarehouse);
+
+            WarehouseValidator.validateWarehouseExists(warehouse);
+
+            return await this.warehouseRepository.getCurrentCapacityWarehouse(idWarehouse);
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    @Transactional()
+    async addCurrentCapacityWarehousePerBox(idWarehouse: ObjectIdParam, addBoxes: number, session?: ClientSession): Promise<WarehouseDocument | null>{
+
+       try {
+
+            const warehouse = await this.warehouseRepository.findWarehouseById(idWarehouse);
+
+            WarehouseValidator.validateWarehouseExists(warehouse);
+
+            WarehouseValidator.validateWarehouseIsAlreadyInactive(warehouse);
+
+            if(addBoxes > 0){
+
+                return await this.warehouseRepository.addCurrentCapacityWarehousePerBox(idWarehouse, addBoxes, session);
+            }
+            else{
+
+                throw new AddBoxesFormatError();
+            }
+            
+        } catch (error) {
+            
+            handleError(error);
+        } 
+    }
+
+    @Transactional()
+    async decreaseCurrentCapacityWarehousePerBox(idWarehouse: ObjectIdParam, decreaseBoxes: number, session?: ClientSession): Promise<WarehouseDocument | null>{
+
+        try {
+
+            const warehouse = await this.warehouseRepository.findWarehouseById(idWarehouse);
+
+            WarehouseValidator.validateWarehouseExists(warehouse);
+
+            WarehouseValidator.validateWarehouseIsAlreadyInactive(warehouse);
+
+            if(decreaseBoxes > 0){
+
+                return await this.warehouseRepository.addCurrentCapacityWarehousePerBox(idWarehouse, decreaseBoxes, session);
+            }
+            else{
+
+                throw new DecreaseBoxesFormatError();
+            }
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
     }
 }

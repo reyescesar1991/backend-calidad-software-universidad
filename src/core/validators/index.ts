@@ -48,6 +48,14 @@ export {SecurityAuditValidator} from './securityAudit/securityAudit.validator';
 
 export {TwoFactorDataValidator} from './twoFactorData/twoFactorData.validator';
 
+//payment term
+
+export {PaymentTermsValidator} from './paymentTerms/paymentTerms.validator';
+
+//suppliers
+
+export {SupplierValidator} from './suppliers/suppliers.validator';
+
 //warehouses
 
 export {WarehouseValidator} from './warehouses/warehouse.validator';

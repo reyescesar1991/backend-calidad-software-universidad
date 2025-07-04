@@ -69,3 +69,13 @@ export class DecreaseBoxesFormatError extends AppError{
         
     }
 }
+
+export class CurrentCapacityDecreaseLessZeroCapacityWarehouseError extends AppError{
+    code = 2407;
+    constructor(message : string = "Esta retirando mas cajas de las disponibles en el almacen, intente con una cantidad valida"){
+
+        super(message);
+        this.name = "CurrentCapacityDecreaseLessZeroCapacityWarehouseError"
+        
+    }
+}

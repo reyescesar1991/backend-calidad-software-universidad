@@ -178,6 +178,25 @@ export {WarehouseIsAlreadyInactiveError} from './warehouse/warehouse.exception';
 export {WarehouseIsAlreadyActiveError} from './warehouse/warehouse.exception';
 export {AddBoxesFormatError} from './warehouse/warehouse.exception';
 export {DecreaseBoxesFormatError} from './warehouse/warehouse.exception';
+export {CurrentCapacityDecreaseLessZeroCapacityWarehouseError} from './warehouse/warehouse.exception';
+
+//payment term
+
+export {PaymentTermNotFoudError} from './paymentTerm/paymentTerm.exception';
+export {PaymentTermsIDAlreadyExistsError} from './paymentTerm/paymentTerm.exception';
+export {DaysToPayCannotBeLessThanOneError} from './paymentTerm/paymentTerm.exception';
+export {DiscountCannotBeLessThanZeroError} from './paymentTerm/paymentTerm.exception';
+export {PaymentTermIsAlreadyActiveError} from './paymentTerm/paymentTerm.exception';
+export {PaymentTermIsAlreadyInactiveError} from './paymentTerm/paymentTerm.exception';
+
+// supplier
+
+export {SupplierNotExistsError} from './supplier/supplier.exception';
+export {SupplierAlreadyExistsError} from './supplier/supplier.exception';
+export {ItHasUniqueDataAndRegisteredError} from './supplier/supplier.exception';
+export {SupplierIsAlreadyInactiveError} from './supplier/supplier.exception';
+export {SupplierIsAlreadyActiveError} from './supplier/supplier.exception';
+export {SuppliersNotExistsError} from './supplier/supplier.exception';
 
 //function handle error
 

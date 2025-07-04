@@ -14,10 +14,10 @@ export interface PaymentTermDocument extends Document {
 export const paymentTermSchema = new Schema<PaymentTermDocument>({
 
     id : {type: String, required: true, unique: true},
-    name : {type: String, required: true},
+    name : {type: String, required: true, unique: true},
     description : {type: String, required: true},
-    daysToPay : {type: Number, required: true},
-    discount : {type: Number, required: false},
+    daysToPay : {type: Number, required: true, min: 1},
+    discount : {type: Number, required: false, max : 15},
     isActive : {type: Boolean, required: true, default: true},
 })
 

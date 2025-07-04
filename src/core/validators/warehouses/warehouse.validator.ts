@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { WarehouseDocument } from "../../../db/models";
-import { CurrentCapacityExceedsCapacityWarehouseError, WarehouseCustomIdAlreadyExistsError, WarehouseIsAlreadyActiveError, WarehouseIsAlreadyInactiveError, WarehouseNotFoundError } from "../../exceptions";
+import { CurrentCapacityDecreaseLessZeroCapacityWarehouseError, CurrentCapacityExceedsCapacityWarehouseError, WarehouseCustomIdAlreadyExistsError, WarehouseIsAlreadyActiveError, WarehouseIsAlreadyInactiveError, WarehouseNotFoundError } from "../../exceptions";
 import { IWarehouseRepository } from "../../../services/locationService";
 
 @injectable()
@@ -25,7 +25,7 @@ export class WarehouseValidator{
 
     static validateCurrentCapacityWithCapacity(currentCapacity : number, capacity : number) : void{
 
-        if(currentCapacity >= capacity) throw new CurrentCapacityExceedsCapacityWarehouseError();
+        if(capacity > currentCapacity) throw new CurrentCapacityExceedsCapacityWarehouseError();
     }
 
     static validateWarehouseIsAlreadyInactive(warehouse : WarehouseDocument) : void {
@@ -36,6 +36,13 @@ export class WarehouseValidator{
     static validateWarehouseIsAlreadyActive(warehouse : WarehouseDocument) : void {
 
         if(warehouse.isActive) throw new WarehouseIsAlreadyActiveError();
+    }
+
+    static validateCurrentCapacityNotLessZero(currentCapacity : number, decreaseCapacity : number) : void{
+
+        const estimateQuantity = currentCapacity - decreaseCapacity;
+
+        if(estimateQuantity < 0) throw new CurrentCapacityDecreaseLessZeroCapacityWarehouseError();
     }
 
 }

@@ -43,6 +43,6 @@ export const supplierSchema = new Schema<SupplierDocument>({
     },
     isActive: { type: Boolean, required: false, default: true },
     notes: { type: String, required: false },
-});
+}, {timestamps : true, versionKey: false});
 
 export const SupplierModel = model<SupplierDocument>("Supplier", supplierSchema);

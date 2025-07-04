@@ -121,6 +121,8 @@
     "script:getcapacity-warehouse" : "ts-node src/scripts/warehouse/testGetCapacityWarehouse.ts",
     "script:update-capacity-warehouse" : "ts-node src/scripts/warehouse/testUpdateCapacityWarehouse.ts",
     "script:get-current-capacity-warehouse" : "ts-node src/scripts/warehouse/testCurrentCapacityWarehouse.ts",
+    "script:add-stock-warehouse" : "ts-node src/scripts/warehouse/testAddCurrentCapacityWarehouse.ts",
+    "script:decrease-stock-warehouse" : "ts-node src/scripts/warehouse/testDecreaseCurrentCapacityWarehouse.ts",
     "script:create-user": "ts-node src/scripts/users/testCreateUser.ts",
     "script:findbyid-user": "ts-node src/scripts/users/testFindUserById.ts",
     "script:findbycustomid-user": "ts-node src/scripts/users/testFindUserByCustomId.ts",

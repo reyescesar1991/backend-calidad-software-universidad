@@ -554,6 +554,8 @@ export class LocationService {
 
             WarehouseValidator.validateWarehouseIsAlreadyInactive(warehouse);
 
+            WarehouseValidator.validateCurrentCapacityWithCapacity(warehouse.currentCapacity, (warehouse.currentCapacity + addBoxes));
+
             if(addBoxes > 0){
 
                 return await this.warehouseRepository.addCurrentCapacityWarehousePerBox(idWarehouse, addBoxes, session);
@@ -580,9 +582,11 @@ export class LocationService {
 
             WarehouseValidator.validateWarehouseIsAlreadyInactive(warehouse);
 
+            WarehouseValidator.validateCurrentCapacityNotLessZero(warehouse.currentCapacity, decreaseBoxes);
+
             if(decreaseBoxes > 0){
 
-                return await this.warehouseRepository.addCurrentCapacityWarehousePerBox(idWarehouse, decreaseBoxes, session);
+                return await this.warehouseRepository.decreaseCurrentCapacityWarehousePerBox(idWarehouse, decreaseBoxes, session);
             }
             else{
 

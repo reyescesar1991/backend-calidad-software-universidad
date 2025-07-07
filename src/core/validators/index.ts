@@ -56,6 +56,10 @@ export {PaymentTermsValidator} from './paymentTerms/paymentTerms.validator';
 
 export {SupplierValidator} from './suppliers/suppliers.validator';
 
+//categories
+
+export {CategoryProductValidator} from './categories/category.validator';
+
 //warehouses
 
 export {WarehouseValidator} from './warehouses/warehouse.validator';

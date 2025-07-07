@@ -7,6 +7,7 @@ import { PaymentTermsValidator, SupplierValidator } from "../../core/validators"
 import { Transactional } from "../../core/utils/transaccional-wrapper";
 import { ClientSession } from "mongoose";
 import { GeneralDataService } from "../generalDataService";
+import { TransactionManager } from "../../core/database/transactionManager";
 
 @injectable()
 export class SupplierService{
@@ -15,6 +16,7 @@ export class SupplierService{
         @inject("ISupplierRepository") private readonly supplierRepository : ISupplierRepository,
         @inject("SupplierValidator") private readonly supplierValidator : SupplierValidator,
         @inject(GeneralDataService) private readonly generalDataService : GeneralDataService,
+        @inject("TransactionManager") private readonly transactionManager: TransactionManager,
     ){}
 
     async findSupplierById(idSupplier: ObjectIdParam): Promise<SupplierDocument | null>{
@@ -90,7 +92,6 @@ export class SupplierService{
 
                 email : dataUpdateSupplier.email,
                 phoneNumber : dataUpdateSupplier.phoneNumber,
-                taxId : dataUpdateSupplier.taxId,
                 name : dataUpdateSupplier.name,
                 tradeName : dataUpdateSupplier.tradeName,
                 contactPerson : dataUpdateSupplier.contactPerson,

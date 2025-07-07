@@ -29,7 +29,6 @@ import { TwoFactorService } from "../oauthService";
 import { Transactional } from "../../core/utils/transaccional-wrapper";
 import { ClientSession } from "mongoose";
 import { MenuService } from "../menu/Menu.service";
-import { permission } from "process";
 
 
 @injectable()

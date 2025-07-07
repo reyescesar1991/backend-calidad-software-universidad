@@ -11,4 +11,13 @@ export const categoryProductZodSchema = z.object({
     isActive : z.boolean().optional(),
 });
 
+export const updateCategoryProductZodSchema = z.object({
+
+    label : z.string().min(1, "Etiqueta de categoria es requerida").optional(),
+    name : z.string().optional(),
+    slug : z.string().optional(),
+    description : z.string().optional(),
+});
+
 export type CategoryProductDto = z.infer<typeof categoryProductZodSchema>;
+export type UpdateCategoryProductDto = z.infer<typeof updateCategoryProductZodSchema>;

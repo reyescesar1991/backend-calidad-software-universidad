@@ -37,7 +37,6 @@ export const updateSupplierSchemaZod = z.object({
     state : z.string().min(1, "Estado del proveedor es requerido").optional(),
     zipCode : z.string().min(1, "Código zip del proveedor es requerido").optional(),
     country : z.string().min(1, "País del proveedor es requerido").optional(),
-    taxId : z.string().min(1, "ID fiscal del proveedor es requerido").optional(),
     paymentTerm : z.instanceof(mongoose.Types.ObjectId).refine(
         val => val instanceof mongoose.Types.ObjectId, 
         { message: "Debe ser un ObjectId válido de Mongoose" }

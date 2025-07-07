@@ -42,7 +42,7 @@ export class DiscountCannotBeLessThanZeroError extends AppError{
 
 export class PaymentTermIsAlreadyActiveError extends AppError{
     code = 2504;
-    constructor(message : string = "Los dias para pagar de un termino de pago no pueden ser menores a uno"){
+    constructor(message : string = "El termino de pago ya se encuentra activo"){
 
         super(message);
         this.name = "PaymentTermIsAlreadyActiveError"
@@ -52,7 +52,7 @@ export class PaymentTermIsAlreadyActiveError extends AppError{
 
 export class PaymentTermIsAlreadyInactiveError extends AppError{
     code = 2505;
-    constructor(message : string = "Los dias para pagar de un termino de pago no pueden ser menores a uno"){
+    constructor(message : string = "El termino de pago ya se encuentra inactivo"){
 
         super(message);
         this.name = "DiscountCannotBeLessThanZeroError"

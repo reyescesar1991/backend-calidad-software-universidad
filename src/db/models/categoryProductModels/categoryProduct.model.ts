@@ -2,7 +2,7 @@ import mongoose, { model, Schema } from "mongoose";
 
 export interface CategoryProductDocument extends Document {
 
-    _id: mongoose.Types.ObjectId;
+    _id: mongoose.Schema.Types.ObjectId;
     idCategory : string,
     label : string,
     name : string,

@@ -10,6 +10,7 @@ export {HeadquarterDto} from './headquarterValidators/headquarter.validation';
 export {UpdateHeadquarterDto} from './headquarterValidators/headquarter.validation';
 export {PermissionSecurityDto} from './permissionsSecurityValidators/permissionSecurity.validation';
 export {CategoryProductDto} from './categoryProductValidators/categoryProduct.validation';
+export {UpdateCategoryProductDto} from './categoryProductValidators/categoryProduct.validation';
 export {SupplierDto} from './supplierValidators/supplier.validator';
 export {UpdateSupplierDto} from './supplierValidators/supplier.validator';
 export {PaymentTermDto} from './paymentTermValidators/paymentTerm.validation';

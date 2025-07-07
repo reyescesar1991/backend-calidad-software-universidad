@@ -6,6 +6,7 @@ import { handleError } from "../../core/exceptions";
 import { PaymentTermsValidator } from "../../core/validators";
 import { Transactional } from "../../core/utils/transaccional-wrapper";
 import { ClientSession } from "mongoose";
+import { TransactionManager } from "../../core/database/transactionManager";
 
 @injectable()
 export class GeneralDataService{
@@ -13,7 +14,8 @@ export class GeneralDataService{
     constructor(
 
         @inject("IPaymentTermsRepository") private readonly paymentTermsRepository : IPaymentTermsRepository,
-        @inject("PaymentTermsValidator") private readonly paymentTermsValidator : PaymentTermsValidator
+        @inject("PaymentTermsValidator") private readonly paymentTermsValidator : PaymentTermsValidator,
+        @inject("TransactionManager") private readonly transactionManager: TransactionManager,
 
     ){}
 

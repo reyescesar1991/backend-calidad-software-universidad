@@ -198,6 +198,17 @@ export {SupplierIsAlreadyInactiveError} from './supplier/supplier.exception';
 export {SupplierIsAlreadyActiveError} from './supplier/supplier.exception';
 export {SuppliersNotExistsError} from './supplier/supplier.exception';
 
+//category product
+
+export {CategoryProductNotFoundError} from './categoryProduct/categoryProduct.exception';
+export {CategoriesProductNotFoundError} from './categoryProduct/categoryProduct.exception';
+export {CategoriesProductByLabelNotFoundError} from './categoryProduct/categoryProduct.exception';
+export {CategoryAlreadyExistsError} from './categoryProduct/categoryProduct.exception';
+export {CategoryProductIsAlreadyActiveError} from './categoryProduct/categoryProduct.exception';
+export {CategoryProductIsAlreadyInactiveError} from './categoryProduct/categoryProduct.exception';
+export {CategoryProductIsAlreadyViewableError} from './categoryProduct/categoryProduct.exception';
+export {CategoryProductIsAlreadyNotViewableError} from './categoryProduct/categoryProduct.exception';
+
 //function handle error
 
 export {handleError} from './handleErrors/handleErrors';

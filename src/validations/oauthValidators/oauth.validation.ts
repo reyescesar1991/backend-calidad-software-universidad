@@ -36,8 +36,7 @@ export const dataRecoverPasswordSchemaZod = z.object({
 });
 
 export const twoFactorCodeVerificationSchemaZod = z.object({
-  // Puede ser email o userId, dependiendo de cómo quieras identificar al usuario en la API.
-  // Si la API siempre recibe el email para todos los flujos 2FA, usa 'email'.
+
   userId: z.string().refine((value) => {
 
         const regex = /^[a-zA-Z]{4}\d{4}$/;

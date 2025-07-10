@@ -47,3 +47,7 @@ export {RoleConfigFilterKeys} from './filtersOptions/filterOptions.filter';
 export {HeadquarterConfigFilterKeys} from './filtersOptions/filterOptions.filter';
 export {DepartmentConfigFilterKeys} from './filtersOptions/filterOptions.filter';
 export {UserConfigFilterKeys} from './filtersOptions/filterOptions.filter';
+
+//products
+
+export {IStockByWarehouseResponse} from './product/stockByWarehouse.response';

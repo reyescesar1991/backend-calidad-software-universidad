@@ -27,6 +27,7 @@ export {UserDocument} from './users/user.model';
 export {WarehouseModel} from './warehouseModels/warehouse.model';
 export {WarehouseDocument} from './warehouseModels/warehouse.model';
 export {ProductModel} from './productModels/product.model';
+export {ProductDocument} from './productModels/product.model';
 export {UserPermissionModel} from './userPermission/userPermission.model';
 export {UserPermissionSecurityModel} from './userPermission/userPermissionSecurity.model';
 export {UsersTwoFactorActiveDocument} from './usersTwoFactorActive/usersTwoFactorActive';

@@ -72,4 +72,29 @@ export const productSchemaZod = z.object({
 
 });
 
+export const updateProductSchemaZod = z.object({
+
+    name: z.string().min(1, "Nombre de producto es requerido").optional(),
+    description: z.string().optional(),
+    categoryId: z.instanceof(mongoose.Types.ObjectId).refine(
+        val => val instanceof mongoose.Types.ObjectId,
+        { message: "Debe ser un ObjectId válido de Mongoose" }
+    ).optional(),
+    supplierId: z.instanceof(mongoose.Types.ObjectId).refine(
+        val => val instanceof mongoose.Types.ObjectId,
+        { message: "Debe ser un ObjectId válido de Mongoose" }
+    ).optional(),
+    brand: z.string().min(1, "Marca de producto es requerido").optional(),
+    purchasePrice: z.number().gte(0.01, "Precio mínimo de compra es 0.11$").optional(),
+    sellingPrice: z.number().gte(0.1, "Precio mínimo de venta es de 0.1$").optional(),
+    currency: z.string().min(1, "Tipo de moneda del producto es requerido").optional(),
+    minimumStockLevel: z.number().gte(1, "El mínimo de stock para alarma para un producto es 1").optional(),
+    maximumStockLevel: z.number().optional(),
+    unitOfMeasure: z.string().min(1, "Unidad de medida es requerida").optional(),
+    imageUrl: z.string().optional().optional(),
+    notes: z.string().optional().optional(),
+
+});
+
 export type ProductDto = z.infer<typeof productSchemaZod>;
+export type UpdateProductDto = z.infer<typeof updateProductSchemaZod>;

@@ -25,6 +25,7 @@ export {UserDto} from './usersValidators/user.validation';
 export {UpdateUserDto} from './usersValidators/user.validation';
 export {WarehouseDto} from './warehouseValidators/warehouse.validation';
 export {ProductDto} from './productValidators/product.validation';
+export {UpdateProductDto} from './productValidators/product.validation';
 export {ObjectIdParam} from './sharedValidators/sharedValidators';
 export {UserPermissionDto} from './userPermissionValidators/userPermission.validator';
 export {UpdateUserPermissionDto} from './userPermissionValidators/userPermission.validator';
@@ -111,6 +112,12 @@ export {LogoutUserDto} from './oauthValidators/oauth.validation';
 
 export {UpdateWarehouseDto} from './warehouseValidators/warehouse.validation';
 
+//products
+
+export {StockByWarehouseResponse} from './productValidators/product.responses';
+export {StockTotalByProductResponse} from './productValidators/product.responses';
+export {AmountTotalStockByProductByWarehouseResponse} from './productValidators/product.responses';
+export {AmountTotalStockByProductResponse} from './productValidators/product.responses';
 
 //shared
 

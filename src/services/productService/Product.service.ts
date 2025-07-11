@@ -1,12 +1,15 @@
 import { inject, injectable } from "tsyringe";
 import { ICategoryProductRepository } from "./interfaces/ICategoryRepository";
 import { TransactionManager } from "../../core/database/transactionManager";
-import { CategoryProductDto, ObjectIdParam, UpdateCategoryProductDto } from "../../validations";
-import { CategoryProductDocument } from "../../db/models";
+import { CategoryProductDto, ObjectIdParam, ProductDto, UpdateCategoryProductDto } from "../../validations";
+import { CategoryProductDocument, ProductDocument } from "../../db/models";
 import { handleError } from "../../core/exceptions";
-import { CategoryProductValidator } from "../../core/validators";
+import { CategoryProductValidator, ProductValidator } from "../../core/validators";
 import { ClientSession } from "mongoose";
 import { Transactional } from "../../core/utils/transaccional-wrapper";
+import { IProductRepository } from "./interfaces/IProductRepository";
+import { SupplierService } from "../supplierService/Supplier.service";
+import { LocationService } from "../locationService/Location.service";
 
 @injectable()
 export class ProductService{
@@ -14,7 +17,18 @@ export class ProductService{
     constructor(
         @inject("TransactionManager") private readonly transactionManager : TransactionManager,
         @inject("ICategoryProductRepository") private readonly categoryProductRepository : ICategoryProductRepository,
-        @inject("CategoryProductValidator") private readonly categoryProductValidator : CategoryProductValidator
+        @inject("CategoryProductValidator") private readonly categoryProductValidator : CategoryProductValidator,
+
+
+        @inject("IProductRepository") private readonly productRepository : IProductRepository,
+        @inject("ProductValidator") private readonly productValidator : ProductValidator,
+
+
+        @inject(SupplierService) private readonly supplierService : SupplierService,
+
+
+        @inject(LocationService) private readonly locationService : LocationService,
+
     ){}
 
     async findCategoryById(idCategory: ObjectIdParam): Promise<CategoryProductDocument | null>{
@@ -186,6 +200,144 @@ export class ProductService{
 
             return await this.categoryProductRepository.dontViewableCategory(idCategory, session);
 
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    async findProductById(idProduct: ObjectIdParam): Promise<ProductDocument | null>{
+
+        try {
+
+            const product = await this.productRepository.findProductById(idProduct);
+
+            ProductValidator.validateProductExists(product);
+
+            return product;
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    async findProductByCustomId(customIdProduct: string): Promise<ProductDocument | null>{
+
+        try {
+
+            const product = await this.productRepository.findProductByCustomId(customIdProduct);
+
+            ProductValidator.validateProductExists(product);
+
+            return product;
+            
+        } catch (error) {
+
+            handleError(error);
+        }
+    }
+
+    async findProductBySku(sku: string): Promise<ProductDocument | null>{
+
+        try {
+
+            const product = await this.productRepository.findProductBySku(sku);
+
+            ProductValidator.validateProductExists(product);
+
+            return product;
+            
+        } catch (error) {
+            
+            handleError(error)
+        }
+    }
+
+    async findProductByBarcode(barcode: string): Promise<ProductDocument | null> {
+
+        try {
+
+            const product = await this.productRepository.findProductByBarcode(barcode);
+
+            ProductValidator.validateProductExists(product);
+
+            return product;
+            
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+    async findAllProducts(): Promise<ProductDocument[] | null> {
+
+        try {
+
+            const products = await this.productRepository.findAllProducts();
+
+            ProductValidator.validateProductsExists(products);
+
+            return products;
+
+            
+        } catch (error) {
+            
+            handleError(error);
+        
+        }
+    }
+
+    @Transactional()
+    async createProduct(dataCreateProduct: ProductDto, session?: ClientSession): Promise<ProductDocument | null>{
+
+        try {
+
+            //1. Validamos que exista la categoria del dataCreateProduct
+            await this.findCategoryById(dataCreateProduct.categoryId);
+
+            //2. Validamos que exista el supplier
+            await this.supplierService.findSupplierById(dataCreateProduct.supplierId);
+
+            //3. Validamos que el almacen exista
+            const warehouseStock = dataCreateProduct.warehouseStock;
+
+            for (const stock of warehouseStock) {
+                await this.locationService.findWarehouseById(stock.warehouseId);
+            }
+
+            //4. Validamos que no exista previamente un producto con el mismo ID
+            await this.productValidator.validateUniquenessProduct(dataCreateProduct.idProduct);
+
+            //5. Validamos que la data no tenga data ya registrada como unica
+            await this.productValidator.validateUniqueFieldsProduct({
+                sku: dataCreateProduct.sku,
+                barcode: dataCreateProduct.barcode,
+                idProduct: dataCreateProduct.idProduct,
+                name: dataCreateProduct.name,
+            });
+
+            //6. Validamos que ninguno de los valores numericos sea menor o igual a cero
+            ProductValidator.validateProductsFormatNumber({
+                purchasePrice: dataCreateProduct.purchasePrice,
+                sellingPrice: dataCreateProduct.sellingPrice,
+                minimumStockLevel: dataCreateProduct.minimumStockLevel,
+                maximumStockLevel: dataCreateProduct.maximumStockLevel,
+            });
+
+            //Validamos que las cantidades a registrar no son cero o menores
+            for (const stock of warehouseStock) {
+                ProductValidator.validateDataWarehouseStockQuantityItsNotZeroOrNegative(stock.quantity);     
+            }
+
+            // Se debe sumar esa cantidad al almacen para mantener una relacion correcta en las capacidades del almacen con la cantidad del producto
+            for (const stock of warehouseStock) {
+                await this.locationService.addCurrentCapacityWarehousePerBox(stock.warehouseId, stock.quantity, session);
+            }
+
+            // Creamos el producto
+            return await this.productRepository.createProduct(dataCreateProduct, session);
             
         } catch (error) {
             

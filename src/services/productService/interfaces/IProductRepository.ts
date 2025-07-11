@@ -13,10 +13,10 @@ export interface IProductRepository {
     updateProduct(idProduct: ObjectIdParam, dataUpdateProduct: UpdateProductDto, session?: ClientSession): Promise<ProductDocument | null>;
     activateProduct(idProduct: ObjectIdParam, session?: ClientSession): Promise<ProductDocument | null>;
     inactivateProduct(idProduct: ObjectIdParam, session?: ClientSession): Promise<ProductDocument | null>;
-    getStockByWarehouse(idWarehouse: ObjectIdParam): Promise<StockByWarehouseResponse | null>;
+    getStockByWarehouse(idWarehouse: ObjectIdParam): Promise<StockByWarehouseResponse[] | null>;
     getStockTotalByProduct(idProduct: ObjectIdParam): Promise<StockTotalByProductResponse[] | null>;
-    getAmountTotalStockByProductByWarehouse(idProduct: ObjectIdParam, idWarehouse: ObjectIdParam): Promise<AmountTotalStockByProductByWarehouseResponse | null>;
-    getAmountTotalStockByProduct(): Promise<AmountTotalStockByProductResponse | null>;
+    getTotalStockMonetaryValueByWarehouse(idProduct: ObjectIdParam, idWarehouse: ObjectIdParam): Promise<AmountTotalStockByProductByWarehouseResponse | null>;
+    getAmountTotalStockByProduct(idProduct: ObjectIdParam): Promise<AmountTotalStockByProductResponse | null>;
     addStockProduct(idProduct: ObjectIdParam, idWarehouse: ObjectIdParam, quantity: number, session?: ClientSession): Promise<ProductDocument | null>;
     removeStockProduct(idProduct: ObjectIdParam, idWarehouse: ObjectIdParam, quantity: number, session?: ClientSession): Promise<ProductDocument | null>;
 
@@ -42,5 +42,5 @@ export interface IProductRepository {
     ): Promise<ProductDocument[]>;
 
     // IProductRepository
-    existsByUniqueField(data: { sku?: string; barcode?: string; idProduct?: string }, excludeId?: ObjectIdParam): Promise<boolean>;
+    existsByUniqueField(data: { sku?: string; barcode?: string; idProduct?: string; name?: string }, excludeId?: ObjectIdParam): Promise<boolean>;
 }

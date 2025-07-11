@@ -209,6 +209,16 @@ export {CategoryProductIsAlreadyInactiveError} from './categoryProduct/categoryP
 export {CategoryProductIsAlreadyViewableError} from './categoryProduct/categoryProduct.exception';
 export {CategoryProductIsAlreadyNotViewableError} from './categoryProduct/categoryProduct.exception';
 
+//product
+
+export {ProductNotFoundError} from './products/products.exception';
+export {ProductsNotFoundInDatabaseError} from './products/products.exception';
+export {ProductAlreadyExistsError} from './products/products.exception';
+export {ProductDataHasUniqueFieldsAlreadyRegisteredError} from './products/products.exception';
+export {ProductQuantitiesValueError} from './products/products.exception';
+export {ProductQuantityWarehouseFormatError} from './products/products.exception';
+
+
 //function handle error
 
 export {handleError} from './handleErrors/handleErrors';

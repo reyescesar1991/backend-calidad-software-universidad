@@ -63,3 +63,7 @@ export {CategoryProductValidator} from './categories/category.validator';
 //warehouses
 
 export {WarehouseValidator} from './warehouses/warehouse.validator';
+
+//products
+
+export {ProductValidator} from './products/products.validator';

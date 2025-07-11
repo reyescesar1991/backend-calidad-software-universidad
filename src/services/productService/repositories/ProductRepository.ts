@@ -11,55 +11,316 @@ export class ProductRepositoryImpl implements IProductRepository {
         @inject("ProductModel") private readonly ProductModel: Model<ProductDocument>,
     ) { }
 
-    findProductById(idProduct: ObjectIdParam): Promise<ProductDocument | null> {
-        throw new Error("Method not implemented.");
-    }
-    findProductByCustomId(customIdProduct: string): Promise<ProductDocument | null> {
-        throw new Error("Method not implemented.");
-    }
-    findProductBySku(sku: string): Promise<ProductDocument | null> {
-        throw new Error("Method not implemented.");
-    }
-    findProductByBarcode(barcode: string): Promise<ProductDocument | null> {
-        throw new Error("Method not implemented.");
-    }
-    findAllProducts(): Promise<ProductDocument[] | null> {
-        throw new Error("Method not implemented.");
-    }
-    createProduct(dataCreateProduct: ProductDto, session?: ClientSession): Promise<ProductDocument | null> {
-        throw new Error("Method not implemented.");
-    }
-    updateProduct(idProduct: ObjectIdParam, dataUpdateProduct: UpdateProductDto, session?: ClientSession): Promise<ProductDocument | null> {
-        throw new Error("Method not implemented.");
-    }
-    activateProduct(idProduct: ObjectIdParam, session?: ClientSession): Promise<ProductDocument | null> {
-        throw new Error("Method not implemented.");
-    }
-    inactivateProduct(idProduct: ObjectIdParam, session?: ClientSession): Promise<ProductDocument | null> {
-        throw new Error("Method not implemented.");
-    }
-    getStockByWarehouse(idWarehouse: ObjectIdParam): Promise<StockByWarehouseResponse | null> {
-        throw new Error("Method not implemented.");
-    }
-    getStockTotalByProduct(idProduct: ObjectIdParam): Promise<StockTotalByProductResponse[] | null> {
-        throw new Error("Method not implemented.");
-    }
-    getAmountTotalStockByProductByWarehouse(idProduct: ObjectIdParam, idWarehouse: ObjectIdParam): Promise<AmountTotalStockByProductByWarehouseResponse | null> {
-        throw new Error("Method not implemented.");
-    }
-    getAmountTotalStockByProduct(): Promise<AmountTotalStockByProductResponse | null> {
-        throw new Error("Method not implemented.");
-    }
-    addStockProduct(idProduct: ObjectIdParam, idWarehouse: ObjectIdParam, quantity: number, session?: ClientSession): Promise<ProductDocument | null> {
-        throw new Error("Method not implemented.");
-    }
-    removeStockProduct(idProduct: ObjectIdParam, idWarehouse: ObjectIdParam, quantity: number, session?: ClientSession): Promise<ProductDocument | null> {
-        throw new Error("Method not implemented.");
+    async findProductById(idProduct: ObjectIdParam): Promise<ProductDocument | null> {
+
+        return await this.ProductModel.findById(idProduct).exec();
     }
 
+    async findProductByCustomId(customIdProduct: string): Promise<ProductDocument | null> {
 
+        return await this.ProductModel.findOne({ idProduct: customIdProduct }).exec();
+    }
 
+    async findProductBySku(sku: string): Promise<ProductDocument | null> {
 
+        return await this.ProductModel.findOne({ sku }).exec();
+    }
+
+    async findProductByBarcode(barcode: string): Promise<ProductDocument | null> {
+
+        return await this.ProductModel.findOne({ barcode }).exec();
+    }
+
+    async findAllProducts(): Promise<ProductDocument[] | null> {
+
+        return await this.ProductModel.find({}).exec();
+    }
+
+    async createProduct(dataCreateProduct: ProductDto, session?: ClientSession): Promise<ProductDocument | null> {
+
+        const [product] = await this.ProductModel.create([dataCreateProduct], { session });
+
+        return product;
+
+    }
+
+    async updateProduct(idProduct: ObjectIdParam, dataUpdateProduct: UpdateProductDto, session?: ClientSession): Promise<ProductDocument | null> {
+
+        return await this.ProductModel.findByIdAndUpdate(
+            idProduct,
+            dataUpdateProduct,
+            { new: true, runValidators: true, session }
+        ).exec();
+    }
+
+    async activateProduct(idProduct: ObjectIdParam, session?: ClientSession): Promise<ProductDocument | null> {
+
+        return await this.ProductModel.findByIdAndUpdate(
+            idProduct,
+            { $set: { isActive: true } },
+            { new: true, runValidators: true, session }
+        ).exec();
+    }
+
+    async inactivateProduct(idProduct: ObjectIdParam, session?: ClientSession): Promise<ProductDocument | null> {
+
+        return await this.ProductModel.findByIdAndUpdate(
+            idProduct,
+            { $set: { isActive: false } },
+            { new: true, runValidators: true, session }
+        ).exec();
+    }
+
+    async getStockByWarehouse(idWarehouse: ObjectIdParam): Promise<StockByWarehouseResponse[] | null> {
+
+        try {
+            const warehouseObjectId = new mongoose.Types.ObjectId(idWarehouse);
+
+            const pipeline = [
+                // 1. Filtrar los productos que tienen stock en el almacén de interés
+                { $match: { 'warehouseStock.warehouseId': warehouseObjectId } },
+
+                // 2. Desestructurar el array warehouseStock para procesar cada item individualmente
+                { $unwind: "$warehouseStock" },
+
+                // 3. Filtrar de nuevo para quedarnos solo con el subdocumento del almacén de interés
+                { $match: { 'warehouseStock.warehouseId': warehouseObjectId } },
+
+                // 4. Unir (JOIN) con la colección de almacenes para obtener el nombre
+                {
+                    $lookup: {
+                        from: "warehouses", // Nombre de la colección de almacenes en la DB
+                        localField: "warehouseStock.warehouseId",
+                        foreignField: "_id",
+                        as: "warehouseData"
+                    }
+                },
+
+                // 5. Desestructurar el array de datos del almacén (resultado del lookup)
+                { $unwind: "$warehouseData" },
+
+                // 6. Proyectar y Renombrar campos para que coincidan con el esquema Zod
+                {
+                    $project: {
+                        // _id: 0, // Puedes omitir el _id si lo deseas
+                        quantity: "$warehouseStock.quantity",
+                        productCustomId: "$idProduct", // Mapear 'idProduct' a 'productCustomId'
+                        productName: "$name", // Mapear 'name' a 'productName'
+                        warehouseId: "$warehouseData.idWarehouse", // Asumiendo que el ID del almacén es "idWarehouse"
+                        warehouseName: "$warehouseData.name", // Mapear el nombre del almacén
+                    }
+                }
+            ];
+
+            const results = await this.ProductModel.aggregate(pipeline).exec();
+
+            // Asegurar que el array no esté vacío
+            if (results.length === 0) {
+                return null;
+            }
+
+            // Aquí ya tienes un array de objetos planos que coinciden con el esquema de Zod
+            return results as StockByWarehouseResponse[];
+
+        } catch (error) {
+            console.error(`Error getting stock for warehouse ${idWarehouse}:`, error);
+            throw error;
+        }
+    }
+
+    async getStockTotalByProduct(idProduct: ObjectIdParam): Promise<StockTotalByProductResponse[] | null> {
+        try {
+            const pipeline = [
+                // 1. Filtrar la colección para encontrar solo el producto específico
+                {
+                    $match: { _id: new mongoose.Types.ObjectId(idProduct) }
+                },
+                // 2. Calcular la cantidad total y proyectar los campos con los nombres correctos
+                {
+                    $project: {
+                        _id: 0, // Omitimos el _id temporalmente para renombrarlo
+                        productId: "$_id",
+                        productCustomId: "$sku", // Mapeamos 'sku' a 'productCustomId'
+                        productName: "$name",    // Mapeamos 'name' a 'productName'
+                        quantity: {
+                            $sum: "$warehouseStock.quantity"
+                        }
+                    }
+                }
+            ];
+
+            const result = await this.ProductModel.aggregate(pipeline).exec();
+
+            // Si no se encuentra el producto, el resultado será un array vacío
+            if (result.length === 0) {
+                return null;
+            }
+
+            // Mongoose devuelve un array, por lo que el tipo de retorno es correcto
+            return result as StockTotalByProductResponse[];
+        } catch (error) {
+            console.error(`Error getting total stock for product ${idProduct}:`, error);
+            throw error;
+        }
+    }
+
+    async getTotalStockMonetaryValueByWarehouse(idProduct: ObjectIdParam, idWarehouse: ObjectIdParam): Promise<AmountTotalStockByProductByWarehouseResponse | null> {
+
+        try {
+            const productObjectId = new mongoose.Types.ObjectId(idProduct);
+            const warehouseObjectId = new mongoose.Types.ObjectId(idWarehouse);
+
+            const pipeline = [
+                // Paso 1: Match por el ID del producto
+                { $match: { _id: productObjectId } },
+
+                // Paso 2: Unwind para desestructurar el array warehouseStock
+                { $unwind: "$warehouseStock" },
+
+                // Paso 3: Match para obtener solo el stock del almacén de interés
+                { $match: { "warehouseStock.warehouseId": warehouseObjectId } },
+
+                // Paso 4: Lookup para unir con la colección de almacenes
+                {
+                    $lookup: {
+                        from: "warehouses",
+                        localField: "warehouseStock.warehouseId",
+                        foreignField: "_id",
+                        as: "warehouseData"
+                    }
+                },
+
+                // Paso 5: Unwind del resultado del lookup
+                { $unwind: "$warehouseData" },
+
+                // Paso 6 y 7: Cálculo del valor total y proyección final
+                {
+                    $project: {
+                        _id: 0,
+                        productId: "$_id",
+                        productCustomId: "$sku",
+                        productName: "$name",
+                        // Cálculo: cantidad * precio
+                        totalAmount: { $multiply: ["$warehouseStock.quantity", "$sellingPrice"] },
+                        warehouseId: "$warehouseData.idWarehouse",
+                        warehouseName: "$warehouseData.name",
+                    }
+                }
+            ];
+
+            const result = await this.ProductModel.aggregate(pipeline).exec();
+
+            return result[0] || null;
+
+        } catch (error) {
+            console.error(`Error getting total stock amount for product ${idProduct} in warehouse ${idWarehouse}:`, error);
+            throw error;
+        }
+    }
+
+    async getAmountTotalStockByProduct(idProduct: ObjectIdParam): Promise<AmountTotalStockByProductResponse | null> {
+        try {
+            const productObjectId = new mongoose.Types.ObjectId(idProduct);
+
+            const pipeline = [
+                // 1. Filtrar para obtener solo el producto de interés
+                {
+                    $match: { _id: productObjectId }
+                },
+                // 2. Calcular el valor total de stock para ese producto y proyectar los campos necesarios
+                {
+                    $project: {
+                        _id: 0,
+                        productId: "$_id",
+                        productCustomId: "$idProduct",
+                        productName: "$name",
+                        // Cálculo: suma de cantidad * precio
+                        totalAmount: {
+                            $multiply: ["$sellingPrice", { $sum: "$warehouseStock.quantity" }]
+                        }
+                    }
+                }
+            ];
+
+            const result = await this.ProductModel.aggregate(pipeline).exec();
+
+            // El resultado es un array de un solo elemento (o vacío si el producto no existe)
+            // Por lo tanto, tomamos el primer elemento o devolvemos null
+            return result[0] || null;
+        } catch (error) {
+            console.error(`Error getting total stock amount for product ${idProduct}:`, error);
+            throw error;
+        }
+    }
+
+    async addStockProduct(idProduct: ObjectIdParam, idWarehouse: ObjectIdParam, quantity: number, session?: ClientSession): Promise<ProductDocument | null> {
+        try {
+            const productId = new mongoose.Types.ObjectId(idProduct);
+            const warehouseId = new mongoose.Types.ObjectId(idWarehouse);
+
+            const filter = {
+                _id: productId,
+                "warehouseStock.warehouseId": warehouseId
+            };
+
+            const update = {
+                // $inc es el operador para "incrementar" un valor en el documento.
+                // Le pasamos un número positivo para lograr la resta.
+                // El '$' es el operador posicional, que actualiza el subdocumento que coincidió en el filtro.
+                $inc: {
+                    "warehouseStock.$.quantity": quantity
+                }
+            };
+
+            const options = {
+                session, // Para la transacción
+                new: true // Mongoose devuelve el documento actualizado, no el original
+            };
+
+            const updatedProduct = await this.ProductModel.findOneAndUpdate(filter, update, options);
+
+            // findOneAndUpdate devuelve null si no se encontró un documento que coincida
+            return updatedProduct;
+
+        } catch (error) {
+            console.error(`Error adding stock from product ${idProduct} in warehouse ${idWarehouse}:`, error);
+            throw error;
+        }
+    }
+
+    async removeStockProduct(idProduct: ObjectIdParam, idWarehouse: ObjectIdParam, quantity: number, session?: ClientSession): Promise<ProductDocument | null> {
+        try {
+            const productId = new mongoose.Types.ObjectId(idProduct);
+            const warehouseId = new mongoose.Types.ObjectId(idWarehouse);
+
+            const filter = {
+                _id: productId,
+                "warehouseStock.warehouseId": warehouseId
+            };
+
+            const update = {
+                // $inc es el operador para "incrementar" un valor en el documento.
+                // Le pasamos un número negativo para lograr la resta.
+                // El '$' es el operador posicional, que actualiza el subdocumento que coincidió en el filtro.
+                $inc: {
+                    "warehouseStock.$.quantity": -quantity
+                }
+            };
+
+            const options = {
+                session, // Para la transacción
+                new: true // Mongoose devuelve el documento actualizado, no el original
+            };
+
+            const updatedProduct = await this.ProductModel.findOneAndUpdate(filter, update, options);
+
+            // findOneAndUpdate devuelve null si no se encontró un documento que coincida
+            return updatedProduct;
+        } catch (error) {
+            console.error(`Error removing stock from product ${idProduct} in warehouse ${idWarehouse}:`, error);
+            throw error;
+        }
+    }
 
     async findProductsByStockLevel(status: 'low' | 'overstock' | 'ok'): Promise<ProductDocument[] | null> {
         // Pipeline de agregación

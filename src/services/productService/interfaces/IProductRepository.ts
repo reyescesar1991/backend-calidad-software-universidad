@@ -13,12 +13,6 @@ export interface IProductRepository {
     updateProduct(idProduct: ObjectIdParam, dataUpdateProduct: UpdateProductDto, session?: ClientSession): Promise<ProductDocument | null>;
     activateProduct(idProduct: ObjectIdParam, session?: ClientSession): Promise<ProductDocument | null>;
     inactivateProduct(idProduct: ObjectIdParam, session?: ClientSession): Promise<ProductDocument | null>;
-    getStockByWarehouse(idWarehouse: ObjectIdParam): Promise<StockByWarehouseResponse[] | null>;
-    getStockTotalByProduct(idProduct: ObjectIdParam): Promise<StockTotalByProductResponse[] | null>;
-    getTotalStockMonetaryValueByWarehouse(idProduct: ObjectIdParam, idWarehouse: ObjectIdParam): Promise<AmountTotalStockByProductByWarehouseResponse | null>;
-    getAmountTotalStockByProduct(idProduct: ObjectIdParam): Promise<AmountTotalStockByProductResponse | null>;
-    addStockProduct(idProduct: ObjectIdParam, idWarehouse: ObjectIdParam, quantity: number, session?: ClientSession): Promise<ProductDocument | null>;
-    removeStockProduct(idProduct: ObjectIdParam, idWarehouse: ObjectIdParam, quantity: number, session?: ClientSession): Promise<ProductDocument | null>;
 
     // IProductRepository
     findProductsByStockLevel(status: 'low' | 'overstock' | 'ok'): Promise<ProductDocument[]>;

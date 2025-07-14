@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IProductRepository } from "../../../services/productService";
 import { ProductDocument } from "../../../db/models";
-import { ProductAlreadyExistsError, ProductDataHasUniqueFieldsAlreadyRegisteredError, ProductNotFoundError, ProductQuantitiesValueError, ProductQuantityWarehouseFormatError, ProductsNotFoundInDatabaseError } from "../../exceptions";
+import { ProductAlreadyExistsError, ProductCustomIdNotMatchError, ProductDataHasUniqueFieldsAlreadyRegisteredError, ProductNotFoundError, ProductQuantitiesValueError, ProductQuantityWarehouseFormatError, ProductsNotFoundInDatabaseError } from "../../exceptions";
 
 @injectable()
 export class ProductValidator {
@@ -20,20 +20,26 @@ export class ProductValidator {
         if (product.length < 1) throw new ProductsNotFoundInDatabaseError();
     }
 
-    static validateProductsFormatNumber(data : { purchasePrice?: number; sellingPrice?: number; minimumStockLevel?: number; maximumStockLevel?: number;}): void {
+    static validateProductsFormatNumber(data: { purchasePrice?: number; sellingPrice?: number; minimumStockLevel?: number; maximumStockLevel?: number; }): void {
 
-        if(data.purchasePrice < 0 || data.sellingPrice < 0 || data.minimumStockLevel < 0 || data.maximumStockLevel < 0){
+        if (data.purchasePrice < 0 || data.sellingPrice < 0 || data.minimumStockLevel < 0 || data.maximumStockLevel < 0) {
 
             throw new ProductQuantitiesValueError();
         }
     }
 
-    static validateDataWarehouseStockQuantityItsNotZeroOrNegative(quantity : number): void {
+    static validateDataWarehouseStockQuantityItsNotZeroOrNegative(quantity: number): void {
 
-        if(quantity <= 0){
+        if (quantity <= 0) {
 
             throw new ProductQuantityWarehouseFormatError();
         }
+    }
+
+    static validateCustomIdProductItsFromTheProduct(customIdProduct: string, customIdProductParam: string): void {
+
+        if (customIdProduct !== customIdProductParam) throw new ProductCustomIdNotMatchError();
+
     }
 
     async validateUniquenessProduct(idProduct: string): Promise<void> {

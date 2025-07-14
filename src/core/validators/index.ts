@@ -67,3 +67,4 @@ export {WarehouseValidator} from './warehouses/warehouse.validator';
 //products
 
 export {ProductValidator} from './products/products.validator';
+export {ProductStockValidator} from './products/productsStock.validator';

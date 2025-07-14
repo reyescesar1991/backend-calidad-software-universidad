@@ -118,6 +118,10 @@ export {StockByWarehouseResponse} from './productValidators/product.responses';
 export {StockTotalByProductResponse} from './productValidators/product.responses';
 export {AmountTotalStockByProductByWarehouseResponse} from './productValidators/product.responses';
 export {AmountTotalStockByProductResponse} from './productValidators/product.responses';
+export {AmountTotalByWarehouseResponse} from './productValidators/product.responses';
+
+export {ProductStockDto} from './productStockValidators/productStock.validation';
+export {UpdateProductStockDto} from './productStockValidators/productStock.validation'
 
 //shared
 

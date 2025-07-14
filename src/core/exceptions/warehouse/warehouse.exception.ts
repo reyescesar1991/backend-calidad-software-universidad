@@ -79,3 +79,13 @@ export class CurrentCapacityDecreaseLessZeroCapacityWarehouseError extends AppEr
         
     }
 }
+
+export class WarehouseCustomIdNotMatchError extends AppError{
+    code = 2408;
+    constructor(message : string = "El custom id del almacen no coincide con el almacen encontrado por el ID de mongo"){
+
+        super(message);
+        this.name = "WarehouseCustomIdNotMatchError"
+        
+    }
+}

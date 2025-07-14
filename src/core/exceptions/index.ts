@@ -179,6 +179,7 @@ export {WarehouseIsAlreadyActiveError} from './warehouse/warehouse.exception';
 export {AddBoxesFormatError} from './warehouse/warehouse.exception';
 export {DecreaseBoxesFormatError} from './warehouse/warehouse.exception';
 export {CurrentCapacityDecreaseLessZeroCapacityWarehouseError} from './warehouse/warehouse.exception';
+export {WarehouseCustomIdNotMatchError} from './warehouse/warehouse.exception';
 
 //payment term
 
@@ -217,7 +218,15 @@ export {ProductAlreadyExistsError} from './products/products.exception';
 export {ProductDataHasUniqueFieldsAlreadyRegisteredError} from './products/products.exception';
 export {ProductQuantitiesValueError} from './products/products.exception';
 export {ProductQuantityWarehouseFormatError} from './products/products.exception';
+export {ProductCustomIdNotMatchError} from './products/products.exception';
 
+//product stock
+
+export {ProductStockNotFoundError} from './products/productsStock.exception';
+export {ProductStockAlreadyExistsError} from './products/productsStock.exception';
+export {ProductStockQuantityError} from './products/productsStock.exception';
+export {ProductsInStockNotFoundError} from './products/productsStock.exception';
+export {ProductStockNotExistsError} from './products/productsStock.exception';
 
 //function handle error
 

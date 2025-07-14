@@ -59,3 +59,13 @@ export class ProductQuantityWarehouseFormatError extends AppError{
         
     }
 }
+
+export class ProductCustomIdNotMatchError extends AppError{
+    code = 2806;
+    constructor(message : string = "El custom id obtenido por el usuario no coincide con el ID asignado"){
+
+        super(message);
+        this.name = "ProductCustomIdNotMatchError"
+        
+    }
+}

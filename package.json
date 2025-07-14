@@ -197,7 +197,15 @@
     "script:activate-category" : "ts-node src/scripts/products/categories/testActivateCategory.ts",
     "script:inactivate-category" : "ts-node src/scripts/products/categories/testInactivateCategory.ts",
     "script:viewable-category" : "ts-node src/scripts/products/categories/testViewableCategory.ts",
-    "script:notViewable-category" : "ts-node src/scripts/products/categories/testNotViewableCategory.ts"
+    "script:notViewable-category" : "ts-node src/scripts/products/categories/testNotViewableCategory.ts",
+    "script:create-product-stock" : "ts-node src/scripts/products/productStock/testCreateProductStock.ts",
+    "script:findbyidproduct-product-stock" : "ts-node src/scripts/products/productStock/testFindProductStockByProductId.ts",
+    "script:findbycustomidproduct-product-stock" : "ts-node src/scripts/products/productStock/testFindProductByProductCustomId.ts",
+    "script:findbywarehouseid-product-stock" : "ts-node src/scripts/products/productStock/testFindProductByWarehouseId.ts",
+    "script:findbywarehousecustomid-product-stock" : "ts-node src/scripts/products/productStock/testFindProductByWarehouseCustomId.ts",
+    "script:findall-product-stock" : "ts-node src/scripts/products/productStock/testFindAllProductsStock.ts",
+    "script:activate-product-stock" : "ts-node src/scripts/products/productStock/testActivateProductInWarehouse.ts",
+    "script:inactivate-product-stock" : "ts-node src/scripts/products/productStock/testInactivateProductInWarehouse.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

@@ -66,3 +66,8 @@ export {SecurityAuditModel} from './oauthModels/securityAudit.model';
 //simplificados
 
 export {SimplifiedRoute} from './menuModels/route.model';
+
+//product stock
+
+export {ProductStockDocument} from './productsStockModels/productStock.model';
+export {ProductStockModel} from './productsStockModels/productStock.model';

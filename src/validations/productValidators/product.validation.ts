@@ -57,19 +57,6 @@ export const productSchemaZod = z.object({
     ).optional(),
     isActive: z.boolean().optional(),
     notes: z.string().optional(),
-    warehouseStock: z.array(
-        z.object({
-            warehouseId: z.instanceof(mongoose.Types.ObjectId).refine(
-                (val) => val instanceof mongoose.Types.ObjectId,
-                { message: "ID de almacén inválido" }
-            ),
-            quantity: z.number().min(0, "La cantidad no puede ser negativa")
-        })
-    ).refine(
-        (arr) => new Set(arr.map((item) => item.warehouseId.toString())).size === arr.length,
-        { message: "No puede haber almacenes duplicados" }
-    )
-
 });
 
 export const updateProductSchemaZod = z.object({
@@ -93,7 +80,6 @@ export const updateProductSchemaZod = z.object({
     unitOfMeasure: z.string().min(1, "Unidad de medida es requerida").optional(),
     imageUrl: z.string().optional().optional(),
     notes: z.string().optional().optional(),
-
 });
 
 export type ProductDto = z.infer<typeof productSchemaZod>;

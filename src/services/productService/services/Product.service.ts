@@ -1,15 +1,15 @@
 import { inject, injectable } from "tsyringe";
-import { ICategoryProductRepository } from "./interfaces/ICategoryRepository";
-import { TransactionManager } from "../../core/database/transactionManager";
-import { CategoryProductDto, ObjectIdParam, ProductDto, UpdateCategoryProductDto } from "../../validations";
-import { CategoryProductDocument, ProductDocument } from "../../db/models";
-import { handleError } from "../../core/exceptions";
-import { CategoryProductValidator, ProductValidator } from "../../core/validators";
+import { ICategoryProductRepository } from "../interfaces/ICategoryRepository";
+import { TransactionManager } from "../../../core/database/transactionManager";
+import { CategoryProductDto, ObjectIdParam, ProductDto, UpdateCategoryProductDto } from "../../../validations";
+import { CategoryProductDocument, ProductDocument } from "../../../db/models";
+import { handleError } from "../../../core/exceptions";
+import { CategoryProductValidator, ProductValidator } from "../../../core/validators";
 import { ClientSession } from "mongoose";
-import { Transactional } from "../../core/utils/transaccional-wrapper";
-import { IProductRepository } from "./interfaces/IProductRepository";
-import { SupplierService } from "../supplierService/Supplier.service";
-import { LocationService } from "../locationService/Location.service";
+import { Transactional } from "../../../core/utils/transaccional-wrapper";
+import { IProductRepository } from "../interfaces/IProductRepository";
+import { SupplierService } from "../../supplierService/Supplier.service";
+import { LocationService } from "../../locationService/Location.service";
 
 @injectable()
 export class ProductService{
@@ -300,17 +300,10 @@ export class ProductService{
             //2. Validamos que exista el supplier
             await this.supplierService.findSupplierById(dataCreateProduct.supplierId);
 
-            //3. Validamos que el almacen exista
-            const warehouseStock = dataCreateProduct.warehouseStock;
-
-            for (const stock of warehouseStock) {
-                await this.locationService.findWarehouseById(stock.warehouseId);
-            }
-
-            //4. Validamos que no exista previamente un producto con el mismo ID
+            //3. Validamos que no exista previamente un producto con el mismo ID
             await this.productValidator.validateUniquenessProduct(dataCreateProduct.idProduct);
 
-            //5. Validamos que la data no tenga data ya registrada como unica
+            //4. Validamos que la data no tenga data ya registrada como unica
             await this.productValidator.validateUniqueFieldsProduct({
                 sku: dataCreateProduct.sku,
                 barcode: dataCreateProduct.barcode,
@@ -318,24 +311,14 @@ export class ProductService{
                 name: dataCreateProduct.name,
             });
 
-            //6. Validamos que ninguno de los valores numericos sea menor o igual a cero
+            //5. Validamos que ninguno de los valores numericos sea menor o igual a cero
             ProductValidator.validateProductsFormatNumber({
                 purchasePrice: dataCreateProduct.purchasePrice,
                 sellingPrice: dataCreateProduct.sellingPrice,
                 minimumStockLevel: dataCreateProduct.minimumStockLevel,
                 maximumStockLevel: dataCreateProduct.maximumStockLevel,
             });
-
-            //Validamos que las cantidades a registrar no son cero o menores
-            for (const stock of warehouseStock) {
-                ProductValidator.validateDataWarehouseStockQuantityItsNotZeroOrNegative(stock.quantity);     
-            }
-
-            // Se debe sumar esa cantidad al almacen para mantener una relacion correcta en las capacidades del almacen con la cantidad del producto
-            for (const stock of warehouseStock) {
-                await this.locationService.addCurrentCapacityWarehousePerBox(stock.warehouseId, stock.quantity, session);
-            }
-
+            
             // Creamos el producto
             return await this.productRepository.createProduct(dataCreateProduct, session);
             

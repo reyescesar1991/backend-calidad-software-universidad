@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { WarehouseDocument } from "../../../db/models";
-import { CurrentCapacityDecreaseLessZeroCapacityWarehouseError, CurrentCapacityExceedsCapacityWarehouseError, WarehouseCustomIdAlreadyExistsError, WarehouseIsAlreadyActiveError, WarehouseIsAlreadyInactiveError, WarehouseNotFoundError } from "../../exceptions";
+import { CurrentCapacityDecreaseLessZeroCapacityWarehouseError, CurrentCapacityExceedsCapacityWarehouseError, WarehouseCustomIdAlreadyExistsError, WarehouseCustomIdNotMatchError, WarehouseIsAlreadyActiveError, WarehouseIsAlreadyInactiveError, WarehouseNotFoundError } from "../../exceptions";
 import { IWarehouseRepository } from "../../../services/locationService";
 
 @injectable()
@@ -31,6 +31,12 @@ export class WarehouseValidator{
     static validateWarehouseIsAlreadyInactive(warehouse : WarehouseDocument) : void {
 
         if(!warehouse.isActive) throw new WarehouseIsAlreadyInactiveError();
+    }
+
+    static validateCustomIdWarehouseItsFromTheWarehouse(customIdWarehouse: string, customIdWarehouseParam: string): void {
+
+        if(customIdWarehouse !== customIdWarehouseParam) throw new WarehouseCustomIdNotMatchError();
+
     }
 
     static validateWarehouseIsAlreadyActive(warehouse : WarehouseDocument) : void {

@@ -23,14 +23,6 @@ export interface ProductDocument extends Document {
   updatedAt: Date,
   isActive: boolean,
   notes: string,
-  warehouseStock: [{
-    warehouseId: mongoose.Schema.Types.ObjectId;
-    quantity: {
-      type: number,
-      min: number,
-      required: boolean
-    }
-  }],
 };
 
 export const productSchema = new Schema({
@@ -61,18 +53,6 @@ export const productSchema = new Schema({
   updatedAt: { type: Date, required: false, default: new Date(Date.now()) },
   isActive: { type: Boolean, required: false, default: true },
   notes: { type: String, required: false },
-  warehouseStock: [{
-    warehouseId: {
-      type: Schema.Types.ObjectId,
-      ref: "Warehouse",
-      required: true
-    },
-    quantity: {
-      type: Number,
-      min: 0,
-      required: true
-    }
-  }],
 
 }, { timestamps: true });
 
@@ -81,8 +61,6 @@ productSchema.index({ supplierId: 1 });
 productSchema.index({ isActive: 1 });
 productSchema.index({ categoryId: 1, isActive: 1 });
 productSchema.index({ supplierId: 1, isActive: 1 });
-// El índice se crea en el campo anidado 'warehouseId'
-productSchema.index({ 'warehouseStock.warehouseId': 1, 'warehouseStock.quantity': 1 });
 productSchema.index({ name: "text", description: "text" });
 productSchema.index({ updatedAt: -1 }); // Los más recientes primero
 

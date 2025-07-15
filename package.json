@@ -205,7 +205,14 @@
     "script:findbywarehousecustomid-product-stock" : "ts-node src/scripts/products/productStock/testFindProductByWarehouseCustomId.ts",
     "script:findall-product-stock" : "ts-node src/scripts/products/productStock/testFindAllProductsStock.ts",
     "script:activate-product-stock" : "ts-node src/scripts/products/productStock/testActivateProductInWarehouse.ts",
-    "script:inactivate-product-stock" : "ts-node src/scripts/products/productStock/testInactivateProductInWarehouse.ts"
+    "script:inactivate-product-stock" : "ts-node src/scripts/products/productStock/testInactivateProductInWarehouse.ts",
+    "script:add-product-stock" : "ts-node src/scripts/products/productStock/testAddStockProduct.ts",
+    "script:remove-product-stock" : "ts-node src/scripts/products/productStock/testRemoveStockProduct.ts",
+    "script:get-stock-warehouse" : "ts-node src/scripts/products/productStock/testGetStockByWarehouse.ts",
+    "script:get-stock-product" : "ts-node src/scripts/products/productStock/testGetStockTotalByProduct.ts",
+    "script:getmonetaryvaluewarehouse-stock" : "ts-node src/scripts/products/productStock/testGetTotalStockMonetaryValueByWarehouse.ts",
+    "script:getamounttotalstock-product-stock" : "ts-node src/scripts/products/productStock/testGetAmountTotalStockByProduct.ts",
+    "script:getamountproduct-warehouse-stock" : "ts-node src/scripts/products/productStock/testGetMonetaryValueForSpecificProductInWarehouse.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

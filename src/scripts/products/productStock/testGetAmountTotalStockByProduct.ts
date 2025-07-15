@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import { disconnectMongo, initializeTestEnvironment } from '../../../core/utils/connectDb';
-import { objectIdSchema, ProductStockDto } from '../../../validations';
 import { container } from 'tsyringe';
 import { ProductStockService } from '../../../services/productService';
 import { configureCategoriesDependencies } from '../../../core/config/dependenciesCategories/dependencies';
@@ -10,12 +9,13 @@ import { configurePaymentTermsDependencies } from '../../../core/config/dependen
 import { configureDependenciesHeadquarters } from '../../../core/config/dependenciesHeadquarters/dependencies';
 import { configureDependenciesDepartments } from '../../../core/config/dependenciesDepartments/dependencies';
 import { configureWarehouseDependencies } from '../../../core/config/dependenciesWarehouses/dependencies';
+import { objectIdSchema } from '../../../validations';
 
 
 initializeTestEnvironment();
 
 
-const runTestCreateProductStock = async () => {
+const runTestGetAmountTotalStockByProduct = async () => {
 
 
     try {
@@ -28,20 +28,13 @@ const runTestCreateProductStock = async () => {
         await configureDependenciesDepartments();
         await configureWarehouseDependencies();
 
-        const dataCreateCategory : ProductStockDto = {
-
-            productId : objectIdSchema.parse("67f6b81ac5e6b5a14ec501cb"),
-            productCustomId : "PROD000002",
-            warehouseId : objectIdSchema.parse("67f690a03ad8f43e09cec544"),
-            warehouseCustomId : "ALM-Car-001",
-            quantity : 0,
-        };
+        const productId = objectIdSchema.parse("67f6b81ac5e6b5a14ec501cb");
       
         const productStockService = container.resolve(ProductStockService);
 
-        const result = await productStockService.createProductStock(dataCreateCategory);
+        const result = await productStockService.getAmountTotalStockByProduct(productId);
 
-        console.log("📄 Stock de producto creado:", result);
+        console.log(`Monto total de este producto en todos los almacenes:`, result);
         
     } catch (error) {
 
@@ -54,7 +47,7 @@ const runTestCreateProductStock = async () => {
     }
 }
 
-runTestCreateProductStock().then(() => {
+runTestGetAmountTotalStockByProduct().then(() => {
 
     console.log('Proceso de seed completo');
 })

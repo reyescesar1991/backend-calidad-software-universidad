@@ -23,9 +23,9 @@ export class WarehouseValidator{
         if(warehouse) throw new WarehouseCustomIdAlreadyExistsError();
     }
 
-    static validateCurrentCapacityWithCapacity(currentCapacity : number, capacity : number) : void{
+    static validateCurrentCapacityWithCapacity(capacity : number, currentCapacity : number) : void{
 
-        if(capacity > currentCapacity) throw new CurrentCapacityExceedsCapacityWarehouseError();
+        if(currentCapacity > capacity) throw new CurrentCapacityExceedsCapacityWarehouseError();
     }
 
     static validateWarehouseIsAlreadyInactive(warehouse : WarehouseDocument) : void {

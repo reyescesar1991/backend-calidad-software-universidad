@@ -554,7 +554,7 @@ export class LocationService {
 
             WarehouseValidator.validateWarehouseIsAlreadyInactive(warehouse);
 
-            WarehouseValidator.validateCurrentCapacityWithCapacity(warehouse.currentCapacity, (warehouse.currentCapacity + addBoxes));
+            WarehouseValidator.validateCurrentCapacityWithCapacity(warehouse.capacity, (warehouse.currentCapacity + addBoxes));
 
             if(addBoxes > 0){
 

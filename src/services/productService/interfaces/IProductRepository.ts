@@ -15,9 +15,6 @@ export interface IProductRepository {
     inactivateProduct(idProduct: ObjectIdParam, session?: ClientSession): Promise<ProductDocument | null>;
 
     // IProductRepository
-    findProductsByStockLevel(status: 'low' | 'overstock' | 'ok'): Promise<ProductDocument[]>;
-
-    // IProductRepository
     findProductsByCriteria(
         criteria: {
             categoryId?: ObjectIdParam;

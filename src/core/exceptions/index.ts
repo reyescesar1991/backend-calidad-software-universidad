@@ -219,6 +219,10 @@ export {ProductDataHasUniqueFieldsAlreadyRegisteredError} from './products/produ
 export {ProductQuantitiesValueError} from './products/products.exception';
 export {ProductQuantityWarehouseFormatError} from './products/products.exception';
 export {ProductCustomIdNotMatchError} from './products/products.exception';
+export {ProductIsAlreadyActiveError} from './products/products.exception';
+export {ProductIsAlreadyInactiveError} from './products/products.exception';
+export {ProductCriteriaPaginationPageError} from './products/products.exception';
+
 
 //product stock
 

@@ -3,7 +3,7 @@ export abstract class AppError extends Error {
 }
 
 export class InvalidParamError extends AppError {
-    code = 1001;
+    code = 400;
     constructor(message: string) {
         super(message);
         this.name = "InvalidParamError";
@@ -11,7 +11,7 @@ export class InvalidParamError extends AppError {
 }
 
 export class BadFormatMongoIDError extends AppError {
-    code = 1002;
+    code = 400;
     constructor() {
         super("Formato de ID de objeto no es valido");
         this.name = "BadFormatMongoIDError";
@@ -19,7 +19,7 @@ export class BadFormatMongoIDError extends AppError {
 }
 
 export class DatabaseConnectionError extends AppError {
-    code = 1003;
+    code = 500;
     constructor() {
         super("Error en consulta, intente nuevamente");
         this.name = "DatabaseConnectionError";
@@ -28,11 +28,23 @@ export class DatabaseConnectionError extends AppError {
 
 export class UnexpectedError extends AppError{
 
-    code = 1004;
+    code = 500;
+    details: any;
     constructor(error : Error, message : string = "Ha ocurrido un error inesperado, intente nuevamente" + error){
 
         super(message);
         this.name = "UnexpectedError";
+    }
+}
+
+export class UnauthorizedSessionError extends AppError{
+
+    code = 401;
+    details: any;
+    constructor(message : string = "Usted no esta autorizado para realizar esta accion, intente nuevamente", error ?: Error){
+
+        super(message);
+        this.name = "UnauthorizedSessionError";
     }
 }
 

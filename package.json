@@ -125,7 +125,7 @@
     "script:decrease-stock-warehouse" : "ts-node src/scripts/warehouse/testDecreaseCurrentCapacityWarehouse.ts",
     "script:create-user": "ts-node src/scripts/users/testCreateUser.ts",
     "script:findbyid-user": "ts-node src/scripts/users/testFindUserById.ts",
-    "script:findbycustomid-user": "ts-node src/scripts/users/testFindUserByCustomId.ts",
+    "script:findbycustomid-user": "ts-node src/scripts/users/testFindUserByCusomId.ts",
     "script:findbyusername-user": "ts-node src/scripts/users/testFindUserByUsername.ts",
     "script:searchbyfilter-user": "ts-node src/scripts/users/testSearchUserByFilter.ts",
     "script:update-user": "ts-node src/scripts/users/testUpdateUser.ts",
@@ -212,7 +212,19 @@
     "script:get-stock-product" : "ts-node src/scripts/products/productStock/testGetStockTotalByProduct.ts",
     "script:getmonetaryvaluewarehouse-stock" : "ts-node src/scripts/products/productStock/testGetTotalStockMonetaryValueByWarehouse.ts",
     "script:getamounttotalstock-product-stock" : "ts-node src/scripts/products/productStock/testGetAmountTotalStockByProduct.ts",
-    "script:getamountproduct-warehouse-stock" : "ts-node src/scripts/products/productStock/testGetMonetaryValueForSpecificProductInWarehouse.ts"
+    "script:getamountproduct-warehouse-stock" : "ts-node src/scripts/products/productStock/testGetMonetaryValueForSpecificProductInWarehouse.ts",
+    "script:findbystatus-product" : "ts-node src/scripts/products/productStock/testFindProductsByStockLevel.ts",
+    "script:findbyid-product" : "ts-node src/scripts/products/mainTest/testFindProductById.ts",
+    "script:findbycustomid-product" : "ts-node src/scripts/products/mainTest/testFindProductByCustomId.ts",
+    "script:findbysku-product" : "ts-node src/scripts/products/mainTest/testFindProductBySku.ts",
+    "script:findbybarcode-product" : "ts-node src/scripts/products/mainTest/testFindProductByBarcode.ts",
+    "script:findall-product" : "ts-node src/scripts/products/mainTest/testFindAllProducts.ts",
+    "script:create-product" : "ts-node src/scripts/products/mainTest/testCreateProduct.ts",
+
+    "script:update-product" : "ts-node src/scripts/products/mainTest/testUpdateProduct.ts",
+    "script:activate-product" : "ts-node src/scripts/products/mainTest/testActivateProduct.ts",
+    "script:inactivate-product" : "ts-node src/scripts/products/mainTest/testInactivateProduct.ts",
+    "script:findbycriteria-product" : "ts-node src/scripts/products/mainTest/testFindProductsByCriteria.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",
@@ -243,3 +255,5 @@
     "typescript": "^5.8.2"
   }
 }
+
+

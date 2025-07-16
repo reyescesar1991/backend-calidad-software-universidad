@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IProductRepository } from "../../../services/productService";
 import { ProductDocument } from "../../../db/models";
-import { ProductAlreadyExistsError, ProductCustomIdNotMatchError, ProductDataHasUniqueFieldsAlreadyRegisteredError, ProductNotFoundError, ProductQuantitiesValueError, ProductQuantityWarehouseFormatError, ProductsNotFoundInDatabaseError } from "../../exceptions";
+import { ProductAlreadyExistsError, ProductCustomIdNotMatchError, ProductDataHasUniqueFieldsAlreadyRegisteredError, ProductIsAlreadyActiveError, ProductIsAlreadyInactiveError, ProductNotFoundError, ProductQuantitiesValueError, ProductQuantityWarehouseFormatError, ProductsNotFoundInDatabaseError } from "../../exceptions";
 
 @injectable()
 export class ProductValidator {
@@ -40,6 +40,16 @@ export class ProductValidator {
 
         if (customIdProduct !== customIdProductParam) throw new ProductCustomIdNotMatchError();
 
+    }
+
+    static validateProductAlreadyIsActive(product: ProductDocument): void {
+
+        if (product.isActive) throw new ProductIsAlreadyActiveError();
+    }
+
+    static validateProductAlreadyIsInactive(product: ProductDocument): void {
+
+        if (!product.isActive) throw new ProductIsAlreadyInactiveError();
     }
 
     async validateUniquenessProduct(idProduct: string): Promise<void> {

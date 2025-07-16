@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { ClientSession, Model } from "mongoose";
 import { ProductStockDocument, ProductDocument } from "../../../db/models";
-import { ObjectIdParam, ProductStockDto, UpdateProductStockDto, StockByWarehouseResponse, StockTotalByProductResponse, AmountTotalStockByProductByWarehouseResponse, AmountTotalStockByProductResponse } from "../../../validations";
+import { ObjectIdParam, ProductStockDto, UpdateProductStockDto, StockByWarehouseResponse, StockTotalByProductResponse, AmountTotalStockByProductByWarehouseResponse, AmountTotalStockByProductResponse, StockByStatusResponse } from "../../../validations";
 import { IProductStockRepository } from "../interfaces/IProductStockRepository";
 import mongoose from "mongoose";
 
@@ -409,6 +409,92 @@ export class ProductStockRepositoryImpl implements IProductStockRepository {
                 `Error getting monetary value for product ${idProduct} in warehouse ${idWarehouse}:`,
                 error
             );
+            throw error;
+        }
+    }
+
+
+    async findProductsByStockLevel(status: 'low' | 'overstock' | 'ok'): Promise<StockByStatusResponse[] | null> {
+        try {
+            const pipeline = [
+                // 1. Agrupar la cantidad de stock total por cada producto desde ProductStock
+                {
+                    $group: {
+                        _id: "$productId", // Agrupamos por el ID del producto
+                        totalQuantity: { $sum: "$quantity" }, // Sumamos la cantidad de todos los almacenes para cada producto
+                    }
+                },
+                // 2. Unir con la colección de Productos para obtener minimumStockLevel, maximumStockLevel y otros detalles del producto
+                {
+                    $lookup: {
+                        from: "products", // Nombre de tu colección de productos en MongoDB
+                        localField: "_id", // El _id del grupo es el productId
+                        foreignField: "_id",
+                        as: "productData" // El array donde se guardará el documento del producto
+                    }
+                },
+                // 3. Desestructurar el array productData (asumiendo que siempre habrá un solo producto por ID)
+                { $unwind: "$productData" },
+
+                // 4. Filtrar por productos activos (usando el campo isActive de ProductModel)
+                {
+                    $match: {
+                        "productData.isActive": true // Filtramos por productos que estén activos
+                    }
+                },
+
+                // 5. Filtrar basado en el estado (low, overstock, ok) utilizando los niveles de stock del producto
+                {
+                    $match: {
+                        $expr: {
+                            $switch: {
+                                branches: [
+                                    {
+                                        case: { $eq: [status, "low"] },
+                                        then: { $lt: ["$totalQuantity", "$productData.minimumStockLevel"] }
+                                    },
+                                    {
+                                        case: { $eq: [status, "overstock"] },
+                                        then: { $gt: ["$totalQuantity", "$productData.maximumStockLevel"] }
+                                    },
+                                    {
+                                        case: { $eq: [status, "ok"] },
+                                        then: {
+                                            $and: [
+                                                { $gte: ["$totalQuantity", "$productData.minimumStockLevel"] },
+                                                { $lte: ["$totalQuantity", "$productData.maximumStockLevel"] }
+                                            ]
+                                        }
+                                    }
+                                ],
+                                default: false // Si el estado no coincide con ninguno, no devuelve nada
+                            }
+                        }
+                    }
+                },
+
+                // 6. Proyectar los campos finales para que coincidan con StockByStatusResponse
+                {
+                    $project: {
+                        _id: 0, // Ocultar el _id del documento de grupo
+                        productCustomId: "$productData.idProduct", // <-- Mapear a idProduct del documento Product
+                        productName: "$productData.name",
+                        quantity: "$totalQuantity",
+                        status: status // <-- El valor del estado pasado como parámetro
+                    }
+                }
+            ];
+
+            const products = await this.ProductStockModel.aggregate(pipeline).exec();
+
+            if (products.length === 0) {
+                return null;
+            }
+
+            return products as StockByStatusResponse[];
+
+        } catch (error) {
+            console.error(`Error finding products by stock level '${status}':`, error);
             throw error;
         }
     }

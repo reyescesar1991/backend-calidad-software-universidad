@@ -27,6 +27,30 @@ export class SessionManagamentService {
         @inject("UserService") private readonly userService: UserService,
     ) { }
 
+    /**
+     * Verifica la validez de un token y su sesión activa en la base de datos.
+     * Este método está diseñado para ser usado por middlewares de autenticación.
+     * @param token El token JWT a verificar.
+     * @returns El payload del JWT si todo es correcto.
+     * @throws {UnauthorizedError} Si el token es inválido, ha expirado, o la sesión no es válida.
+     */
+    async verifyActiveSessionAndToken(token: string) {
+        try {
+            // 1. Verificamos la firma y expiración del token.
+            const userData = this.tokenService.verifyToken(token);
+
+            // 2. Verificamos que el usuario esté activo.
+            await this.userService.getStatusUserActive(userData.userId);
+
+            // 3. Verificamos que el token exista en una sesión activa en la BD.
+            await this.sessionManagementValidator.validateUserTokenIsValid(userData.userId, token);
+
+            return userData;
+        } catch (error) {
+            handleError(error); // Relanza el error para que el middleware lo capture.
+        }
+    }
+
     async getSessionUserValidate(customId: string): Promise<SessionManagementDocument | null> {
 
         try {

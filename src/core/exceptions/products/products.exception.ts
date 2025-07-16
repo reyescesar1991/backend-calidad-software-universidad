@@ -69,3 +69,33 @@ export class ProductCustomIdNotMatchError extends AppError{
         
     }
 }
+
+export class ProductIsAlreadyActiveError extends AppError{
+    code = 2807;
+    constructor(message : string = "El producto ya se encuentra activo actualmente"){
+
+        super(message);
+        this.name = "ProductIsAlreadyActiveError"
+        
+    }
+}
+
+export class ProductIsAlreadyInactiveError extends AppError{
+    code = 2808;
+    constructor(message : string = "El producto ya se encuentra inactivo actualmente"){
+
+        super(message);
+        this.name = "ProductIsAlreadyInactiveError"
+        
+    }
+}
+
+export class ProductCriteriaPaginationPageError extends AppError{
+    code = 2809;
+    constructor(message : string = "El limite de la paginacion no puede ser menor a cero, intente nuevamente con valores validos"){
+
+        super(message);
+        this.name = "ProductCriteriaPaginationPageError"
+        
+    }
+}

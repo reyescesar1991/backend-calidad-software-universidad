@@ -3,7 +3,6 @@ import { ProductDocument } from "../../../db/models";
 import { ObjectIdParam, ProductDto, UpdateProductDto, StockByWarehouseResponse, StockTotalByProductResponse, AmountTotalStockByProductByWarehouseResponse, AmountTotalStockByProductResponse } from "../../../validations";
 import { IProductRepository } from "../interfaces/IProductRepository";
 import { inject, injectable } from "tsyringe";
-import mongoose from "mongoose";
 
 @injectable()
 export class ProductRepositoryImpl implements IProductRepository {
@@ -70,62 +69,6 @@ export class ProductRepositoryImpl implements IProductRepository {
             { $set: { isActive: false } },
             { new: true, runValidators: true, session }
         ).exec();
-    }
-
-    async findProductsByStockLevel(status: 'low' | 'overstock' | 'ok'): Promise<ProductDocument[] | null> {
-        // Pipeline de agregación
-        const pipeline = [
-            // 1. Sumar la cantidad de stock de todos los almacenes para cada producto
-            {
-                $project: {
-                    _id: 1,
-                    name: 1,
-                    minimumStockLevel: 1,
-                    maximumStockLevel: 1,
-                    totalQuantity: {
-                        $sum: "$warehouseStock.quantity"
-                    }
-                }
-            },
-            // 2. Filtrar basado en el estado (low, overstock, ok)
-            {
-                $match: {
-                    $expr: {
-                        $and: [
-                            { $eq: ["$isActive", true] }, // Asegura que solo buscamos productos activos
-                            {
-                                $switch: {
-                                    branches: [
-                                        {
-                                            case: { $eq: [status, "low"] },
-                                            then: { $lt: ["$totalQuantity", "$minimumStockLevel"] }
-                                        },
-                                        {
-                                            case: { $eq: [status, "overstock"] },
-                                            then: { $gt: ["$totalQuantity", "$maximumStockLevel"] }
-                                        },
-                                        {
-                                            case: { $eq: [status, "ok"] },
-                                            then: {
-                                                $and: [
-                                                    { $gte: ["$totalQuantity", "$minimumStockLevel"] },
-                                                    { $lte: ["$totalQuantity", "$maximumStockLevel"] }
-                                                ]
-                                            }
-                                        }
-                                    ],
-                                    default: false
-                                }
-                            }
-                        ]
-                    }
-                }
-            }
-        ];
-
-        // Ejecutar el pipeline de agregación y devolver los resultados
-        // Mongoose Aggregate produce un tipo de retorno complejo, el cast es para simplificar.
-        return await this.ProductModel.aggregate(pipeline).exec() as ProductDocument[];
     }
 
 

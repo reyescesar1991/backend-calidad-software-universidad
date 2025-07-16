@@ -116,9 +116,23 @@ export const amountTotalStockByProductByWarehouseResponse = z.object({
 });
 
 
+// Define este nuevo esquema Zod en un archivo dto, por ejemplo, warehouse-total-monetary-value-response.dto.ts
+export const stockByStatusResponse = z.object({
+    productCustomId: z.string().refine(
+        (value) => {
+            const regex = /^PROD\d{6}$/;
+            return regex.test(value);
+        },
+        "Formato de ID de producto incorrecto, debe tener el siguiente formato: PROD000000"
+    ),
+    productName: z.string().min(1, "Nombre de producto es requerido"),
+    quantity : z.number(),
+    status : z.string(),
+});
+
+
 //Response para cantidad de ese producto en un almacen
 export type StockByWarehouseResponse = z.infer<typeof stockByWarehouseResponse>;
-
 
 //Response para cantidad de ese producto en todos los almacenes
 export type StockTotalByProductResponse = z.infer<typeof stockTotalByProductResponse>;
@@ -131,3 +145,6 @@ export type AmountTotalStockByProductResponse = z.infer<typeof amountTotalStockB
 
 //Monto total de un producto en un almacen
 export type AmountTotalStockByProductByWarehouseResponse = z.infer<typeof amountTotalStockByProductByWarehouseResponse>;
+
+//Response para cantidad de ese producto en un almacen
+export type StockByStatusResponse = z.infer<typeof stockByStatusResponse>;

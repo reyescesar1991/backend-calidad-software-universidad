@@ -1,37 +1,38 @@
 import { inject, injectable } from "tsyringe";
 import { ICategoryProductRepository } from "../interfaces/ICategoryRepository";
 import { TransactionManager } from "../../../core/database/transactionManager";
-import { CategoryProductDto, ObjectIdParam, ProductDto, UpdateCategoryProductDto } from "../../../validations";
+import { CategoryProductDto, ObjectIdParam, ProductDto, UpdateCategoryProductDto, UpdateProductDto } from "../../../validations";
 import { CategoryProductDocument, ProductDocument } from "../../../db/models";
-import { handleError } from "../../../core/exceptions";
+import { handleError, ProductCriteriaPaginationPageError } from "../../../core/exceptions";
 import { CategoryProductValidator, ProductValidator } from "../../../core/validators";
 import { ClientSession } from "mongoose";
 import { Transactional } from "../../../core/utils/transaccional-wrapper";
 import { IProductRepository } from "../interfaces/IProductRepository";
 import { SupplierService } from "../../supplierService/Supplier.service";
 import { LocationService } from "../../locationService/Location.service";
+import { r } from "@upstash/redis/zmscore-DzNHSWxc";
 
 @injectable()
-export class ProductService{
+export class ProductService {
 
     constructor(
-        @inject("TransactionManager") private readonly transactionManager : TransactionManager,
-        @inject("ICategoryProductRepository") private readonly categoryProductRepository : ICategoryProductRepository,
-        @inject("CategoryProductValidator") private readonly categoryProductValidator : CategoryProductValidator,
+        @inject("TransactionManager") private readonly transactionManager: TransactionManager,
+        @inject("ICategoryProductRepository") private readonly categoryProductRepository: ICategoryProductRepository,
+        @inject("CategoryProductValidator") private readonly categoryProductValidator: CategoryProductValidator,
 
 
-        @inject("IProductRepository") private readonly productRepository : IProductRepository,
-        @inject("ProductValidator") private readonly productValidator : ProductValidator,
+        @inject("IProductRepository") private readonly productRepository: IProductRepository,
+        @inject("ProductValidator") private readonly productValidator: ProductValidator,
 
 
-        @inject(SupplierService) private readonly supplierService : SupplierService,
+        @inject(SupplierService) private readonly supplierService: SupplierService,
 
 
-        @inject(LocationService) private readonly locationService : LocationService,
+        @inject(LocationService) private readonly locationService: LocationService,
 
-    ){}
+    ) { }
 
-    async findCategoryById(idCategory: ObjectIdParam): Promise<CategoryProductDocument | null>{
+    async findCategoryById(idCategory: ObjectIdParam): Promise<CategoryProductDocument | null> {
 
         try {
 
@@ -40,14 +41,14 @@ export class ProductService{
             CategoryProductValidator.validateCategoryProductExists(category);
 
             return category;
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
-    async findAllCategories(): Promise<CategoryProductDocument[] | null>{
+    async findAllCategories(): Promise<CategoryProductDocument[] | null> {
 
         try {
 
@@ -56,14 +57,14 @@ export class ProductService{
             CategoryProductValidator.validateCategoriesProductExists(categories);
 
             return categories;
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
-    async findCategoryByCustomId(customIdCategory: string): Promise<CategoryProductDocument | null>{
+    async findCategoryByCustomId(customIdCategory: string): Promise<CategoryProductDocument | null> {
 
         try {
 
@@ -72,14 +73,14 @@ export class ProductService{
             CategoryProductValidator.validateCategoryProductExists(category);
 
             return category;
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
-    async findCategoryByLabel(label: string, isActive ?: boolean): Promise<CategoryProductDocument[] | null> {
+    async findCategoryByLabel(label: string, isActive?: boolean): Promise<CategoryProductDocument[] | null> {
 
         try {
 
@@ -88,9 +89,9 @@ export class ProductService{
             CategoryProductValidator.validateCategoriesProductExistsByLabel(categories);
 
             return categories;
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
@@ -103,9 +104,9 @@ export class ProductService{
             await this.categoryProductValidator.validateCustomIdUniqueness(dataCreateCategory.idCategory);
 
             return await this.categoryProductRepository.createCategory(dataCreateCategory, session);
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
@@ -120,15 +121,15 @@ export class ProductService{
             CategoryProductValidator.validateCategoryProductExists(category);
 
             return await this.categoryProductRepository.updateCategory(idCategory, dataUpdateCategory, session);
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
     @Transactional()
-    async activateCategory(idCategory: ObjectIdParam, session?: ClientSession): Promise<CategoryProductDocument | null>{
+    async activateCategory(idCategory: ObjectIdParam, session?: ClientSession): Promise<CategoryProductDocument | null> {
 
         try {
 
@@ -140,15 +141,15 @@ export class ProductService{
 
             return await this.categoryProductRepository.activateCategory(idCategory, session);
 
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
     @Transactional()
-    async inactivateCategory(idCategory: ObjectIdParam, session?: ClientSession): Promise<CategoryProductDocument | null>{
+    async inactivateCategory(idCategory: ObjectIdParam, session?: ClientSession): Promise<CategoryProductDocument | null> {
 
         try {
 
@@ -160,15 +161,15 @@ export class ProductService{
 
             return await this.categoryProductRepository.inactivateCategory(idCategory, session);
 
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
     @Transactional()
-    async viewableCategory(idCategory: ObjectIdParam, session?: ClientSession): Promise<CategoryProductDocument | null>{
+    async viewableCategory(idCategory: ObjectIdParam, session?: ClientSession): Promise<CategoryProductDocument | null> {
 
         try {
 
@@ -180,15 +181,15 @@ export class ProductService{
 
             return await this.categoryProductRepository.viewableCategory(idCategory, session);
 
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
     @Transactional()
-    async dontViewableCategory(idCategory: ObjectIdParam, session?: ClientSession): Promise<CategoryProductDocument | null>{
+    async dontViewableCategory(idCategory: ObjectIdParam, session?: ClientSession): Promise<CategoryProductDocument | null> {
 
         try {
 
@@ -200,14 +201,14 @@ export class ProductService{
 
             return await this.categoryProductRepository.dontViewableCategory(idCategory, session);
 
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
-    async findProductById(idProduct: ObjectIdParam): Promise<ProductDocument | null>{
+    async findProductById(idProduct: ObjectIdParam): Promise<ProductDocument | null> {
 
         try {
 
@@ -216,14 +217,14 @@ export class ProductService{
             ProductValidator.validateProductExists(product);
 
             return product;
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
 
-    async findProductByCustomId(customIdProduct: string): Promise<ProductDocument | null>{
+    async findProductByCustomId(customIdProduct: string): Promise<ProductDocument | null> {
 
         try {
 
@@ -232,14 +233,14 @@ export class ProductService{
             ProductValidator.validateProductExists(product);
 
             return product;
-            
+
         } catch (error) {
 
             handleError(error);
         }
     }
 
-    async findProductBySku(sku: string): Promise<ProductDocument | null>{
+    async findProductBySku(sku: string): Promise<ProductDocument | null> {
 
         try {
 
@@ -248,9 +249,9 @@ export class ProductService{
             ProductValidator.validateProductExists(product);
 
             return product;
-            
+
         } catch (error) {
-            
+
             handleError(error)
         }
     }
@@ -264,9 +265,9 @@ export class ProductService{
             ProductValidator.validateProductExists(product);
 
             return product;
-            
+
         } catch (error) {
-            
+
             handleError(error);
         }
     }
@@ -281,16 +282,16 @@ export class ProductService{
 
             return products;
 
-            
+
         } catch (error) {
-            
+
             handleError(error);
-        
+
         }
     }
 
     @Transactional()
-    async createProduct(dataCreateProduct: ProductDto, session?: ClientSession): Promise<ProductDocument | null>{
+    async createProduct(dataCreateProduct: ProductDto, session?: ClientSession): Promise<ProductDocument | null> {
 
         try {
 
@@ -318,12 +319,149 @@ export class ProductService{
                 minimumStockLevel: dataCreateProduct.minimumStockLevel,
                 maximumStockLevel: dataCreateProduct.maximumStockLevel,
             });
-            
+
             // Creamos el producto
             return await this.productRepository.createProduct(dataCreateProduct, session);
-            
+
         } catch (error) {
+
+            handleError(error);
+        }
+    }
+
+    @Transactional()
+    async updateProduct(idProduct: ObjectIdParam, dataUpdateProduct: UpdateProductDto, session?: ClientSession): Promise<ProductDocument | null> {
+
+        try {
+
+            //Verificar si el producto existe
+            const product = await this.productRepository.findProductById(idProduct);
+
+            ProductValidator.validateProductExists(product);
+
+            //Si existe en la dataUpdate el id de un nuevo supplier, debemos ver si realmente existe dicho supplier
+
+            if (dataUpdateProduct.supplierId) {
+
+                await this.supplierService.findSupplierById(dataUpdateProduct.supplierId);
+
+            }
+
+            //Si existe en la dataUpdate el id de una nueva categoria, debemos ver si realmente existe dicha categoria
+            if (dataUpdateProduct.categoryId) {
+
+                await this.findCategoryById(dataUpdateProduct.categoryId);
+
+            }
+
+            //Verificar que el nuevo nombre del producto si es que existe en la data, no se repita
+            if (dataUpdateProduct.name) {
+
+                await this.productRepository.existsByUniqueField(
+                    {
+                        name: dataUpdateProduct.name,
+                    }
+                )
+            }
+
+            //Verificamos que las cantidades sean mayores a 0
+            ProductValidator.validateProductsFormatNumber({
+
+                purchasePrice: dataUpdateProduct.purchasePrice,
+                sellingPrice: dataUpdateProduct.sellingPrice,
+                minimumStockLevel: dataUpdateProduct.minimumStockLevel,
+                maximumStockLevel: dataUpdateProduct.maximumStockLevel,
+            })
+
+            //Actualizamos el producto
+            return await this.productRepository.updateProduct(idProduct, dataUpdateProduct, session);
+
+        } catch (error) {
+
+            handleError(error);
+        }
+    }
+
+    @Transactional()
+    async activateProduct(idProduct: ObjectIdParam, session?: ClientSession): Promise<ProductDocument | null> {
+
+        try {
+
+            const product = await this.productRepository.findProductById(idProduct);
+
+            ProductValidator.validateProductExists(product);
+
+            ProductValidator.validateProductAlreadyIsActive(product);
+
+            return await this.productRepository.activateProduct(idProduct, session);
+
+
+        } catch (error) {
+
+            handleError(error);
+        }
+    }
+
+    @Transactional()
+    async inactivateProduct(idProduct: ObjectIdParam, session?: ClientSession): Promise<ProductDocument | null> {
+
+        try {
+
+            const product = await this.productRepository.findProductById(idProduct);
+
+            ProductValidator.validateProductExists(product);
+
+            ProductValidator.validateProductAlreadyIsInactive(product);
+
+            return await this.productRepository.inactivateProduct(idProduct, session);
+
+        } catch (error) {
+
+            handleError(error);
+        }
+    }
+
+    async findProductsByCriteria(
+        criteria: {
+            categoryId?: ObjectIdParam;
+            supplierId?: ObjectIdParam;
+            brand?: string;
+            isActive?: boolean;
+            searchQuery?: string;
+        },
+        pagination: {
+            page: number;
+            limit: number;
+        } = { page: 1, limit: 20 },
+        sort: {
+            [key: string]: 1 | -1;
+        } = { name: 1 }
+    ): Promise<ProductDocument[]> {
+
+        try {
+
+            if (criteria.supplierId) {
+
+                await this.supplierService.findSupplierById(criteria.supplierId);
+
+            }
+
+            //Si existe en la dataUpdate el id de una nueva categoria, debemos ver si realmente existe dicha categoria
+            if (criteria.categoryId) {
+
+                await this.findCategoryById(criteria.categoryId);
+
+            }
+
+            console.log(pagination.page);
             
+
+            if(pagination.page <= 0) throw new ProductCriteriaPaginationPageError();
+
+            return await this.productRepository.findProductsByCriteria(criteria, pagination, sort);
+
+        } catch (error) {
+
             handleError(error);
         }
     }

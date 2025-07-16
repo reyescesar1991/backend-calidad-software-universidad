@@ -3,8 +3,8 @@ import { IProductStockRepository } from "../interfaces/IProductStockRepository";
 import { TransactionManager } from "../../../core/database/transactionManager";
 import { ProductStockValidator, ProductValidator, WarehouseValidator } from "../../../core/validators";
 import { ClientSession } from "mongoose";
-import { AmountTotalStockByProductByWarehouseResponse, AmountTotalStockByProductResponse, ObjectIdParam, ProductStockDto, StockByWarehouseResponse, StockTotalByProductResponse, UpdateProductStockDto } from "../../../validations";
-import { ProductStockDocument } from "../../../db/models";
+import { AmountTotalStockByProductByWarehouseResponse, AmountTotalStockByProductResponse, ObjectIdParam, ProductStockDto, StockByStatusResponse, StockByWarehouseResponse, StockTotalByProductResponse, UpdateProductStockDto } from "../../../validations";
+import { ProductDocument, ProductStockDocument } from "../../../db/models";
 import { Transactional } from "../../../core/utils/transaccional-wrapper";
 import { handleError } from "../../../core/exceptions";
 import { ProductService } from "./Product.service";
@@ -349,6 +349,19 @@ export class ProductStockService{
             
         } catch (error) {
             
+            handleError(error);
+        }
+    }
+
+
+    async findProductsByStockLevel(status: 'low' | 'overstock' | 'ok'): Promise<StockByStatusResponse[] | null> {
+
+        try {
+
+            return await this.productStockRepository.findProductsByStockLevel(status);
+
+        } catch (error) {
+
             handleError(error);
         }
     }

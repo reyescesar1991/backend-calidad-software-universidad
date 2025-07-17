@@ -3,6 +3,7 @@ import "reflect-metadata";
 import { Router } from 'express';
 import { container } from 'tsyringe';
 import { AuthController } from '../../../controllers/oauth/oauth.controller';
+import { validateLoginData } from "../../middlewares/auth/validate-login.middleware";
 
 // Resolvemos el controlador desde el contenedor de Tsyringe
 // Esto nos da una instancia del AuthController con todas sus dependencias ya inyectadas
@@ -11,7 +12,7 @@ const authController = container.resolve(AuthController);
 const router = Router();
 
 // Definimos las rutas y las asociamos a los métodos del controlador
-router.post('/login', authController.login);
+router.post('/login', validateLoginData, authController.login);
 router.post('/verify-2fa', authController.verify2FALogin);
 router.post('/logout', authController.logoutUser);
 

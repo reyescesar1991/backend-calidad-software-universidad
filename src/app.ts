@@ -1,6 +1,6 @@
 import express from 'express';
 import { errorHandler } from './middlewares/error.middleware';
-import authRoutes from './api/routes/oauth/oauth.routes'; // The file path was incorrect in your version
+import authRoutes from './api/routes/oauth/oauth.routes';
 
 
 const app = express();

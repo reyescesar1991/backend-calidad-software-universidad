@@ -35,7 +35,7 @@ const runTestRecoveryPassword = async () => {
 
         const idUser : string = "USER9999";
 
-        const newPassword : string = "Hola123%34";
+        const newPassword : string = "Hola123%3489";
 
         const result = await oauthService.confirmPasswordReset({idUser : idUser, newPassword : newPassword});
 

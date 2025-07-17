@@ -11,7 +11,8 @@ import {
 import { LoginResponseDto } from "../../core/types";
 import { Request, Response, NextFunction } from "express";
 import { sendSuccessResponse } from "../../core/helper";
-import { AppError, UserCodeNotMatchError } from "../../core/exceptions";
+import { UserCodeNotMatchError } from "../../core/exceptions";
+import { logger } from "../../core/logger";
 
 @injectable()
 export class AuthController {
@@ -29,6 +30,7 @@ export class AuthController {
         res: Response,
         next: NextFunction
     ): Promise<void> => {
+        logger.info('AuthController: Inicio del proceso de login'); // Inicio del método
         try {
             const loginData: LoginDataDto = req.body;
 
@@ -39,11 +41,17 @@ export class AuthController {
 
             // 2. El controlador interpreta la respuesta del servicio
             if (result.needsTwoFactor) {
+                logger.info(`AuthController: Usuario '${loginData.username}' requiere 2FA. Iniciando 2FA.`); // Log 2FA
                 // CASO 2FA: El usuario necesita un segundo factor.
                 // 2a. El servicio ya generó un `preAuthToken`. Ahora le pedimos que inicie el envío del código.
                 await this.oAuthService.initiateLogin2FA(result);
 
                 // 2b. Se le responde al cliente que se necesita un paso más, enviando los datos necesarios.
+                logger.debug({ 
+                    message: 'Response Enviada Flujo 2FA:', 
+                    // Excluimos 'res' y en su lugar mostramos partes relevantes:
+                    headersSent: res.headersSent // Puedes agregar otras propiedades útiles aquí
+                });
                 sendSuccessResponse(res, 200, {
                     userId: result.userId,
                     preAuthToken: result.preAuthToken,
@@ -56,11 +64,17 @@ export class AuthController {
                 // });
 
             } else {
+                logger.info(`AuthController: Usuario '${loginData.username}' logueado exitosamente (sin 2FA).`); // Log éxito sin 2FA
                 // CASO SIN 2FA: El login fue exitoso y directo.
                 // Se le envía el token de sesión final.
+                logger.debug({ 
+                    message: 'Response Enviada Flujo sin autenticacion:', 
+                    headersSent: res.headersSent,
+                });
                 sendSuccessResponse(res, 200, {
                     token: result.token,
                 }, "Login exitoso");
+
                 // res.status(200).json({
                 //     message: "Login successful.",
                 //     token: result.token,
@@ -68,6 +82,7 @@ export class AuthController {
             }
         } catch (error) {
             // Dejamos que el middleware de errores maneje cualquier excepción
+            logger.error({ message: 'AuthController: Error durante el login.', error }); // Log de error
             next(error);
         }
     };

@@ -1,75 +1,36 @@
-{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-17 11:11:19"}
-{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-17 11:14:49"}
-{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-17 11:14:49"}
-{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-17 11:23:39"}
-{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-17 11:23:39"}
-{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-17 11:31:54"}
-{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-17 11:31:54"}
-{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-17 11:31:54"}
-{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-17 11:32:52"}
-{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-17 11:32:52"}
-{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-17 11:32:52"}
-{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-17 11:33:12"}
-{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-17 11:36:48"}
-{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-17 11:36:48"}
-{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-17 11:36:48"}
-{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-17 11:37:25"}
-{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-17 11:37:25"}
-{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-17 11:37:25"}
-{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-17 12:08:42"}
-{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-17 12:08:42"}
-{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-17 12:08:42"}
-{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-17 15:19:33"}
-{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-17 15:19:33"}
-{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-17 15:19:33"}
-{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-17 15:19:35"}
-{"level":"warn","message":"La validación de Zod FALLÓ. Entrando al bloque CATCH.","timestamp":"2025-07-17 15:19:35"}
-{"level":"warn","message":"El error es de tipo ZodError. Se manejará y devolverá un 400.","timestamp":"2025-07-17 15:19:35"}
-{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-17 15:22:04"}
-{"level":"warn","message":"La validación de Zod FALLÓ. Entrando al bloque CATCH.","timestamp":"2025-07-17 15:22:04"}
-{"level":"warn","message":"El error es de tipo ZodError. Se manejará y devolverá un 400.","timestamp":"2025-07-17 15:22:04"}
-{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-17 15:22:33"}
-{"level":"warn","message":"La validación de Zod FALLÓ. Entrando al bloque CATCH.","timestamp":"2025-07-17 15:22:33"}
-{"level":"warn","message":"El error es de tipo ZodError. Se manejará y devolverá un 400.","timestamp":"2025-07-17 15:22:33"}
-{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-17 15:38:20"}
-{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-17 15:38:20"}
-{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-17 15:38:20"}
-{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-17 15:39:15"}
-{"level":"warn","message":"La validación de Zod FALLÓ. Entrando al bloque CATCH.","timestamp":"2025-07-17 15:39:15"}
-{"level":"warn","message":"El error es de tipo ZodError. Se manejará y devolverá un 400.","timestamp":"2025-07-17 15:39:15"}
-{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-17 15:50:29"}
-{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-17 15:50:29"}
-{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-17 15:50:29"}
-{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-17 15:59:04"}
-{"level":"warn","message":"La validación de Zod FALLÓ. Entrando al bloque CATCH.","timestamp":"2025-07-17 15:59:04"}
-{"level":"warn","message":"El error es de tipo ZodError. Se manejará y devolverá un 400.","timestamp":"2025-07-17 15:59:04"}
 {"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-17 16:21:57"}
 {"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-17 16:21:57"}
 {"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-17 16:21:57"}
 {"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-17 16:22:00"}
+{"body":{"password":"Hola123%3489","username":"test"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-17 16:22:00"}
 {"level":"warn","message":"La validación de Zod FALLÓ. Entrando al bloque CATCH.","timestamp":"2025-07-17 16:22:00"}
 {"level":"warn","message":"El error es de tipo ZodError. Se manejará y devolverá un 400.","timestamp":"2025-07-17 16:22:00"}
 {"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-17 16:32:18"}
 {"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-17 16:32:18"}
 {"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-17 16:32:18"}
 {"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-17 16:32:27"}
+{"body":{"password":"Hola123%3489","username":"test"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-17 16:32:27"}
 {"level":"warn","message":"La validación de Zod FALLÓ. Entrando al bloque CATCH.","timestamp":"2025-07-17 16:32:27"}
 {"level":"warn","message":"El error es de tipo ZodError. Se manejará y devolverá un 400.","timestamp":"2025-07-17 16:32:27"}
 {"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-17 16:41:32"}
+{"body":{"password":"Hola123%3489","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-17 16:41:32"}
 {"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-17 16:41:32"}
 {"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-17 16:41:32"}
 {"level":"info","message":"AuthController: Usuario 'testUser' logueado exitosamente (sin 2FA).","timestamp":"2025-07-17 16:41:33"}
 {"error":{},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-17 16:41:33"}
 {"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-17 16:42:24"}
+{"body":{"password":"Hola123%3489","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-17 16:42:24"}
 {"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-17 16:42:24"}
 {"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-17 16:42:24"}
 {"error":{"code":2001,"name":"UserAlreadyHaveASessionError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-17 16:42:25"}
 {"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-17 16:44:14"}
+{"body":{"password":"Hola123%3489","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-17 16:44:14"}
 {"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-17 16:44:14"}
 {"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-17 16:44:14"}
 {"level":"info","message":"AuthController: Usuario 'testUser' logueado exitosamente (sin 2FA).","timestamp":"2025-07-17 16:44:15"}
 {"error":{},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-17 16:44:15"}
 {"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-17 16:48:12"}
+{"body":{"password":"Hola123%3489","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-17 16:48:12"}
 {"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-17 16:48:12"}
 {"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-17 16:48:12"}
 {"level":"info","message":"AuthController: Usuario 'testUser' logueado exitosamente (sin 2FA).","timestamp":"2025-07-17 16:48:13"}
@@ -78,6 +39,7 @@
 {"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-17 16:48:29"}
 {"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-17 16:48:29"}
 {"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-17 16:50:17"}
+{"body":{"password":"Hola123%3489","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-17 16:50:17"}
 {"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-17 16:50:17"}
 {"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-17 16:50:17"}
 {"level":"info","message":"AuthController: Usuario 'testUser' logueado exitosamente (sin 2FA).","timestamp":"2025-07-17 16:50:17"}
@@ -85,11 +47,13 @@
 {"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-17 16:52:20"}
 {"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-17 16:52:20"}
 {"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-17 16:52:29"}
+{"body":{"password":"Hola123%3489","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-17 16:52:29"}
 {"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-17 16:52:29"}
 {"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-17 16:52:29"}
 {"level":"info","message":"AuthController: Usuario 'testUser' logueado exitosamente (sin 2FA).","timestamp":"2025-07-17 16:52:30"}
 {"error":{},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-17 16:52:30"}
 {"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-17 17:08:17"}
+{"body":{"password":"Hola123%3489","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-17 17:08:17"}
 {"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-17 17:08:17"}
 {"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-17 17:08:17"}
 {"level":"info","message":"AuthController: Usuario 'testUser' logueado exitosamente (sin 2FA).","timestamp":"2025-07-17 17:08:18"}

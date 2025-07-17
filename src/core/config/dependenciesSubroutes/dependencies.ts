@@ -7,14 +7,17 @@ import { MenuService } from "../../../services/menu/Menu.service";
 import { SubrouteValidator } from "../../validators";
 import { TransactionManager } from "../../database/transactionManager";
 
-container.register("TransactionManager" , TransactionManager);
+export const configureSubroutesDependencies = async () => {
 
-container.register("SubrouteModel" , {useValue : SubrouteModel});
+    container.register("TransactionManager", TransactionManager);
 
-container.register<ISubrouteRepository>("ISubrouteRepository", {useClass: SubrouteRepository});
+    container.register("SubrouteModel", { useValue: SubrouteModel });
 
-container.register("MenuService", {useClass : MenuService});
+    container.register<ISubrouteRepository>("ISubrouteRepository", { useClass: SubrouteRepository });
 
-container.register("SubrouteValidator", {
-    useClass: SubrouteValidator
-});
+    container.register("MenuService", { useClass: MenuService });
+
+    container.register("SubrouteValidator", {
+        useClass: SubrouteValidator
+    });
+}

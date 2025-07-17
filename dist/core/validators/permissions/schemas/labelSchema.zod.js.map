@@ -1,0 +1,1 @@
+{"version":3,"file":"labelSchema.zod.js","sourceRoot":"","sources":["../../../../../src/core/validators/permissions/schemas/labelSchema.zod.ts"],"names":[],"mappings":";;;AAAA,6BAAsB;AAET,QAAA,WAAW,GAAG,OAAC,CAAC,MAAM,CAAC;IAGhC,KAAK,EAAI,OAAC,CAAC,MAAM,EAAE,CAAC,GAAG,CAAC,CAAC,EAAE,EAAC,OAAO,EAAG,uBAAuB,EAAC,CAAC;CAClE,CAAC,CAAC"}

@@ -1,4 +1,37 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -6,10 +39,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const models_1 = require("../../models");
 const validations_1 = require("../../../validations");
 const mongoose_1 = __importDefault(require("mongoose"));
-// Configuración de la conexión a MongoDB con un tiempo de espera mayor
-mongoose_1.default.set('bufferTimeoutMS', 30000); // Aumenta el tiempo de espera a 30 segundos
-// URL de conexión a la base de datos (ajusta según tu configuración)
-const CONNECTION_STRING = process.env.CONNECTION_STRING || 'mongodb://localhost:27017/tu_base_de_datos';
+const dotenv = __importStar(require("dotenv"));
+const path_1 = require("path");
+// Carga las variables de entorno explícitamente para el seeder
+// Process.cwd carga la ruta /backend-calidad y luego la une con .env para traer el URI
+dotenv.config({ path: (0, path_1.resolve)(process.cwd(), ".env") });
+// Ahora usa la variable de entorno, con un fallback para desarrollo local
+const CONNECTION_STRING = process.env.CONNECTION_STRING || 'mongodb://localhost:27017/tu_base_de_datos_desarrollo';
+console.log(CONNECTION_STRING);
+if (!CONNECTION_STRING) {
+    console.error('ERROR: CONNECTION_STRING no está definida en las variables de entorno');
+    process.exit(1);
+}
+mongoose_1.default.set('bufferTimeoutMS', 30000);
 const seedPermissions = async () => {
     try {
         // Conectar a la base de datos si no está conectado
@@ -26,7 +68,6 @@ const seedPermissions = async () => {
             { label: 'Agregar inventario', permission: 'agregar_inventario', can: false },
             { label: 'Registrar venta', permission: 'registrar_venta', can: false },
             { label: 'Ajustar producto', permission: 'ajustar_producto', can: false },
-            // Elimino el duplicado de "Buscar producto"
             { label: 'Estado general', permission: 'reporte_estado_general', can: false },
             { label: 'Bajo stock', permission: 'reporte_bajo_stock', can: false },
             { label: 'Valor total inventario', permission: 'reporte_valor_total_inventario', can: false },
@@ -74,8 +115,8 @@ const seedPermissions = async () => {
     }
     finally {
         // Si deseas cerrar la conexión después de ejecutar el seed
-        // await mongoose.connection.close();
-        // console.log('Conexión a la base de datos cerrada');
+        await mongoose_1.default.connection.close();
+        console.log('Conexión a la base de datos cerrada');
     }
 };
 // Ejecuta la función y maneja excepciones

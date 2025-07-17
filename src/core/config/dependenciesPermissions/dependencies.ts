@@ -5,11 +5,14 @@ import { IPermissionRepository, PermissionService } from "../../../services/perm
 import { PermissionRepository } from "../../../services/permission/repositories/permissionRepository";
 import { PermissionValidator } from "../../validators";
 
-container.register("PermissionModel", { useValue: PermissionModel });
-// Registra el repositorio bajo la clave "IPermissionRepository"
-container.register<IPermissionRepository>("IPermissionRepository", { 
-    useClass: PermissionRepository 
-});
-container.register("PermissionService", { useClass: PermissionService });
+export const configurePermissionsDependencies = async () => {
 
-container.register("PermissionValidator", { useClass: PermissionValidator});
+    container.register("PermissionModel", { useValue: PermissionModel });
+    // Registra el repositorio bajo la clave "IPermissionRepository"
+    container.register<IPermissionRepository>("IPermissionRepository", {
+        useClass: PermissionRepository
+    });
+    container.register("PermissionService", { useClass: PermissionService });
+
+    container.register("PermissionValidator", { useClass: PermissionValidator });
+}

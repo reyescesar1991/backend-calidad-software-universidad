@@ -1,0 +1,1 @@
+//# sourceMappingURL=stockTotal.response.js.map

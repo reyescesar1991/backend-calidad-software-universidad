@@ -1,16 +1,17 @@
 import express from 'express';
 import { errorHandler } from './middlewares/error.middleware';
+import authRoutes from './api/routes/oauth/oauth.routes'; // The file path was incorrect in your version
 
 
 const app = express();
 
-console.log(`Server running on port ${app}"`);
 
 //Middleware base
 app.use(express.json());
-app.use(express.urlencoded({extend : true}));
+app.use(express.urlencoded({extended : true}));
 
-
+// Rutas de la API
+app.use('/api/v1/auth', authRoutes);
 
 
 

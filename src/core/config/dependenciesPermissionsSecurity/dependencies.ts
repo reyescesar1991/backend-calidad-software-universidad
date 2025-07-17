@@ -4,12 +4,15 @@ import { PermissionSecurityModel } from "../../../db/models";
 import { IPermissionSecurityRepository, PermissionSecurityRepository, PermissionSecurityService } from "../../../services/permissionSecurity";
 import { PermissionSecurityValidator } from "../../validators";
 
-container.register("PermissionSecurityModel" , {useValue : PermissionSecurityModel});
+export const configureSecurityPermissionsDependencies = async () => {
 
-container.register<IPermissionSecurityRepository>("IPermissionSecurityRepository", {
-    useClass : PermissionSecurityRepository
-});
+    container.register("PermissionSecurityModel", { useValue: PermissionSecurityModel });
 
-container.register("PermissionSecurityService", {useClass : PermissionSecurityService});
+    container.register<IPermissionSecurityRepository>("IPermissionSecurityRepository", {
+        useClass: PermissionSecurityRepository
+    });
 
-container.register("PermissionSecurityValidator", { useClass: PermissionSecurityValidator});
+    container.register("PermissionSecurityService", { useClass: PermissionSecurityService });
+
+    container.register("PermissionSecurityValidator", { useClass: PermissionSecurityValidator });
+}

@@ -31,7 +31,7 @@ export class OAuthService {
         @inject(MailService) private mailService: MailService,
     ) { }
 
-    //Funcion que me permite verificar que si el intentos ha sido mas de dos, bloquear al usuario
+//     //Funcion que me permite verificar que si el intentos ha sido mas de dos, bloquear al usuario
     private async validateNumberAttempsLogin(dataUserAudit: SecurityAuditDocument, idUser: ObjectIdParam, session ?: ClientSession): Promise<void> {
 
         if (dataUserAudit.loginAttempts >= 3) {

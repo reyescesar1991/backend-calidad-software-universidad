@@ -1,4 +1,4 @@
-import { inject, injectable } from "tsyringe";
+import { delay, inject, injectable } from "tsyringe";
 import { OAuthService } from "../../services/oauthService/OAuth.service";
 import {
     LoginDataDto,
@@ -16,7 +16,7 @@ import { AppError, UserCodeNotMatchError } from "../../core/exceptions";
 @injectable()
 export class AuthController {
     constructor(
-        @inject(OAuthService) private readonly oAuthService: OAuthService
+        @inject(delay(() => OAuthService)) private readonly oAuthService: OAuthService
     ) { }
 
     /**
@@ -226,7 +226,7 @@ export class AuthController {
             // res.status(200).json({
             //     message: result.message,
             // });
-            sendSuccessResponse(200, res, {}, result.message);
+            sendSuccessResponse(res, 200, {}, result.message);
         } catch (error) {
             // Dejamos que el middleware de errores maneje cualquier excepción
             next(error);

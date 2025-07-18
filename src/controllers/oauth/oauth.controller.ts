@@ -47,38 +47,31 @@ export class AuthController {
                 await this.oAuthService.initiateLogin2FA(result);
 
                 // 2b. Se le responde al cliente que se necesita un paso más, enviando los datos necesarios.
-                logger.debug({ 
-                    message: 'Response Enviada Flujo 2FA:', 
-                    // Excluimos 'res' y en su lugar mostramos partes relevantes:
-                    headersSent: res.headersSent // Puedes agregar otras propiedades útiles aquí
-                });
-                sendSuccessResponse(res, 200, {
+                const responseBody = {
                     userId: result.userId,
                     preAuthToken: result.preAuthToken,
-                }, "Codigo de verificacion enviado. Por favor introduzca el codigo y termine su proceso de login")
-                // res.status(200).json({
-                //     message:
-                //         "Codigo de verificacion enviado. Por favor introduzca el codigo y termine su proceso de login",
-                //     userId: result.userId,
-                //     preAuthToken: result.preAuthToken,
-                // });
+                };
+                const responseMessage = "Codigo de verificacion enviado. Por favor introduzca el codigo y termine su proceso de login";
+
+                logger.debug({
+                    message: 'Preparando respuesta para flujo 2FA:',
+                    body: responseBody,
+                    headersSent: res.headersSent,
+                });
+                sendSuccessResponse(res, 200, responseBody, responseMessage);
 
             } else {
                 logger.info(`AuthController: Usuario '${loginData.username}' logueado exitosamente (sin 2FA).`); // Log éxito sin 2FA
                 // CASO SIN 2FA: El login fue exitoso y directo.
                 // Se le envía el token de sesión final.
-                logger.debug({ 
-                    message: 'Response Enviada Flujo sin autenticacion:', 
+                const responseBody = { token: result.token };
+                const responseMessage = "Login exitoso";
+                logger.debug({
+                    message: 'Preparando respuesta para flujo sin 2FA:',
+                    body: responseBody,
                     headersSent: res.headersSent,
                 });
-                sendSuccessResponse(res, 200, {
-                    token: result.token,
-                }, "Login exitoso");
-
-                // res.status(200).json({
-                //     message: "Login successful.",
-                //     token: result.token,
-                // });
+                sendSuccessResponse(res, 200, responseBody, responseMessage);
             }
         } catch (error) {
             // Dejamos que el middleware de errores maneje cualquier excepción
@@ -95,23 +88,32 @@ export class AuthController {
         res: Response,
         next: NextFunction
     ): Promise<void> => {
+
+        // Log al inicio del método
+        logger.info('AuthController: Inicio del proceso de verificación 2FA de login.');
+        // Loguear datos de entrada (DEBUG - con cuidado de no loguear el código 2FA completo si es sensible)
+        logger.debug({ message: 'AuthController: Datos de verificación 2FA recibidos.', userId: req.body.userId, preAuthTokenExists: !!req.body.preAuthToken, codeProvided: !!req.body.code });
+
         try {
             const verificationData: TwoFactorCodeVerificationDto = req.body;
 
             // 1. Llama al servicio para verificar el código
+            logger.info('AuthController: Llamando al servicio oAuthService.verify2FALogin.');
             const result: LoginResponseDto = await this.oAuthService.verify2FALogin(
                 verificationData
             );
 
             // 2. Si el código es correcto, el servicio ya nos devuelve el token final.
-            // res.status(200).json({
-            //     message: "Login successful.",
-            //     token: result.token,
-            // });
+            // Log de éxito antes de enviar la respuesta
+            logger.info(`AuthController: Verificación 2FA exitosa para userId: ${result.userId}. Login completado.`);
+            logger.debug({ message: 'AuthController: Preparando respuesta de éxito de login 2FA.', tokenExists: !!result.token });
             sendSuccessResponse(res, 200, {
                 token: result.token,
             }, "Login exitoso");
         } catch (error) {
+
+            // Log de error en el catch
+            logger.error({ message: 'AuthController: Error durante la verificación 2FA de login.', error });
             // Si el código es incorrecto, el servicio lanzará una excepción que será manejada aquí.
             next(error);
         }
@@ -249,11 +251,11 @@ export class AuthController {
     };
 
 
-        /**
-     * Termine el proceso de segundo factor de recuperacion de usuario.
-     *
-     *
-     */
+    /**
+ * Termine el proceso de segundo factor de recuperacion de usuario.
+ *
+ *
+ */
     public confirmRecoveryUser2FA = async (
         req: Request,
         res: Response,
@@ -286,11 +288,11 @@ export class AuthController {
         }
     };
 
-        /**
-     * Culmina el proceso de recuperacion de usuario.
-     *
-     *
-     */
+    /**
+ * Culmina el proceso de recuperacion de usuario.
+ *
+ *
+ */
     public confirmRecoveryUser = async (
         req: Request,
         res: Response,
@@ -323,18 +325,30 @@ export class AuthController {
         res: Response,
         next: NextFunction
     ): Promise<void> => {
+
+        // Log al inicio del método
+        logger.info('AuthController: Inicio del proceso de cierre de sesion del usuario');
+        // Loguear datos de entrada (DEBUG - con cuidado de no loguear el código 2FA completo si es sensible)
+        logger.debug({ message: 'AuthController: Datos de cierre de sesion del usuario recibidos.', userId: req.body.userId });
+
         try {
             const logoutData: LogoutUserDto =
                 req.body;
 
             // 1. Llama al servicio de recoverypassword
+            logger.info('AuthController: Llamando al servicio oAuthService.logoutSession.');
             const result = await this.oAuthService.logoutSession(
                 logoutData
             );
 
             // Si es true, enviamos mensaje de confirmacion
+            logger.info(`AuthController: Cierre de sesion exitoso para userId: ${req.body.userId}. Login completado.`);
+            logger.debug({ message: 'AuthController: Preparando respuesta de éxito de login 2FA.'});
             sendSuccessResponse(res, 200, {}, result.message);
         } catch (error) {
+
+            // Log de error en el catch
+            logger.error({ message: 'AuthController: Error durante el cierre de sesion del usuario.', error });
             // Dejamos que el middleware de errores maneje cualquier excepción
             next(error);
         }

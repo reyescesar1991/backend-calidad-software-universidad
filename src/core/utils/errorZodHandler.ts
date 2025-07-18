@@ -3,6 +3,7 @@
 import { Response, NextFunction } from 'express';
 import { ZodError } from 'zod';
 import { sendErrorResponse } from '../../core/helper'; // Ajusta la ruta a tu helper de respuesta de error
+import { logger } from '../logger';
 
 /**
  * Helper para manejar y formatear errores de Zod en middlewares de Express.
@@ -29,7 +30,12 @@ export const handleZodError = (
             field: err.path.join('.'),
             message: err.message
         }));
-        // Usa tu función sendErrorResponse con los parámetros pasados
+        // Logueamos los detalles específicos del error de validación.
+        // Usamos 'warn' porque es un error esperado del cliente (4xx), no un fallo del servidor (5xx).
+        logger.warn({
+            message: `Error de validación de Zod: ${customMessage}`,
+            details: errorDetails
+        });
         sendErrorResponse(res, statusCode, customMessage, errorDetails, errorCode);
     } else {
         // Si no es un ZodError, pásalo al siguiente middleware de errores

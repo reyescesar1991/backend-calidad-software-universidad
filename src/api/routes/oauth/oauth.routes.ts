@@ -4,6 +4,7 @@ import { Router } from 'express';
 import { container } from 'tsyringe';
 import { AuthController } from '../../../controllers/oauth/oauth.controller';
 import { validateLoginData } from "../../middlewares/auth/validate-login.middleware";
+import { validateVerify2faLoginData } from "../../middlewares/auth/validate-verify2faLogin.middleware";
 
 // Resolvemos el controlador desde el contenedor de Tsyringe
 // Esto nos da una instancia del AuthController con todas sus dependencias ya inyectadas
@@ -13,7 +14,7 @@ const router = Router();
 
 // Definimos las rutas y las asociamos a los métodos del controlador
 router.post('/login', validateLoginData, authController.login);
-router.post('/verify-2fa', authController.verify2FALogin);
+router.post('/verify-2fa', validateVerify2faLoginData, authController.verify2FALogin);
 router.post('/logout', authController.logoutUser);
 
 // Rutas para recuperación de contraseña

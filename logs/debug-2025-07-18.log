@@ -1,0 +1,30 @@
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-18 11:58:14"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-18 11:58:14"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-18 11:58:14"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-18 13:54:33"}
+{"body":{"password":"Hola123%3489","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-18 13:54:33"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-18 13:54:33"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-18 13:54:33"}
+{"level":"info","message":"AuthController: Usuario 'testUser' logueado exitosamente (sin 2FA).","timestamp":"2025-07-18 13:54:34"}
+{"body":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJVU0VSOTk5OSIsImp0aSI6ImU3NzIzNTk2LWMxMzEtNDE4YS04MzdlLTgxYjkzM2IzZTI2YiIsImxhdCI6MTc1Mjg2MTI3MywiZXhwIjoxNzUyODY0ODczLCJpYXQiOjE3NTI4NjEyNzN9.-5HdnMbOYxY2F20ytl0EyN3L4sLZtvNCRAJTNj7ViVw"},"headersSent":false,"level":"debug","message":"Preparando respuesta para flujo sin 2FA:","timestamp":"2025-07-18 13:54:34"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-18 15:03:29"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-18 15:03:29"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-18 15:03:29"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-18 15:03:41"}
+{"body":{"password":"Hola123%3489","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-18 15:03:41"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-18 15:03:41"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-18 15:03:41"}
+{"level":"info","message":"AuthController: Usuario 'testUser' logueado exitosamente (sin 2FA).","timestamp":"2025-07-18 15:03:42"}
+{"body":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJVU0VSOTk5OSIsImp0aSI6IjRlMTM0Mzg4LTA5ZjMtNDk2Mi04NmJkLTAwZDkxNDljNGE2MSIsImxhdCI6MTc1Mjg2NTQyMiwiZXhwIjoxNzUyODY5MDIyLCJpYXQiOjE3NTI4NjU0MjJ9.1WHSVkxmBIk1XRP8VLQcM0-wKPwCNU7CXRgx087SJOU"},"headersSent":false,"level":"debug","message":"Preparando respuesta para flujo sin 2FA:","timestamp":"2025-07-18 15:03:42"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-18 15:03:55"}
+{"body":{"password":"Hola123%","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-18 15:03:55"}
+{"level":"warn","message":"La validación FALLÓ. Entrando al bloque CATCH en el middleware.","timestamp":"2025-07-18 15:03:55"}
+{"level":"warn","message":"El error es de tipo ZodError. Se manejará con handleZodError.","timestamp":"2025-07-18 15:03:55"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-18 15:09:14"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-18 15:09:14"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-18 15:09:14"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-18 15:09:46"}
+{"body":{"password":"Hola123%","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-18 15:09:46"}
+{"level":"warn","message":"La validación FALLÓ. Entrando al bloque CATCH en el middleware.","timestamp":"2025-07-18 15:09:46"}
+{"level":"warn","message":"El error es de tipo ZodError. Se manejará con handleZodError.","timestamp":"2025-07-18 15:09:46"}
+{"details":[{"field":"password","message":"La contraseña debe tener al menos 12 caracteres y contener al menos una mayúscula, una minúscula, un número y un carácter especial."}],"level":"warn","message":"Error de validación de Zod: Datos de login inválidos","timestamp":"2025-07-18 15:09:46"}

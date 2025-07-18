@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { ZodError } from 'zod';
 import { loginDataSchemaZod } from '../../../validations/oauthValidators/oauth.validation';
-import { handleZodError } from '../../../core/utils/errorZodHandler';
 import { logger } from '../../../core/logger'; // Es mejor usar un logger centralizado
+import { handleMiddlewareError } from '../../../core/utils/middlewareErrorHandler';
 
 export const validateLoginData = (req: Request, res: Response, next: NextFunction) => {
     logger.info('--- MIDDLEWARE: Ejecutando validateLoginData ---');
@@ -25,16 +24,17 @@ export const validateLoginData = (req: Request, res: Response, next: NextFunctio
         logger.info('Validación de Zod para login SUPERADA. Pasando al controlador.');
         next();
     } catch (error) {
-        // --- PUNTO DE CONTROL #3: La validación falló. Capturamos el error. ---
-        logger.warn('La validación de Zod FALLÓ. Entrando al bloque CATCH.');
+        // // --- PUNTO DE CONTROL #3: La validación falló. Capturamos el error. ---
+        // logger.warn('La validación de Zod FALLÓ. Entrando al bloque CATCH.');
 
-        if (error instanceof ZodError) {
-            // ¡Éxito! Es el error de validación que esperábamos.
-            logger.warn('El error es de tipo ZodError. Se manejará y devolverá un 400.');
-            return handleZodError(error, res, next, 'Datos de login inválidos');
-        }
-        // Si el error NO es de Zod, es un error inesperado (como el TypeError).
-        logger.error({ message: 'Error inesperado durante la validación, NO es un ZodError. Pasando al manejador global.', error });
-        next(error);
+        // if (error instanceof ZodError) {
+        //     // ¡Éxito! Es el error de validación que esperábamos.
+        //     logger.warn('El error es de tipo ZodError. Se manejará y devolverá un 400.');
+        //     return handleZodError(error, res, next, 'Datos de login inválidos');
+        // }
+        // // Si el error NO es de Zod, es un error inesperado (como el TypeError).
+        // logger.error({ message: 'Error inesperado durante la validación, NO es un ZodError. Pasando al manejador global.', error });
+        // next(error);
+        handleMiddlewareError(error, res, next, 'Datos de login inválidos');
     }
 };

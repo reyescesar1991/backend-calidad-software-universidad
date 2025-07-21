@@ -1,0 +1,40 @@
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-21 12:25:50"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-21 12:25:50"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-21 12:25:50"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-21 12:26:44"}
+{"body":{"password":"Hola123%","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-21 12:26:44"}
+{"level":"warn","message":"La validación FALLÓ. Entrando al bloque CATCH en el middleware.","timestamp":"2025-07-21 12:26:44"}
+{"level":"warn","message":"El error es de tipo ZodError. Se manejará con handleZodError.","timestamp":"2025-07-21 12:26:44"}
+{"details":[{"field":"password","message":"La contraseña debe tener al menos 12 caracteres y contener al menos una mayúscula, una minúscula, un número y un carácter especial."}],"level":"warn","message":"Error de validación de Zod: Datos de login inválidos","timestamp":"2025-07-21 12:26:44"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-21 15:22:33"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-21 15:22:33"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-21 15:22:33"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-21 15:22:50"}
+{"body":{"password":"hola1234","username":"testUser123"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-21 15:22:50"}
+{"level":"warn","message":"La validación FALLÓ. Entrando al bloque CATCH en el middleware.","timestamp":"2025-07-21 15:22:50"}
+{"level":"warn","message":"El error es de tipo ZodError. Se manejará con handleZodError.","timestamp":"2025-07-21 15:22:50"}
+{"details":[{"field":"password","message":"La contraseña debe tener al menos 12 caracteres y contener al menos una mayúscula, una minúscula, un número y un carácter especial."}],"level":"warn","message":"Error de validación de Zod: Datos de login inválidos","timestamp":"2025-07-21 15:22:50"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-21 15:35:03"}
+{"body":{"password":"Hola123%3489","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-21 15:35:03"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-21 15:35:03"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-21 15:35:03"}
+{"level":"info","message":"AuthController: Usuario 'testUser' logueado exitosamente (sin 2FA).","timestamp":"2025-07-21 15:35:04"}
+{"body":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJVU0VSOTk5OSIsImp0aSI6ImE5YWJhZjdkLTRlMTAtNDllZS1iMDdlLTc5ZGY5NGFlMjAwMSIsImxhdCI6MTc1MzEyNjUwNCwiZXhwIjoxNzUzMTMwMTA0LCJpYXQiOjE3NTMxMjY1MDR9.F3oDa5uFu9pVD_ZYVFFFHw6tbONV86xG5AUm15M3I-M"},"headersSent":false,"level":"debug","message":"Preparando respuesta para flujo sin 2FA:","timestamp":"2025-07-21 15:35:04"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-21 15:38:11"}
+{"body":{"password":"Hola123%3489","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-21 15:38:11"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-21 15:38:11"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-21 15:38:11"}
+{"level":"info","message":"AuthController: Usuario 'testUser' logueado exitosamente (sin 2FA).","timestamp":"2025-07-21 15:38:12"}
+{"body":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJVU0VSOTk5OSIsImp0aSI6IjI1MThjZWJiLWI2YWEtNDc2ZC1hMjA1LTc3Yjc0NzcyMzdlZiIsImxhdCI6MTc1MzEyNjY5MiwiZXhwIjoxNzUzMTMwMjkyLCJpYXQiOjE3NTMxMjY2OTJ9.xRfFGVp7acb5vGTgdcwpLyTF75jdJtVuERtN72bUyOA"},"headersSent":false,"level":"debug","message":"Preparando respuesta para flujo sin 2FA:","timestamp":"2025-07-21 15:38:12"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-21 15:40:02"}
+{"body":{"password":"Hola123%3489","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-21 15:40:02"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-21 15:40:02"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-21 15:40:02"}
+{"level":"info","message":"AuthController: Usuario 'testUser' logueado exitosamente (sin 2FA).","timestamp":"2025-07-21 15:40:03"}
+{"body":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJVU0VSOTk5OSIsImp0aSI6IjMyZWQ4MzJjLWQ5MjYtNDRiYy05YTRjLWU4YTM2ZjZkZWQ2ZSIsImxhdCI6MTc1MzEyNjgwMywiZXhwIjoxNzUzMTMwNDAzLCJpYXQiOjE3NTMxMjY4MDN9.PdBy3nJlZVzbuzI_FTwGvcU1N-uF4FTWvrI6D1F3EOg"},"headersSent":false,"level":"debug","message":"Preparando respuesta para flujo sin 2FA:","timestamp":"2025-07-21 15:40:03"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-21 15:49:33"}
+{"body":{"password":"Hola123%3489","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-21 15:49:33"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-21 15:49:33"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-21 15:49:33"}
+{"level":"info","message":"AuthController: Usuario 'testUser' logueado exitosamente (sin 2FA).","timestamp":"2025-07-21 15:49:34"}
+{"body":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJVU0VSOTk5OSIsImp0aSI6ImQ4MDUzYWEyLWVkZTQtNGNjZi1iZTdhLTUxZmM1NDczNTFkNCIsImxhdCI6MTc1MzEyNzM3MywiZXhwIjoxNzUzMTMwOTczLCJpYXQiOjE3NTMxMjczNzN9.KZT61YppqQaLJWqdoOjCn0CwIsTN4NbdH36BMNpDKk8"},"headersSent":false,"level":"debug","message":"Preparando respuesta para flujo sin 2FA:","timestamp":"2025-07-21 15:49:34"}

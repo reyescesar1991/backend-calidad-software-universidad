@@ -440,7 +440,6 @@ export class OAuthService {
 
             console.log("Data username en el confirm: ", dataUsername);
 
-
             //1. Verificar que el usuario exista
             const user = await this.userService.findUserByCustomId(dataUsername.idUser);
 

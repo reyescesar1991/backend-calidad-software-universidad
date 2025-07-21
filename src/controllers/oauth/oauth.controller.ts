@@ -131,20 +131,31 @@ export class AuthController {
         res: Response,
         next: NextFunction
     ): Promise<void> => {
+
+        // Log al inicio del método
+        logger.info('AuthController: Inicio del proceso de recuperacion de contraseña, solicitando factor 2FA.');
+
         try {
             const recoveryPassword2FAData: SecondFactorRequestDto = req.body;
+
+            // Loguear datos de entrada
+            logger.debug({ message: 'AuthController: Datos de verificación 2FA recibidos y enviados.', userId: req.body.userId, email: req.body.email });
 
             // 1. Llama al servicio de iniciar 2fa password
             const result = await this.oAuthService.initiatePasswordReset(
                 recoveryPassword2FAData
             );
 
+            logger.info(`AuthController: Codigo 2FA enviado con exito al usuario con userId: ${req.body.userId} al email ${req.body.email}.`);
+            logger.debug({ message: 'AuthController: Preparando respuesta de éxito de envio de codigo 2FA.' });
             // 2. Enviar la respuesta al usuario
             // res.status(200).json({
             //     message: result.message,
             // });
             sendSuccessResponse(res, 200, {}, result.message);
         } catch (error) {
+            // Log de error en el catch
+            logger.error({ message: 'AuthController: Error durante el envio del codigo 2FA de recuperacion de contraseña.', error });
             // Dejamos que el middleware de errores maneje cualquier excepción
             next(error);
         }
@@ -160,9 +171,17 @@ export class AuthController {
         res: Response,
         next: NextFunction
     ): Promise<void> => {
+
+        // Log al inicio del método
+        logger.info('AuthController: Inicio del proceso de recuperacion de contraseña, confirmando factor 2FA.');
+
+
         try {
             const confirmRecoveryPassword2FAData: TwoFactorCodeVerificationDto =
                 req.body;
+
+            // Loguear datos de entrada
+            logger.debug({ message: 'AuthController: Datos de confirmacion 2FA recibidos.', userId: req.body.userId });
 
             // 1. Llama al servicio de confirmar 2fa password
             const isVerificationSuccessful = await this.oAuthService.verify2FAPasswordReset(
@@ -172,15 +191,22 @@ export class AuthController {
             // 2. Transforma la respuesta del servicio en una acción de controlador
             if (isVerificationSuccessful) {
                 // Si el servicio devuelve true, significa éxito
+                logger.info(`AuthController: Codigo 2FA confirmado con exito, userId: ${req.body.userId}`);
+                logger.debug({ message: 'AuthController: Preparando respuesta de éxito de confirmacion de codigo 2FA.' });
                 sendSuccessResponse(res, 200, {}, "Código de verificación correcto");
             } else {
                 // Si el servicio devuelve false, significa un error de negocio.
                 // Lanzamos una AppError para que el middleware de errores la capture.
                 // Es crucial dar un mensaje significativo y un código de estado adecuado.
+                logger.warn({
+                    message: `Error en la validacion del codigo 2FA, no coincide con el proporcionado`,
+                });
                 throw new UserCodeNotMatchError("Código de verificación inválido o expirado");
             }
 
         } catch (error) {
+            // Log de error en el catch
+            logger.error({ message: 'AuthController: Error durante la confirmacion del codigo 2FA de recuperacion de contraseña.', error });
             // Si es false, enviamos mensaje de error
             // Dejamos que el middleware de errores maneje cualquier excepción
             next(error);
@@ -197,23 +223,32 @@ export class AuthController {
         res: Response,
         next: NextFunction
     ): Promise<void> => {
+
+        // Log al inicio del método
+        logger.info('AuthController: Inicio del proceso de recuperacion de contraseña, realizando el cambio.');
+
         try {
             const confirmRecoveryPasswordData: RecoverPasswordUserDto =
                 req.body;
+
+            // Loguear datos de entrada
+            logger.debug({ message: 'AuthController: Datos de confirmacion de recuperacion de contraseña recibidos.', userId: req.body.userId });
+
 
             // 1. Llama al servicio de recoverypassword
             const result = await this.oAuthService.confirmPasswordReset(
                 confirmRecoveryPasswordData
             );
 
-            // Si es true, enviamos mensaje de confirmacion
-            // res.status(200).json({
-            //     code: 1000,
-            //     message: result.message,
-            // });
+            logger.info(`AuthController: Contraseña modificada con exito para el userId: ${req.body.userId}`);
+            logger.debug({ message: 'AuthController: Preparando respuesta de éxito de recuperacion de contraseña' });
+
             sendSuccessResponse(res, 200, {}, result.message);
 
         } catch (error) {
+
+            // Log de error en el catch
+            logger.error({ message: 'AuthController: Error durante el envio del codigo 2FA de recuperacion de contraseña.', error });
             // Dejamos que el middleware de errores maneje cualquier excepción
             next(error);
         }
@@ -231,20 +266,29 @@ export class AuthController {
         res: Response,
         next: NextFunction
     ): Promise<void> => {
+
+        // Log al inicio del método
+        logger.info('AuthController: Inicio del proceso de recuperacion de usuario, solicitando factor 2FA.');
+
         try {
+
             const recoveryUser2FAData: SecondFactorRequestDto = req.body;
+
+            // Loguear datos de entrada
+            logger.debug({ message: 'AuthController: Datos de verificación 2FA recibidos y enviados.', userId: req.body.userId, email: req.body.email });
 
             // 1. Llama al servicio de usernamerecover2fa
             const result = await this.oAuthService.initiateUsernameRecover(
                 recoveryUser2FAData
             );
 
-            // 2. Enviar la respuesta al usuario
-            // res.status(200).json({
-            //     message: result.message,
-            // });
+            logger.info(`AuthController: Codigo 2FA enviado con exito al usuario con userId: ${req.body.userId} al email ${req.body.email}.`);
+            logger.debug({ message: 'AuthController: Preparando respuesta de éxito de envio de codigo 2FA.' });
             sendSuccessResponse(res, 200, {}, result.message);
+
         } catch (error) {
+
+            logger.error({ message: 'AuthController: Error durante el envio del codigo 2FA de recuperacion de usuario.', error });
             // Dejamos que el middleware de errores maneje cualquier excepción
             next(error);
         }
@@ -261,9 +305,16 @@ export class AuthController {
         res: Response,
         next: NextFunction
     ): Promise<void> => {
+
+        // Log al inicio del método
+        logger.info('AuthController: Inicio del proceso de recuperacion de usuario, confirmando factor 2FA.');
+
         try {
             const confirmRecoveryUser2FAData: TwoFactorCodeVerificationDto =
                 req.body;
+
+            // Loguear datos de entrada
+            logger.debug({ message: 'AuthController: Codigo de verificación 2FA enviando por el usuario. ', userId: req.body.userId });
 
             // 1. Llama al servicio de confirmar 2fa User
             const isVerificationSuccessful = await this.oAuthService.verify2FAUsernameRecover(
@@ -273,16 +324,23 @@ export class AuthController {
             // 2. Transforma la respuesta del servicio en una acción de controlador
             if (isVerificationSuccessful) {
                 // Si el servicio devuelve true, significa éxito
+                logger.info(`AuthController: Codigo 2FA confirmado con exito, userId: ${req.body.userId}`);
+                logger.debug({ message: 'AuthController: Preparando respuesta de éxito de confirmacion de codigo 2FA.' });
                 sendSuccessResponse(res, 200, {}, "Código de verificación correcto");
+
             } else {
                 // Si el servicio devuelve false, significa un error de negocio.
                 // Lanzamos una AppError para que el middleware de errores la capture.
                 // Es crucial dar un mensaje significativo y un código de estado adecuado.
+                logger.warn({
+                    message: `Error en la validacion del codigo 2FA, no coincide con el proporcionado`,
+                });
                 throw new UserCodeNotMatchError("Código de verificación inválido o expirado");
             }
 
         } catch (error) {
             // Si es false, enviamos mensaje de error
+            logger.error({ message: 'AuthController: Error durante la confirmacion del codigo 2FA de recuperacion de usuario.', error });
             // Dejamos que el middleware de errores maneje cualquier excepción
             next(error);
         }
@@ -298,18 +356,31 @@ export class AuthController {
         res: Response,
         next: NextFunction
     ): Promise<void> => {
+
+        // Log al inicio del método
+        logger.info('AuthController: Inicio del proceso de recuperacion de usuario, se enviara email con el usuario.');
+
         try {
             const confirmRecoveryPasswordData: RecoverUsernameDataUserDto =
                 req.body;
+
+            // Loguear datos de entrada
+            logger.debug({ message: 'AuthController: Datos de confirmacion de recuperacion de usuario recibidos.', userId: req.body.idUser });
 
             // 1. Llama al servicio de recoverypassword
             const result = await this.oAuthService.confirmUsernameReset(
                 confirmRecoveryPasswordData
             );
 
+            logger.info(`AuthController: Usuario enviando al email registrado por el usuario: ${req.body.idUser}`);
+            logger.debug({ message: 'AuthController: Preparando respuesta de éxito de recuperacion de usuario' });
+
             // Si es true, enviamos mensaje de confirmacion
             sendSuccessResponse(res, 200, {}, result.message);
         } catch (error) {
+
+            // Log de error en el catch
+            logger.error({ message: 'AuthController: Error durante el envio del codigo 2FA de recuperacion de usuario.', error });
             // Dejamos que el middleware de errores maneje cualquier excepción
             next(error);
         }
@@ -343,7 +414,7 @@ export class AuthController {
 
             // Si es true, enviamos mensaje de confirmacion
             logger.info(`AuthController: Cierre de sesion exitoso para userId: ${req.body.userId}. Login completado.`);
-            logger.debug({ message: 'AuthController: Preparando respuesta de éxito de login 2FA.'});
+            logger.debug({ message: 'AuthController: Preparando respuesta de éxito de login 2FA.' });
             sendSuccessResponse(res, 200, {}, result.message);
         } catch (error) {
 

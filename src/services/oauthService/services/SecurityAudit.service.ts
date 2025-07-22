@@ -28,6 +28,8 @@ export class SecurityAuditService {
             const user = await this.userService.findUserById(dataAudit.userId);
             UserValidator.validateStatusUserIsActive(user.status);
 
+            console.log("DATA AUDIT CREATE: ", dataAudit);
+            
             //2. Creamos el registro inicial
             return await this.securityAuditRepository.createRegistrySecurityAudit(dataAudit, sessionParam);
 
@@ -82,6 +84,9 @@ export class SecurityAuditService {
 
 
         try {
+
+            console.log("USER ID", userId);
+            
 
             //1. Verificamos unicamente que el usuario exista y tenga un estatus de activo en el sistema
             const user = await this.userService.findUserById(userId);

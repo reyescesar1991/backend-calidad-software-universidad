@@ -31,8 +31,8 @@ export class OAuthService {
         @inject(MailService) private mailService: MailService,
     ) { }
 
-//     //Funcion que me permite verificar que si el intentos ha sido mas de dos, bloquear al usuario
-    private async validateNumberAttempsLogin(dataUserAudit: SecurityAuditDocument, idUser: ObjectIdParam, session ?: ClientSession): Promise<void> {
+    //     //Funcion que me permite verificar que si el intentos ha sido mas de dos, bloquear al usuario
+    private async validateNumberAttempsLogin(dataUserAudit: SecurityAuditDocument, idUser: ObjectIdParam, session?: ClientSession): Promise<void> {
 
         if (dataUserAudit.loginAttempts >= 3) {
 
@@ -61,6 +61,19 @@ export class OAuthService {
             //1.1 Que el usuario no este bloqueado
             UserValidator.validateStatusUserIsActive(user.status);
 
+            const securityUser = await this.securityAuditService.getRegistrySecurityAuditByUser(user._id);
+
+            console.log(securityUser);
+
+            if(!securityUser) //Agrego el registro del usuario en la tabla de auditoria si no existe
+
+            await this.securityAuditService.createRegistrySecurityAudit({
+                userId: user._id,
+                loginAttempts: 0,
+                secondFactorAttempts: 0
+            }, session);
+            
+
             //2. Luego comprobamos que la contraseña sea igual a la del user extraido de la DB
             //2.1 En caso de no ser iguales lanzaremos la excepcion AuthPasswordMismatchUsernameError()
             if (user.password !== dataLogin.password) {
@@ -74,12 +87,15 @@ export class OAuthService {
             //3. Consultamos el status del segundo factor de autenticacion
             const userTwoFactorStatus = await this.userService.getSecondFactorUserStatus(user._id);
 
+
             //4. Generamos el token 
             const token = this.JwtService.generateToken({
                 userId: user.idUser,
                 jti: "",
             });
 
+            console.log("USER STATUS TWO FACTOR", userTwoFactorStatus);
+            
 
             //5. Diferentes tipos de inicio de sesion
             //5.1 Si el usuario no tiene el segundo factor activo
@@ -110,7 +126,11 @@ export class OAuthService {
                 const preAuthToken = await this.JwtService.generatePreAuthToken(user.username, user.idUser);
 
                 //5.2.2 Agrego el intento de login y valido que ya no exceda el limite, en tal caso bloqueo al usuario
-                const updateAudit = await this.securityAuditService.addAttempLogin(user._id);
+                const updateAudit = await this.securityAuditService.addAttempLogin(user._id, session);
+            
+                console.log("DATA UPDATE: ", updateAudit);
+                
+
                 await this.validateNumberAttempsLogin(updateAudit, user._id, session);
 
                 //5.2.2 Retorno una repuesta de login con pre Auth para poder pedir el segundo factor
@@ -467,7 +487,7 @@ export class OAuthService {
      * @returns Un mensaje de exito confirmando el cierre de la sesion
      */
     @Transactional()
-    async logoutSession(dataLogout: LogoutUserDto, session ?: ClientSession): Promise<{ message: string }> {
+    async logoutSession(dataLogout: LogoutUserDto, session?: ClientSession): Promise<{ message: string }> {
 
         try {
 

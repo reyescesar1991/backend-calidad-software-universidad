@@ -60,6 +60,7 @@ export const errorHandler = (
         } else {
             // Si es un AppError pero no una subclase específica que hemos mapeado,
             // mantenemos el default 500.
+            statusCode = 406;
             message = err.message;
             // No asignamos statusCode aquí si AppError base no lo tiene por defecto
         }

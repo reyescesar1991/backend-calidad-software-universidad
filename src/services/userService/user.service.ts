@@ -17,7 +17,7 @@ import {
   UserPermissionSecurityDto,
   UserTwoFactorActiveDto,
 } from "../../validations";
-import { ModuleDocument, RouteDocument, SubrouteDocument, UserDocument } from "../../db/models";
+import { ModuleDocument, RouteDocument, UserDocument } from "../../db/models";
 import { handleError } from "../../core/exceptions";
 import { FilterOptions, ICustomPermission, ModuleWithRoutes, RouteWithSubroutes, SimplifiedSubroute, UserConfigFilterKeys } from "../../core/types";
 import { IUserPermissionRepository } from "./interfaces/IUserPermissionRepository";
@@ -25,7 +25,7 @@ import { IRoleRepository } from "../role/interfaces/IRoleRepository";
 import { IUserPermissionSecurityRepository } from "./interfaces/IUserPermissionSecurityRepository";
 import { IRoleConfigRepository } from "../roleConfig";
 import { ITwoFactorUserRepository } from "./interfaces/ITwoFactorActiveUser";
-import { TwoFactorService } from "../oauthService";
+import { SecurityAuditService, TwoFactorService } from "../oauthService";
 import { Transactional } from "../../core/utils/transaccional-wrapper";
 import { ClientSession } from "mongoose";
 import { MenuService } from "../menu/Menu.service";
@@ -55,7 +55,7 @@ export class UserService {
     @inject("TwoFactorService")
     private readonly twoFactorService: TwoFactorService,
 
-    @inject("MenuService") private readonly menuService: MenuService
+    @inject("MenuService") private readonly menuService: MenuService,
   ) { }
 
   async findUserById(idUser: ObjectIdParam): Promise<UserDocument | null> {
@@ -198,8 +198,16 @@ export class UserService {
 
         const newUser = await this.userRepository.createUser(dataUser, session);
 
+        //Agrego el registro a la tabla de segundo factor
+        await this.twoFactorUserActiveRepository.addTwoFactorUser({
+          userId: newUser._id,
+          twoFactorId: objectIdSchema.parse("67e9e6c034fe5c9d5ab4acf0"),
+          isActive: newUser.hasTwoFactor
+        }, session);
+
         //9.Devuelvo el usuario creado
         return newUser;
+
       } catch (error) {
         handleError(error);
       }
@@ -595,9 +603,13 @@ export class UserService {
 
       const user = await this.userRepository.findUserById(idUser);
 
+      console.log(user);
+
       UserValidator.validateUserExists(user);
 
       const statusSecondFactorUser = await this.twoFactorUserActiveRepository.getTwoFactorUserActive(idUser);
+
+      console.log(statusSecondFactorUser);
 
       return statusSecondFactorUser;
 

@@ -14,6 +14,8 @@ export class SecurityAuditRepositoryImpl implements ISecurityAuditRepository{
     async createRegistrySecurityAudit(dataAudit: SecurityAuditDto, session ?: ClientSession): Promise<SecurityAuditDocument | null> {
         
         const [data] = await this.SecurityAuditModel.create([dataAudit], {session});
+        console.log("DATA CREADA EWN EL REGISTRY", data);
+        
         return data;
     }
 

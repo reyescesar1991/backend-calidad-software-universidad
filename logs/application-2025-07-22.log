@@ -1,0 +1,231 @@
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 09:37:35"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 09:37:35"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 09:37:35"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 09:40:09"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 09:40:09"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 09:40:09"}
+{"code":"ERR_HTTP_INVALID_STATUS_CODE","level":"error","message":"Unhandled Rejection: Invalid status code: undefined","stack":"RangeError: Invalid status code: undefined\n    at ServerResponse.writeHead (node:_http_server:352:11)\n    at ServerResponse._implicitHeader (node:_http_server:338:8)\n    at write_ (node:_http_outgoing:919:9)\n    at ServerResponse.end (node:_http_outgoing:1030:5)\n    at ServerResponse.send (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\express\\lib\\response.js:232:10)\n    at ServerResponse.json (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\express\\lib\\response.js:278:15)\n    at sendErrorResponse (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\src\\core\\helper\\api\\response.helper.ts:66:28)\n    at login (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\src\\controllers\\oauth\\oauth.controller.ts:78:30)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2025-07-22 09:40:10"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 09:47:38"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 09:47:38"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 09:47:38"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 09:47:41"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 09:47:41"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 09:47:41"}
+{"error":{"code":2301,"name":"AuthPasswordMismatchUsernameError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 09:47:41"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 10:16:24"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 10:16:24"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 10:16:24"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:16:28"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:16:28"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:16:28"}
+{"error":{"code":2301,"name":"AuthPasswordMismatchUsernameError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:16:29"}
+{"error":{"code":2301,"message":"Los datos no son validos, intente nuevamente","name":"AuthPasswordMismatchUsernameError","stack":"AuthPasswordMismatchUsernameError: Los datos no son validos, intente nuevamente\n    at Proxy.loginUser (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\src\\services\\oauthService\\OAuth.service.ts:71:23)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async TransactionManager.executeTransaction (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\src\\core\\database\\transactionManager.ts:19:28)\n    at async login (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\src\\controllers\\oauth\\oauth.controller.ts:38:46)"},"level":"error","message":"Error en POST /api/v1/auth/login","timestamp":"2025-07-22 10:16:29"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 10:17:28"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 10:17:28"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 10:17:28"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:17:33"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:17:33"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:17:33"}
+{"error":{"code":1812,"name":"UserStatusIsAlreadyNotActiveError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:17:33"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 10:18:03"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 10:18:03"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 10:18:03"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:18:12"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:18:12"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:18:12"}
+{"error":{"code":1812,"name":"UserStatusIsAlreadyNotActiveError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:18:12"}
+{"error":{"code":1812,"message":"El usuario no se encuentra activo en la aplicación","name":"UserStatusIsAlreadyNotActiveError","stack":"UserStatusIsAlreadyNotActiveError: El usuario no se encuentra activo en la aplicación\n    at Function.validateStatusUserIsActive (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\src\\core\\validators\\users\\user.validator.ts:58:56)\n    at Proxy.loginUser (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\src\\services\\oauthService\\OAuth.service.ts:62:27)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async TransactionManager.executeTransaction (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\src\\core\\database\\transactionManager.ts:19:28)\n    at async login (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\src\\controllers\\oauth\\oauth.controller.ts:38:46)"},"level":"error","message":"Error en POST /api/v1/auth/login","timestamp":"2025-07-22 10:18:12"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 10:20:30"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 10:20:30"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 10:20:30"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:20:41"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:20:41"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:20:41"}
+{"error":{"code":1812,"name":"UserStatusIsAlreadyNotActiveError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:20:41"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:20:45"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:20:45"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:20:45"}
+{"error":{"code":1812,"name":"UserStatusIsAlreadyNotActiveError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:20:45"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:21:01"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:21:01"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:21:01"}
+{"error":{"code":1812,"name":"UserStatusIsAlreadyNotActiveError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:21:01"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:21:12"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:21:12"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:21:12"}
+{"error":{"code":1802,"name":"UserNotFoundByUsernameError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:21:12"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:21:12"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:21:12"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:21:12"}
+{"error":{"code":1802,"name":"UserNotFoundByUsernameError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:21:12"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:21:13"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:21:13"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:21:13"}
+{"error":{"code":1802,"name":"UserNotFoundByUsernameError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:21:13"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:21:13"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:21:13"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:21:13"}
+{"error":{"code":1802,"name":"UserNotFoundByUsernameError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:21:13"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 10:21:59"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 10:21:59"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 10:21:59"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:22:08"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:22:08"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:22:08"}
+{"error":{"code":1802,"name":"UserNotFoundByUsernameError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:22:08"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:24:18"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:24:18"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:24:18"}
+{"error":{"code":1812,"name":"UserStatusIsAlreadyNotActiveError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:24:18"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:24:45"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:24:45"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:24:45"}
+{"error":{"code":1812,"name":"UserStatusIsAlreadyNotActiveError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:24:45"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:26:28"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:26:28"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:26:28"}
+{"error":{"code":1812,"name":"UserStatusIsAlreadyNotActiveError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:26:28"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:27:14"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:27:14"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:27:14"}
+{"error":{"code":1802,"name":"UserNotFoundByUsernameError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:27:14"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 10:27:51"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 10:27:51"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 10:27:51"}
+{"error":{"code":1802,"name":"UserNotFoundByUsernameError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 10:27:51"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 11:07:45"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 11:07:45"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 11:07:45"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 11:07:46"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 11:16:55"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 11:16:55"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 11:16:55"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 11:17:04"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 11:17:04"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 11:17:04"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 11:17:04"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 11:17:56"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 11:17:56"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 11:17:56"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 11:17:58"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 11:17:58"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 11:17:58"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 11:17:59"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 11:20:59"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 11:20:59"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 11:20:59"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 11:21:03"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 11:21:03"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 11:21:03"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 11:21:03"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 11:23:12"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 11:23:12"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 11:23:12"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 11:23:27"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 11:23:27"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 11:23:27"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 11:23:27"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 11:25:37"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 11:25:37"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 11:25:37"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 11:25:41"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 11:25:41"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 11:25:41"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 11:25:41"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 11:26:33"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 11:26:33"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 11:26:33"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 11:26:35"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 11:26:35"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 11:26:35"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 11:26:36"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 11:32:00"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 11:32:00"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 11:32:00"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 11:32:00"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 11:34:47"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 11:34:47"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 11:34:47"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 11:34:56"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 11:34:56"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 11:34:56"}
+{"level":"info","message":"AuthController: Usuario 'testUser2' logueado exitosamente (sin 2FA).","timestamp":"2025-07-22 11:34:57"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 11:43:13"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 11:43:13"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 11:43:13"}
+{"level":"info","message":"AuthController: Usuario 'testUser2' logueado exitosamente (sin 2FA).","timestamp":"2025-07-22 11:43:14"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 11:43:56"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 11:43:56"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 11:43:56"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 11:43:56"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 11:53:10"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 12:02:51"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 12:02:51"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 12:02:51"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 12:05:21"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 12:05:21"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 12:05:21"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 14:12:26"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 14:12:26"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:12:26"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 14:12:27"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 14:13:27"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 14:13:27"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 14:13:27"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 14:13:42"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 14:13:42"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:13:42"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 14:13:42"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 14:16:50"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 14:16:50"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 14:16:50"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 14:17:02"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 14:17:02"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:17:02"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 14:17:02"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 14:18:19"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 14:18:19"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 14:18:19"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 14:18:26"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 14:18:26"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:18:26"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 14:18:27"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 14:19:40"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 14:19:40"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 14:19:40"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 14:19:46"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 14:19:46"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:19:46"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 14:19:46"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 14:21:11"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 14:21:11"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 14:21:11"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 14:21:27"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 14:21:27"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:21:27"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 14:21:28"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 14:24:02"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 14:24:02"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 14:24:02"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 14:24:08"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 14:24:08"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:24:08"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 14:24:08"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 14:27:41"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 14:27:41"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 14:27:41"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 14:27:47"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 14:27:47"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:27:47"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 14:27:47"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 14:28:17"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 14:28:17"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:28:17"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 14:28:18"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 14:50:29"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 14:50:29"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 14:50:29"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 14:50:33"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 14:50:33"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:50:33"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 14:50:34"}

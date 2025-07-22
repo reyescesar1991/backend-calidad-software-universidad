@@ -50,7 +50,7 @@ export class TwoFactorUserService {
             const code = Math.floor(100000 + Math.random() * 900000).toString();
 
             //5. Generar la fecha de expiracion
-            const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
+            const expiresAt = new Date(Date.now() + 60 * 1000);
 
             const registryAudit = await this.securityAuditService.getRegistrySecurityAuditByUser(userId);
 

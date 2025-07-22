@@ -26,16 +26,16 @@ const runTestCreateUser = async () => {
 
         const dataUser : UserDto = {
 
-            idUser : "USER9999",
+            idUser : "USER9998",
             name : "Test",
             lastName : "Test",
             codeCountry : "58",
-            phoneNumber : "04242746760",
-            email : "testestest@gmail.com",
+            phoneNumber : "04242746761",
+            email : "reyescesar0711@gmail.com",
             password : "Contraseña.Test.01",
-            username : "testUser",
+            username : "testUser2",
             status : StatusUserEnum.ACTIVE,
-            hasTwoFactor : false,
+            hasTwoFactor : true,
             department : objectIdSchema.parse("682e325a174576bd98f15671"),
             roleConfig : objectIdSchema.parse("68263fc7f016933bfed2ec24"),
         }

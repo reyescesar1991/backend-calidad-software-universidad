@@ -21,7 +21,13 @@ export class TwoFactorUserActiveRepositoryImpl implements ITwoFactorUserReposito
 
     async getTwoFactorUserActive(userIdParam: ObjectIdParam): Promise<boolean | null> {
 
-        return (await this.UserTwoFactorModel.findOne({ userId: userIdParam }).exec()).isActive;
+        console.log("USER ID EN EL REPO: " , userIdParam);
+        
+        const twoFactorUserStatus = await this.UserTwoFactorModel.findOne({ userId: userIdParam }).exec();
+
+        console.log("TWO FACTOR STATUS: ", twoFactorUserStatus);
+
+        return twoFactorUserStatus.isActive;
     }
 
     async addTwoFactorUser(dataFactorUserParam: UserTwoFactorActiveDto, session?: ClientSession): Promise<UsersTwoFactorActiveDocument | null> {

@@ -270,3 +270,12 @@
 {"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 14:50:33"}
 {"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:50:33"}
 {"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 14:50:34"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 14:53:00"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 14:53:00"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 14:53:00"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 14:53:06"}
+{"body":{"password":"Contraseña.Test.01","username":"testUser2"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-22 14:53:06"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 14:53:06"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:53:06"}
+{"level":"info","message":"AuthController: Usuario 'testUser2' requiere 2FA. Iniciando 2FA.","timestamp":"2025-07-22 14:53:07"}
+{"body":{"preAuthToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyMiIsInVzZXJJZCI6IlVTRVI5OTk4IiwianRpIjoiOTBmZjg1NWMtNjRiNC00NjJjLTliOWQtZWQxNzkwYWQzNWY3IiwibGF0IjoxNzUzMjEwMzg3LCJleHAiOjE3NTMyMTA0NDcsImlhdCI6MTc1MzIxMDM4N30.ub6FEZwJHJVE_uFBP1TBFyp8w3XNH5c3TgAMJVa7GAU","userId":"USER9998"},"headersSent":false,"level":"debug","message":"Preparando respuesta para flujo 2FA:","timestamp":"2025-07-22 14:53:10"}

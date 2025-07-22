@@ -229,3 +229,10 @@
 {"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 14:50:33"}
 {"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:50:33"}
 {"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"AuthController: Error durante el login.","timestamp":"2025-07-22 14:50:34"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-22 14:53:00"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-22 14:53:00"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-22 14:53:00"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 14:53:06"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 14:53:06"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:53:06"}
+{"level":"info","message":"AuthController: Usuario 'testUser2' requiere 2FA. Iniciando 2FA.","timestamp":"2025-07-22 14:53:07"}

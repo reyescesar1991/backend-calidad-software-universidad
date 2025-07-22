@@ -41,7 +41,14 @@ export class TwoFactorUserService {
 
             //2. Verificamos que el usuario tenga un registro en la tabla valor de factor de autenticacion, si es asi lanzamos un error
             const userFactorValue = await this.twoFactorValueRepository.findTwoFactorValueUserByCustomUserId(userId);
-            TwoFactorValueValidator.validateTwoFactorDataBaseExists(userFactorValue);
+
+            //Para mejorar la experiencia de usuario, elimino el codigo anterior pero le sumo uno al intento
+            if(userFactorValue){
+
+                await this.securityAuditService.addAttempSecondFactor(userId, sessionParam);
+                await this.deleteTwoFactorValueUser(userId, sessionParam);
+            }
+            // TwoFactorValueValidator.validateTwoFactorDataBaseExists(userFactorValue);
 
             //3. Validamos que el email este previamente registrado
             await this.userValidator.validateEmailUser(userId, email);

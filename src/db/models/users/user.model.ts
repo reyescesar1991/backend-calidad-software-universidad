@@ -32,8 +32,8 @@ export const userSchema = new Schema<UserDocument>({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     username: { type: String, required: true, unique: true },
-    status: { type: String, required: true, default: StatusUserEnum.ACTIVE },
-    hasTwoFactor : {type: Boolean, required: true, default: false},
+    status: { type: String, required: false, default: StatusUserEnum.ACTIVE },
+    hasTwoFactor : {type: Boolean, required: false, default: false},
     lastLogin : {type: String, required: false},
     department : { 
         type: mongoose.Schema.Types.ObjectId, 

@@ -55,7 +55,6 @@ export const secondFactorRequestSchemaZod = z.object({
         return regex.test(value);
 
     }, "Formato de ID de usuario incorrecto, debe iniciar con 4 carácteres y seguido tener 4 números"),
-    email : z.string().email(),
 });
 
 export const logoutRequestSchemaZod = z.object({

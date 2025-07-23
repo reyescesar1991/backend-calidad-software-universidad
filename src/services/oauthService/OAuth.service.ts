@@ -293,7 +293,7 @@ export class OAuthService {
 
             //2. Ya el email es validado por el servicio que genera el segundo factor
             //3. Si todo va bien, genera el codigo y lo envia al correo registrado en la base de datos
-            await this.twoFactorUserService.generateAndSendCode(user._id, data.email, session);
+            await this.twoFactorUserService.generateAndSendCode(user._id, user.email, session);
 
             return { message: "Un código de verificación ha sido enviado a tu email registrado." };
 

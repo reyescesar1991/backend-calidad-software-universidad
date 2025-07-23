@@ -122,7 +122,12 @@ export {AmountTotalByWarehouseResponse} from './productValidators/product.respon
 export {StockByStatusResponse} from './productValidators/product.responses';
 
 export {ProductStockDto} from './productStockValidators/productStock.validation';
-export {UpdateProductStockDto} from './productStockValidators/productStock.validation'
+export {UpdateProductStockDto} from './productStockValidators/productStock.validation';
+
+//Validations user data
+
+export {validateCustomUserIdSchemaZod} from './generalUserData/idUser.validation';
+export {ValidateUserExistsDto} from './generalUserData/idUser.validation'
 
 //shared
 

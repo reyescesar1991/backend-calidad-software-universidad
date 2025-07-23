@@ -279,3 +279,17 @@
 {"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:53:06"}
 {"level":"info","message":"AuthController: Usuario 'testUser2' requiere 2FA. Iniciando 2FA.","timestamp":"2025-07-22 14:53:07"}
 {"body":{"preAuthToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyMiIsInVzZXJJZCI6IlVTRVI5OTk4IiwianRpIjoiOTBmZjg1NWMtNjRiNC00NjJjLTliOWQtZWQxNzkwYWQzNWY3IiwibGF0IjoxNzUzMjEwMzg3LCJleHAiOjE3NTMyMTA0NDcsImlhdCI6MTc1MzIxMDM4N30.ub6FEZwJHJVE_uFBP1TBFyp8w3XNH5c3TgAMJVa7GAU","userId":"USER9998"},"headersSent":false,"level":"debug","message":"Preparando respuesta para flujo 2FA:","timestamp":"2025-07-22 14:53:10"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 16:30:10"}
+{"body":{"password":"Contraseña.Test.01","username":"testUser2"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-22 16:30:10"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 16:30:10"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 16:30:11"}
+{"level":"info","message":"AuthController: Usuario 'testUser2' requiere 2FA. Iniciando 2FA.","timestamp":"2025-07-22 16:30:11"}
+{"body":{"preAuthToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyMiIsInVzZXJJZCI6IlVTRVI5OTk4IiwianRpIjoiOWI1MjEyNTMtNjY1My00NTRkLWI0OTEtNGM0YWRhNThhZTFjIiwibGF0IjoxNzUzMjE2MjExLCJleHAiOjE3NTMyMTYyNzEsImlhdCI6MTc1MzIxNjIxMX0.4O4AlEElWtntY3fPb-LBAnHI6gcx4R9x_HJfo_dwQPY","userId":"USER9998"},"headersSent":false,"level":"debug","message":"Preparando respuesta para flujo 2FA:","timestamp":"2025-07-22 16:30:15"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateVerify2faLoginData ---","timestamp":"2025-07-22 16:30:32"}
+{"body":{"code":"542587","userId":"USER9998"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-22 16:30:32"}
+{"level":"info","message":"Validación de Zod para la validacion del 2fa para el login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 16:30:32"}
+{"level":"info","message":"AuthController: Inicio del proceso de verificación 2FA de login.","timestamp":"2025-07-22 16:30:32"}
+{"codeProvided":true,"level":"debug","message":"AuthController: Datos de verificación 2FA recibidos.","preAuthTokenExists":false,"timestamp":"2025-07-22 16:30:32","userId":"USER9998"}
+{"level":"info","message":"AuthController: Llamando al servicio oAuthService.verify2FALogin.","timestamp":"2025-07-22 16:30:32"}
+{"level":"info","message":"AuthController: Verificación 2FA exitosa para userId: undefined. Login completado.","timestamp":"2025-07-22 16:30:33"}
+{"level":"debug","message":"AuthController: Preparando respuesta de éxito de login 2FA.","timestamp":"2025-07-22 16:30:33","tokenExists":true}

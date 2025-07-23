@@ -1,0 +1,12 @@
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-23 09:48:05"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-23 09:48:05"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-23 09:48:05"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-23 09:50:48"}
+{"body":{"password":"Hola123%3489","username":"testUser"},"level":"debug","message":"Request Body Recibido:","timestamp":"2025-07-23 09:50:48"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-23 09:50:48"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-23 09:50:48"}
+{"level":"info","message":"AuthController: Usuario 'testUser' logueado exitosamente (sin 2FA).","timestamp":"2025-07-23 09:50:50"}
+{"body":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJVU0VSOTk5OSIsImp0aSI6ImNlN2I2MWNmLTQwMzYtNDVhOS05ODQ1LWE2NWVkYmQ1MTBlMSIsImxhdCI6MTc1MzI3ODY0OSwiZXhwIjoxNzUzMjgyMjQ5LCJpYXQiOjE3NTMyNzg2NDl9.mH3DKYyxLBn3LBL1n7AlOwtaEiAOappnXGwgAzaUQqc"},"headersSent":false,"level":"debug","message":"Preparando respuesta para flujo sin 2FA:","timestamp":"2025-07-23 09:50:50"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-23 11:22:39"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-23 11:22:39"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-23 11:22:39"}

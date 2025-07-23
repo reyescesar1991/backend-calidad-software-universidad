@@ -236,3 +236,12 @@
 {"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 14:53:06"}
 {"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 14:53:06"}
 {"level":"info","message":"AuthController: Usuario 'testUser2' requiere 2FA. Iniciando 2FA.","timestamp":"2025-07-22 14:53:07"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateLoginData ---","timestamp":"2025-07-22 16:30:10"}
+{"level":"info","message":"Validación de Zod para login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 16:30:10"}
+{"level":"info","message":"AuthController: Inicio del proceso de login","timestamp":"2025-07-22 16:30:11"}
+{"level":"info","message":"AuthController: Usuario 'testUser2' requiere 2FA. Iniciando 2FA.","timestamp":"2025-07-22 16:30:11"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateVerify2faLoginData ---","timestamp":"2025-07-22 16:30:32"}
+{"level":"info","message":"Validación de Zod para la validacion del 2fa para el login SUPERADA. Pasando al controlador.","timestamp":"2025-07-22 16:30:32"}
+{"level":"info","message":"AuthController: Inicio del proceso de verificación 2FA de login.","timestamp":"2025-07-22 16:30:32"}
+{"level":"info","message":"AuthController: Llamando al servicio oAuthService.verify2FALogin.","timestamp":"2025-07-22 16:30:32"}
+{"level":"info","message":"AuthController: Verificación 2FA exitosa para userId: undefined. Login completado.","timestamp":"2025-07-22 16:30:33"}

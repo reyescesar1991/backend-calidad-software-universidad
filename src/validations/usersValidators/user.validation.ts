@@ -16,8 +16,8 @@ export const userSchemaZod = z.object({
     email: z.string().email(),
     password: z.string().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{12,}$/, { message: "La contraseña debe tener al menos 12 caracteres y contener al menos una mayúscula, una minúscula, un número y un carácter especial." }),
     username: z.string().min(6, "El usuario debe tener al menos 6 carácteres"),
-    status: z.string().min(1, "El estatus del usuario es requerido"),
-    hasTwoFactor: z.boolean(),
+    status: z.string().min(1, "El estatus del usuario es requerido").optional(),
+    hasTwoFactor: z.boolean().optional(),
     lastLogin: z.string().optional(),
     department: z.instanceof(mongoose.Types.ObjectId).refine(
         val => val instanceof mongoose.Types.ObjectId,

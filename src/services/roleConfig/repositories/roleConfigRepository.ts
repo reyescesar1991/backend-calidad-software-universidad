@@ -55,13 +55,32 @@ export class RoleConfigRepositoryImpl implements IRoleConfigRepository {
     }
 
     async findRoleConfigWithRole(
-    roleConfigId: ObjectIdParam
-  ): Promise<RoleDocument | null> {
+        roleConfigId: ObjectIdParam
+    ): Promise<RoleDocument | null> {
 
-    const roleConfig = await this.RoleConfigModel.findById(roleConfigId).populate<{ rolID: RoleDocument }>('rolID').exec();
-    
-    return roleConfig.rolID;
-  }
+        const roleConfig = await this.RoleConfigModel.findById(roleConfigId).populate<{ rolID: RoleDocument }>('rolID').exec();
+
+        return roleConfig.rolID;
+    }
 
 
+    async findRolesByConfigRoles(): Promise<RoleDocument[]> {
+
+        const roleConfigs = await this.RoleConfigModel.find({})
+            .populate<{ rolID: RoleDocument | null }>({
+                path: 'rolID',
+                match: { isActive: true }, // Filtra para que solo popule si el rol está activo
+                select: '_id idRole name label' // Selecciona solo los campos que necesitas
+            })
+            .exec();
+
+        // Extraer los documentos de rol poblados.
+        // El campo 'rolID' será null si la referencia estaba rota o si no cumplió la condición 'match'.
+        // El filtro se encarga de limpiar esos resultados nulos.
+        const roles = roleConfigs
+            .map(config => config.rolID)
+            .filter((role): role is RoleDocument => role !== null);
+
+        return roles;
+    }
 }

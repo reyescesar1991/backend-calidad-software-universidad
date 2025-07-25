@@ -17,4 +17,5 @@ export interface IRoleConfigRepository{
     findRoleConfigWithRole(
         roleConfigId: ObjectIdParam
       ): Promise<RoleDocument | null>;
+    findRolesByConfigRoles(): Promise<RoleDocument[]>;
 }

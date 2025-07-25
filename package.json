@@ -94,6 +94,8 @@
     "script:delete-roleconfig": "ts-node src/scripts/roleConfig/testDeleteRoleConfig.ts",
     "script:create-roleconfig": "ts-node src/scripts/roleConfig/testCreateRoleConfig",
     "script:update-roleconfig": "ts-node src/scripts/roleConfig/testUpdateRoleConfig.ts",
+    "script:getrole-roleconfig" : "ts-node src/scripts/roleConfig/testRoleConfigGetRole.ts",
+    "script:getroles-roleconfig" : "ts-node src/scripts/roleConfig/testFindRolesByConfigRoles.ts",
     "script:create-headquarter": "ts-node src/scripts/headquarter/testCreateHeadquarter.ts",
     "script:findbyid-headquarter": "ts-node src/scripts/headquarter/testFindHeadquarterById.ts",
     "script:findbycustomid-headquarter": "ts-node src/scripts/headquarter/testFindHeadquarterByCustomId.ts",

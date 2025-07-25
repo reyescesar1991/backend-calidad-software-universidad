@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import { errorHandler } from './middlewares/error.middleware';
 import authRoutes from './api/routes/oauth/oauth.routes';
 import userDataRoutes from './api/routes/userData/userData.routes';
+import roleConfigRoutes from './api/routes/roleConfig/roleConfig.routes';
 
 
 const app = express();
@@ -42,6 +43,7 @@ app.use(express.urlencoded({extended : true}));
 // Rutas de la API
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/userData', userDataRoutes);
+app.use('/api/v1/roleConfig', roleConfigRoutes),
 
 
 

@@ -5,6 +5,7 @@ import { configureDependenciesRoles } from '../../core/config/dependenciesRoles/
 import { objectIdSchema } from '../../validations';
 import { container } from 'tsyringe';
 import { RoleService } from '../../services/role/Role.service';
+import { runAllDependencies } from '../../core/config/configureAllDependencies';
 
 
 initializeTestEnvironment();
@@ -15,9 +16,9 @@ const runTestActivateRole = async () => {
 
     try {
 
-        await configureDependenciesRoles();
+        await runAllDependencies();
 
-        const idRole = objectIdSchema.parse("681cbf83983a4218cb3de111");
+        const idRole = objectIdSchema.parse("67f7f5ff4f0b312a2319fc59");
 
         const roleService = container.resolve(RoleService);
 

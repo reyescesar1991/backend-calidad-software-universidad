@@ -17,7 +17,7 @@ import {
   UserPermissionSecurityDto,
   UserTwoFactorActiveDto,
 } from "../../validations";
-import { ModuleDocument, RouteDocument, UserDocument } from "../../db/models";
+import { LocationUserDocument, ModuleDocument, RouteDocument, UserDocument } from "../../db/models";
 import { handleError } from "../../core/exceptions";
 import { FilterOptions, ICustomPermission, ModuleWithRoutes, RouteWithSubroutes, SimplifiedSubroute, UserConfigFilterKeys } from "../../core/types";
 import { IUserPermissionRepository } from "./interfaces/IUserPermissionRepository";
@@ -29,6 +29,8 @@ import { SecurityAuditService, TwoFactorService } from "../oauthService";
 import { Transactional } from "../../core/utils/transaccional-wrapper";
 import { ClientSession } from "mongoose";
 import { MenuService } from "../menu/Menu.service";
+import { LocationService } from "../locationService/Location.service";
+import { ILocationUserDataRepository } from "./interfaces/ILocationUserDataRepository";
 
 
 @injectable()
@@ -56,7 +58,30 @@ export class UserService {
     private readonly twoFactorService: TwoFactorService,
 
     @inject("MenuService") private readonly menuService: MenuService,
+
+
+    @inject("LocationService") private readonly LocationService: LocationService,
+
+    @inject("ILocationUserDataRepository") private readonly LocationUserDataRepository: ILocationUserDataRepository,
   ) { }
+
+  async verifyPermissionUser(idUserParam: string, labelPermission: string): Promise<boolean> {
+
+    try {
+
+      const userPermission = await this.getCustomPermissionsUser(idUserParam);
+
+      const permission = userPermission.find((permission) => permission.permissionLabel === labelPermission);
+
+      if (permission.can) return true;
+
+      return false;
+
+    } catch (error) {
+
+      handleError(error);
+    }
+  }
 
   async findUserById(idUser: ObjectIdParam): Promise<UserDocument | null> {
     try {
@@ -123,6 +148,7 @@ export class UserService {
   ): Promise<UserDocument | null> {
     return await this.transactionManager.executeTransaction(async (session) => {
       try {
+
         //1. Validamos que no exista previamente el usuario
         await this.userValidator.validateUniquenessUserData(dataUser.idUser);
 
@@ -134,11 +160,18 @@ export class UserService {
           username: dataUser.username,
         });
 
-        //3. Validamos que exista el role
-        const role = await this.roleConfigRepository.findRoleConfigWithRole(
+        const configRole = await this.roleConfigRepository.findConfigRoleById(
           idConfigRoleParam
         );
+
+        //3. Validamos que exista el role
+        const role = await this.roleConfigRepository.findRoleConfigWithRole(
+          configRole.rolID
+        );
         RoleValidator.validateRoleExists(role);
+
+        console.log(role);
+
 
         //TODO: CREAR UN MIDDLEWARE PARA VALIDAR QUE SOLO UN USUARIO CON ROL ADMIN PUEDA USAR ESTA FUNCIONALIDAD
 
@@ -203,6 +236,15 @@ export class UserService {
           userId: newUser._id,
           twoFactorId: objectIdSchema.parse("67e9e6c034fe5c9d5ab4acf0"),
           isActive: newUser.hasTwoFactor
+        }, session);
+
+        const location = await this.LocationService.buildLocationUser(newUser.department);
+
+        await this.LocationUserDataRepository.createLocationUserData({
+          userId : newUser.idUser,
+          headquarterId : location.headquarterId,
+          departmentId : location.departmentId,
+          warehouseId : location.warehouseId
         }, session);
 
         //9.Devuelvo el usuario creado
@@ -761,4 +803,53 @@ export class UserService {
       throw error;
     }
   }
+
+  @Transactional()
+  async generateLocationUser(idUser: string, session?: ClientSession): Promise<LocationUserDocument> {
+
+    try {
+
+      const user = await this.userRepository.findUserByCustomId(idUser);
+
+      UserValidator.validateUserExists(user);
+
+      const locationUser = await this.LocationUserDataRepository.getLocationUserData(idUser);
+
+      if (!locationUser) {
+
+        const location = await this.LocationService.buildLocationUser(user.department);
+
+        return await this.LocationUserDataRepository.createLocationUserData({
+          departmentId: location.departmentId,
+          headquarterId: location.headquarterId,
+          warehouseId: location.warehouseId,
+          userId: idUser
+        }, session);
+      }
+      
+      return locationUser;
+
+    } catch (error) {
+
+      handleError(error);
+    }
+  }
+
+  async getUserLocation(idUser : string) : Promise<LocationUserDocument>{
+
+    try {
+
+      const user = await this.userRepository.findUserByCustomId(idUser);
+
+      UserValidator.validateUserExists(user);
+
+      return await this.LocationUserDataRepository.getLocationUserData(idUser);
+      
+    } catch (error) {
+      
+      handleError(error);
+    }
+  }
+
+
 }

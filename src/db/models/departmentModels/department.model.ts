@@ -8,7 +8,7 @@ export interface DepartmentDocument extends Document {
     label : string,
     name : string,
     description : string,
-    headquartersId : Schema.Types.ObjectId
+    headquartersId : mongoose.Types.ObjectId
     headquartersName : string,
     isActive : boolean,
 }

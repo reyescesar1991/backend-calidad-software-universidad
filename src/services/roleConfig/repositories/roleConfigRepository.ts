@@ -2,9 +2,10 @@ import { inject, injectable } from "tsyringe";
 import { IRoleConfigRepository } from "../interfaces/IRoleConfigRepository";
 import { ClientSession, Model } from "mongoose";
 import { RoleConfigDocument } from "../../../db/models/roleModels/roleConfig.model";
-import { FilterOptions, RoleConfigFilterKeys } from "../../../core/types";
+import { ConfigRoleResponse, FilterOptions, RoleConfigFilterKeys } from "../../../core/types";
 import { ObjectIdParam, RoleConfigDto, UpdateRoleConfigDto } from "../../../validations";
 import { RoleDocument } from "../../../db/models";
+import { handleError } from "../../../core/exceptions";
 
 @injectable()
 export class RoleConfigRepositoryImpl implements IRoleConfigRepository {
@@ -58,15 +59,28 @@ export class RoleConfigRepositoryImpl implements IRoleConfigRepository {
         roleConfigId: ObjectIdParam
     ): Promise<RoleDocument | null> {
 
-        const roleConfig = await this.RoleConfigModel.findById(roleConfigId).populate<{ rolID: RoleDocument }>('rolID').exec();
+        try {
+
+            console.log('ROLE CONFIG', roleConfigId);
+        
+
+        const roleConfig = await this.RoleConfigModel.findOne({rolID : roleConfigId}).populate<{ rolID: RoleDocument }>('rolID').exec();
+
+        console.log(roleConfig);
+        
 
         return roleConfig.rolID;
+            
+        } catch (error) {
+            
+            handleError(error)
+        }
     }
 
 
-    async findRolesByConfigRoles(): Promise<RoleDocument[]> {
+    async findRolesByConfigRoles(): Promise<ConfigRoleResponse[]> {
 
-        const roleConfigs = await this.RoleConfigModel.find({})
+        const roleConfigs = await this.RoleConfigModel.find({isActive : true})
             .populate<{ rolID: RoleDocument | null }>({
                 path: 'rolID',
                 match: { isActive: true }, // Filtra para que solo popule si el rol está activo
@@ -77,10 +91,16 @@ export class RoleConfigRepositoryImpl implements IRoleConfigRepository {
         // Extraer los documentos de rol poblados.
         // El campo 'rolID' será null si la referencia estaba rota o si no cumplió la condición 'match'.
         // El filtro se encarga de limpiar esos resultados nulos.
-        const roles = roleConfigs
-            .map(config => config.rolID)
-            .filter((role): role is RoleDocument => role !== null);
+        // const roles = roleConfigs
+        //     .map(config => config.rolID)
+        //     .filter((role): role is RoleDocument => role !== null);
 
-        return roles;
+        return roleConfigs.map(config => ({
+            _id: config.rolID?._id,
+            idRole: config.rolID?.idRole,
+            name: config.rolID?.name,
+            label: config.rolID?.label,
+            idConfigRole: config._id
+        }));
     }
 }

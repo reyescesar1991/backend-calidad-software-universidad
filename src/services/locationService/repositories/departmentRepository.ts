@@ -23,7 +23,9 @@ export class IDepartmentRepositoryImpl implements IDepartmentRepository{
 
     async findDepartmentsByHeadquarter(idHeadquarter: ObjectIdParam): Promise<DepartmentDocument[] | null> {
         
-        return await this.DepartmentModel.find({headquartersId : idHeadquarter}).exec();
+        return await this.DepartmentModel.find({headquartersId : idHeadquarter, isActive: true})
+        .select("_id idDepartment name label description")
+        .exec();
     } 
 
     async searchDepartmentByFilter(filter: FilterOptions<DepartmentConfigFilterKeys>): Promise<DepartmentDocument[] | null> {

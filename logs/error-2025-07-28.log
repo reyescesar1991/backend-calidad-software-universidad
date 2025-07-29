@@ -1,0 +1,20 @@
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 11:49:07"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 11:50:09"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Expected string, received object","path":[],"received":"object"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 11:54:01"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:28:16"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:28:25"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:29:24"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:32:15"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:35:27"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:37:02"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:39:36"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:40:14"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 16:49:22"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 16:50:03"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 16:53:47"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 16:56:08"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 16:56:40"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 16:57:59"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 16:59:13"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 17:00:55"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 17:02:03"}

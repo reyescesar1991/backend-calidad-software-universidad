@@ -71,3 +71,9 @@ export {SimplifiedRoute} from './menuModels/route.model';
 
 export {ProductStockDocument} from './productsStockModels/productStock.model';
 export {ProductStockModel} from './productsStockModels/productStock.model';
+
+//locationUser
+
+export {LocationUserDocument} from './locationUser/locationUser.model';
+export {LocationUserModel} from './locationUser/locationUser.model';
+export {locationUserSchema} from './locationUser/locationUser.model';

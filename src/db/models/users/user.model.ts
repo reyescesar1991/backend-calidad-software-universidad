@@ -17,8 +17,8 @@ export interface UserDocument extends Document {
     status: string,
     hasTwoFactor : boolean,
     lastLogin : string,
-    department : Schema.Types.ObjectId,
-    roleConfig : Schema.Types.ObjectId,
+    department : mongoose.Types.ObjectId,
+    roleConfig : mongoose.Types.ObjectId,
     passwordHistory : Array<string>,
 };
 

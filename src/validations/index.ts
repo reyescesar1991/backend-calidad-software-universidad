@@ -138,3 +138,8 @@ export {RoleFilterSchema} from './sharedValidators/roleFormatValidator';
 export {RoleConfigFilterSchema} from './sharedValidators/roleConfigFilterValidator';
 export {DepartmentFilterSchema} from './sharedValidators/departmentFilterValidator';
 export {UserFilterSchema} from './sharedValidators/userFilterValidator';
+
+//location user
+
+export {LocationUserDataDto} from './locationUserDataValidators/location.validation';
+export {locationDataUserSchemaZod} from './locationUserDataValidators/location.validation';

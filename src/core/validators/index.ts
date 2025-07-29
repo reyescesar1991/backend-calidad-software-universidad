@@ -22,6 +22,7 @@ export {labelSchema} from './permissions/schemas/labelSchema.zod';
 
 export {HeadquarterValidator} from './headquarters/headquarter.validator';
 export {DepartmentValidator} from './departments/department.validator';
+export {LocationUserDataValidator} from './locationUserData/locationUserData.validator';
 
 //user
 

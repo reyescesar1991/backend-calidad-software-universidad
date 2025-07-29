@@ -51,3 +51,11 @@ export {UserConfigFilterKeys} from './filtersOptions/filterOptions.filter';
 //products
 
 export {IStockByWarehouseResponse} from './product/stockByWarehouse.response';
+
+//ConfigRole
+
+export {ConfigRoleResponse} from './role/configRoleResponse';
+
+//location
+
+export {LocationUserData} from './location/locationUserData.interface';

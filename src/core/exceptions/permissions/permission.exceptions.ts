@@ -59,3 +59,19 @@ export class PermissionInUseError extends AppError{
         this.name = "PermissionInUseError";
     }
 }
+
+export class UnauthorizedError extends AppError{
+    code = 1108;
+    constructor(message: string) {
+        super(message);
+        this.name = "UnauthorizedError";
+    }
+}
+
+export class ForbiddenError extends AppError{
+    code = 1109;
+    constructor(message: string) {
+        super(message);
+        this.name = "ForbiddenError";
+    }
+}

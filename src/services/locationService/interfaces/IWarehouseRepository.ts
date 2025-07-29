@@ -6,6 +6,7 @@ export interface IWarehouseRepository{
 
     findWarehouseById(idWarehouse : ObjectIdParam) : Promise<WarehouseDocument | null>;
     findWarehouseByCustomId(idWarehouse : string) : Promise<WarehouseDocument | null>;
+    findWarehouseByHeadquarterId(idHeadquarter : ObjectIdParam) : Promise<WarehouseDocument | null>;
     createWarehouse(dataWarehouse : WarehouseDto, session ?: ClientSession) : Promise<WarehouseDocument | null>;
     updateWarehouse(idWarehouse : ObjectIdParam, dataUpdateWarehouse : UpdateWarehouseDto, session ?: ClientSession) : Promise<WarehouseDocument | null>;
     inactivateWarehouse(idWarehouse : ObjectIdParam, session ?: ClientSession) : Promise<WarehouseDocument | null>;

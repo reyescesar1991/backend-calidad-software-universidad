@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IHeadquarterRepository } from "../interfaces/IHeadquarterRepository";
 import { ClientSession, Model } from "mongoose";
-import { HeadquartersDocument } from "../../../db/models";
+import { DepartmentDocument, HeadquartersDocument } from "../../../db/models";
 import { ObjectIdParam, HeadquarterDto, UpdateHeadquarterDto } from "../../../validations";
 import { FilterOptions, HeadquarterConfigFilterKeys } from "../../../core/types";
 
@@ -11,6 +11,13 @@ export class IHeadquarterRepositoryImpl implements IHeadquarterRepository {
     constructor(
         @inject("HeadquartersModel") private readonly HeadquarterModel: Model<HeadquartersDocument>,
     ) { }
+
+
+    async findAllHeadquarters(): Promise<HeadquartersDocument[] | null> {
+        return await this.HeadquarterModel.find({ isActive: true })
+            .select('idHeadquarter label name _id') // Seleccionamos solo los campos necesarios
+            .exec();
+    }
 
     async findHeadquarterById(idHeadquarter: ObjectIdParam): Promise<HeadquartersDocument | null> {
 

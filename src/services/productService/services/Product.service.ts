@@ -27,9 +27,6 @@ export class ProductService {
 
         @inject(SupplierService) private readonly supplierService: SupplierService,
 
-
-        @inject(LocationService) private readonly locationService: LocationService,
-
     ) { }
 
     async findCategoryById(idCategory: ObjectIdParam): Promise<CategoryProductDocument | null> {

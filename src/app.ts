@@ -5,6 +5,9 @@ import { errorHandler } from './middlewares/error.middleware';
 import authRoutes from './api/routes/oauth/oauth.routes';
 import userDataRoutes from './api/routes/userData/userData.routes';
 import roleConfigRoutes from './api/routes/roleConfig/roleConfig.routes';
+import locationRoutes from './api/routes/location/location.routes';
+import menuRoutes from './api/routes/menu/menu.routes';
+import userRoutes from './api/routes/user/user.routes';
 
 
 const app = express();
@@ -44,6 +47,9 @@ app.use(express.urlencoded({extended : true}));
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/userData', userDataRoutes);
 app.use('/api/v1/roleConfig', roleConfigRoutes),
+app.use('/api/v1/location', locationRoutes),
+app.use('/api/v1/menu', menuRoutes),
+app.use('/api/v1/user', userRoutes),
 
 
 

@@ -10,6 +10,7 @@ export class UserPermissionRepositoryImpl implements IUserPermissionRepository {
 
     constructor(@inject("UserPermissionModel") private readonly UserPermissionModel: Model<UserPermissionDocument>) { }
 
+
     async updateDataPermissionUser(idUserParam: string, dataPermissionUser: UpdateUserPermissionDto, session?: ClientSession): Promise<UserPermissionDocument | null> {
         // 1. Preparar el objeto de actualización
         const updateData: Record<string, any> = {

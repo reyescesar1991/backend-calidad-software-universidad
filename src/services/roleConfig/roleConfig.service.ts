@@ -5,7 +5,7 @@ import { TransactionManager } from "../../core/database/transactionManager";
 import { ObjectIdParam, RoleConfigDto, UpdateRoleConfigDto } from "../../validations";
 import { handleError } from "../../core/exceptions";
 import { RoleConfigDocument } from "../../db/models/roleModels/roleConfig.model";
-import { FilterOptions, RoleConfigFilterKeys } from "../../core/types";
+import { ConfigRoleResponse, FilterOptions, RoleConfigFilterKeys } from "../../core/types";
 import { RoleDocument } from "../../db/models";
 
 @injectable()
@@ -175,10 +175,7 @@ export class RoleConfigService {
         try {
 
             const roleConfig = await this.roleConfigRepository.findConfigRoleById(idConfigRole);
-
-            console.log("Role config: ", roleConfig);
             
-
             RoleConfigValidator.validateRoleConfigExists(roleConfig);
 
             return await this.roleConfigRepository.findRoleConfigWithRole(idConfigRole);
@@ -189,7 +186,7 @@ export class RoleConfigService {
         }
     }
 
-    async findRolesByConfigRoles(): Promise<RoleDocument[]>{
+    async findRolesByConfigRoles(): Promise<ConfigRoleResponse[]>{
 
         try {
 

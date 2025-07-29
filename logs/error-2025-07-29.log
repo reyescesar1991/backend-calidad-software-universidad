@@ -1,0 +1,6 @@
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Expected string, received object","path":[],"received":"object"}],"name":"ZodError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-29 09:35:45"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-29 09:37:24"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-29 09:39:14"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-29 10:20:03"}
+{"error":{"code":1805,"name":"UserAlreadyExistsError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-29 10:29:23"}
+{"error":{"code":1806,"name":"UserUniqueKeysError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-29 10:29:49"}

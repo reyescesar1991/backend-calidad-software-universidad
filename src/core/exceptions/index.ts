@@ -7,6 +7,8 @@ export {LabelInvalidError} from './permissions/permission.exceptions';
 export {LabelDuplicateError} from './permissions/permission.exceptions';
 export {PermissionDuplicateError} from './permissions/permission.exceptions';
 export {PermissionInUseError} from './permissions/permission.exceptions';
+export {UnauthorizedError} from './permissions/permission.exceptions';
+export {ForbiddenError} from './permissions/permission.exceptions';
 
 
 //permission security
@@ -231,6 +233,10 @@ export {ProductStockAlreadyExistsError} from './products/productsStock.exception
 export {ProductStockQuantityError} from './products/productsStock.exception';
 export {ProductsInStockNotFoundError} from './products/productsStock.exception';
 export {ProductStockNotExistsError} from './products/productsStock.exception';
+
+//location user
+
+export {LocationDataUserNotExistsError} from './locationUserData/locationUserData.exception';
 
 //function handle error
 

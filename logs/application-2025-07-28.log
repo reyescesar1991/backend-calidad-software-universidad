@@ -1,0 +1,525 @@
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 09:29:51"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 09:29:51"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 09:29:51"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 09:29:55"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 09:29:55"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 09:29:55"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 09:51:15"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 09:51:15"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 09:51:15"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 09:51:24"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 09:51:24"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 09:51:24"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 09:53:12"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 09:53:12"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 09:53:13"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 09:53:17"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 09:53:17"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 09:53:17"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:13:41"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:13:41"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:13:42"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:14:06"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:14:06"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:14:07"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 10:16:11"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 10:16:11"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 10:16:11"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:16:12"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:16:12"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:16:13"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 10:16:40"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 10:16:40"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 10:16:40"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:17:02"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:17:02"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:17:02"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:17:03"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:17:03"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:17:03"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:19:42"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:19:42"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:19:42"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:19:45"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:19:45"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:19:45"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:24:01"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:24:01"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:24:02"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:24:03"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:24:03"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:24:03"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:27:58"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:27:58"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:27:59"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:28:01"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:28:01"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:28:01"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:29:07"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:29:07"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:29:07"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:29:08"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:29:08"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:29:08"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:29:33"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:29:33"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:29:33"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:29:34"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:29:34"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:29:34"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:37:30"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:37:30"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:37:30"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:37:36"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:37:36"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:37:37"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:38:13"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:38:13"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:38:14"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:38:15"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:38:15"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:38:15"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:38:43"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:38:43"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:38:43"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 10:38:44"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 10:38:44"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 10:38:45"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 11:08:25"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 11:08:25"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 11:08:25"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 11:08:29"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 11:08:29"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 11:08:29"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 11:13:28"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 11:13:28"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 11:13:28"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 11:13:32"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 11:13:32"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 11:13:32"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 11:17:52"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 11:17:52"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 11:17:52"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 11:17:53"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 11:17:53"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 11:17:54"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 11:18:11"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 11:18:11"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 11:18:11"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 11:18:13"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 11:18:13"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 11:18:13"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 11:18:54"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 11:18:54"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 11:18:55"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 11:27:00"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 11:27:00"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 11:27:00"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 11:27:00"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 11:27:01"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 11:27:01"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 11:28:59"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 11:28:59"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 11:28:59"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 11:28:59"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 11:28:59"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 11:29:00"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 11:29:03"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 11:29:03"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 11:29:03"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 11:29:03"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 11:29:03"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 11:29:04"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 11:30:58"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 11:30:58"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 11:30:58"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 11:30:58"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 11:30:58"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 11:30:58"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 11:30:59"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 11:30:59"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 11:30:59"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 11:30:59"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 11:31:00"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 11:31:00"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 11:32:13"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 11:32:13"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 11:32:13"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 11:32:13"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 11:32:14"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 11:32:14"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 11:32:14"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 11:32:14"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 11:32:14"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 11:32:14"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 11:32:14"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 11:32:14"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 11:32:52"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 11:32:52"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 11:32:52"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 11:32:52"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 11:32:52"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 11:32:53"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 11:32:54"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 11:32:54"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 11:32:54"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 11:32:54"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 11:32:54"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 11:32:54"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 11:38:04"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 11:38:04"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 11:38:04"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 11:38:04"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 11:38:04"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 11:38:05"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 11:38:13"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 11:38:13"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 11:38:13"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 11:38:13"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 11:38:13"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 11:38:13"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 11:49:05"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 11:49:05"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 11:49:05"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 11:49:07"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 11:49:07"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 11:49:07"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 11:50:09"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 11:50:09"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 11:50:09"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 11:54:00"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 11:54:00"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 11:54:00"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 11:54:01"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Expected string, received object","path":[],"received":"object"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 11:54:01"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 11:55:16"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 11:55:16"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 11:55:16"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 11:58:06"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 11:58:06"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-28 11:58:06"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 12:16:38"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 12:16:38"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 12:16:38"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:16:40"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 12:16:40"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-28 12:16:40"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:17:38"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 12:17:38"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-28 12:17:38"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 12:18:28"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 12:18:28"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 12:18:28"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:18:39"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 12:18:39"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-28 12:18:39"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 12:28:16"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 12:28:16"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 12:28:16"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 12:28:16"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:28:16"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:28:16"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 12:28:17"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 12:28:17"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 12:28:25"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 12:28:25"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 12:28:25"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 12:28:25"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:28:25"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:28:25"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 12:28:25"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 12:28:25"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 12:29:24"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 12:29:24"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 12:29:24"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 12:29:24"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:29:24"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:29:24"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 12:29:24"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 12:29:25"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 12:32:10"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 12:32:10"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 12:32:10"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 12:32:15"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 12:32:15"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 12:32:15"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 12:32:15"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:32:15"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:32:15"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 12:32:15"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 12:32:15"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 12:35:22"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 12:35:22"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 12:35:22"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 12:35:22"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 12:35:22"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 12:35:23"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 12:35:23"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 12:35:23"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 12:35:23"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 12:35:23"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 12:35:24"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 12:35:24"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:35:27"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:35:27"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 12:36:42"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 12:36:42"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 12:36:42"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 12:36:42"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 12:36:42"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 12:36:43"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 12:37:00"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 12:37:00"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 12:37:00"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 12:37:00"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 12:37:00"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 12:37:00"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:37:02"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:37:02"}
+{"date":"Mon Jul 28 2025 12:38:09 GMT-0400 (hora de Venezuela)","error":{"diagnosticCodes":[1005]},"exception":true,"level":"error","message":"uncaughtException: ⨯ Unable to compile TypeScript:\n\u001b[96msrc/controllers/Location/location.controller.ts\u001b[0m:\u001b[93m61\u001b[0m:\u001b[93m93\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS1005: \u001b[0m',' expected.\r\n\r\n\u001b[7m61\u001b[0m             logger.debug({ message: 'LocationController: Datos enviados por el usuario', req.body.idHeadquarter });\r\n\u001b[7m  \u001b[0m \u001b[91m                                                                                            ~\u001b[0m\r\n\nTSError: ⨯ Unable to compile TypeScript:\n\u001b[96msrc/controllers/Location/location.controller.ts\u001b[0m:\u001b[93m61\u001b[0m:\u001b[93m93\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS1005: \u001b[0m',' expected.\r\n\r\n\u001b[7m61\u001b[0m             logger.debug({ message: 'LocationController: Datos enviados por el usuario', req.body.idHeadquarter });\r\n\u001b[7m  \u001b[0m \u001b[91m                                                                                            ~\u001b[0m\r\n\n    at createTSError (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:859:12)\n    at reportTSError (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:863:19)\n    at getOutput (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1077:36)\n    at Object.compile (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1433:41)\n    at Module.m._compile (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1617:30)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1435:10)\n    at Object.require.extensions.<computed> [as .ts] (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1621:12)\n    at Module.load (node:internal/modules/cjs/loader:1207:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:1023:12)\n    at Module.require (node:internal/modules/cjs/loader:1235:19)","os":{"loadavg":[0,0,0],"uptime":597881.343},"process":{"argv":["C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\dist\\bin.js","C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\src\\server.ts"],"cwd":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad","execPath":"C:\\Program Files\\nodejs\\node.exe","gid":null,"memoryUsage":{"arrayBuffers":23060800,"external":26136766,"heapTotal":443703296,"heapUsed":411419392,"rss":494067712},"pid":24032,"uid":null,"version":"v20.11.0"},"stack":"TSError: ⨯ Unable to compile TypeScript:\n\u001b[96msrc/controllers/Location/location.controller.ts\u001b[0m:\u001b[93m61\u001b[0m:\u001b[93m93\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS1005: \u001b[0m',' expected.\r\n\r\n\u001b[7m61\u001b[0m             logger.debug({ message: 'LocationController: Datos enviados por el usuario', req.body.idHeadquarter });\r\n\u001b[7m  \u001b[0m \u001b[91m                                                                                            ~\u001b[0m\r\n\n    at createTSError (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:859:12)\n    at reportTSError (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:863:19)\n    at getOutput (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1077:36)\n    at Object.compile (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1433:41)\n    at Module.m._compile (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1617:30)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1435:10)\n    at Object.require.extensions.<computed> [as .ts] (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1621:12)\n    at Module.load (node:internal/modules/cjs/loader:1207:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:1023:12)\n    at Module.require (node:internal/modules/cjs/loader:1235:19)","timestamp":"2025-07-28 12:38:09","trace":[{"column":12,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"createTSError","line":859,"method":null,"native":false},{"column":19,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"reportTSError","line":863,"method":null,"native":false},{"column":36,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"getOutput","line":1077,"method":null,"native":false},{"column":41,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"Object.compile","line":1433,"method":"compile","native":false},{"column":30,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"Module.m._compile","line":1617,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1435,"method":".js","native":false},{"column":12,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"Object.require.extensions.<computed> [as .ts]","line":1621,"method":"ts]","native":false},{"column":32,"file":"node:internal/modules/cjs/loader","function":"Module.load","line":1207,"method":"load","native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module._load","line":1023,"method":"_load","native":false},{"column":19,"file":"node:internal/modules/cjs/loader","function":"Module.require","line":1235,"method":"require","native":false}]}
+{"date":"Mon Jul 28 2025 12:38:40 GMT-0400 (hora de Venezuela)","error":{"diagnosticCodes":[1005]},"exception":true,"level":"error","message":"uncaughtException: ⨯ Unable to compile TypeScript:\n\u001b[96msrc/controllers/Location/location.controller.ts\u001b[0m:\u001b[93m61\u001b[0m:\u001b[93m93\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS1005: \u001b[0m',' expected.\r\n\r\n\u001b[7m61\u001b[0m             logger.debug({ message: 'LocationController: Datos enviados por el usuario', req.body.idHeadquarter });\r\n\u001b[7m  \u001b[0m \u001b[91m                                                                                            ~\u001b[0m\r\n\nTSError: ⨯ Unable to compile TypeScript:\n\u001b[96msrc/controllers/Location/location.controller.ts\u001b[0m:\u001b[93m61\u001b[0m:\u001b[93m93\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS1005: \u001b[0m',' expected.\r\n\r\n\u001b[7m61\u001b[0m             logger.debug({ message: 'LocationController: Datos enviados por el usuario', req.body.idHeadquarter });\r\n\u001b[7m  \u001b[0m \u001b[91m                                                                                            ~\u001b[0m\r\n\n    at createTSError (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:859:12)\n    at reportTSError (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:863:19)\n    at getOutput (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1077:36)\n    at Object.compile (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1433:41)\n    at Module.m._compile (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1617:30)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1435:10)\n    at Object.require.extensions.<computed> [as .ts] (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1621:12)\n    at Module.load (node:internal/modules/cjs/loader:1207:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:1023:12)\n    at Module.require (node:internal/modules/cjs/loader:1235:19)","os":{"loadavg":[0,0,0],"uptime":597911.468},"process":{"argv":["C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\dist\\bin.js","C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\src\\server.ts"],"cwd":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad","execPath":"C:\\Program Files\\nodejs\\node.exe","gid":null,"memoryUsage":{"arrayBuffers":23060680,"external":26136646,"heapTotal":443179008,"heapUsed":409083856,"rss":492728320},"pid":27708,"uid":null,"version":"v20.11.0"},"stack":"TSError: ⨯ Unable to compile TypeScript:\n\u001b[96msrc/controllers/Location/location.controller.ts\u001b[0m:\u001b[93m61\u001b[0m:\u001b[93m93\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS1005: \u001b[0m',' expected.\r\n\r\n\u001b[7m61\u001b[0m             logger.debug({ message: 'LocationController: Datos enviados por el usuario', req.body.idHeadquarter });\r\n\u001b[7m  \u001b[0m \u001b[91m                                                                                            ~\u001b[0m\r\n\n    at createTSError (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:859:12)\n    at reportTSError (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:863:19)\n    at getOutput (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1077:36)\n    at Object.compile (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1433:41)\n    at Module.m._compile (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1617:30)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1435:10)\n    at Object.require.extensions.<computed> [as .ts] (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1621:12)\n    at Module.load (node:internal/modules/cjs/loader:1207:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:1023:12)\n    at Module.require (node:internal/modules/cjs/loader:1235:19)","timestamp":"2025-07-28 12:38:40","trace":[{"column":12,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"createTSError","line":859,"method":null,"native":false},{"column":19,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"reportTSError","line":863,"method":null,"native":false},{"column":36,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"getOutput","line":1077,"method":null,"native":false},{"column":41,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"Object.compile","line":1433,"method":"compile","native":false},{"column":30,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"Module.m._compile","line":1617,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1435,"method":".js","native":false},{"column":12,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"Object.require.extensions.<computed> [as .ts]","line":1621,"method":"ts]","native":false},{"column":32,"file":"node:internal/modules/cjs/loader","function":"Module.load","line":1207,"method":"load","native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module._load","line":1023,"method":"_load","native":false},{"column":19,"file":"node:internal/modules/cjs/loader","function":"Module.require","line":1235,"method":"require","native":false}]}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 12:39:28"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 12:39:28"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 12:39:28"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 12:39:32"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 12:39:32"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 12:39:32"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 12:39:32"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 12:39:32"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 12:39:32"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:39:36"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:39:36"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 12:39:59"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 12:39:59"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 12:39:59"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 12:40:12"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 12:40:12"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 12:40:12"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 12:40:12"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 12:40:12"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 12:40:12"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:40:14"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Required","path":[],"received":"undefined"}],"name":"ZodError"},"level":"error","message":"LocationController: Error durante la busqueda de las sedes","timestamp":"2025-07-28 12:40:14"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:40:37"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 12:40:37"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-28 12:40:37"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 12:41:55"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 12:41:55"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 12:41:55"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:41:55"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 12:41:55"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-28 12:41:57"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 12:42:05"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 12:42:05"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 12:42:05"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 12:42:05"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 12:42:05"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 12:42:05"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 12:42:22"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 12:42:22"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 12:42:22"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 12:42:22"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 12:42:23"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 12:42:23"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 12:42:24"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 12:42:24"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 12:42:24"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 12:42:24"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 12:42:24"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 12:42:24"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:42:26"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 12:42:26"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-28 12:42:26"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:42:29"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 12:42:29"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-28 12:42:29"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:42:31"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 12:42:31"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-28 12:42:32"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 12:42:34"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 12:42:34"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-28 12:42:35"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 13:50:24"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 13:50:24"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 13:50:24"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 13:50:24"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 13:50:24"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 13:50:25"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 13:50:42"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 13:50:42"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-28 13:50:42"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 13:53:32"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 13:53:32"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 13:53:32"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 13:53:32"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 13:53:33"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 13:53:33"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 13:53:33"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 13:53:33"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 13:53:33"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 13:53:33"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 13:53:34"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 13:53:34"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 13:53:40"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 13:53:40"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-28 13:53:40"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 13:56:19"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 13:56:19"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 13:56:19"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 13:56:19"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 13:56:19"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 13:56:20"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 14:14:19"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 14:14:19"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 14:14:19"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 14:16:16"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 14:16:16"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 14:16:16"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-28 14:16:38"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-28 14:16:38"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-28 14:16:39"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 14:33:10"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 14:33:10"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 14:33:10"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-28 14:33:16"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-28 14:33:16"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-28 14:33:16"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-28 14:43:14"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-28 14:43:14"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-28 14:43:14"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-28 14:44:23"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-28 14:44:23"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-28 14:44:24"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-28 15:04:15"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-28 15:04:15"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-28 15:04:16"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-28 15:47:43"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-28 15:47:43"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-28 15:47:44"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-28 15:48:03"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-28 15:48:03"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-28 15:48:04"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-28 16:00:01"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-28 16:00:01"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-28 16:00:01"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-28 16:21:42"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-28 16:21:42"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-28 16:21:42"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-28 16:33:15"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-28 16:33:15"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-28 16:33:16"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 16:33:28"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 16:33:28"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 16:33:28"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 16:33:28"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 16:33:28"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 16:33:28"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 16:33:33"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 16:33:33"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-28 16:33:33"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 16:40:16"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 16:40:16"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 16:40:16"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 16:40:31"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 16:40:31"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 16:40:31"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 16:40:31"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 16:40:32"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 16:40:32"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 16:42:37"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 16:42:37"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 16:42:37"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-28 16:42:38"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-28 16:42:38"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-28 16:42:38"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-28 16:42:38"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-28 16:42:38"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-28 16:42:38"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-28 16:42:44"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-28 16:42:44"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-28 16:42:44"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 16:45:34"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 16:45:34"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 16:45:34"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 16:46:37"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 16:46:37"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 16:46:37"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-28 16:46:37"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-28 16:46:37"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-28 16:46:42"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-28 16:46:42"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-28 16:46:44"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-28 16:46:44"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 16:47:34"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 16:47:34"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 16:47:34"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-28 16:47:38"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d306","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER9999","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola1234%8773","phoneNumber":"04246545454","roleConfig":"67f7f5ff4f0b312a2319fc58","status":"activo","timestamp":"2025-07-28 16:47:38","username":"careyes.19"}
+{"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-28 16:47:38"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-28 16:47:38"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 16:49:06"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 16:49:06"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 16:49:06"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-28 16:49:22"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d306","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7777","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola1234%8773","phoneNumber":"04246545454","roleConfig":"67f7f5ff4f0b312a2319fc56","status":"activo","timestamp":"2025-07-28 16:49:22","username":"careyes.19"}
+{"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-28 16:49:22"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-28 16:49:22"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 16:49:22"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-28 16:50:03"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d306","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7777","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola1234%8773","phoneNumber":"04246545454","roleConfig":"67f7f5ff4f0b312a2319fc56","status":"activo","timestamp":"2025-07-28 16:50:03","username":"careyes.19"}
+{"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-28 16:50:03"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-28 16:50:03"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 16:50:03"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 16:52:21"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 16:52:21"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 16:52:21"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-28 16:53:47"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d306","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7777","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola1234%8773","phoneNumber":"04246545454","roleConfig":"67f7f5ff4f0b312a2319fc56","status":"activo","timestamp":"2025-07-28 16:53:47","username":"careyes.19"}
+{"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-28 16:53:47"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-28 16:53:47"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 16:53:47"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 16:54:55"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 16:54:55"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 16:54:55"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-28 16:56:08"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d306","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7777","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola1234%8773","phoneNumber":"04246545454","roleConfig":"67f7f5ff4f0b312a2319fc56","status":"activo","timestamp":"2025-07-28 16:56:08","username":"careyes.19"}
+{"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-28 16:56:08"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-28 16:56:08"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 16:56:08"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-28 16:56:39"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d306","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7777","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola1234%8773","phoneNumber":"04246545454","roleConfig":"67f7f5ff4f0b312a2319fc56","status":"activo","timestamp":"2025-07-28 16:56:39","username":"careyes.19"}
+{"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-28 16:56:39"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-28 16:56:39"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 16:56:40"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 16:57:55"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 16:57:55"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 16:57:55"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-28 16:57:59"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d306","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7777","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola1234%8773","phoneNumber":"04246545454","roleConfig":"67f7f5ff4f0b312a2319fc56","status":"activo","timestamp":"2025-07-28 16:57:59","username":"careyes.19"}
+{"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-28 16:57:59"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-28 16:57:59"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 16:57:59"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 16:59:11"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 16:59:11"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 16:59:11"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-28 16:59:13"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d306","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7777","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola1234%8773","phoneNumber":"04246545454","roleConfig":"67f7f5ff4f0b312a2319fc56","status":"activo","timestamp":"2025-07-28 16:59:13","username":"careyes.19"}
+{"buffer":{"data":[103,247,245,255,79,11,49,42,35,25,252,86],"type":"Buffer"},"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-28 16:59:13"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-28 16:59:13"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 16:59:13"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 17:00:50"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 17:00:50"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 17:00:50"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-28 17:00:55"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d306","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7777","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola1234%8773","phoneNumber":"04246545454","roleConfig":"67f7f5ff4f0b312a2319fc56","status":"activo","timestamp":"2025-07-28 17:00:55","username":"careyes.19"}
+{"buffer":{"data":[103,247,245,255,79,11,49,42,35,25,252,86],"type":"Buffer"},"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-28 17:00:55"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-28 17:00:55"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 17:00:55"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-28 17:01:42"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-28 17:01:42"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-28 17:01:42"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-28 17:02:03"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d306","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7777","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola1234%8773","phoneNumber":"04246545454","roleConfig":"67f7f5ff4f0b312a2319fc56","status":"activo","timestamp":"2025-07-28 17:02:03","username":"careyes.19"}
+{"buffer":{"data":[103,247,245,255,79,11,49,42,35,25,252,86],"type":"Buffer"},"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-28 17:02:03"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-28 17:02:03"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-28 17:02:03"}

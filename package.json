@@ -225,7 +225,10 @@
     "script:update-product": "ts-node src/scripts/products/mainTest/testUpdateProduct.ts",
     "script:activate-product": "ts-node src/scripts/products/mainTest/testActivateProduct.ts",
     "script:inactivate-product": "ts-node src/scripts/products/mainTest/testInactivateProduct.ts",
-    "script:findbycriteria-product": "ts-node src/scripts/products/mainTest/testFindProductsByCriteria.ts"
+    "script:findbycriteria-product": "ts-node src/scripts/products/mainTest/testFindProductsByCriteria.ts",
+    "script:location-user" : "ts-node src/scripts/locationUser/testLocationUser.ts",
+    "script:location-generate-user" : "ts-node src/scripts/locationUser/testGenerateLocationUser.ts",
+    "script:get-product-warehouse-quantity" : "ts-node src/scripts/generalData/testGetProductsQuantityWarehouse.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

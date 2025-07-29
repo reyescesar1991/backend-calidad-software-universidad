@@ -12,6 +12,11 @@ export class WarehouseRepositoryImpl implements IWarehouseRepository {
         @inject("WarehouseModel") private readonly WarehouseModel: Model<WarehouseDocument>,
     ) { }
 
+    async findWarehouseByHeadquarterId(idHeadquarter: ObjectIdParam): Promise<WarehouseDocument | null> {
+        
+        return await this.WarehouseModel.findOne({idHeadquarter : idHeadquarter}).exec();
+    }
+
 
     async findWarehouseById(idWarehouse: ObjectIdParam): Promise<WarehouseDocument | null> {
 

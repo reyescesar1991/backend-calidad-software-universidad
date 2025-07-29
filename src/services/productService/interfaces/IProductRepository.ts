@@ -1,6 +1,6 @@
 import { ClientSession } from "mongoose";
 import { ProductDocument } from "../../../db/models";
-import { AmountTotalStockByProductByWarehouseResponse, AmountTotalStockByProductResponse, ObjectIdParam, ProductDto, StockByWarehouseResponse, StockTotalByProductResponse, UpdateProductDto } from "../../../validations";
+import { ObjectIdParam, ProductDto, UpdateProductDto } from "../../../validations";
 
 export interface IProductRepository {
 

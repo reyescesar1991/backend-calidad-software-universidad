@@ -1,5 +1,5 @@
 import { ClientSession } from "mongoose";
-import { FilterOptions, RoleConfigFilterKeys } from "../../../core/types";
+import { ConfigRoleResponse, FilterOptions, RoleConfigFilterKeys } from "../../../core/types";
 import { RoleConfigDocument } from "../../../db/models/roleModels/roleConfig.model";
 import { ObjectIdParam, RoleConfigDto, UpdateRoleConfigDto } from "../../../validations";
 import { RoleDocument } from "../../../db/models";
@@ -17,5 +17,5 @@ export interface IRoleConfigRepository{
     findRoleConfigWithRole(
         roleConfigId: ObjectIdParam
       ): Promise<RoleDocument | null>;
-    findRolesByConfigRoles(): Promise<RoleDocument[]>;
+    findRolesByConfigRoles(): Promise<ConfigRoleResponse[]>;
 }

@@ -1,12 +1,14 @@
-import { inject, injectable } from "tsyringe";
+import { delay, inject, injectable } from "tsyringe";
 import { IPaymentTermsRepository } from "./interfaces/IPaymentTerms.repository";
 import { ObjectIdParam, PaymentTermDto, UpdatePaymentTermDto } from "../../validations";
 import { PaymentTermDocument } from "../../db/models";
 import { handleError } from "../../core/exceptions";
-import { PaymentTermsValidator } from "../../core/validators";
+import { LocationUserDataValidator, PaymentTermsValidator } from "../../core/validators";
 import { Transactional } from "../../core/utils/transaccional-wrapper";
 import { ClientSession } from "mongoose";
 import { TransactionManager } from "../../core/database/transactionManager";
+import { ProductStockService } from "../productService";
+import { UserService } from "../userService/user.service";
 
 @injectable()
 export class GeneralDataService{
@@ -16,6 +18,8 @@ export class GeneralDataService{
         @inject("IPaymentTermsRepository") private readonly paymentTermsRepository : IPaymentTermsRepository,
         @inject("PaymentTermsValidator") private readonly paymentTermsValidator : PaymentTermsValidator,
         @inject("TransactionManager") private readonly transactionManager: TransactionManager,
+        @inject(delay(() => UserService)) private readonly userService : UserService,
+        @inject(delay(() => ProductStockService)) private readonly productStockService : ProductStockService,
 
     ){}
 
@@ -135,6 +139,25 @@ export class GeneralDataService{
 
             return await this.paymentTermsRepository.findAllPaymentTerms();
             
+        } catch (error) {
+            
+            handleError(error);
+        }
+    }
+
+
+    async getTotalProductWarehouseUser(idUser : string) : Promise<number>{
+
+        try {
+
+            const location = await this.userService.getUserLocation(idUser);
+
+            LocationUserDataValidator.validateLocationUserDataExists(location);
+
+            const productsInWarehouse = await this.productStockService.findProductByWarehouseId(location!.warehouseId);
+
+            // Si no se encuentran productos en el almacén, el resultado puede ser null. Devolvemos 0 en ese caso.
+            return productsInWarehouse ? productsInWarehouse.length : 0;
         } catch (error) {
             
             handleError(error);

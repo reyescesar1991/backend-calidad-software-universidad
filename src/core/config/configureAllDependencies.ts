@@ -20,6 +20,7 @@ import { configureDependenciesTwoFactorValueUser } from "./dependenciesTwoFactor
 import { configureUserDependencies } from "./dependenciesUsers/dependencies";
 import { configureWarehouseDependencies } from "./dependenciesWarehouses/dependencies";
 import { configureDependenciesRoles } from "./dependenciesRoles/dependencies";
+import { configureLocationDataUserDependencies } from "./dependenciesLocationUserData/dependencies";
 
 
 export const runAllDependencies = async () => {
@@ -45,6 +46,7 @@ export const runAllDependencies = async () => {
     await configureDependenciesTwoFactorValueUser();
     await configureUserDependencies();
     await configureWarehouseDependencies();
+    await configureLocationDataUserDependencies();
 
     logger.info('✅ Todas las dependencias han sido configuradas exitosamente.');
 }

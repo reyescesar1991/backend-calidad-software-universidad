@@ -10,8 +10,6 @@ import { ModuleValidator } from "../../validators";
 
 export const configureDependenciesModule = async () => {
 
-    await initializeTestEnvironment();
-
     container.register("TransactionManager", TransactionManager);
 
     container.register("ModuleModel", {useValue: ModuleModel});

@@ -1,0 +1,227 @@
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 09:27:09"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-29 09:27:09"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-29 09:27:09"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-29 09:27:27"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-29 09:27:27"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-29 09:27:27"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-29 09:27:27"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-29 09:27:27"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-29 09:27:27"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-29 09:27:40"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-29 09:27:40"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-29 09:27:40"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 09:28:27"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-29 09:28:27"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-29 09:28:27"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateCreateUserData ---","timestamp":"2025-07-29 09:28:32"}
+{"level":"warn","message":"La validación FALLÓ. Entrando al bloque CATCH en el middleware.","timestamp":"2025-07-29 09:28:32"}
+{"level":"warn","message":"El error es de tipo ZodError. Se manejará con handleZodError.","timestamp":"2025-07-29 09:28:32"}
+{"details":[{"field":"department","message":"Input not instance of ObjectId"},{"field":"roleConfig","message":"Input not instance of ObjectId"}],"level":"warn","message":"Error de validación de Zod: Datos de creacion de usuario invalidos inválidos","timestamp":"2025-07-29 09:28:32"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 09:35:40"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-29 09:35:40"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-29 09:35:40"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateCreateUserData ---","timestamp":"2025-07-29 09:35:45"}
+{"level":"info","message":"Validación de Zod para la creacion de usuario SUPERADA. Pasando al controlador.","timestamp":"2025-07-29 09:35:45"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-29 09:35:45"}
+{"error":{"issues":[{"code":"invalid_type","expected":"string","message":"Expected string, received object","path":[],"received":"object"}],"name":"ZodError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-29 09:35:45"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 09:37:21"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-29 09:37:21"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-29 09:37:21"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateCreateUserData ---","timestamp":"2025-07-29 09:37:24"}
+{"level":"info","message":"Validación de Zod para la creacion de usuario SUPERADA. Pasando al controlador.","timestamp":"2025-07-29 09:37:24"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-29 09:37:24"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d30c","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7777","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola1234%456","phoneNumber":"04246545454","roleConfig":"67f7f5ff4f0b312a2319fc58","status":"activo","timestamp":"2025-07-29 09:37:24","username":"careyes.19"}
+{"buffer":{"data":[103,247,245,255,79,11,49,42,35,25,252,88],"type":"Buffer"},"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-29 09:37:24"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-29 09:37:24"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-29 09:37:24"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 09:39:05"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-29 09:39:05"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-29 09:39:05"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateCreateUserData ---","timestamp":"2025-07-29 09:39:14"}
+{"level":"info","message":"Validación de Zod para la creacion de usuario SUPERADA. Pasando al controlador.","timestamp":"2025-07-29 09:39:14"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-29 09:39:14"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d30c","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7777","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola1234%456","phoneNumber":"04246545454","roleConfig":"67f7f5ff4f0b312a2319fc58","status":"activo","timestamp":"2025-07-29 09:39:14","username":"careyes.19"}
+{"buffer":{"data":[103,247,245,255,79,11,49,42,35,25,252,88],"type":"Buffer"},"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-29 09:39:14"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-29 09:39:14"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-29 09:39:14"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 09:42:38"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-29 09:42:38"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-29 09:42:38"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateCreateUserData ---","timestamp":"2025-07-29 09:42:43"}
+{"level":"info","message":"Validación de Zod para la creacion de usuario SUPERADA. Pasando al controlador.","timestamp":"2025-07-29 09:42:43"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-29 09:42:43"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d30c","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7777","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola1234%456","phoneNumber":"04246545454","roleConfig":"67f7f5ff4f0b312a2319fc58","status":"activo","timestamp":"2025-07-29 09:42:43","username":"careyes.19"}
+{"buffer":{"data":[103,247,245,255,79,11,49,42,35,25,252,88],"type":"Buffer"},"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-29 09:42:43"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-29 09:42:43"}
+{"level":"info","message":"UserController: Usuario creado de forma exitosa.","timestamp":"2025-07-29 09:42:44"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-29 09:43:21"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-29 09:43:21"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-29 09:43:21"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-29 09:43:21"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-29 09:43:21"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-29 09:43:21"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-29 09:43:27"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-29 09:43:27"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-29 09:43:27"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-29 09:44:50"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-29 09:44:50"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-29 09:44:50"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-29 09:44:50"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-29 09:44:50"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-29 09:44:50"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 09:58:04"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-29 09:58:04"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-29 09:58:04"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-29 09:58:40"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-29 09:58:40"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-29 09:58:40"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-29 09:58:40"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-29 09:58:40"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-29 09:58:41"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-29 09:58:42"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-29 09:58:42"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-29 09:58:42"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-29 09:58:42"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-29 09:58:42"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-29 09:58:42"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-29 09:59:42"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-29 09:59:42"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-29 09:59:42"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-29 09:59:42"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-29 09:59:42"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-29 09:59:42"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-29 09:59:43"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-29 09:59:43"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-29 09:59:43"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-29 09:59:43"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-29 09:59:43"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-29 09:59:43"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-29 10:02:31"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-29 10:02:31"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-29 10:02:31"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-29 10:02:31"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-29 10:02:31"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-29 10:02:31"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 10:04:16"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-29 10:04:16"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-29 10:04:16"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-29 10:04:22"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-29 10:04:22"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-29 10:04:22"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-29 10:04:22"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-29 10:04:22"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-29 10:04:22"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-29 10:15:15"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-29 10:15:15"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-29 10:15:15"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-29 10:15:15"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-29 10:15:15"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-29 10:15:15"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-29 10:17:43"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-29 10:17:43"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-29 10:17:43"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-29 10:17:43"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-29 10:17:43"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-29 10:17:43"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 10:19:34"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-29 10:19:34"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-29 10:19:34"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de departamentos por sede","timestamp":"2025-07-29 10:19:45"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findDepartmentsByHeadquarter.","timestamp":"2025-07-29 10:19:45"}
+{"level":"info","message":"LocationController: Departamentos encontrados.","timestamp":"2025-07-29 10:19:45"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateCreateUserData ---","timestamp":"2025-07-29 10:20:03"}
+{"level":"info","message":"Validación de Zod para la creacion de usuario SUPERADA. Pasando al controlador.","timestamp":"2025-07-29 10:20:03"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-29 10:20:03"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d306","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7777","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola9834%342","phoneNumber":"04246545454","roleConfig":"67f7f643b65f69c72667597e","status":"activo","timestamp":"2025-07-29 10:20:03","username":"careyes.19"}
+{"buffer":{"data":[103,247,246,67,182,95,105,199,38,103,89,126],"type":"Buffer"},"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-29 10:20:03"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-29 10:20:03"}
+{"error":{"code":500,"name":"UnexpectedError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-29 10:20:03"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 10:27:49"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-29 10:27:49"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-29 10:27:49"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateCreateUserData ---","timestamp":"2025-07-29 10:28:09"}
+{"level":"info","message":"Validación de Zod para la creacion de usuario SUPERADA. Pasando al controlador.","timestamp":"2025-07-29 10:28:09"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-29 10:28:09"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d306","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7777","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola9834%342","phoneNumber":"04246545454","roleConfig":"67f7f643b65f69c72667597e","status":"activo","timestamp":"2025-07-29 10:28:09","username":"careyes.19"}
+{"buffer":{"data":[103,247,246,67,182,95,105,199,38,103,89,126],"type":"Buffer"},"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-29 10:28:09"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-29 10:28:09"}
+{"level":"info","message":"UserController: Usuario creado de forma exitosa.","timestamp":"2025-07-29 10:28:10"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateCreateUserData ---","timestamp":"2025-07-29 10:29:23"}
+{"level":"info","message":"Validación de Zod para la creacion de usuario SUPERADA. Pasando al controlador.","timestamp":"2025-07-29 10:29:23"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-29 10:29:23"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d306","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7777","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola9834%342","phoneNumber":"04246545454","roleConfig":"67f7f643b65f69c72667597e","status":"activo","timestamp":"2025-07-29 10:29:23","username":"careyes.19"}
+{"buffer":{"data":[103,247,246,67,182,95,105,199,38,103,89,126],"type":"Buffer"},"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-29 10:29:23"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-29 10:29:23"}
+{"error":{"code":1805,"name":"UserAlreadyExistsError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-29 10:29:23"}
+{"level":"info","message":"--- MIDDLEWARE: Ejecutando validateCreateUserData ---","timestamp":"2025-07-29 10:29:48"}
+{"level":"info","message":"Validación de Zod para la creacion de usuario SUPERADA. Pasando al controlador.","timestamp":"2025-07-29 10:29:48"}
+{"level":"info","message":"UserController: Inicio del proceso de creacion de usuario","timestamp":"2025-07-29 10:29:48"}
+{"codeCountry":"+58","department":"67eead413bf36442a108d306","email":"carlos.rodriguez@empresa.com","hasTwoFactor":false,"idUser":"USER7776","lastName":"Rodriguez","level":"info","message":"UserController: Datos enviados por el usuario","name":"Carlos","password":"Hola9834%342","phoneNumber":"04246545454","roleConfig":"67f7f643b65f69c72667597e","status":"activo","timestamp":"2025-07-29 10:29:48","username":"careyes.19"}
+{"buffer":{"data":[103,247,246,67,182,95,105,199,38,103,89,126],"type":"Buffer"},"level":"info","message":"UserController: Datos enviados por el usuario","timestamp":"2025-07-29 10:29:48"}
+{"level":"info","message":"UserController: Llamando al servicio UserService.createUser.","timestamp":"2025-07-29 10:29:48"}
+{"error":{"code":1806,"name":"UserUniqueKeysError"},"level":"error","message":"UserController: Error la creacion del usuario","timestamp":"2025-07-29 10:29:49"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-29 10:47:22"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-29 10:47:22"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-29 10:47:23"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-29 10:49:24"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-29 10:49:24"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-29 10:49:25"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-29 10:50:12"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-29 10:50:12"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-29 10:50:12"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 11:44:15"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-29 11:44:15"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-29 11:44:15"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-29 12:01:05"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-29 12:01:05"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-29 12:01:06"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-29 12:09:45"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-29 12:09:45"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-29 12:09:46"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-29 12:17:58"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-29 12:17:58"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-29 12:17:58"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-29 12:29:07"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-29 12:29:07"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-29 12:29:08"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-29 12:30:01"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-29 12:30:01"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-29 12:30:01"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-29 12:32:47"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-29 12:32:47"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-29 12:32:47"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-29 12:34:33"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-29 12:34:33"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-29 12:34:33"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-29 12:34:57"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-29 12:34:57"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-29 12:34:57"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-29 13:28:07"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-29 13:28:07"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-29 13:28:07"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-29 13:28:49"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-29 13:28:49"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-29 13:28:50"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-29 13:29:31"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-29 13:29:31"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-29 13:29:31"}
+{"date":"Tue Jul 29 2025 14:23:30 GMT-0400 (hora de Venezuela)","error":{"diagnosticCodes":[2304]},"exception":true,"level":"error","message":"uncaughtException: ⨯ Unable to compile TypeScript:\n\u001b[96msrc/services/locationService/Location.service.ts\u001b[0m:\u001b[93m617\u001b[0m:\u001b[93m69\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS2304: \u001b[0mCannot find name 'LocationUserData'.\r\n\r\n\u001b[7m617\u001b[0m     async buildLocationUser(departmentId : ObjectIdParam) : Promise<LocationUserData | null>{\r\n\u001b[7m   \u001b[0m \u001b[91m                                                                    ~~~~~~~~~~~~~~~~\u001b[0m\r\n\nTSError: ⨯ Unable to compile TypeScript:\n\u001b[96msrc/services/locationService/Location.service.ts\u001b[0m:\u001b[93m617\u001b[0m:\u001b[93m69\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS2304: \u001b[0mCannot find name 'LocationUserData'.\r\n\r\n\u001b[7m617\u001b[0m     async buildLocationUser(departmentId : ObjectIdParam) : Promise<LocationUserData | null>{\r\n\u001b[7m   \u001b[0m \u001b[91m                                                                    ~~~~~~~~~~~~~~~~\u001b[0m\r\n\n    at createTSError (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:859:12)\n    at reportTSError (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:863:19)\n    at getOutput (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1077:36)\n    at Object.compile (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1433:41)\n    at Module.m._compile (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1617:30)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1435:10)\n    at Object.require.extensions.<computed> [as .ts] (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1621:12)\n    at Module.load (node:internal/modules/cjs/loader:1207:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:1023:12)\n    at Module.require (node:internal/modules/cjs/loader:1235:19)","os":{"loadavg":[0,0,0],"uptime":690598.515},"process":{"argv":["C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\dist\\bin.js","C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\src\\server.ts"],"cwd":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad","execPath":"C:\\Program Files\\nodejs\\node.exe","gid":null,"memoryUsage":{"arrayBuffers":23041227,"external":26117193,"heapTotal":446967808,"heapUsed":414202000,"rss":493506560},"pid":12340,"uid":null,"version":"v20.11.0"},"stack":"TSError: ⨯ Unable to compile TypeScript:\n\u001b[96msrc/services/locationService/Location.service.ts\u001b[0m:\u001b[93m617\u001b[0m:\u001b[93m69\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS2304: \u001b[0mCannot find name 'LocationUserData'.\r\n\r\n\u001b[7m617\u001b[0m     async buildLocationUser(departmentId : ObjectIdParam) : Promise<LocationUserData | null>{\r\n\u001b[7m   \u001b[0m \u001b[91m                                                                    ~~~~~~~~~~~~~~~~\u001b[0m\r\n\n    at createTSError (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:859:12)\n    at reportTSError (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:863:19)\n    at getOutput (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1077:36)\n    at Object.compile (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1433:41)\n    at Module.m._compile (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1617:30)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1435:10)\n    at Object.require.extensions.<computed> [as .ts] (C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts:1621:12)\n    at Module.load (node:internal/modules/cjs/loader:1207:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:1023:12)\n    at Module.require (node:internal/modules/cjs/loader:1235:19)","timestamp":"2025-07-29 14:23:30","trace":[{"column":12,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"createTSError","line":859,"method":null,"native":false},{"column":19,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"reportTSError","line":863,"method":null,"native":false},{"column":36,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"getOutput","line":1077,"method":null,"native":false},{"column":41,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"Object.compile","line":1433,"method":"compile","native":false},{"column":30,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"Module.m._compile","line":1617,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1435,"method":".js","native":false},{"column":12,"file":"C:\\Users\\PC\\Documents\\backend-calidad-soft\\backend-calidad-software-universidad\\node_modules\\ts-node\\src\\index.ts","function":"Object.require.extensions.<computed> [as .ts]","line":1621,"method":"ts]","native":false},{"column":32,"file":"node:internal/modules/cjs/loader","function":"Module.load","line":1207,"method":"load","native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module._load","line":1023,"method":"_load","native":false},{"column":19,"file":"node:internal/modules/cjs/loader","function":"Module.require","line":1235,"method":"require","native":false}]}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 14:26:03"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-29 14:26:03"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-29 14:26:03"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 14:30:36"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 14:31:14"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 15:24:11"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-29 15:24:11"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-29 15:24:11"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 15:40:54"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 15:42:44"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 15:43:06"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 15:43:31"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 15:43:59"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 16:35:02"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 16:35:20"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 16:36:00"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 16:42:38"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 16:44:25"}
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-29 16:47:10"}

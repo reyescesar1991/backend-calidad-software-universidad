@@ -1,5 +1,5 @@
 import { ClientSession } from "mongoose";
-import { HeadquartersDocument } from "../../../db/models";
+import { DepartmentDocument, HeadquartersDocument } from "../../../db/models";
 import { HeadquarterDto, ObjectIdParam, UpdateHeadquarterDto } from "../../../validations";
 import { FilterOptions, HeadquarterConfigFilterKeys } from "../../../core/types";
 
@@ -16,5 +16,5 @@ export interface IHeadquarterRepository{
     createHeadquarter(dataHeadquarter : HeadquarterDto, session?: ClientSession) : Promise<HeadquartersDocument | null>;
     updateHeadquarter(idHeadquarter : ObjectIdParam, dataUpdateHeadquarter : UpdateHeadquarterDto, session?: ClientSession) : Promise<HeadquartersDocument | null>;
     searchHeadquarterByFilterWithOr(filter : FilterOptions<HeadquarterConfigFilterKeys>) : Promise<HeadquartersDocument[] | null>;
-
+    findAllHeadquarters() : Promise<HeadquartersDocument[] | null>;
 }

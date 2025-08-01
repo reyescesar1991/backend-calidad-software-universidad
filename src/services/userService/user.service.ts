@@ -2,6 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "./interfaces/IUserRepository";
 import {
   DepartmentValidator,
+  LocationUserDataValidator,
   RoleValidator,
   UserValidator,
 } from "../../core/validators";
@@ -843,7 +844,11 @@ export class UserService {
 
       UserValidator.validateUserExists(user);
 
-      return await this.LocationUserDataRepository.getLocationUserData(idUser);
+      const location =  await this.LocationUserDataRepository.getLocationUserData(idUser);
+
+      LocationUserDataValidator.validateLocationUserDataExists(location);
+
+      return location;
       
     } catch (error) {
       

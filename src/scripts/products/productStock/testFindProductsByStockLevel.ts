@@ -9,6 +9,7 @@ import { configurePaymentTermsDependencies } from '../../../core/config/dependen
 import { configureDependenciesHeadquarters } from '../../../core/config/dependenciesHeadquarters/dependencies';
 import { configureDependenciesDepartments } from '../../../core/config/dependenciesDepartments/dependencies';
 import { configureWarehouseDependencies } from '../../../core/config/dependenciesWarehouses/dependencies';
+import { objectIdSchema } from '../../../validations';
 
 
 initializeTestEnvironment();
@@ -29,7 +30,7 @@ const runTestFindProductsByStockLevel = async () => {
       
         const productStockService = container.resolve(ProductStockService);
 
-        const result = await productStockService.findProductsByStockLevel("low");
+        const result = await productStockService.findProductsByStockLevel("low", objectIdSchema.parse("67f690a03ad8f43e09cec544"));
 
         console.log("📄 Productos encontrados por status:", result);
         

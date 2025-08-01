@@ -228,7 +228,12 @@
     "script:findbycriteria-product": "ts-node src/scripts/products/mainTest/testFindProductsByCriteria.ts",
     "script:location-user" : "ts-node src/scripts/locationUser/testLocationUser.ts",
     "script:location-generate-user" : "ts-node src/scripts/locationUser/testGenerateLocationUser.ts",
-    "script:get-product-warehouse-quantity" : "ts-node src/scripts/generalData/testGetProductsQuantityWarehouse.ts"
+    "script:get-product-warehouse-quantity" : "ts-node src/scripts/generalData/testGetProductsQuantityWarehouse.ts",
+    "script:get-summary-data" : "ts-node src/scripts/generalData/testGetSummaryData.ts",
+    "script:get-porcentage-active-warehouse" : "ts-node src/scripts/generalData/testGetProductsActiveWarehousePorcentage.ts",
+    "script:get-porcentage-capacity-warehouse" : "ts-node src/scripts/generalData/testGetCapacityWarehousePorcentage.ts",
+    "script:get-porcentage-out-of-stock-warehouse" : "ts-node src/scripts/generalData/testgetProductsOutOfStockWarehousePorcentage.ts",
+    "script:get-status-stock" : "ts-node src/scripts/generalData/testGetStatusStock.ts"
   },
   "author": "Google LLC",
   "license": "Apache-2.0",

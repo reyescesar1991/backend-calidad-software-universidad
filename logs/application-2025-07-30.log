@@ -1,0 +1,33 @@
+{"level":"info","message":"✅ Todas las dependencias han sido configuradas exitosamente.","timestamp":"2025-07-30 13:38:07"}
+{"level":"info","message":"Verificando la resolución de dependencias clave...","timestamp":"2025-07-30 13:38:07"}
+{"level":"info","message":"🚀 Verificación de dependencias exitosa. El contenedor está listo.","timestamp":"2025-07-30 13:38:07"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-30 13:38:12"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-30 13:38:12"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-30 13:38:13"}
+{"level":"info","message":"MenuController: Inicio del proceso de obtencion del menu del usuario","timestamp":"2025-07-30 15:00:13"}
+{"level":"info","message":"MenuController: Llamando al servicio UserService.getMenuUser.","timestamp":"2025-07-30 15:00:13"}
+{"level":"info","message":"MenuController: Sedes encontradas.","timestamp":"2025-07-30 15:00:14"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-30 15:00:18"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-30 15:00:18"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-30 15:00:18"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-30 15:00:18"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-30 15:00:18"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-30 15:00:19"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-30 15:00:20"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-30 15:00:20"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-30 15:00:20"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-30 15:00:20"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-30 15:00:20"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-30 15:00:20"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-30 15:09:18"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-30 15:09:18"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-30 15:09:18"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-30 15:09:18"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-30 15:09:18"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-30 15:09:18"}
+{"level":"info","message":"RoleConfigController: Inicio del proceso de obtener los roles a traves de las configuraciones de rol","timestamp":"2025-07-30 15:09:22"}
+{"level":"info","message":"RoleConfigController: Llamando al servicio RoleConfigService.findRolesByConfigRoles.","timestamp":"2025-07-30 15:09:22"}
+{"level":"info","message":"LocationController: Inicio del proceso de obtencion de sedes","timestamp":"2025-07-30 15:09:22"}
+{"level":"info","message":"LocationController: Llamando al servicio LocationService.findAllHeadquarters.","timestamp":"2025-07-30 15:09:22"}
+{"level":"info","message":"LocationController: Sedes encontradas.","timestamp":"2025-07-30 15:09:22"}
+{"level":"info","message":"RoleConfigController: Roles encontrados.","timestamp":"2025-07-30 15:09:22"}

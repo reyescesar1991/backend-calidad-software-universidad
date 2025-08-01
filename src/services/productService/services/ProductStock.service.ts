@@ -9,6 +9,7 @@ import { Transactional } from "../../../core/utils/transaccional-wrapper";
 import { handleError } from "../../../core/exceptions";
 import { ProductService } from "./Product.service";
 import { LocationService } from "../../locationService/Location.service";
+import { WarehouseTotalMonetaryValueResponse } from "../../../validations/productValidators/product.responses";
 
 @injectable()
 export class ProductStockService{
@@ -283,12 +284,14 @@ export class ProductStockService{
         }
     }
 
-    async getTotalStockMonetaryValueByWarehouse(idWarehouse: ObjectIdParam): Promise<AmountTotalStockByProductByWarehouseResponse | null>{
+    async getTotalStockMonetaryValueByWarehouse(idWarehouse: ObjectIdParam): Promise<WarehouseTotalMonetaryValueResponse | null>{
 
         try {
 
-            const response : AmountTotalStockByProductByWarehouseResponse = await this.productStockRepository.getTotalStockMonetaryValueByWarehouse(idWarehouse);
+            const response : WarehouseTotalMonetaryValueResponse = await this.productStockRepository.getTotalStockMonetaryValueByWarehouse(idWarehouse);
 
+            console.log(response);
+            
             if(response) return response;
 
             await this.locationService.findWarehouseById(idWarehouse);
@@ -354,14 +357,37 @@ export class ProductStockService{
     }
 
 
-    async findProductsByStockLevel(status: 'low' | 'overstock' | 'ok'): Promise<StockByStatusResponse[] | null> {
+    async findProductsByStockLevel(status: 'low' | 'overstock' | 'ok', idWarehouse: ObjectIdParam): Promise<StockByStatusResponse[] | null> {
 
         try {
 
-            return await this.productStockRepository.findProductsByStockLevel(status);
+            // Validamos que el almacén exista antes de realizar la consulta
+            await this.locationService.findWarehouseById(idWarehouse);
+
+            return await this.productStockRepository.findProductsByStockLevel(status, idWarehouse);
 
         } catch (error) {
 
+            handleError(error);
+        }
+    }
+
+    async findProductByWarehouseIdActive(idWarehouse : ObjectIdParam) : Promise<ProductStockDocument[] | null>{
+
+        try {
+
+            const productInWarehouseActive = await this.productStockRepository.findProductByWarehouseIdActive(idWarehouse);
+
+            if(productInWarehouseActive) return productInWarehouseActive
+
+            const warehouse = await this.locationService.findWarehouseById(idWarehouse);
+
+            WarehouseValidator.validateWarehouseExists(warehouse);
+
+            return null;
+            
+        } catch (error) {
+            
             handleError(error);
         }
     }

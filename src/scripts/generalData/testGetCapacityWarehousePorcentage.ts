@@ -4,13 +4,13 @@ import "../../core/config/dependenciesPermissions/dependencies";
 import { container } from 'tsyringe';
 import { runAllDependencies } from '../../core/config/configureAllDependencies';
 import { GeneralDataService } from '../../services/generalDataService';
-import { UserService } from '../../services/userService/user.service';
+import { objectIdSchema } from '../../validations';
 
 
 initializeTestEnvironment();
 
 
-const runTestGetProductsQuantityWarehouse = async () => {
+const runTestGetCapacityWarehousePorcentage = async () => {
 
 
     try {
@@ -19,13 +19,9 @@ const runTestGetProductsQuantityWarehouse = async () => {
           
         const generalDataService = container.resolve(GeneralDataService);
 
-        const userService = container.resolve(UserService);
+        const result = await generalDataService.getCapacityWarehousePorcentage(objectIdSchema.parse("67f690a03ad8f43e09cec544"));
 
-        const userLocation = await userService.getUserLocation("USER0044");
-
-        const result = await generalDataService.getTotalProductWarehouseUser(userLocation);
-
-        console.log("📄 Productos registrados en ese almacen:", result);
+        console.log("📄 Capacidad actual del almacen:", result);
         
     } catch (error) {
 
@@ -38,7 +34,7 @@ const runTestGetProductsQuantityWarehouse = async () => {
     }
 }
 
-runTestGetProductsQuantityWarehouse().then(() => {
+runTestGetCapacityWarehousePorcentage().then(() => {
 
     console.log('Proceso de seed completo');
 })

@@ -8,6 +8,7 @@ export interface IProductStockRepository {
     findProductByProductCustomId(customIdProduct: string): Promise<ProductStockDocument[] | null>;
     findProductStockByProductIdAndWarehouseId(customIdProduct: string, customIdWarehouse: string): Promise<ProductStockDocument | null>;
     findProductByWarehouseId(idWarehouse: ObjectIdParam): Promise<ProductStockDocument[] | null>;
+    findProductByWarehouseIdActive(idWarehouse : ObjectIdParam) : Promise<ProductStockDocument[] | null>
     findProductByWarehouseCustomId(customIdWarehouse: string): Promise<ProductStockDocument[] | null>;
     findAllProductsStock(): Promise<ProductStockDocument[] | null>;
     createProductStock(dataCreateProductStock: ProductStockDto, session?: ClientSession): Promise<ProductStockDocument | null>;
@@ -26,5 +27,5 @@ export interface IProductStockRepository {
     ): Promise<AmountTotalStockByProductByWarehouseResponse | null>
 
     // IProductRepository
-    findProductsByStockLevel(status: 'low' | 'overstock' | 'ok'): Promise<StockByStatusResponse[] | null>
+    findProductsByStockLevel(status: 'low' | 'overstock' | 'ok', idWarehouse: ObjectIdParam): Promise<StockByStatusResponse[] | null>;
 }

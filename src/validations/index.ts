@@ -143,3 +143,10 @@ export {UserFilterSchema} from './sharedValidators/userFilterValidator';
 
 export {LocationUserDataDto} from './locationUserDataValidators/location.validation';
 export {locationDataUserSchemaZod} from './locationUserDataValidators/location.validation';
+
+//general data
+
+export {StatusStockResponseDto} from './generalUserData/statusStock.validation';
+export {SummaryDataResponseDto} from './generalUserData/summaryData.validation';
+export {statusStockSchemaZod} from './generalUserData/statusStock.validation';
+export {summaryDataResponseSchemaZod} from './generalUserData/summaryData.validation';
